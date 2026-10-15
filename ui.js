@@ -21,14 +21,16 @@ const copy = {
 
 export class GameUI {
   constructor(ctx, { onAction = () => {} } = {}) {
-    this.ctx = ctx; this.onAction = onAction; this.screen = null; this.mode = new URLSearchParams(location.search).has('touch') || navigator.maxTouchPoints > 0 ? 'touch' : 'keyboard';
+    this.ctx = ctx; this.onAction = onAction; this.screen = null; this.forceTouch = new URLSearchParams(location.search).has('touch'); this.mode = this.forceTouch || navigator.maxTouchPoints > 0 ? 'touch' : 'keyboard';
     this.preferences = { rumble: true, motion: true, steering: 1 };
     try { const saved = JSON.parse(localStorage.getItem('signal-debt-preferences')); if (saved) { this.preferences.rumble = saved.rumble !== false; this.preferences.motion = saved.motion !== false; this.preferences.steering = clamp(saved.steering ?? 1, 0.5, 1.5); } } catch {}
-    this.root = $('div', 'sd-ui'); this.root.dataset.mode = this.mode; this.root.dataset.motion = String(this.preferences.motion); document.body.append(this.root);
+    this.root = $('div', 'sd-ui'); this.root.dataset.mode = this.mode; this.root.dataset.touch = String(this.forceTouch || this.mode === 'touch'); this.root.dataset.motion = String(this.preferences.motion); document.body.append(this.root);
     this.listeners = []; this.controls = []; this.selected = 0; this.previous = {}; this.held = {}; this.padSignature = ''; this.clock = 0; this.state = {}; this.menuKeyQueue = []; this.touchHeld = new Set();
     this.hud = $('section', 'sd-hud'); this.hud.setAttribute('aria-label', 'Game status');
     this.hud.innerHTML = `<div class="sd-objective"><div class="sd-eyebrow sd-chapter"></div><h2></h2><p class="sd-objective-text"></p><p class="sd-objective-detail"></p><div class="sd-progress-track"><i></i></div></div><div class="sd-status"><div class="sd-heat" aria-label="Security attention"></div><div class="sd-heat-state"></div><div class="sd-wallet"></div></div><div class="sd-radar"><div class="sd-map-caption"><span class="sd-location"></span><span>N ↑</span></div><canvas width="260" height="180" aria-label="Street map, player and destination"></canvas><div class="sd-health"><span>REN</span><i><b></b></i><strong></strong></div></div><div class="sd-equipment"><div class="sd-speed"></div><div class="sd-ammo"></div><div class="sd-vehicle-health"></div></div><div class="sd-subtitle" role="status"><strong></strong><span></span></div><div class="sd-prompt"></div><div class="sd-toast" role="status"></div><div class="sd-scan">SIGNAL SCAN / ACTIVE</div>`;
     this.root.append(this.hud); this.minimap = this.hud.querySelector('canvas');
+    this.subtitleObserver = new ResizeObserver(entries => { const entry = entries[0], height = entry.borderBoxSize?.[0]?.blockSize ?? entry.target.getBoundingClientRect().height; this.root.style.setProperty('--sd-subtitle-height', `${height}px`); });
+    this.subtitleObserver.observe(this.hud.querySelector('.sd-subtitle'));
     this.overlay = $('section', 'sd-overlay'); this.overlay.hidden = true; this.overlay.setAttribute('aria-modal', 'true'); this.overlay.setAttribute('role', 'dialog'); this.root.append(this.overlay);
     this.touch = $('div', 'sd-touch'); this.root.append(this.touch); this.createTouch();
     this.notice = $('div', 'sd-notice'); this.notice.setAttribute('role', 'status'); this.root.append(this.notice);
@@ -38,7 +40,7 @@ export class GameUI {
       if (this.screen && ['Enter', 'Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Escape'].includes(e.code)) e.preventDefault();
       if (this.screen && e.code === 'Enter' && !e.repeat && this.controls[this.selected]?.action === 'fullscreen') { this.fullscreen(); this.suppressConfirm = this.clock + 0.2; }
     });
-    this.listen(window, 'pointerdown', e => { this.setMode(e.pointerType === 'touch' ? 'touch' : 'keyboard'); }, { passive: true });
+    this.listen(window, 'pointerdown', e => { this.setMode(e.pointerType === 'touch' || e.target.closest?.('.sd-touch') ? 'touch' : 'keyboard'); }, { passive: true });
     this.listen(window, 'blur', () => this.releaseTouch());
     this.listen(document, 'visibilitychange', () => { if (document.hidden) this.releaseTouch(); });
     this.listen(window, 'resize', () => this.drawMap(this.mapCanvas, true));
@@ -47,7 +49,7 @@ export class GameUI {
   }
 
   listen(target, type, fn, options) { target.addEventListener(type, fn, options); this.listeners.push(() => target.removeEventListener(type, fn, options)); }
-  setMode(mode) { if (mode === this.mode) return; this.mode = mode; this.root.dataset.mode = mode; this.refreshGlyphs(); }
+  setMode(mode) { if (mode === this.mode) return; this.mode = mode; this.root.dataset.mode = mode; this.root.dataset.touch = String(this.forceTouch || mode === 'touch'); this.refreshGlyphs(); }
   key(code) { return this.mode === 'gamepad' ? GLYPHS[code] || code.replace('Key', '') : KEYS[code] || code.replace('Key', ''); }
   glyph(code) { const k = $('kbd', 'sd-key', this.key(code)); k.dataset.key = code; return k; }
   refreshGlyphs() { for (const k of this.root.querySelectorAll('[data-key]')) k.textContent = this.key(k.dataset.key); }
@@ -100,7 +102,7 @@ export class GameUI {
     }
     content.append(buttons);
     const footer = $('footer', 'sd-menu-footer'); const hints = $('span', 'sd-menu-hints'); hints.append(this.glyph('Enter'), document.createTextNode(' SELECT'), this.glyph('Escape'), document.createTextNode(' BACK')); footer.append(hints, $('span', 'sd-save-note', 'SAFE CHECKPOINTS SAVE AUTOMATICALLY')); panel.append(footer);
-    this.overlay.append(panel); this.select(0, false); this.refreshGlyphs(); this.drawMap(this.mapCanvas, true);
+    this.overlay.append(panel); this.overlay.scrollTop = 0; this.select(0, false); this.refreshGlyphs(); this.drawMap(this.mapCanvas, true);
     // Require a release before a held gameplay button can activate a newly opened menu.
     this.primeHeld();
   }
@@ -144,9 +146,9 @@ export class GameUI {
     option('Scene look', setting('look', 'none'), looks.length ? looks : ['none', 'no_filters'], set('look'), lookNames, 'PICTURE');
     option('Pixel rendering', setting('pixelArt', true), [true, false], set('pixelArt'), v => v ? 'On' : 'Off');
     option('Pixel size', setting('pixelSize', 'fine'), ['fine', 'chunky'], set('pixelSize'));
-    option('Lighting quality', setting('quality', 'auto'), ['auto', 'low', 'medium', 'high'], set('quality'));
-    option('Frame rate', setting('fps', 60), [60, 30, 0], set('fps'), v => v ? `${v} FPS` : 'Display');
-    option('Performance display', setting('debugInfo', false), [false, true], set('debugInfo'), v => v ? 'On' : 'Off');
+    option('Lighting quality', setting('quality', engine?.qualityOption ?? 'auto'), ['auto', 'low', 'medium', 'high'], set('quality'));
+    option('Frame rate', setting('fps', engine?.maxFps ?? 60), [60, 30, 0], set('fps'), v => v ? `${v} FPS` : 'Display');
+    option('Performance display', setting('debugInfo', engine?.debugShown ?? false), [false, true], set('debugInfo'), v => v ? 'On' : 'Off');
     for (const [i, channel] of ['master', 'sfx', 'music'].entries()) option(channel === 'sfx' ? 'Sound effects' : channel[0].toUpperCase() + channel.slice(1), () => Math.round((audio?.volume?.[channel] ?? 1) * 10) / 10, Array.from({ length: 11 }, (_, n) => n / 10), v => audio?.setVolume?.(channel, v), v => `${Math.round(v * 100)}%`, i === 0 ? 'SOUND' : '');
     const pref = key => value => { this.preferences[key] = value; this.root.dataset.motion = String(this.preferences.motion); try { localStorage.setItem('signal-debt-preferences', JSON.stringify(this.preferences)); } catch {} };
     option('Controller vibration', () => this.preferences.rumble, [true, false], pref('rumble'), v => v ? 'On' : 'Off', 'FEEL');
@@ -171,7 +173,7 @@ export class GameUI {
     if (control.action === 'new' && (this.props.canContinue || this.props.continue) && !this.confirmNew) {
       this.confirmNew = true; control.element.querySelector('.sd-action-label').textContent = 'Replace saved story? Select again'; return;
     }
-    this.confirmNew = false; this.emit(control.action, control.value);
+    this.confirmNew = false; if (['repair', 'upgrade', 'courier'].includes(control.action)) this.expectMenuFeedback = true; this.emit(control.action, control.value);
   }
   back() {
     if (['options', 'help', 'map', 'replay'].includes(this.screen)) { const previous = this.previous[this.screen]; if (previous) this.show(previous.screen, previous.props); else this.emit('resume'); return; }
@@ -222,15 +224,15 @@ export class GameUI {
 
   renderHUD(state = {}) {
     this.state = state; this.lastState = state; const q = selector => this.hud.querySelector(selector); const text = (selector, value) => { const el = q(selector); const s = String(value ?? ''); if (el.textContent !== s) el.textContent = s; };
-    const mission = state.mission || {}; text('.sd-chapter', mission.chapter || (mission.title ? 'ACTIVE JOB' : 'THE BREAKWATER')); text('.sd-objective h2', mission.title || 'The city is yours.'); text('.sd-objective-text', mission.objective || 'Explore the waterfront'); text('.sd-objective-detail', mission.detail || '');
+    const mission = state.mission || {}; text('.sd-chapter', (typeof mission.chapter === 'number' ? `JOB ${String(mission.chapter).padStart(2, '0')} / 04` : mission.chapter) || (mission.title ? 'ACTIVE JOB' : 'THE BREAKWATER')); text('.sd-objective h2', mission.title || 'The city is yours.'); text('.sd-objective-text', mission.objective || 'Explore the waterfront'); text('.sd-objective-detail', mission.detail || '');
     const progress = typeof mission.progress === 'number' ? clamp(mission.progress > 1 ? mission.progress / 100 : mission.progress, 0, 1) : 0; q('.sd-progress-track').hidden = !progress; q('.sd-progress-track i').style.width = `${progress * 100}%`;
-    const heat = clamp(Math.ceil(state.heat || 0), 0, 5); const heatEl = q('.sd-heat'); const heatValue = '▰'.repeat(heat) + '▱'.repeat(5 - heat); if (heatEl.textContent !== heatValue) heatEl.textContent = heatValue; heatEl.dataset.level = heat;
+    const heat = clamp(Math.ceil(state.heat || 0), 0, 3); const heatEl = q('.sd-heat'); const heatValue = '▰'.repeat(heat) + '▱'.repeat(3 - heat); if (heatEl.textContent !== heatValue) heatEl.textContent = heatValue; heatEl.dataset.level = heat;
     text('.sd-heat-state', heat ? state.heatState || 'SECURITY ALERT' : 'OFF THE RADAR'); text('.sd-wallet', money(state.cash)); text('.sd-location', state.location || 'BREAKWATER');
     const health = clamp(state.health ?? 100, 0, 100); q('.sd-health b').style.width = `${health}%`; q('.sd-health').classList.toggle('is-low', health < 30); text('.sd-health strong', `${Math.ceil(health)}`);
     text('.sd-speed', state.inVehicle ? `${Math.round(Math.abs(state.speed || 0))} KM/H` : ''); text('.sd-ammo', state.inVehicle ? 'BEHIND THE WHEEL' : `${state.ammo ?? 12} / ${state.reserve ?? 72}`); text('.sd-vehicle-health', state.inVehicle ? `BODY ${Math.ceil(clamp(state.vehicleHealth ?? 100, 0, 100))}%` : '');
     const sub = typeof state.subtitle === 'string' ? { text: state.subtitle } : state.subtitle || {}; text('.sd-subtitle strong', sub.speaker || ''); text('.sd-subtitle span', sub.text || ''); q('.sd-subtitle').hidden = !sub.text;
     const prompt = state.prompt; const signature = prompt ? `${prompt.text}|${prompt.key}|${this.mode}` : ''; if (signature !== this.promptSignature) { this.promptSignature = signature; const el = q('.sd-prompt'); el.replaceChildren(); if (prompt) el.append(this.glyph(prompt.key || 'KeyF'), $('span', '', prompt.text)); el.hidden = !prompt; }
-    const toast = typeof state.toast === 'object' ? state.toast?.text : state.toast; text('.sd-toast', toast || ''); q('.sd-toast').hidden = !toast; q('.sd-scan').hidden = !state.scan;
+    const toast = typeof state.toast === 'object' ? state.toast?.text : state.toast; text('.sd-toast', toast || ''); q('.sd-toast').hidden = !toast; if (this.screen && this.expectMenuFeedback && toast) { this.notify(toast); this.expectMenuFeedback = false; } q('.sd-scan').hidden = !state.scan;
     this.touch.dataset.vehicle = state.inVehicle ? 'true' : 'false'; this.drawMap(this.minimap, false);
   }
 
@@ -252,7 +254,7 @@ export class GameUI {
     }
     c.fillStyle = '#c43d36'; for (const e of enemies) { c.beginPath(); c.arc(tx(e.x), tz(e.z), full ? 4 : 3, 0, Math.PI * 2); c.fill(); }
     c.save(); c.translate(tx(position.x || 0), tz(position.z || 0)); c.rotate(Math.PI - (position.yaw || 0)); c.fillStyle = '#fff9e7'; c.strokeStyle = '#172d31'; c.lineWidth = 2; c.beginPath(); c.moveTo(0, -8); c.lineTo(6, 6); c.lineTo(0, 3); c.lineTo(-6, 6); c.closePath(); c.fill(); c.stroke(); c.restore();
-    if (full) { c.fillStyle = '#233535'; c.font = 'bold 13px sans-serif'; c.textAlign = 'center'; const landmarks = Array.isArray(world.landmarks) ? world.landmarks : Object.entries(world.landmarks || {}).map(([name, l]) => ({ name, ...l })); for (const l of landmarks) if (Number.isFinite(l.x) && Number.isFinite(l.z)) c.fillText((l.name || l.label || '').toUpperCase(), tx(l.x), tz(l.z) - 12); }
+    if (full) { c.fillStyle = '#233535'; c.font = 'bold 18px sans-serif'; c.textAlign = 'center'; const landmarks = Array.isArray(world.landmarks) ? world.landmarks : Object.entries(world.landmarks || {}).map(([name, l]) => ({ name, ...l })); for (const l of landmarks) if (Number.isFinite(l.x) && Number.isFinite(l.z)) { const label = (l.name || l.label || '').toUpperCase(); const half = c.measureText(label).width / 2; c.fillText(label, clamp(tx(l.x), tx(-bound) + half + 5, tx(bound) - half - 5), tz(l.z) - 12); } }
   }
 
   createTouch() {
@@ -277,5 +279,5 @@ export class GameUI {
   }
   notify(message) { this.notice.textContent = message; this.noticeUntil = this.clock + 5; }
   rumble(amount = 0.4, duration = 150) { if (!this.preferences.rumble) return; for (const pad of this.pads()) try { pad.vibrationActuator?.playEffect?.('dual-rumble', { duration, strongMagnitude: clamp(amount, 0, 1), weakMagnitude: clamp(amount * 0.65, 0, 1), startDelay: 0 })?.catch?.(() => {}); } catch {} }
-  dispose() { this.releaseTouch(); this.listeners.forEach(fn => fn()); this.root.remove(); }
+  dispose() { this.subtitleObserver?.disconnect(); this.releaseTouch(); this.listeners.forEach(fn => fn()); this.root.remove(); }
 }

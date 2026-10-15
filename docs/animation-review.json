@@ -8,14 +8,14 @@
         "frames": 60,
         "loop": true,
         "speed": null,
-        "minSoleY": -4.528579300444591e-08,
+        "minSoleY": -4.528579300444591e-8,
         "minSoleFrame": 15,
         "minBodyY": 0.06413669003125422,
         "minBodyMesh": "ShinL_Mesh",
         "minBodyFrame": 30,
         "floatingFrames": 0,
-        "footSlide": 2.7975918777921327e-07,
-        "loopSeam": 2.501826656953199e-08,
+        "footSlide": 2.7975918777921327e-7,
+        "loopSeam": 2.501826656953199e-8,
         "maxAngularSpeed": {
           "joint": "ShinR",
           "degPerSec": 10.277871841275328,
@@ -40,7 +40,7 @@
         "frames": 102,
         "loop": true,
         "speed": null,
-        "minSoleY": 1.4376411963668012e-08,
+        "minSoleY": 1.4376411963668012e-8,
         "minSoleFrame": 71,
         "minBodyY": 0.07047873350358705,
         "minBodyMesh": "ShinL_Mesh",
@@ -72,13 +72,13 @@
         "frames": 30,
         "loop": true,
         "speed": null,
-        "minSoleY": -3.041875487608259e-08,
+        "minSoleY": -3.041875487608259e-8,
         "minSoleFrame": 19,
         "minBodyY": 0.06084304527357293,
         "minBodyMesh": "ShinL_Mesh",
         "minBodyFrame": 8,
         "floatingFrames": 0,
-        "footSlide": 4.6808511597676294e-07,
+        "footSlide": 4.6808511597676294e-7,
         "loopSeam": 0.012000000000057298,
         "maxAngularSpeed": {
           "joint": "ArmR",
@@ -104,13 +104,13 @@
         "frames": 18,
         "loop": true,
         "speed": 1.2,
-        "minSoleY": -4.670316675142727e-06,
+        "minSoleY": -0.000004670316675142727,
         "minSoleFrame": 9,
         "minBodyY": 0.1058192377319288,
         "minBodyMesh": "ShinL_Mesh",
         "minBodyFrame": 18,
         "floatingFrames": 0,
-        "footSlide": 8.13894192131666e-05,
+        "footSlide": 0.0000813894192131666,
         "loopSeam": 0.005204000000048836,
         "maxAngularSpeed": {
           "joint": "ShinL",
@@ -136,7 +136,7 @@
         "frames": 12,
         "loop": true,
         "speed": 2,
-        "minSoleY": -2.640207641749215e-06,
+        "minSoleY": -0.000002640207641749215,
         "minSoleFrame": 10,
         "minBodyY": 0.05437316077217064,
         "minBodyMesh": "ShinL_Mesh",
@@ -168,7 +168,7 @@
         "frames": 12,
         "loop": true,
         "speed": 6,
-        "minSoleY": -3.9303829561798675e-07,
+        "minSoleY": -3.9303829561798675e-7,
         "minSoleFrame": 0,
         "minBodyY": 0.026812466854312933,
         "minBodyMesh": "ShinL_Mesh",
@@ -188,7 +188,7 @@
         ],
         "problems": [],
         "warnings": [
-          "FootR snaps at 1473\u00b0/s around frame 1"
+          "FootR snaps at 1473°/s around frame 1"
         ]
       },
       "validation": [],
@@ -222,7 +222,7 @@
         ],
         "problems": [],
         "warnings": [
-          "ArmR snaps at 1248\u00b0/s around frame 2"
+          "ArmR snaps at 1248°/s around frame 2"
         ]
       },
       "validation": [],
@@ -236,7 +236,7 @@
         "frames": 12,
         "loop": false,
         "speed": null,
-        "minSoleY": -1.4404479109497714e-08,
+        "minSoleY": -1.4404479109497714e-8,
         "minSoleFrame": 0,
         "minBodyY": 0.03966074601377839,
         "minBodyMesh": "ShinL_Mesh",
@@ -268,7 +268,7 @@
         "frames": 8,
         "loop": false,
         "speed": null,
-        "minSoleY": -3.323914080088919e-08,
+        "minSoleY": -3.323914080088919e-8,
         "minSoleFrame": 3,
         "minBodyY": 0.06134181870999908,
         "minBodyMesh": "ShinL_Mesh",
@@ -300,7 +300,7 @@
         "frames": 8,
         "loop": false,
         "speed": null,
-        "minSoleY": 1.4376411991423588e-08,
+        "minSoleY": 1.4376411991423588e-8,
         "minSoleFrame": 0,
         "minBodyY": 0.047617740343694676,
         "minBodyMesh": "ShinL_Mesh",
@@ -403,7 +403,7 @@
         "minBodyFrame": 0,
         "floatingFrames": 0,
         "footSlide": 0.0653561425330266,
-        "loopSeam": 1.499900008639088e-07,
+        "loopSeam": 1.499900008639088e-7,
         "maxAngularSpeed": {
           "joint": "ArmR",
           "degPerSec": 22.200000000000273,
@@ -435,7 +435,7 @@
         "minBodyFrame": 0,
         "floatingFrames": 0,
         "footSlide": 0,
-        "loopSeam": 2.062328121610335e-06,
+        "loopSeam": 0.000002062328121610335,
         "maxAngularSpeed": {
           "joint": "ArmR",
           "degPerSec": 242.34375,
@@ -460,7 +460,7 @@
         "frames": 10,
         "loop": false,
         "speed": null,
-        "minSoleY": 1.4169240739048128e-08,
+        "minSoleY": 1.4169240739048128e-8,
         "minSoleFrame": 10,
         "minBodyY": 0.02933475398957594,
         "minBodyMesh": "ShinL_Mesh",
@@ -492,7 +492,7 @@
         "frames": 30,
         "loop": false,
         "speed": null,
-        "minSoleY": -4.684991683490125e-08,
+        "minSoleY": -4.684991683490125e-8,
         "minSoleFrame": 13,
         "minBodyY": 0.014646933473496798,
         "minBodyMesh": "ShinL_Mesh",
@@ -556,7 +556,7 @@
         "frames": 48,
         "loop": false,
         "speed": null,
-        "minSoleY": 1.0436572675520672e-08,
+        "minSoleY": 1.0436572675520672e-8,
         "minSoleFrame": 0,
         "minBodyY": 0.033200343231777785,
         "minBodyMesh": "ShinL_Mesh",
@@ -588,13 +588,13 @@
         "frames": 20,
         "loop": false,
         "speed": null,
-        "minSoleY": -5.433037299218402e-08,
+        "minSoleY": -5.433037299218402e-8,
         "minSoleFrame": 6,
         "minBodyY": 0.03157212847055274,
         "minBodyMesh": "ShinL_Mesh",
         "minBodyFrame": 10,
         "floatingFrames": 0,
-        "footSlide": 5.018753324956965e-07,
+        "footSlide": 5.018753324956965e-7,
         "loopSeam": 0,
         "maxAngularSpeed": {
           "joint": "ArmR",
@@ -644,13 +644,77 @@
       "validation": [],
       "width": 1510,
       "height": 779
+    },
+    {
+      "name": "SignalAim",
+      "report": {
+        "name": "SignalAim",
+        "frames": 60,
+        "loop": true,
+        "speed": null,
+        "minSoleY": -7.450580596923828e-9,
+        "minSoleFrame": 0,
+        "minBodyY": 0.10999999940395355,
+        "minBodyMesh": "ShinR_Mesh",
+        "minBodyFrame": 0,
+        "floatingFrames": 0,
+        "footSlide": 0,
+        "loopSeam": 0,
+        "maxAngularSpeed": {
+          "joint": "",
+          "degPerSec": 0,
+          "frame": 0
+        },
+        "limitViolations": [],
+        "pelvisY": [
+          0.6200000047683716,
+          0.6200000047683717
+        ],
+        "problems": [],
+        "warnings": []
+      },
+      "validation": [],
+      "width": 1198,
+      "height": 782
+    },
+    {
+      "name": "SignalAimWalk",
+      "report": {
+        "name": "SignalAimWalk",
+        "frames": 12,
+        "loop": true,
+        "speed": 2,
+        "minSoleY": -0.000002640207641749215,
+        "minSoleFrame": 10,
+        "minBodyY": 0.05437316077217064,
+        "minBodyMesh": "ShinL_Mesh",
+        "minBodyFrame": 11,
+        "floatingFrames": 0,
+        "footSlide": 0.02658660550538487,
+        "loopSeam": 0.01929999999993015,
+        "maxAngularSpeed": {
+          "joint": "ShinL",
+          "degPerSec": 1099.83,
+          "frame": 5
+        },
+        "limitViolations": [],
+        "pelvisY": [
+          0.5250219108356831,
+          0.5749780523919737
+        ],
+        "problems": [],
+        "warnings": []
+      },
+      "validation": [],
+      "width": 1342,
+      "height": 782
     }
   ],
   "runtime": {
     "ground": [
-      8.548830265908691e-08,
+      8.548830265908691e-8,
       0.019765031337738048,
-      8.548830265908691e-08
+      8.548830265908691e-8
     ],
     "jog": [
       1.8545418977737427,
@@ -789,41 +853,5 @@
     "removed": true,
     "loopsStopped": true
   },
-  "errors": [],
-  "review": {
-    "date": "2026-10-15",
-    "method": "Rendered and visually inspected all 20 contact sheets after original Ren Vale recolor, in side/front/three-quarter views with skeleton overlays and motion trails. Inspected actor.png runtime frame.",
-    "command": "PLAYWRIGHT_HOST_PLATFORM_OVERRIDE=ubuntu24.04-x64 node tests/actor-audio-review.mjs",
-    "artifacts": "/tmp/signal-debt-actor-review",
-    "observations": [
-      "Idle and IdleLook remain grounded and readable.",
-      "Tiptoe/Walk/Run show coherent opposing arm and leg travel. Run has a fast foot transition at frame 1; no penetration or broken pose observed.",
-      "Skid/SkidTurn deliberately snap into braking/turning anticipation; inherited speed warning accepted after sheet review.",
-      "StepUp/StepDown visibly lift and settle the feet, matching curb traversal.",
-      "Jump/JumpUp/WallSlide/Fall carry clear airborne silhouettes.",
-      "Land/HardLand absorb impact and recover. Slide stays seated.",
-      "Victory and Hurt are readable single actions.",
-      "Roll tucks, rotates and recovers in 14 frames without mesh penetration in the contact-sheet metrics. Runtime dodge uses a short collision-aware launch; it returns to grounded Idle."
-    ],
-    "toolkit": [
-      "The supplied ~/dev/TESTING-TOOLKIT.md path was absent.",
-      "Machine Playwright CLI belongs to Python; the repository playwright-core link uses its driver/package directory.",
-      "Playwright WebKit and Firefox on this machine do not expose WebGPU. Chromium SwiftShader is used for playable review.",
-      "Rendering SheetImage into a browser canvas and returning PNG base64 avoids prohibitively large raw RGBA serialization."
-    ],
-    "workarounds": [
-      {
-        "file": "actors.js",
-        "detail": "CityCharacter overrides animationFor for the original dodge action and limits the platformer clip requests to the reviewed subset."
-      },
-      {
-        "file": "actors.js",
-        "detail": "CityCharacter.findLedge returns null so automatic platformer hangs cannot capture a player with no climb controls."
-      },
-      {
-        "file": "actors.js",
-        "detail": "A small launch keeps planted-foot IK out of the tucked roll. Public body/controller APIs continue to own movement and collision."
-      }
-    ]
-  }
+  "errors": []
 }

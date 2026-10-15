@@ -25,7 +25,33 @@ export function visible(a,b,buildings) {
 
 export function roadRoute(a,b,roads) {
   const near = (n, list) => list.reduce((p,c)=>Math.abs(c-n)<Math.abs(p-n)?c:p);
-  const ax=near(a.x,roads.xs),az=near(a.z,roads.zs),bx=near(b.x,roads.xs),bz=near(b.z,roads.zs);
-  const start=Math.abs(a.x-ax)<Math.abs(a.z-az)?point(ax,a.z):point(a.x,az);
-  return [start,point(ax,az),point(bx,az),point(bx,bz),point(b.x,bz),point(b.x,b.z)].filter((p,i,arr)=>!i||distance(p,arr[i-1])>2);
+  const connector = p => {
+    const x=near(p.x,roads.xs),z=near(p.z,roads.zs);
+    return Math.abs(p.x-x)<Math.abs(p.z-z)?point(x,p.z):point(p.x,z);
+  };
+  const start=connector(a),end=connector(b),nodes=[];
+  const add=p=>{let i=nodes.findIndex(n=>n.x===p.x&&n.z===p.z);if(i<0){i=nodes.length;nodes.push(p);}return i;};
+  const first=add(start),last=add(end);
+  for(const x of roads.xs)for(const z of roads.zs)add(point(x,z));
+  const costs=nodes.map(()=>Infinity),from=nodes.map(()=>-1),visited=new Set();costs[first]=0;
+  while(visited.size<nodes.length){
+    let current=-1;
+    for(let i=0;i<nodes.length;i++)if(!visited.has(i)&&(current<0||costs[i]<costs[current]))current=i;
+    if(current===last||!Number.isFinite(costs[current]))break;
+    visited.add(current);const p=nodes[current];
+    for(let i=0;i<nodes.length;i++){
+      const q=nodes[i];
+      if(visited.has(i)||!(p.x===q.x&&roads.xs.includes(p.x)||p.z===q.z&&roads.zs.includes(p.z)))continue;
+      const cost=costs[current]+distance(p,q);if(cost<costs[i]){costs[i]=cost;from[i]=current;}
+    }
+  }
+  const path=[];for(let i=last;i>=0;i=from[i]){path.unshift(nodes[i]);if(i===first)break;}
+  path.push(point(b.x,b.z,b.y??0));
+  const result=[];
+  for(const p of path){
+    if(result.length&&distance(result.at(-1),p)<1e-6)continue;
+    if(result.length>1){const u=result.at(-2),v=result.at(-1);if(u.x===v.x&&v.x===p.x||u.z===v.z&&v.z===p.z)result.pop();}
+    result.push(p);
+  }
+  return result;
 }

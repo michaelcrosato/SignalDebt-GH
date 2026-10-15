@@ -4,6 +4,7 @@ import {
   compileClips, ContactShadow, HERO_CLIPS, HERO_MODEL, HERO_RIG,
   PALETTE, PlatformerCharacter, setLookLayer, THREE, toonMaterial,
 } from './pixel-engine.js';
+import {equipment, PULSE_EMITTER} from './equipment.js';
 
 const { Vector3, Mesh, BoxGeometry } = THREE;
 
@@ -14,7 +15,13 @@ export const ACTOR_CLIP_NAMES = Object.freeze([
   'StepUp', 'StepDown', 'Jump', 'JumpUp', 'Fall', 'Land', 'HardLand',
   'WallSlide', 'Slide', 'Hurt', 'Roll', 'Victory',
 ]);
-export const ACTOR_CLIPS = HERO_CLIPS.filter(clip => ACTOR_CLIP_NAMES.includes(clip.name));
+const AIM_POSE={ArmR:[-78,0,-8],ForearmR:[-12,0,0],ArmL:[-65,0,25],ForearmL:[-35,0,0]};
+const walkSource=HERO_CLIPS.find(clip=>clip.name==='Walk');
+export const AIM_CLIPS=[
+ {name:'SignalAim',frames:60,loop:true,grounded:true,keys:[[0,AIM_POSE],[60,AIM_POSE]]},
+ {...walkSource,name:'SignalAimWalk',keys:walkSource.keys.map(([frame,pose,ease])=>[frame,{...pose,...AIM_POSE},ease])}
+];
+export const ACTOR_CLIPS = [...HERO_CLIPS.filter(clip => ACTOR_CLIP_NAMES.includes(clip.name)),...AIM_CLIPS];
 let compiledClips;
 
 /** Recolor clones by assigning cached materials: never mutate the shared originals. */
@@ -61,6 +68,7 @@ class CityCharacter extends PlatformerCharacter {
   findLedge() { return null; }
   animationFor() {
     if (this.dodgeTime > 0) return { name: 'Roll', once: true, fade: 0.035 };
+    if (this.aiming && this.grounded) return this.speed>.1?{name:'SignalAimWalk',speed:Math.max(.2,this.speed/walkSource.speed),fade:.08}:{name:'SignalAim',fade:.08};
     const request = super.animationFor();
     // The urban controls never request the platformer's combo moves. A rare
     // geometry-driven pose (such as a grab) still has a safe visible fallback.
@@ -75,6 +83,10 @@ export async function createActor(ctx, { at = [0, 0, 0], color = 'teal', role = 
   // by mixers, whereas scene nodes and their animation state cannot.
   compiledClips ??= compileClips(ACTOR_CLIPS, HERO_RIG, model);
   styleActor(model, { color, role });
+  if(role!=='pedestrian'){
+    const emitter=equipment(PULSE_EMITTER);emitter.name='PulseEmitter';emitter.position.set(0,-.03,.07);emitter.rotation.x=Math.PI/2;
+    (model.getObjectByName('HandR')??model.getObjectByName('ForearmR')).add(emitter);
+  }
   const hero = new CityCharacter(ctx.physics, { position: [...at], runSpeed: role === 'player' ? 7.8 : 5.5 });
   hero.attachModel(model, compiledClips, HERO_RIG);
   hero.shove = role === 'player' ? 0.8 : 0;
@@ -93,6 +105,7 @@ export async function createActor(ctx, { at = [0, 0, 0], color = 'teal', role = 
 
   const actor = {
     model, hero, shadow, role,
+    setAiming(value) { hero.aiming=!!value; },
     get dodging() { return hero.dodgeTime > 0; },
     get dodgeCooldown() { return dodgeCooldown; },
     face(yaw) {

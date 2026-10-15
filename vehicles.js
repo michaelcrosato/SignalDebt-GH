@@ -1,6 +1,6 @@
 import { Vehicle, THREE, RAPIER, toonMaterial, PALETTE, setLookLayer } from './pixel-engine.js';
 import { createVehicleVisual } from './models.js';
-import { clamp, distance, angleDelta, roadRoute } from './navigation.js';
+import { clamp, distance, angleDelta, roadRoute, segmentHitsRect } from './navigation.js';
 
 const { Mesh, CylinderGeometry, Vector3, Quaternion } = THREE;
 export class Ride {
@@ -24,7 +24,9 @@ export class Ride {
   get position(){return this.body.translation();}
   drive(dt,{throttle=0,steer=0,brake=false,handbrake=false}={}){
     this.cooldown=Math.max(0,this.cooldown-dt);
-    this.vehicle.drive({throttle:this.integrity>0?throttle:0,steer,brake,handbrake},dt);
+    const pressure=typeof brake==='number'?clamp(brake,0,1):0;
+    this.vehicle.drive({throttle:this.integrity>0?throttle:0,steer,brake:brake===true,handbrake},dt);
+    if(pressure>0){const v=this.speed,impulse=-Math.sign(v)*Math.min(Math.abs(v),pressure*18*dt)*this.vehicle.o.mass;this.body.applyImpulse({x:Math.sin(this.yaw)*impulse,y:0,z:Math.cos(this.yaw)*impulse},true);}
     const speed=Math.abs(this.speed), loss=this.previousSpeed-speed;
     if(loss>6 && this.cooldown<=0){this.integrity=clamp(this.integrity-loss*1.2,0,100);this.cooldown=.7;this.ctx.particles.burst('impact',this.position);this.onCrash?.(loss);}
     this.previousSpeed=speed;
@@ -32,7 +34,8 @@ export class Ride {
   update(){for(let i=0;i<4;i++){this.vehicle.wheelPose(i,this.wp,this.wq,true);this.wheels[i].position.copy(this.wp);this.wheels[i].quaternion.copy(this.wq);}}
   reset(at,yaw=0){this.vehicle.reset(at,yaw);this.previousSpeed=0;}
   repair(){this.integrity=100;const p=this.position;this.reset([p.x,1.1,p.z],this.yaw);}
-  upgrade(){this.upgraded=true;this.vehicle.o.power=49;this.vehicle.o.topSpeed=32;this.vehicle.setSuspension(35);}
+  setUpgraded(value){this.upgraded=value;this.vehicle.o.power=value?49:this.kind==='van'?44:38;this.vehicle.o.topSpeed=value?32:this.kind==='van'?20:27;this.vehicle.setSuspension(value?35:28);}
+  upgrade(){this.setUpgraded(true);}
   dispose(){this.vehicle.dispose();this.mesh.removeFromParent();}
 }
 
@@ -56,7 +59,17 @@ export class TrafficCar {
     const desired=Math.atan2(goal.x-p.x,goal.z-p.z);this.heading+=clamp(angleDelta(desired,this.heading),-dt*2.8,dt*2.8);
     let speed=this.speed;if(blocker&&distance(p,blocker)<7&&!this.police)speed=0;
     if(Math.abs(angleDelta(desired,this.heading))>1)speed*=.3;
-    const step=Math.min(speed*dt,distance(p,goal));this.body.setNextKinematicTranslation({x:p.x+Math.sin(this.heading)*step,y:.85,z:p.z+Math.cos(this.heading)*step});
+    const step=Math.min(speed*dt,distance(p,goal));
+    const next={x:p.x+Math.sin(this.heading)*step,y:.85,z:p.z+Math.cos(this.heading)*step};
+    const world=this.ctx.engine.game?.world;
+    // Rapier kinematic bodies obey authored poses even through fixed walls.
+    // Sweep a conservative circle enclosing the 0.95 × 2.1m half-extents,
+    // including turning clearance, before submitting the next street-car pose.
+    // Pursuers can still reach open alleys, but cannot shortcut through a block.
+    const clearance=2.45,limit=(world?.bounds??252)-4.5;
+    this.blockedByBuilding=!!world?.buildings.some(b=>b.h>.5&&segmentHitsRect(p,next,b,clearance));
+    const blocked=this.blockedByBuilding||Math.abs(next.x)>limit||Math.abs(next.z)>limit;
+    this.body.setNextKinematicTranslation(blocked?{x:p.x,y:.85,z:p.z}:next);
     this.body.setNextKinematicRotation({x:0,y:Math.sin(this.heading/2),z:0,w:Math.cos(this.heading/2)});
   }
   update(t){if(this.bar)this.bar.material=toonMaterial(Math.sin(t*12)>0?PALETTE.red:PALETTE.cyan);}

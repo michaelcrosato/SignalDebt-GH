@@ -67,11 +67,11 @@ export class Story {
   constructor(game){this.game=game;this.missions=structuredClone(MISSIONS);this.mission=0;this.stage=0;this.active=false;this.finished=false;this.progress=0;this.stageTime=0;this.wave=0;this.completed=0;this.approach='jam';this.history=[];}
   get chapter(){return this.missions[this.mission];}
   get current(){return this.chapter?.stages[this.stage];}
-  target(){if(!this.active)return null;const s=this.current;if(s.type==='escape')return null;if(s.type==='intercept')return this.game.courier?.position??s.at;return s.at;}
-  brief(index=this.mission){this.mission=index;const m=this.chapter;this.game.ui.show('brief',{title:m.title,subtitle:m.tagline,body:m.brief,missionIndex:index,choices:m.choice?[{label:'Jam dispatch · fewer reinforcements',value:'jam'},{label:'Stage diversion · stronger transmitter',value:'diversion'}]:null});}
+  target(){if(!this.active)return this.completed>0&&!this.finished?{x:-18,y:0,z:15}:null;const s=this.current;if(s.type==='escape')return null;if(s.type==='intercept')return this.game.courier?.position??s.at;return s.at;}
+  brief(index=this.mission){this.mission=index;const m=this.chapter;this.game.ui.show('brief',{title:m.title,subtitle:m.tagline,body:m.brief,missionIndex:index,replay:!!this.game.replaying,choices:m.choice?[{label:'Jam dispatch · fewer reinforcements',value:'jam'},{label:'Stage diversion · stronger transmitter',value:'diversion'}]:null});}
   begin(){this.active=true;this.finished=false;this.game.ui.hide();this.enterStage();}
   enterStage(restoring=false){
-    this.progress=0;this.stageTime=0;this.wave=0;
+    this.progress=0;this.stageTime=0;this.wave=0;this.stageArrived=false;
     const s=this.current;if(!s)return;
     if(s.dynamic&&this.game.interceptPosition)s.at={...this.game.interceptPosition};
     this.game.clearEnemies();
@@ -86,9 +86,9 @@ export class Story {
     const s=this.current;this.history.push({mission:this.mission,stage:this.stage,label:s.label,elapsed:this.game.playTime});
     this.game.audio.event('interact');this.game.toast('CHECKPOINT · '+s.label,3);this.stage++;
     if(this.stage>=this.chapter.stages.length){
-      this.active=false;this.completed=Math.max(this.completed,this.mission+1);this.game.cash+=this.chapter.reward;this.game.health=100;this.game.ammo=12;this.game.reserve=96;this.game.clearEnemies();this.game.clearHeat();this.game.audio.event('mission');
+      this.active=false;this.completed=Math.max(this.completed,this.mission+1);this.game.cash+=this.chapter.reward;this.game.health=100;this.game.ammo=12;this.game.reserve=192;this.game.clearEnemies();this.game.clearHeat();this.game.audio.event('mission');
       if(this.mission===3){this.finished=true;this.game.ui.show('ending',{title:'The signal stays.',subtitle:'PORT SABLE IS LISTENING',body:'The ledger is public. The evictions are frozen. Bo’s garage is still open, Iona has a new frequency, and Ren finally owes the city nothing. Explore the Breakwater, take a courier run, or replay the story.',stats:{time:this.game.playTime,cash:this.game.cash}});}
-      else this.game.ui.show('debrief',{title:this.chapter.title,subtitle:'JOB COMPLETE',body:this.chapter.tagline,reward:this.chapter.reward,missionIndex:this.mission});
+      else this.game.ui.show('debrief',{title:this.chapter.title,subtitle:'JOB COMPLETE',body:this.chapter.tagline,reward:this.chapter.reward,missionIndex:this.mission,replay:!!this.game.replaying});
       this.game.checkpoint();
     }else this.enterStage();
   }
@@ -96,6 +96,7 @@ export class Story {
     if(!this.active||this.game.ui.screen)return;this.stageTime+=dt;
     const s=this.current,g=this.game,p=g.position;
     const near=s.at&&distance(p,s.at)<(s.radius??6);
+    if(!this.stageArrived&&['combat','defend'].includes(s.type)&&distance(p,s.at)<30&&Math.abs(p.y-(s.at.y??0))<3){this.stageArrived=true;g.checkpoint();}
     if(s.type==='reach'&&near&&(!s.vehicle||g.ride)&&(!s.stop||Math.abs(g.ride?.speed??0)<3)&&(s.below===undefined||p.y<s.below))this.advance();
     else if(s.type==='enter'&&g.ride?.id===s.vehicle)this.advance();
     else if(s.type==='combat'&&g.enemies.every(e=>e.health<=0)&&!g.pendingSpawns)this.advance();

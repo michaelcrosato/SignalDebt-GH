@@ -254,3 +254,7 @@ THE SOFTWARE.
    See the License for the specific language governing permissions and
    limitations under the License.
 ```
+
+## Signal Debt additions
+
+The game’s Port Sable setting, cast, dialogue, signs, UI, vehicle/equipment model data and procedural score were created for Signal Debt in 2026. `actors.js` applies original styling and two original aiming clips to the engine’s bundled reusable hero rig; its remaining clips are the credited engine kit’s. `world.js` uses the kit’s built-in street furniture and Kenney Nature pack palms (CC0, attribution above). No assets, dialogue, music, map geometry, names or logos from Grand Theft Auto V are included in the game. That title is identified only as the research source in project documentation.

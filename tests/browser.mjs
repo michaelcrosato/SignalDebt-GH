@@ -6,6 +6,7 @@ import { join } from 'node:path';
 import { mkdirSync, writeFileSync } from 'node:fs';
 
 export const WEBGPU_ARGS = ['--enable-unsafe-webgpu', '--enable-features=Vulkan', '--use-vulkan=swiftshader', '--use-angle=swiftshader', '--use-webgpu-adapter=swiftshader'];
+export const readableError = value => String(value).replace(/data:application\/wasm;base64,[A-Za-z0-9+/=]+/g, '<bundled Rapier WASM>');
 
 export function browserToolkit() {
   const require = createRequire(import.meta.url);
@@ -19,16 +20,16 @@ export function browserToolkit() {
   throw Error('Install playwright or playwright-core before running browser verification.');
 }
 
-export async function launchGame(url = 'http://127.0.0.1:8080/', { mode = 'keyboard', viewport = mode === 'touch' ? { width: 390, height: 844 } : { width: 1280, height: 720 }, out = `/tmp/signal-debt-${mode}` } = {}) {
+export async function launchGame(url = 'http://127.0.0.1:8080/', { mode = 'keyboard', viewport = mode === 'touch' ? { width: 390, height: 844 } : { width: 1280, height: 720 }, out = `/tmp/signal-debt-${mode}`, storageState } = {}) {
   const { chromium } = browserToolkit();
   const browser = await chromium.launch({ headless: true, args: WEBGPU_ARGS });
-  const context = await browser.newContext({ viewport, hasTouch: mode === 'touch', isMobile: mode === 'touch' });
+  const context = await browser.newContext({ viewport, hasTouch: mode === 'touch', isMobile: mode === 'touch', storageState });
   const page = await context.newPage();
   const errors = [], warnings = [], rumble = [];
-  page.on('pageerror', error => errors.push(error.message));
+  page.on('pageerror', error => errors.push(readableError(error.message)));
   page.on('console', message => {
-    if (message.type() === 'error') errors.push(message.text());
-    else if (message.type() === 'warning') warnings.push(message.text());
+    if (message.type() === 'error') errors.push(readableError(message.text()));
+    else if (message.type() === 'warning') warnings.push(readableError(message.text()));
   });
   await page.exposeFunction('__reviewRumble', effect => rumble.push(effect));
   await page.addInitScript(({ connected }) => {
@@ -85,8 +86,12 @@ export async function inspectGame(page) {
       screen: g.ui?.screen, inputMode: g.ui?.mode, selected: g.ui?.selected,
       menus: g.ui?.controls?.map(control => ({ action: control.action, value: control.value, label: control.element?.innerText })),
       mission: story ? { mission: story.mission, stage: story.stage, active: story.active, finished: story.finished, completed: story.completed, progress: story.progress, target: vec(story.target()), current: story.current, history: story.history } : null,
-      enemies: g.enemies?.filter(enemy => enemy.health > 0).map(enemy => ({ health: enemy.health, at: vec(enemy.actor?.position?.() ?? enemy.position ?? enemy.mesh?.position) })),
-      courier: g.courier ? { at: vec(g.courier.position), stopped: g.courierStopped } : null,
+      enemies: g.enemies?.filter(enemy => enemy.health > 0).map(enemy => ({ health: enemy.health, attack:enemy.attack,telegraph:enemy.telegraph,at: vec(enemy.actor?.position?.() ?? enemy.position ?? enemy.mesh?.position) })),
+      pendingSpawns:g.pendingSpawns,
+      courier: g.courier ? { at: vec(g.courier.position),velocity:vec(g.courier.body.linvel()),stopped: g.courierStopped } : null,
+      rides:g.rides?.map(ride=>({id:ride.id,at:vec(ride.position),yaw:ride.yaw,speed:ride.speed,integrity:ride.integrity,kind:ride.kind})),
+      lift:g.world?.lift?{at:vec(g.world.lift.body.translation()),landing:g.world.lift.landing}:null,
+      input: { w:e.input.isDown('KeyW'),s:e.input.isDown('KeyS'),a:e.input.isDown('KeyA'),d:e.input.isDown('KeyD'),analog:{...e.input.analog},pad:{...e.input.padAxis},touchHeld:[...(g.ui?.touchHeld??[])] },
       prompt: g.contextPrompt,
       basis: { right: e.camera.groundBasis().right.toArray(), forward: e.camera.groundBasis().forward.toArray() },
     };
@@ -111,8 +116,11 @@ export class GameDriver {
   }
   async touch(id, at) {
     const existed = this.touches.has(id);
+    const previous = this.touches.get(id);
     if (at) this.touches.set(id, { id, x: at.x, y: at.y }); else this.touches.delete(id);
-    await this.cdp.send('Input.dispatchTouchEvent', { type: !at ? 'touchEnd' : existed ? 'touchMove' : 'touchStart', touchPoints: [...this.touches.values()] });
+    // CDP touchEnd names the contact being lifted. Passing all remaining contacts
+    // instead releases the joystick while leaving the old gas pedal pressed.
+    await this.cdp.send('Input.dispatchTouchEvent', { type: !at ? 'touchEnd' : existed ? 'touchMove' : 'touchStart', touchPoints: !at ? (previous ? [previous] : []) : [...this.touches.values()] });
   }
   async stick(x = 0, y = 0) {
     if (Math.hypot(x, y) < 0.001) { if (this.touches.has(1)) await this.touch(1, null); return; }

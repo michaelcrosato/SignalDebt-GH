@@ -8,14 +8,16 @@ import { GameUI } from './ui.js';
 import { Ride, TrafficCar } from './vehicles.js';
 import { Story, MISSIONS } from './missions.js';
 import { clamp, distance, visible, angleDelta, point } from './navigation.js';
+import { equipment, SIGNAL_CASE, RELAY } from './equipment.js';
+import {readSave as loadCheckpoint,writeSave,validateSave,SAVE_KEY} from './persistence.js';
 const {Vector3,Mesh,TorusGeometry,CylinderGeometry,BoxGeometry,Group}=THREE;
-const SAVE_KEY='signal-debt-save-v1',START=[-18,.2,18];
+const START=[-18,.2,18];
 const CACHE_SPOTS=[[-92,-124],[-125,95],[125,125],[230,-14],[-230,12],[14,-230]];
 
 export class SignalDebt {
  name='Signal Debt'; assets=[HERO_MODEL];
  targetVector=new Vector3(); feet=new Vector3(); move=new Vector3(); aimOrigin=new Vector3();
- health=100;ammo=12;reserve=96;cash=0;heat=0;heatState='clear';playTime=0;shotCooldown=0;reloadTime=0;scan=0;scanCooldown=0;damageCooldown=0;
+ health=100;ammo=12;reserve=192;cash=0;heat=0;heatState='clear';playTime=0;shotCooldown=0;reloadTime=0;scan=0;scanCooldown=0;damageCooldown=0;sinceDamage=0;
  rides=[];traffic=[];police=[];enemies=[];pedestrians=[];pendingSpawns=0;cacheTaken=[];dialogueQueue=[];tracers=[];
  started=false;ready=false;ride=null;contextPrompt=null;lastCheckpoint=null;signalHealth=100;triggerValues={left:0,right:0};
  async setup(ctx){
@@ -32,25 +34,28 @@ export class SignalDebt {
   for(let i=0;i<starts.length;i++){const [x,z]=starts[i],actor=await createPedestrian(ctx,{at:[x,.2,z],color:['teal','sand','red','plum'][i%4]});this.pedestrians.push({actor,home:point(x,z),target:point(x+5,z+6),wait:i*.7,stationary:i===0});}
   this.marker=new Group();const ring=new Mesh(new TorusGeometry(3,.12,4,32).rotateX(Math.PI/2),toonMaterial(PALETTE.orange)),beacon=new Mesh(new THREE.OctahedronGeometry(.55),toonMaterial(PALETTE.orange));beacon.position.y=4;this.marker.add(ring,beacon);ctx.scene.add(this.marker);setLookLayer(this.marker,'actors');
   this.targetReticle=new Mesh(new TorusGeometry(.65,.08,4,20).rotateX(Math.PI/2),toonMaterial(PALETTE.red));ctx.scene.add(this.targetReticle);
-  this.caches=CACHE_SPOTS.map(([x,z],id)=>{const mesh=new Mesh(new BoxGeometry(.6,.4,.7),toonMaterial(PALETTE.cyan));mesh.position.set(x,.35,z);ctx.scene.add(mesh);setLookLayer(mesh,'actors');return {id,mesh,at:point(x,z),taken:false};});
+  this.caches=CACHE_SPOTS.map(([x,z],id)=>{const mesh=equipment(SIGNAL_CASE);mesh.position.set(x,.03,z);ctx.scene.add(mesh);return {id,mesh,at:point(x,z),taken:false};});
+  this.relays=[];for(const [x,z,y] of [[-185,145,0],[-80,90,0],[235,120,0],[145,145,0],[145,-80,0],[195,-192,8.2]]){const m=equipment(RELAY);m.position.set(x+2.7,y,z+1);ctx.scene.add(m);ctx.physics.addStaticBox({position:[x+2.7,y+1.1,z+1],halfExtents:[.7,1.1,.5]});this.relays.push(m);}
+  const keyCase=equipment(SIGNAL_CASE);keyCase.position.set(-186,.08,-181);ctx.scene.add(keyCase);
   this.ui.show('title',{canContinue:!!this.readSave()});if(ctx.camera.preset==='third'){ctx.camera.yaw=Math.PI;ctx.camera.pitch=.78;}
   this.ready=true;document.getElementById('boot')?.remove();
  }
  get position(){return this.ride?this.ride.position:this.player.position(this.feet);}
  action(a,v){
-  if(a==='new'||a==='replay'){this.resetProgress();this.story.brief(typeof v==='number'?v:0);}
-  else if(a==='continue'){const d=this.readSave();if(d){this.restoreCheckpoint(d);this.ui.hide();this.started=true;}else this.toast('No saved checkpoint yet.');}
+  if(a==='new'){this.resetProgress();this.story.brief(0);}
+  else if(a==='replay'){const backup=this.readSave();this.resetProgress(true);this.replayBackup=backup;this.replaying=!!backup;this.story.brief(typeof v==='number'?v:0);}
+  else if(a==='continue'){const d=this.readSave();if(d){this.replaying=false;this.replayBackup=null;this.restoreCheckpoint(d);this.ui.hide();this.started=true;}else this.toast('No saved checkpoint yet.');}
   else if(a==='begin'){this.started=true;this.story.begin();}
   else if(a==='approach'){this.story.approach=v??'jam';}
-  else if(a==='next'){this.story.mission++;this.story.stage=0;this.story.brief();}
-  else if(a==='resume')this.ui.hide();
+  else if(a==='next'){if(this.replaying&&this.replayBackup){this.returnFromReplay();}else{this.story.mission++;this.story.stage=0;this.story.brief();}}
+  else if(a==='resume'){if(this.replaying&&!this.story.active&&this.replayBackup)this.returnFromReplay();else this.ui.hide();}
   else if(a==='retry'){this.restoreCheckpoint(this.lastCheckpoint??this.readSave());this.ui.hide();}
   else if(a==='quit')this.ui.show('title',{canContinue:!!this.readSave()});
   else if(['pause','map','help','options'].includes(a))this.ui.show(a);
   else if(a==='repair'){
    if(distance(this.position,point(-18,15))>36)this.toast('Repairs are available at Bo’s garage.');
    else if(this.cash<150)this.toast('Repair costs $150.');
-   else{this.cash-=150;this.health=100;this.ammo=12;this.reserve=96;for(const r of this.rides)if(distance(r.position,this.position)<40)r.repair();this.audio.event('repair');this.toast('Vehicle repaired · supplies replenished');this.checkpoint();}
+   else{this.cash-=150;this.health=100;this.ammo=12;this.reserve=192;for(const r of this.rides)if(distance(r.position,this.position)<40)r.repair();this.audio.event('repair');this.toast('Vehicle repaired · supplies replenished');this.checkpoint();}
   }else if(a==='upgrade'){
    if(distance(this.position,point(-18,15))>36)this.toast('Bring the Cormorant to Bo’s garage.');
    else if(this.rides[1].upgraded)this.toast('Performance package already fitted.');
@@ -62,9 +67,12 @@ export class SignalDebt {
   }
   this.ctx.engine.timeScale=this.ui.screen?0:1;
  }
- resetProgress(){
-  this.exitCar(true);this.player.teleport(START);this.started=false;this.health=100;this.ammo=12;this.reserve=96;this.cash=0;this.playTime=0;this.cacheTaken=[];this.story=new Story(this);this.clearEnemies();this.clearHeat();
-  for(const r of this.rides){r.reset(r.spawn,r.spawnYaw);r.integrity=100;}for(const c of this.caches){c.taken=false;c.mesh.visible=true;}this.lastCheckpoint=null;try{localStorage.removeItem(SAVE_KEY);}catch{}
+ returnFromReplay(){const data=this.replayBackup;this.replaying=false;this.replayBackup=null;this.restoreCheckpoint(data);this.ui.hide();this.toast('Back in your story · campaign checkpoint preserved');}
+ resetProgress(preserveSave=false){
+  this.exitCar(true);this.player.teleport(START);this.started=false;this.health=100;this.ammo=12;this.reserve=192;this.cash=0;this.playTime=0;this.cacheTaken=[];this.story=new Story(this);this.clearEnemies();this.clearHeat();this.dialogueQueue=[];this.reloadTime=0;this.courierChallenge=null;this.courier?.dispose();this.courier=null;this.courierStopped=false;this.interceptPosition=null;
+  if(this.scan>0)this.ctx.engine.setLook(this.lookBeforeScan);this.scan=0;this.scanCooldown=0;
+  this.replaying=false;this.replayBackup=null;
+  for(const r of this.rides){r.reset(r.spawn,r.spawnYaw);r.integrity=100;r.setUpgraded(false);}for(const c of this.caches){c.taken=false;c.mesh.visible=true;}this.lastCheckpoint=null;if(!preserveSave)try{localStorage.removeItem(SAVE_KEY);}catch{}
  }
  say(speaker,text){this.dialogueQueue.push({speaker,text,remaining:Math.max(6,text.length/12)});}
  toast(text,seconds=4){this.toastMessage=text;this.toastTime=seconds;}
@@ -87,8 +95,8 @@ export class SignalDebt {
    const indicator=new Mesh(new TorusGeometry(.7,.08,4,16).rotateX(Math.PI/2),toonMaterial(PALETTE.red));this.ctx.scene.add(indicator);this.enemies.push({actor,health:3,attack:1.5+i*.4,telegraph:0,indicator,home:p});this.pendingSpawns--;
   }
  }
- clearEnemies(){this.enemyGeneration=(this.enemyGeneration??0)+1;for(const e of this.enemies){e.actor.dispose();e.indicator.removeFromParent();}this.enemies=[];}
- damage(n){if(this.damageCooldown>0||this.player.dodging||n<=0)return;this.health=Math.max(0,this.health-n);this.damageCooldown=.28;this.audio.event('hit');this.ui.rumble(.25,110);if(this.ui.preferences.motion!==false)this.ctx.engine.screen.flash('red',{duration:.12});if(this.health<=0)this.fail('The crew lost your signal.');}
+ clearEnemies(){this.enemyGeneration=(this.enemyGeneration??0)+1;this.aimTarget=null;if(this.targetReticle)this.targetReticle.visible=false;for(const e of this.enemies){e.actor.dispose();e.indicator.removeFromParent();}this.enemies=[];}
+ damage(n){if(this.damageCooldown>0||this.player.dodging||n<=0)return;this.health=Math.max(0,this.health-n);this.sinceDamage=0;this.damageCooldown=.28;this.audio.event('hit');this.ui.rumble(.25,110);if(this.ui.preferences.motion!==false)this.ctx.engine.screen.flash('red',{duration:.12});if(this.health<=0)this.fail('The crew lost your signal.');}
  fail(reason){this.audio.event('fail');this.ui.show('failure',{title:'Signal lost',body:reason,subtitle:'RETRY FROM THE LAST CHECKPOINT'});}
  reload(){if(this.reloadTime||this.ammo>=12||!this.reserve)return;this.reloadTime=1.15;this.audio.event('reload');}
  shoot(){
@@ -102,7 +110,7 @@ export class SignalDebt {
  tickEnemies(dt){
   const p=this.position;
   for(const e of this.enemies){if(e.health<=0)continue;const ep=e.actor.position(this.aimOrigin),d=distance(ep,p),sees=visible({...ep,y:ep.y+1},{...p,y:p.y+1},this.world.buildings);let x=0,z=0;
-   if(d>13&&d<65&&sees){x=(p.x-ep.x)/d;z=(p.z-ep.z)/d;}e.actor.face(Math.atan2(p.x-ep.x,p.z-ep.z));e.actor.move(dt,{x:x*.55,z:z*.55});e.attack-=dt;e.telegraph=e.attack<.8&&d<34&&sees?1-e.attack/.8:0;
+   if(d>13&&d<65&&sees){x=(p.x-ep.x)/d;z=(p.z-ep.z)/d;}e.actor.setAiming(sees&&d<34);e.actor.face(Math.atan2(p.x-ep.x,p.z-ep.z));e.actor.move(dt,{x:x*.55,z:z*.55});e.attack-=dt;e.telegraph=e.attack<.8&&d<34&&sees?1-e.attack/.8:0;
    if(e.attack<=0){e.attack=2.6+this.rng.range(0,.7);const stage=this.story.active?this.story.current:null;
     if(stage?.type==='defend'&&distance(ep,stage.at)<32&&this.rng.chance(.4)){this.drawTracer(ep,stage.at,'red');this.signalHealth=Math.max(0,this.signalHealth-4);if(this.signalHealth===0)this.fail('The transmitter was disabled. Clear the guards before they can damage the uplink.');}
     else if(d<34&&sees){this.drawTracer(ep,p,'red');if(this.ride)this.ride.integrity=Math.max(0,this.ride.integrity-3);else this.damage(9);this.audio.event('shoot',{volume:.4});}}
@@ -117,23 +125,26 @@ export class SignalDebt {
  startCourier(){if(this.courier)this.courier.dispose();this.courierStopped=false;this.courierDamage=0;this.courierHitCooldown=0;this.courier=new TrafficCar(this.ctx,{at:[216,1,-108],route:[point(212,-212),point(-212,-212),point(-212,212),point(212,212)],color:'cyan',kind:'van',speed:12});}
  tickCourier(dt){if(!this.courier||this.courierStopped)return;this.courier.tick(dt);this.courierHitCooldown-=dt;if(this.ride&&distance(this.ride.position,this.courier.position)<5.2&&Math.abs(this.ride.speed)>7&&this.courierHitCooldown<=0){this.courierDamage+=35;this.courierHitCooldown=1;this.audio.event('crash');this.toast(`Courier bodywork ${Math.max(0,100-this.courierDamage)}%`);this.addHeat(1);if(this.courierDamage>=100){this.courierStopped=true;this.courier.stopped=1e9;this.interceptPosition={...this.courier.position};this.story.current.at={...this.interceptPosition};}}}
  fixedUpdate(ctx,dt){
-  if(!this.ready||this.ui.screen||!this.started)return;this.playTime+=dt;this.contextPrompt=null;this.shotCooldown=Math.max(0,this.shotCooldown-dt);this.damageCooldown=Math.max(0,this.damageCooldown-dt);this.scanCooldown=Math.max(0,this.scanCooldown-dt);
+  if(!this.ready||this.ui.screen||!this.started)return;this.playTime+=dt;this.sinceDamage+=dt;if(this.sinceDamage>8&&this.health<60)this.health=Math.min(60,this.health+dt*4);this.contextPrompt=null;this.shotCooldown=Math.max(0,this.shotCooldown-dt);this.damageCooldown=Math.max(0,this.damageCooldown-dt);this.scanCooldown=Math.max(0,this.scanCooldown-dt);
   if(this.reloadTime>0){this.reloadTime-=dt;if(this.reloadTime<=0){this.reloadTime=0;const n=Math.min(12-this.ammo,this.reserve);this.ammo+=n;this.reserve-=n;}}
   const axis=ctx.input.moveAxis();
   if(this.ride){
    const forward=Math.max(this.triggerValues.right,ctx.input.isDown('KeyW','ArrowUp')?1:0,this.ui.mode==='touch'?Math.max(0,axis.y):0),back=Math.max(this.triggerValues.left,ctx.input.isDown('KeyS','ArrowDown')?1:0,this.ui.mode==='touch'?Math.max(0,-axis.y):0),reverse=back>0&&this.ride.speed<1;
-   this.ride.drive(dt,{throttle:reverse?-back:forward,brake:!reverse&&back>.1,steer:axis.x*(this.ui.preferences.steering??1),handbrake:ctx.input.isDown('Space')});if(ctx.input.consumePress('KeyF'))this.exitCar();
+   this.ride.drive(dt,{throttle:reverse?-back:forward,brake:!reverse?back:0,steer:axis.x*(this.ui.preferences.steering??1),handbrake:ctx.input.isDown('Space')});if(ctx.input.consumePress('KeyF'))this.exitCar();
    if(ctx.input.isDown('KeyR')){this.recoveryTime=(this.recoveryTime??0)+dt;if(this.recoveryTime>1.6){this.recoverCar();this.recoveryTime=0;}}else this.recoveryTime=0;
   }else{
    const basis=ctx.camera.groundBasis();this.move.copy(basis.right).multiplyScalar(axis.x).addScaledVector(basis.forward,axis.y);this.chooseAim();
-   if(this.aimTarget&&ctx.input.isDown('KeyJ','MouseLeft','KeyC')){const p=this.aimTarget.actor.position(this.aimOrigin);this.player.face(Math.atan2(p.x-this.position.x,p.z-this.position.z));}
+   const aiming=ctx.input.isDown('KeyJ','MouseLeft','KeyC');this.player.setAiming(aiming);
+   if(this.aimTarget&&aiming){const p=this.aimTarget.actor.position(this.aimOrigin);this.player.face(Math.atan2(p.x-this.position.x,p.z-this.position.z));}
    this.player.move(dt,{x:this.move.x,z:this.move.z,sprint:ctx.input.isDown('ShiftLeft','ShiftRight'),dodge:ctx.input.consumePress('Space')});if(ctx.input.isDown('KeyJ','MouseLeft'))this.shoot();if(ctx.input.consumePress('KeyR'))this.reload();
-   const car=this.rides.find(r=>distance(r.position,this.position)<4),s=this.story.current,interacting=this.story.active&&s.type==='interact'&&distance(s.at,this.position)<6;
+   let car=null,nearest=4;for(const r of this.rides){const d=distance(r.position,this.position);if(d<nearest){car=r;nearest=d;}}
+   const s=this.story.current,interacting=this.story.active&&s.type==='interact'&&distance(s.at,this.position)<6;
    if(car&&!interacting){this.contextPrompt={key:'KeyF',text:`Drive ${car.label}`};if(ctx.input.consumePress('KeyF'))this.enterCar(car);}
   }
   for(const r of this.rides)if(r!==this.ride)r.drive(dt,{brake:true});for(const c of this.traffic)c.tick(dt,null,null,this.position);this.tickCourier(dt);this.tickEnemies(dt);this.tickHeat(dt);
   for(const ped of this.pedestrians){const p=ped.actor.position(this.aimOrigin),threat=distance(p,this.position)<12&&(this.shotCooldown>.15||Math.abs(this.ride?.speed??0)>6);let x=0,z=0;if(!ped.stationary){ped.wait-=dt;if(threat){x=p.x-this.position.x;z=p.z-this.position.z;}else if(ped.wait<=0){x=ped.target.x-p.x;z=ped.target.z-p.z;if(Math.hypot(x,z)<1){ped.target=point(ped.home.x+this.rng.range(-7,7),ped.home.z+this.rng.range(-7,7));ped.wait=this.rng.range(1,4);}}const len=Math.hypot(x,z);if(len){x=x/len*(threat?1:.18);z=z/len*(threat?1:.18);}}ped.actor.move(dt,{x,z,sprint:threat});}
   this.story.tick(dt);
+  if(!this.story.active&&!this.story.finished&&this.story.completed>0&&distance(this.position,point(-18,15))<6&&!this.ride){this.contextPrompt={key:'KeyF',text:'Plan the next job with Bo'};if(ctx.input.consumePress('KeyF'))this.action('next');}
   if(ctx.input.consumePress('KeyQ')&&this.scanCooldown===0){this.scan=4;this.scanCooldown=12;this.lookBeforeScan=ctx.engine.look;ctx.engine.setLook(LOOK_PRESETS.night_ops);this.audio.event('scan');this.toast('SIGNAL SCAN · evidence highlighted',3);}if(this.scan>0){this.scan-=dt;if(this.scan<=0){ctx.engine.setLook(this.lookBeforeScan);this.scan=0;}}
   for(const c of this.caches)if(!c.taken&&!this.ride&&distance(c.at,this.position)<2){c.taken=true;c.mesh.visible=false;this.cacheTaken.push(c.id);this.cash+=120;this.reserve+=12;this.toast('HIDDEN EVIDENCE · +$120 · ammunition recovered');this.audio.event('collect');this.checkpoint();}
   if(this.courierChallenge){const c=this.courierChallenge;c.time-=dt;if(this.ride&&distance(this.position,c.route[c.index])<9&&Math.abs(this.ride.speed)<3){c.index++;this.audio.event('collect');if(c.index===c.route.length){this.cash+=450;this.toast('COURIER COMPLETE · +$450');this.courierChallenge=null;this.checkpoint();}}if(c.time<=0){this.toast('Courier window closed. Try again from Pause.');this.courierChallenge=null;}}
@@ -159,10 +170,9 @@ export class SignalDebt {
  cameraTarget(){const p=this.ready?this.position:{x:-18,y:0,z:18};return this.targetVector.set(p.x,p.y+(this.ride?1:1.2),p.z);}
  status(){return this.ready?`${this.ui.screen??'playing'} | job ${this.story.mission+1}/4 stage ${this.story.stage+1}/${this.story.chapter.stages.length} | ${this.story.current?.label??'free roam'} | health ${Math.ceil(this.health)} | heat ${this.heat.toFixed(1)} | ${this.ride?.id??'on foot'} | ${this.playTime.toFixed(1)}s`:'Building Port Sable';}
  fingerprint(){const p=this.position;return JSON.stringify({x:p.x,z:p.z,health:this.health,cash:this.cash,story:this.story.data(),ride:this.ride?.id,heat:this.heat});}
- snapshot(){return this.saveData();}restore(ctx,data){this.restoreCheckpoint(data);}
  saveData(){const p=this.position;return {version:1,story:this.story.data(),health:this.health,ammo:this.ammo,reserve:this.reserve,cash:this.cash,playTime:this.playTime,player:[p.x,p.y,p.z],ride:this.ride?.id??null,rides:this.rides.map(r=>({id:r.id,at:[r.position.x,r.position.y,r.position.z],yaw:r.yaw,integrity:r.integrity,upgraded:r.upgraded})),cacheTaken:[...this.cacheTaken],interceptPosition:this.interceptPosition??null};}
- checkpoint(){if(!this.ready)return;this.lastCheckpoint=structuredClone(this.saveData());try{localStorage.setItem(SAVE_KEY,JSON.stringify(this.lastCheckpoint));}catch{this.toast('Checkpoint kept for this session; browser storage is unavailable.');}}
- readSave(){try{const d=JSON.parse(localStorage.getItem(SAVE_KEY));if(!d||d.version!==1||!Number.isInteger(d.story?.mission)||d.story.mission<0||d.story.mission>3||!Number.isInteger(d.story.stage)||d.story.stage<0||d.story.stage>MISSIONS[d.story.mission].stages.length||!Array.isArray(d.player)||d.player.length!==3||!d.player.every(Number.isFinite)||!Array.isArray(d.rides))return null;return d;}catch{return null;}}
- restoreCheckpoint(d){if(!d)return;this.exitCar(true);this.clearHeat();this.clearEnemies();this.started=true;this.health=Math.max(60,d.health);this.ammo=Math.max(12,d.ammo);this.reserve=Math.max(36,d.reserve);this.cash=d.cash;this.playTime=d.playTime;this.cacheTaken=d.cacheTaken??[];this.interceptPosition=d.interceptPosition;this.player.teleport(d.player);for(const saved of d.rides){const r=this.rides.find(r=>r.id===saved.id);if(!r)continue;r.reset(saved.at,saved.yaw);r.integrity=Math.max(35,saved.integrity);if(saved.upgraded)r.upgrade();}if(d.ride){const r=this.rides.find(r=>r.id===d.ride);if(r)this.enterCar(r);}for(const c of this.caches){c.taken=this.cacheTaken.includes(c.id);c.mesh.visible=!c.taken;}this.story.restore(d.story);this.lastCheckpoint=structuredClone(d);this.dialogueQueue=[];this.say('IONA','Signal restored. We’re right where we left off.');}
+ checkpoint(){if(!this.ready)return;this.lastCheckpoint=structuredClone(this.saveData());if(!this.replaying&&!writeSave(this.lastCheckpoint))this.toast('Checkpoint kept for this session; browser storage is unavailable.');}
+ readSave(){return loadCheckpoint();}
+ restoreCheckpoint(raw){const d=validateSave(raw);if(!d){this.toast('That checkpoint could not be read.');return;}this.exitCar(true);this.clearHeat();this.clearEnemies();this.started=true;this.health=Math.max(60,d.health);this.ammo=12;this.reserve=Math.max(72,d.reserve);this.cash=d.cash;this.playTime=d.playTime;this.cacheTaken=d.cacheTaken;this.interceptPosition=d.interceptPosition;this.player.teleport(d.player);for(const saved of d.rides){const r=this.rides.find(r=>r.id===saved.id);r.reset(saved.at,saved.yaw);r.integrity=Math.max(35,saved.integrity);r.setUpgraded(saved.upgraded);}if(d.ride){const r=this.rides.find(r=>r.id===d.ride);this.enterCar(r);}for(const c of this.caches){c.taken=this.cacheTaken.includes(c.id);c.mesh.visible=!c.taken;}this.story.restore(d.story);this.lastCheckpoint=structuredClone(d);this.reloadTime=0;this.dialogueQueue=[];this.say('IONA','Signal restored. We’re right where we left off.');}
  dispose(){this.ui?.dispose();this.audio?.dispose();this.world?.dispose();this.clearEnemies();this.player?.dispose();for(const p of this.pedestrians)p.actor.dispose();for(const r of this.rides)r.dispose();for(const t of [...this.traffic,...this.police])t.dispose();this.courier?.dispose();}
 }

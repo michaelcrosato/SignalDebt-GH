@@ -47,8 +47,11 @@ test('a courier stop belongs to one story and cannot mutate another playthrough'
 });
 
 test('roof defense needs the player on the roof, not the street below',()=>{
-  const game={ui:{screen:null},position:{x:195,y:0,z:-192},enemies:[{health:100}],spawnEnemies(){},say(){}};
+  let checkpoints=0;
+  const game={ui:{screen:null},position:{x:195,y:0,z:-192},enemies:[{health:100}],spawnEnemies(){},say(){},checkpoint(){checkpoints++;}};
   const story=new Story(game);story.mission=3;story.stage=6;story.active=true;
   story.tick(1);assert.equal(story.progress,0);
-  game.position.y=8.2;story.tick(1);assert.equal(story.progress,1);
+  assert.equal(checkpoints,0);
+  game.position.y=8.2;story.tick(1);assert.equal(story.progress,1);assert.equal(checkpoints,1);
+  story.tick(1);assert.equal(checkpoints,1,'arrival checkpoint is written once, before the defense');
 });

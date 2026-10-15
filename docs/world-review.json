@@ -1,0 +1,461 @@
+{
+  "schemaVersion": 1,
+  "reviewedAtUtc": "2026-10-15T23:33:00.291234+00:00",
+  "scope": "World/model visual, collision, service-lift and short driving review. This is not a full campaign, controller, touch or performance completion claim.",
+  "url": "http://127.0.0.1:8080/",
+  "sourceHashes": {
+    "world.js": "164af2738b28549be5ca5bd8af96d3fb533224872cb1a43c20c8c75cf8b0d9c9",
+    "models.js": "b1bb986c824cb9f342fa5a5f87e5407459c72b1c5af8547a1fa2d69f7d702556",
+    "vehicles.js": "6b719ac4baa9595e2da8f82dc8d75cbc4d3c4c668ecb0a5b553038152af01143",
+    "actors.js": "17a2acade5fc28dc99278cf78ff245388b42ac32f1adcfcc11fede2d26e0ae03",
+    "city-game.js": "af3cc12e56962aa92f6c5de24e0d2f5c1d2656929ee5ec17efcbd1347e44c7f3",
+    "game.js": "a044463c41fc699d25ddb4598d7185f558c04301fd9b0c581beffdd9d50cafb9"
+  },
+  "environment": {
+    "engine": "0.40.0",
+    "browser": "Chromium 153.0.8010.12",
+    "backend": "WebGPU",
+    "adapter": {
+      "vendor": "google",
+      "architecture": "swiftshader",
+      "device": "",
+      "description": ""
+    },
+    "launchFlags": [
+      "--enable-unsafe-webgpu",
+      "--enable-features=Vulkan",
+      "--use-vulkan=swiftshader",
+      "--use-angle=swiftshader",
+      "--use-webgpu-adapter=swiftshader"
+    ],
+    "viewports": [
+      [
+        1440,
+        900
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "hardwareTargetsVerified": false
+  },
+  "worldStats": {
+    "buildings": 95,
+    "palms": 29,
+    "mergedMeshes": 48,
+    "signs": 40,
+    "lights": 22
+  },
+  "buildingRecordsNote": "95 occlusion/collision records include a depot wall and three shipping containers; other records describe buildings.",
+  "checks": [
+    {
+      "name": "Kit browser check",
+      "result": "pass",
+      "command": "node check.mjs http://127.0.0.1:8080/ --keys 'Enter*1,*3,Enter*1,*3' --out /tmp/signal-integrated-check",
+      "evidence": "/tmp/signal-integrated-check/report.json",
+      "coverage": "Starts game through title and briefing; no game/console/GPU errors. Does not complete a story objective."
+    },
+    {
+      "name": "Vehicle model sheets",
+      "result": "pass",
+      "command": "node check.mjs --sheets models.js --out /tmp/signal-debt-model-check-final",
+      "evidence": "/tmp/signal-debt-model-check-final/report.json",
+      "coverage": "Both original definitions: zero problems and zero warnings; both sheets visually inspected."
+    },
+    {
+      "name": "Library model sheets",
+      "result": "pass",
+      "evidence": "/tmp/signal-debt-model-check/report.json",
+      "coverage": "park-bench, lamp-post, market-stall, crate, barrel rendered and visually inspected."
+    },
+    {
+      "name": "Mission location access",
+      "result": "pass",
+      "evidence": "/tmp/signal-world-preview/structural-report.json",
+      "coverage": "All nine landmark centers unblocked; horizontal chest-height ray along every nearest-road entry spur clear. Not a full vehicle pathfinding proof."
+    },
+    {
+      "name": "Intersection clearance",
+      "result": "pass",
+      "evidence": "/tmp/signal-world-preview/structural-report.json",
+      "coverage": "None of the 25 road crossings overlap any building record within the roadway width."
+    },
+    {
+      "name": "Actual character rides service lift",
+      "result": "pass",
+      "evidence": "/tmp/signal-world-preview/structural-report.json",
+      "coverage": "PlatformerCharacter stood on moving deck through 600 fixed steps; feet rose to 8.219861m; lift center reached 7.980000m."
+    },
+    {
+      "name": "World disposal",
+      "result": "pass",
+      "evidence": "/tmp/signal-world-preview/disposal-report.json",
+      "coverage": "All 186 world bodies/colliders removed, zero world bindings/movers; only test character remains."
+    },
+    {
+      "name": "Integrated car entry and acceleration",
+      "result": "pass",
+      "evidence": "/tmp/signal-integrated-world/report.json",
+      "coverage": "Player repositioned beside loaner for visual setup. F entered using normal input path; W held 180 fixed frames. No mission progression claim."
+    },
+    {
+      "name": "Vehicle presentation",
+      "result": "pass",
+      "evidence": [
+        "/tmp/signal-integrated-world/near-car.png",
+        "/tmp/signal-integrated-world/entered-car.png",
+        "/tmp/signal-integrated-world/driving.png",
+        "/tmp/signal-integrated-world/van-profile.png"
+      ],
+      "coverage": "Chassis/wheels correctly aligned, tires sit at ground, van and coupe silhouettes distinct. Driving camera follows heading and shows clear road ahead."
+    },
+    {
+      "name": "District presentation",
+      "result": "pass with one integration finding",
+      "evidence": [
+        "/tmp/signal-integrated-world/spawn.png",
+        "/tmp/signal-integrated-world/waterfront.png",
+        "/tmp/signal-integrated-world/portrait-waterfront.png",
+        "/tmp/signal-world-preview/broadcast.png"
+      ],
+      "coverage": "Garage signs, buildings, palms, waterfront, sea wall, water, service lift and freight identity visible. Landscape and portrait reviewed; teleports used only for camera review."
+    }
+  ],
+  "drivingMeasurements": {
+    "simulatedThrottleFrames": 180,
+    "fixedStepSeconds": 0.016666666666666666,
+    "distanceMeters": 27.90553092956543,
+    "finalSpeedMetersPerSecond": 14.695229120548271,
+    "finalIntegrityPercent": 100,
+    "stationaryChassisY": 0.6316959857940674,
+    "stationaryWheelLocalY": -0.25119944381713866,
+    "wheelRadiusMeters": 0.36,
+    "approximateTireBottomY": 0.02049654197692874,
+    "renderedFpsMeasured": false
+  },
+  "findings": [
+    {
+      "id": "initial-objective-beam",
+      "severity": "presentation",
+      "owner": "city-game.js",
+      "status": "reported to parent agent",
+      "observation": "At the original spawn camera, the solid 5m orange objective beam overlaps and hides Ren/Bo silhouettes. Consider a floor ring plus floating glyph above their heads.",
+      "evidence": "/tmp/signal-integrated-world/spawn.png"
+    },
+    {
+      "id": "no-world-model-offset-fix",
+      "severity": "none",
+      "status": "verified",
+      "observation": "Integrated coupe and van require no model offset or wheel alignment correction."
+    }
+  ],
+  "workarounds": [
+    {
+      "file": "world.js",
+      "reason": "A pond-scale wave preset aliased across the large coastal surface with a coarse mesh.",
+      "implementation": "Use three longer crossed waves and explicit96\u00d7160 segments for the440\u00d7720m ocean."
+    },
+    {
+      "file": "world.js",
+      "reason": "Road markings and sidewalk seams must not snag raycast-vehicle tires.",
+      "implementation": "One continuous flat ground collider; thin visual paint/pavement overlays and separate solid buildings/perimeter."
+    },
+    {
+      "file": "world.js",
+      "reason": "Detailed repeated city geometry must retain affordable draw calls and some culling.",
+      "implementation": "Merge static meshes by material in four spatial quadrants; retain dynamic lift and water separately."
+    },
+    {
+      "file": "world.js",
+      "reason": "Original diegetic signs need readable text without external artwork.",
+      "implementation": "CanvasTexture signs with cached textures; all sign text is original."
+    },
+    {
+      "file": "models.js",
+      "reason": "The vehicle controller uses a chassis-centered origin rather than floor-origin props.",
+      "implementation": "ModelDefs use floats:true, front +Z, no built-in wheel parts; vehicles.js attaches physics-driven wheels."
+    }
+  ],
+  "limitations": [
+    "SwiftShader is a software adapter, not RTX 3060 Ti or Galaxy S25.",
+    "No rendered frame-rate target asserted.",
+    "No WebKit result included in this focused world review.",
+    "Repositioning and camera changes were used for visual inspection, not represented as objective completion."
+  ],
+  "rawIntegrationEvidence": {
+    "initial": {
+      "status": "playing | job 1/4 stage 1/12 | Meet Bo outside the garage | health 100 | heat 0.0 | on foot | 0.5s",
+      "position": {
+        "x": -18,
+        "y": 0.019974958896636974,
+        "z": 18
+      },
+      "camera": {
+        "preset": "third",
+        "zoom": 1,
+        "zoomable": true,
+        "yaw": 3.142,
+        "pitch": 0.78
+      },
+      "stats": {
+        "buildings": 95,
+        "palms": 29,
+        "mergedMeshes": 48,
+        "signs": 40,
+        "lights": 22
+      }
+    },
+    "before": {
+      "ride": "loaner",
+      "position": {
+        "x": -9.000185012817383,
+        "y": 0.6316959857940674,
+        "z": -0.00022150453878566623
+      },
+      "body": {
+        "x": -9.000185012817383,
+        "y": 0.6316959857940674,
+        "z": -0.00022150453878566623
+      },
+      "mesh": [
+        -9.000185012817383,
+        0.6312003135681152,
+        -0.00022150506265461445
+      ],
+      "wheels": [
+        [
+          -0.8899999999999999,
+          -0.25119944381713866,
+          1.6999999999999997
+        ],
+        [
+          0.8899999999999999,
+          -0.2511993246078491,
+          1.6999999999999997
+        ],
+        [
+          -0.8899999999999999,
+          -0.25120117235183714,
+          -1.6999999999999997
+        ],
+        [
+          0.8899999999999999,
+          -0.25120117235183714,
+          -1.6999999999999997
+        ]
+      ],
+      "camera": {
+        "preset": "third",
+        "zoom": 1,
+        "zoomable": true,
+        "yaw": 4.559,
+        "pitch": 0.68
+      }
+    },
+    "after": {
+      "ride": "loaner",
+      "position": {
+        "x": 18.905345916748047,
+        "y": 0.628355860710144,
+        "z": -0.0002214296255260706
+      },
+      "speed": 14.695229120548271,
+      "integrity": 100,
+      "wheels": [
+        [
+          -0.8899999999999999,
+          -0.2633940176963806,
+          1.6999999999999997
+        ],
+        [
+          0.8899999999999999,
+          -0.2633940176963806,
+          1.6999999999999997
+        ],
+        [
+          -0.8899999999999999,
+          -0.23336650896072386,
+          -1.6999999999999997
+        ],
+        [
+          0.8899999999999999,
+          -0.2333663897514343,
+          -1.6999999999999997
+        ]
+      ],
+      "camera": {
+        "preset": "third",
+        "zoom": 1,
+        "zoomable": true,
+        "yaw": 4.711,
+        "pitch": 0.68
+      },
+      "errors": []
+    },
+    "errors": [],
+    "gpu": {
+      "vendor": "google",
+      "architecture": "swiftshader",
+      "device": "",
+      "description": ""
+    },
+    "browser": "153.0.8010.12"
+  },
+  "rawStructuralEvidence": {
+    "stats": {
+      "buildings": 95,
+      "palms": 29,
+      "mergedMeshes": 48,
+      "signs": 40,
+      "lights": 22
+    },
+    "probes": [
+      {
+        "name": "Serrin Motor Works",
+        "x": -24,
+        "z": 24,
+        "y": 0,
+        "blocked": false
+      },
+      {
+        "name": "Impound depot",
+        "x": -187,
+        "z": -187,
+        "y": 0,
+        "blocked": false
+      },
+      {
+        "name": "Night market",
+        "x": -80,
+        "z": 90,
+        "y": 0,
+        "blocked": false
+      },
+      {
+        "name": "Civic exchange",
+        "x": 145,
+        "z": -80,
+        "y": 0,
+        "blocked": false
+      },
+      {
+        "name": "Marina office",
+        "x": 235,
+        "z": 120,
+        "y": 0,
+        "blocked": false
+      },
+      {
+        "name": "Relay court",
+        "x": -185,
+        "z": 145,
+        "y": 0,
+        "blocked": false
+      },
+      {
+        "name": "Freight yard",
+        "x": 145,
+        "z": 145,
+        "y": 0,
+        "blocked": false
+      },
+      {
+        "name": "Public transmitter",
+        "x": 195,
+        "z": -185,
+        "y": 0.440000057220459,
+        "blocked": false
+      },
+      {
+        "name": "Ferry terminal",
+        "x": 235,
+        "z": 220,
+        "y": 0,
+        "blocked": false
+      }
+    ],
+    "approaches": [
+      {
+        "name": "Serrin Motor Works",
+        "length": 24,
+        "hit": null
+      },
+      {
+        "name": "Impound depot",
+        "length": 29,
+        "hit": null
+      },
+      {
+        "name": "Night market",
+        "length": 18,
+        "hit": null
+      },
+      {
+        "name": "Civic exchange",
+        "length": 28,
+        "hit": null
+      },
+      {
+        "name": "Marina office",
+        "length": 12,
+        "hit": null
+      },
+      {
+        "name": "Relay court",
+        "length": 31,
+        "hit": null
+      },
+      {
+        "name": "Freight yard",
+        "length": 37,
+        "hit": null
+      },
+      {
+        "name": "Public transmitter",
+        "length": 21,
+        "hit": null
+      },
+      {
+        "name": "Ferry terminal",
+        "length": 4,
+        "hit": null
+      }
+    ],
+    "roadBlocked": [],
+    "liftLow": 0.2199999988079071,
+    "liftHigh": 7.980000019073486,
+    "ridingFeet": [
+      195,
+      8.219861221313476,
+      -185
+    ],
+    "counts": {
+      "bodies": 187,
+      "colliders": 187,
+      "joints": 0,
+      "tags": 1,
+      "bindings": 1,
+      "triggers": 0,
+      "controllers": 1,
+      "vehicles": 0,
+      "movers": 1,
+      "fields": 0,
+      "belts": 0
+    },
+    "errors": []
+  },
+  "rawDisposalEvidence": {
+    "bodies": 1,
+    "colliders": 1,
+    "joints": 0,
+    "tags": 1,
+    "bindings": 0,
+    "triggers": 0,
+    "controllers": 1,
+    "vehicles": 0,
+    "movers": 0,
+    "fields": 0,
+    "belts": 0
+  }
+}

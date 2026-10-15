@@ -56,6 +56,25 @@ test('road route preserves a destination already on a junction',()=>{
   assert(route.every(p=>Number.isFinite(p.x)&&Number.isFinite(p.z)));
 });
 
+test('destination connector uses its nearer vertical access lane',()=>{
+  const roads={xs:[-216,-108,0,108,216],zs:[-216,-108,0,108,216]};
+  const target={x:-185,z:145};
+  const route=roadRoute({x:0,z:0},target,roads);
+  assert.deepEqual(route.at(-2),{x:-216,y:0,z:145});
+  assert.deepEqual(route.at(-1),{x:-185,y:0,z:145});
+});
+
+test('same-street routes avoid a needless trip back to the previous junction',()=>{
+  const route=roadRoute({x:20,z:0},{x:90,z:0},{xs:[0,108],zs:[0,108]});
+  assert.deepEqual(route,[{x:20,y:0,z:0},{x:90,y:0,z:0}]);
+});
+
+test('a short final approach still reaches the actual destination',()=>{
+  const target={x:1,z:1};
+  const route=roadRoute({x:-40,z:0},target,{xs:[-108,0,108],zs:[-108,0,108]});
+  assert.deepEqual(route.at(-1),{...target,y:0});
+});
+
 test('steering angle uses the shorter turn across the wraparound',()=>{
   assert(Math.abs(angleDelta(Math.PI-0.1,-Math.PI+0.1)+0.2)<1e-10);
   assert(Math.abs(angleDelta(-Math.PI+0.1,Math.PI-0.1)-0.2)<1e-10);

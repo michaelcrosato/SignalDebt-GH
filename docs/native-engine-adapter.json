@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "startedAtUtc": "2026-10-15T23:38:51.963Z",
+  "url": "http://localhost:8080/",
+  "method": "Real render callbacks and engine measured FPS; no manual simulation during samples. No screenshots or GPU readback during measured windows.",
+  "scenarioSetup": "Script positions player/car and spawns a representative six-enemy/two-pursuer scene. Health is held at 100 during that stress scene. This is not evidence of story completion.",
+  "runtime": {
+    "platform": "win32",
+    "node": "v24.16.0",
+    "browserExecutable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+    "headless": true,
+    "browserVersion": "155.0.8059.80"
+  },
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "warmupSeconds": 3,
+  "sampleSeconds": 12,
+  "sourceHashes": {
+    "world.js": "164af2738b28549be5ca5bd8af96d3fb533224872cb1a43c20c8c75cf8b0d9c9",
+    "models.js": "b1bb986c824cb9f342fa5a5f87e5407459c72b1c5af8547a1fa2d69f7d702556",
+    "vehicles.js": "d8af938eebf25067cfb403e435a33a73f37752cc6dbd5ef079b95cfd9c3b9c5f",
+    "actors.js": "091175d7e05c977aeecf57fd6b32aa6743deb07263ef75a3dface78abc78e2f1",
+    "city-game.js": "d69e145cb59205fa742b0ef8610a9c08ba926e2e0cb381e74c29448498e35dbf",
+    "game.js": "a044463c41fc699d25ddb4598d7185f558c04301fd9b0c581beffdd9d50cafb9"
+  },
+  "scenarios": [],
+  "errors": [],
+  "limitations": [
+    "Representative scenes, not every frame of the full campaign.",
+    "Headless Chrome presentation is not a physical TV display measurement.",
+    "Galaxy S25 is not verified by this desktop run."
+  ],
+  "systemGpu": {
+    "devices": [
+      {
+        "vendorId": 4318,
+        "deviceId": 9353,
+        "subSysId": 1079645272,
+        "revision": 161,
+        "vendorString": "",
+        "deviceString": "NVIDIA GeForce RTX 3060 Ti",
+        "driverVendor": "NVIDIA",
+        "driverVersion": "32.0.16.1692"
+      },
+      {
+        "vendorId": 5140,
+        "deviceId": 140,
+        "subSysId": 0,
+        "revision": 0,
+        "vendorString": "",
+        "deviceString": "Microsoft Basic Render Driver",
+        "driverVendor": "",
+        "driverVersion": "10.0.26100.9711"
+      }
+    ],
+    "features": {
+      "2d_canvas": "enabled",
+      "direct_rendering_display_compositor": "disabled_off_ok",
+      "gpu_compositing": "enabled",
+      "multiple_raster_threads": "enabled_on",
+      "opengl": "enabled_on",
+      "rasterization": "enabled",
+      "raw_draw": "disabled_off_ok",
+      "skia_graphite": "disabled_off",
+      "trees_in_viz": "disabled_off",
+      "video_decode": "enabled",
+      "video_encode": "enabled",
+      "webgl": "enabled",
+      "webgpu": "enabled",
+      "webnn": "disabled_off"
+    },
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Ti (0x00002489) Direct3D11 vs_5_0 ps_5_0, D3D11-32.0.16.1692)",
+    "processCrashCount": 0
+  },
+  "engine": {
+    "version": "0.40.0",
+    "backend": "WebGPU",
+    "adapter": {
+      "vendor": "nvidia",
+      "architecture": "ampere",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "engineAdapter": {
+      "vendor": "nvidia",
+      "architecture": "ampere",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "engineAdapterRequests": [
+      {
+        "options": {
+          "powerPreference": "high-performance",
+          "featureLevel": "compatibility"
+        },
+        "info": {
+          "vendor": "nvidia",
+          "architecture": "ampere",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        }
+      },
+      {
+        "options": {
+          "powerPreference": "high-performance",
+          "featureLevel": "compatibility",
+          "xrCompatible": false
+        },
+        "info": {
+          "vendor": "nvidia",
+          "architecture": "ampere",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        }
+      }
+    ],
+    "resolution": {
+      "width": 640,
+      "height": 360
+    },
+    "quality": "medium",
+    "frameCap": 60,
+    "look": "pixel"
+  },
+  "hardwareAdapter": true,
+  "finishedAtUtc": "2026-10-15T23:38:53.598Z"
+}
