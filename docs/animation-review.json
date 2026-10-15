@@ -1,0 +1,829 @@
+{
+  "engine": "0.40.0",
+  "sheets": [
+    {
+      "name": "Idle",
+      "report": {
+        "name": "Idle",
+        "frames": 60,
+        "loop": true,
+        "speed": null,
+        "minSoleY": -4.528579300444591e-08,
+        "minSoleFrame": 15,
+        "minBodyY": 0.06413669003125422,
+        "minBodyMesh": "ShinL_Mesh",
+        "minBodyFrame": 30,
+        "floatingFrames": 0,
+        "footSlide": 2.7975918777921327e-07,
+        "loopSeam": 2.501826656953199e-08,
+        "maxAngularSpeed": {
+          "joint": "ShinR",
+          "degPerSec": 10.277871841275328,
+          "frame": 15
+        },
+        "limitViolations": [],
+        "pelvisY": [
+          0.5849999785423279,
+          0.5950000286102295
+        ],
+        "problems": [],
+        "warnings": []
+      },
+      "validation": [],
+      "width": 1138,
+      "height": 786
+    },
+    {
+      "name": "IdleLook",
+      "report": {
+        "name": "IdleLook",
+        "frames": 102,
+        "loop": true,
+        "speed": null,
+        "minSoleY": 1.4376411963668012e-08,
+        "minSoleFrame": 71,
+        "minBodyY": 0.07047873350358705,
+        "minBodyMesh": "ShinL_Mesh",
+        "minBodyFrame": 71,
+        "floatingFrames": 0,
+        "footSlide": 3.061276722312013e-17,
+        "loopSeam": 0,
+        "maxAngularSpeed": {
+          "joint": "Head",
+          "degPerSec": 532.7999999999997,
+          "frame": 41
+        },
+        "limitViolations": [],
+        "pelvisY": [
+          0.5950000286102294,
+          0.5950000286102296
+        ],
+        "problems": [],
+        "warnings": []
+      },
+      "validation": [],
+      "width": 586,
+      "height": 794
+    },
+    {
+      "name": "Teeter",
+      "report": {
+        "name": "Teeter",
+        "frames": 30,
+        "loop": true,
+        "speed": null,
+        "minSoleY": -3.041875487608259e-08,
+        "minSoleFrame": 19,
+        "minBodyY": 0.06084304527357293,
+        "minBodyMesh": "ShinL_Mesh",
+        "minBodyFrame": 8,
+        "floatingFrames": 0,
+        "footSlide": 4.6808511597676294e-07,
+        "loopSeam": 0.012000000000057298,
+        "maxAngularSpeed": {
+          "joint": "ArmR",
+          "degPerSec": 360,
+          "frame": 1
+        },
+        "limitViolations": [],
+        "pelvisY": [
+          0.5699999928474426,
+          0.5699999928474426
+        ],
+        "problems": [],
+        "warnings": []
+      },
+      "validation": [],
+      "width": 542,
+      "height": 788
+    },
+    {
+      "name": "Tiptoe",
+      "report": {
+        "name": "Tiptoe",
+        "frames": 18,
+        "loop": true,
+        "speed": 1.2,
+        "minSoleY": -4.670316675142727e-06,
+        "minSoleFrame": 9,
+        "minBodyY": 0.1058192377319288,
+        "minBodyMesh": "ShinL_Mesh",
+        "minBodyFrame": 18,
+        "floatingFrames": 0,
+        "footSlide": 8.13894192131666e-05,
+        "loopSeam": 0.005204000000048836,
+        "maxAngularSpeed": {
+          "joint": "ShinL",
+          "degPerSec": 917.2800000000007,
+          "frame": 7
+        },
+        "limitViolations": [],
+        "pelvisY": [
+          0.575702131046274,
+          0.604986846446991
+        ],
+        "problems": [],
+        "warnings": []
+      },
+      "validation": [],
+      "width": 1210,
+      "height": 789
+    },
+    {
+      "name": "Walk",
+      "report": {
+        "name": "Walk",
+        "frames": 12,
+        "loop": true,
+        "speed": 2,
+        "minSoleY": -2.640207641749215e-06,
+        "minSoleFrame": 10,
+        "minBodyY": 0.05437316077217064,
+        "minBodyMesh": "ShinL_Mesh",
+        "minBodyFrame": 11,
+        "floatingFrames": 0,
+        "footSlide": 0.02658660550538487,
+        "loopSeam": 0.01929999999993015,
+        "maxAngularSpeed": {
+          "joint": "ShinL",
+          "degPerSec": 1099.83,
+          "frame": 5
+        },
+        "limitViolations": [],
+        "pelvisY": [
+          0.5250219108356831,
+          0.5749780523919737
+        ],
+        "problems": [],
+        "warnings": []
+      },
+      "validation": [],
+      "width": 1234,
+      "height": 782
+    },
+    {
+      "name": "Run",
+      "report": {
+        "name": "Run",
+        "frames": 12,
+        "loop": true,
+        "speed": 6,
+        "minSoleY": -3.9303829561798675e-07,
+        "minSoleFrame": 0,
+        "minBodyY": 0.026812466854312933,
+        "minBodyMesh": "ShinL_Mesh",
+        "minBodyFrame": 8,
+        "floatingFrames": 0,
+        "footSlide": 0.08616222135819002,
+        "loopSeam": 0.026335999999901105,
+        "maxAngularSpeed": {
+          "joint": "FootR",
+          "degPerSec": 1473.3899999999999,
+          "frame": 1
+        },
+        "limitViolations": [],
+        "pelvisY": [
+          0.4877347925649093,
+          0.5522652280134244
+        ],
+        "problems": [],
+        "warnings": [
+          "FootR snaps at 1473\u00b0/s around frame 1"
+        ]
+      },
+      "validation": [],
+      "width": 1222,
+      "height": 769
+    },
+    {
+      "name": "Skid",
+      "report": {
+        "name": "Skid",
+        "frames": 18,
+        "loop": false,
+        "speed": null,
+        "minSoleY": -0.004261391873759984,
+        "minSoleFrame": 2,
+        "minBodyY": 0.045677743989771424,
+        "minBodyMesh": "ShinL_Mesh",
+        "minBodyFrame": 3,
+        "floatingFrames": 0,
+        "footSlide": 0.40828376491425417,
+        "loopSeam": 0,
+        "maxAngularSpeed": {
+          "joint": "ArmR",
+          "degPerSec": 1247.8125,
+          "frame": 2
+        },
+        "limitViolations": [],
+        "pelvisY": [
+          0.47999998927116394,
+          0.5950000286102295
+        ],
+        "problems": [],
+        "warnings": [
+          "ArmR snaps at 1248\u00b0/s around frame 2"
+        ]
+      },
+      "validation": [],
+      "width": 502,
+      "height": 786
+    },
+    {
+      "name": "SkidTurn",
+      "report": {
+        "name": "SkidTurn",
+        "frames": 12,
+        "loop": false,
+        "speed": null,
+        "minSoleY": -1.4404479109497714e-08,
+        "minSoleFrame": 0,
+        "minBodyY": 0.03966074601377839,
+        "minBodyMesh": "ShinL_Mesh",
+        "minBodyFrame": 7,
+        "floatingFrames": 0,
+        "footSlide": 0.19770632430759777,
+        "loopSeam": 0,
+        "maxAngularSpeed": {
+          "joint": "ArmR",
+          "degPerSec": 3150,
+          "frame": 3
+        },
+        "limitViolations": [],
+        "pelvisY": [
+          0.41999998884275647,
+          0.8199999824166437
+        ],
+        "problems": [],
+        "warnings": []
+      },
+      "validation": [],
+      "width": 844,
+      "height": 892
+    },
+    {
+      "name": "StepUp",
+      "report": {
+        "name": "StepUp",
+        "frames": 8,
+        "loop": false,
+        "speed": null,
+        "minSoleY": -3.323914080088919e-08,
+        "minSoleFrame": 3,
+        "minBodyY": 0.06134181870999908,
+        "minBodyMesh": "ShinL_Mesh",
+        "minBodyFrame": 3,
+        "floatingFrames": 0,
+        "footSlide": 0.021333210923625695,
+        "loopSeam": 0,
+        "maxAngularSpeed": {
+          "joint": "ShinR",
+          "degPerSec": 835.6451989800985,
+          "frame": 2
+        },
+        "limitViolations": [],
+        "pelvisY": [
+          0.579999983410044,
+          0.5950000286102295
+        ],
+        "problems": [],
+        "warnings": []
+      },
+      "validation": [],
+      "width": 502,
+      "height": 787
+    },
+    {
+      "name": "StepDown",
+      "report": {
+        "name": "StepDown",
+        "frames": 8,
+        "loop": false,
+        "speed": null,
+        "minSoleY": 1.4376411991423588e-08,
+        "minSoleFrame": 0,
+        "minBodyY": 0.047617740343694676,
+        "minBodyMesh": "ShinL_Mesh",
+        "minBodyFrame": 5,
+        "floatingFrames": 0,
+        "footSlide": 0.23141593508389527,
+        "loopSeam": 0,
+        "maxAngularSpeed": {
+          "joint": "FootR",
+          "degPerSec": 762.785772978782,
+          "frame": 4
+        },
+        "limitViolations": [],
+        "pelvisY": [
+          0.5199999844189735,
+          0.5950000286102295
+        ],
+        "problems": [],
+        "warnings": []
+      },
+      "validation": [],
+      "width": 496,
+      "height": 792
+    },
+    {
+      "name": "Jump",
+      "report": {
+        "name": "Jump",
+        "frames": 20,
+        "loop": false,
+        "speed": null,
+        "minSoleY": -0.011943281607679962,
+        "minSoleFrame": 2,
+        "minBodyY": 0.11304042287701646,
+        "minBodyMesh": "ShinL_Mesh",
+        "minBodyFrame": 0,
+        "floatingFrames": 0,
+        "footSlide": 2.1400172011741203,
+        "loopSeam": 0,
+        "maxAngularSpeed": {
+          "joint": "ArmR",
+          "degPerSec": 2816.6666666666674,
+          "frame": 2
+        },
+        "limitViolations": [],
+        "pelvisY": [
+          0.5,
+          0.8600000119209257
+        ],
+        "problems": [],
+        "warnings": []
+      },
+      "validation": [],
+      "width": 582,
+      "height": 922
+    },
+    {
+      "name": "JumpUp",
+      "report": {
+        "name": "JumpUp",
+        "frames": 20,
+        "loop": false,
+        "speed": null,
+        "minSoleY": -0.011943281607679962,
+        "minSoleFrame": 2,
+        "minBodyY": 0.11304042287701646,
+        "minBodyMesh": "ShinL_Mesh",
+        "minBodyFrame": 0,
+        "floatingFrames": 0,
+        "footSlide": 2.329714417862614,
+        "loopSeam": 0,
+        "maxAngularSpeed": {
+          "joint": "ArmR",
+          "degPerSec": 2816.6666666666674,
+          "frame": 2
+        },
+        "limitViolations": [],
+        "pelvisY": [
+          0.5,
+          0.8600000119209257
+        ],
+        "problems": [],
+        "warnings": []
+      },
+      "validation": [],
+      "width": 582,
+      "height": 924
+    },
+    {
+      "name": "WallSlide",
+      "report": {
+        "name": "WallSlide",
+        "frames": 20,
+        "loop": true,
+        "speed": null,
+        "minSoleY": 0.011004785195330907,
+        "minSoleFrame": 0,
+        "minBodyY": 0.18507644593686923,
+        "minBodyMesh": "ShinL_Mesh",
+        "minBodyFrame": 0,
+        "floatingFrames": 0,
+        "footSlide": 0.0653561425330266,
+        "loopSeam": 1.499900008639088e-07,
+        "maxAngularSpeed": {
+          "joint": "ArmR",
+          "degPerSec": 22.200000000000273,
+          "frame": 5
+        },
+        "limitViolations": [],
+        "pelvisY": [
+          0.7200000286102295,
+          0.7300000190302498
+        ],
+        "problems": [],
+        "warnings": []
+      },
+      "validation": [],
+      "width": 1426,
+      "height": 826
+    },
+    {
+      "name": "Fall",
+      "report": {
+        "name": "Fall",
+        "frames": 16,
+        "loop": true,
+        "speed": null,
+        "minSoleY": 0.029003063821169184,
+        "minSoleFrame": 0,
+        "minBodyY": 0.2245175050056421,
+        "minBodyMesh": "ShinR_Mesh",
+        "minBodyFrame": 0,
+        "floatingFrames": 0,
+        "footSlide": 0,
+        "loopSeam": 2.062328121610335e-06,
+        "maxAngularSpeed": {
+          "joint": "ArmR",
+          "degPerSec": 242.34375,
+          "frame": 4
+        },
+        "limitViolations": [],
+        "pelvisY": [
+          0.7599999904632568,
+          0.7599999904632568
+        ],
+        "problems": [],
+        "warnings": []
+      },
+      "validation": [],
+      "width": 1546,
+      "height": 849
+    },
+    {
+      "name": "Land",
+      "report": {
+        "name": "Land",
+        "frames": 10,
+        "loop": false,
+        "speed": null,
+        "minSoleY": 1.4169240739048128e-08,
+        "minSoleFrame": 10,
+        "minBodyY": 0.02933475398957594,
+        "minBodyMesh": "ShinL_Mesh",
+        "minBodyFrame": 3,
+        "floatingFrames": 0,
+        "footSlide": 0.02229909153130095,
+        "loopSeam": 0,
+        "maxAngularSpeed": {
+          "joint": "ShinR",
+          "degPerSec": 390.03190995856244,
+          "frame": 1
+        },
+        "limitViolations": [],
+        "pelvisY": [
+          0.44999998817841297,
+          0.5949999005248665
+        ],
+        "problems": [],
+        "warnings": []
+      },
+      "validation": [],
+      "width": 496,
+      "height": 786
+    },
+    {
+      "name": "HardLand",
+      "report": {
+        "name": "HardLand",
+        "frames": 30,
+        "loop": false,
+        "speed": null,
+        "minSoleY": -4.684991683490125e-08,
+        "minSoleFrame": 13,
+        "minBodyY": 0.014646933473496798,
+        "minBodyMesh": "ShinL_Mesh",
+        "minBodyFrame": 7,
+        "floatingFrames": 0,
+        "footSlide": 0.053919607518937616,
+        "loopSeam": 0,
+        "maxAngularSpeed": {
+          "joint": "ShinL",
+          "degPerSec": 534.644858330247,
+          "frame": 28
+        },
+        "limitViolations": [],
+        "pelvisY": [
+          0.2599999905228625,
+          0.5949998433051725
+        ],
+        "problems": [],
+        "warnings": []
+      },
+      "validation": [],
+      "width": 754,
+      "height": 790
+    },
+    {
+      "name": "Slide",
+      "report": {
+        "name": "Slide",
+        "frames": 20,
+        "loop": true,
+        "speed": null,
+        "minSoleY": 0.05357177008683349,
+        "minSoleFrame": 0,
+        "minBodyY": 0.03671016303881812,
+        "minBodyMesh": "ThighR",
+        "minBodyFrame": 0,
+        "floatingFrames": 0,
+        "footSlide": 0,
+        "loopSeam": 0.0012566370407967042,
+        "maxAngularSpeed": {
+          "joint": "ArmR",
+          "degPerSec": 44.400000000000546,
+          "frame": 5
+        },
+        "limitViolations": [],
+        "pelvisY": [
+          0.15000000596046448,
+          0.15000000596046448
+        ],
+        "problems": [],
+        "warnings": []
+      },
+      "validation": [],
+      "width": 1702,
+      "height": 652
+    },
+    {
+      "name": "Victory",
+      "report": {
+        "name": "Victory",
+        "frames": 48,
+        "loop": false,
+        "speed": null,
+        "minSoleY": 1.0436572675520672e-08,
+        "minSoleFrame": 0,
+        "minBodyY": 0.033200343231777785,
+        "minBodyMesh": "ShinL_Mesh",
+        "minBodyFrame": 7,
+        "floatingFrames": 0,
+        "footSlide": 0.07636128276715753,
+        "loopSeam": 0,
+        "maxAngularSpeed": {
+          "joint": "ArmR",
+          "degPerSec": 1815,
+          "frame": 8
+        },
+        "limitViolations": [],
+        "pelvisY": [
+          0.41999998703903074,
+          0.9700000276995987
+        ],
+        "problems": [],
+        "warnings": []
+      },
+      "validation": [],
+      "width": 793,
+      "height": 956
+    },
+    {
+      "name": "Hurt",
+      "report": {
+        "name": "Hurt",
+        "frames": 20,
+        "loop": false,
+        "speed": null,
+        "minSoleY": -5.433037299218402e-08,
+        "minSoleFrame": 6,
+        "minBodyY": 0.03157212847055274,
+        "minBodyMesh": "ShinL_Mesh",
+        "minBodyFrame": 10,
+        "floatingFrames": 0,
+        "footSlide": 5.018753324956965e-07,
+        "loopSeam": 0,
+        "maxAngularSpeed": {
+          "joint": "ArmR",
+          "degPerSec": 1675.5555555555554,
+          "frame": 2
+        },
+        "limitViolations": [],
+        "pelvisY": [
+          0.5000000001824673,
+          0.5950000286102295
+        ],
+        "problems": [],
+        "warnings": []
+      },
+      "validation": [],
+      "width": 522,
+      "height": 790
+    },
+    {
+      "name": "Roll",
+      "report": {
+        "name": "Roll",
+        "frames": 14,
+        "loop": false,
+        "speed": null,
+        "minSoleY": -0.0021841144332416518,
+        "minSoleFrame": 1,
+        "minBodyY": 0.01614123857623187,
+        "minBodyMesh": "PortSablePatch",
+        "minBodyFrame": 6,
+        "floatingFrames": 0,
+        "footSlide": 1.8089094965508938,
+        "loopSeam": 0,
+        "maxAngularSpeed": {
+          "joint": "HandR",
+          "degPerSec": 2250,
+          "frame": 1
+        },
+        "limitViolations": [],
+        "pelvisY": [
+          0.09110064374831835,
+          1.1091226205557831
+        ],
+        "problems": [],
+        "warnings": []
+      },
+      "validation": [],
+      "width": 1510,
+      "height": 779
+    }
+  ],
+  "runtime": {
+    "ground": [
+      8.548830265908691e-08,
+      0.019765031337738048,
+      8.548830265908691e-08
+    ],
+    "jog": [
+      1.8545418977737427,
+      0.019663465023040783,
+      0.025255607441067696
+    ],
+    "wall": [
+      3.3801066875457764,
+      0.020087969303131115,
+      0.0253792405128479
+    ],
+    "sprint": [
+      0.02529599331319332,
+      0.01959521770477296,
+      3.427694320678711
+    ],
+    "dodge": {
+      "at": [
+        -0.5666666626930237,
+        0.1775426983833313,
+        3.469832748991309e-17
+      ],
+      "active": true,
+      "animation": "Roll",
+      "mix": [
+        {
+          "name": "Roll",
+          "weight": 1,
+          "time": 0.06666666666666667,
+          "rate": 1
+        }
+      ]
+    },
+    "recovered": {
+      "at": [
+        -4.94317626953125,
+        0.019741666316986095,
+        -0.00015779394016135484
+      ],
+      "active": false,
+      "animation": "Idle"
+    },
+    "pursuit": "pursuit",
+    "driving": "driving",
+    "soundCounts": {
+      "sd-dodge": 1,
+      "sd-shoot": 1,
+      "sd-hit": 1,
+      "sd-mission": 1,
+      "sd-interact": 1,
+      "sd-reload": 1,
+      "sd-punch": 1,
+      "sd-crash": 1,
+      "sd-repair": 1
+    },
+    "errors": [],
+    "gpuErrors": []
+  },
+  "soundReview": {
+    "unlocked": true,
+    "contextState": "running",
+    "sounds": {
+      "shoot": {
+        "samples": 5381,
+        "peak": 0.3484842777252197,
+        "rms": 0.0798737973838177
+      },
+      "punch": {
+        "samples": 4631,
+        "peak": 0.26919737458229065,
+        "rms": 0.0847886412763894
+      },
+      "hit": {
+        "samples": 7277,
+        "peak": 0.19095094501972198,
+        "rms": 0.05034811239879508
+      },
+      "mission": {
+        "samples": 39029,
+        "peak": 0.21999454498291016,
+        "rms": 0.08556718591116644
+      },
+      "interact": {
+        "samples": 5513,
+        "peak": 0.11906573176383972,
+        "rms": 0.038442693685591826
+      },
+      "reload": {
+        "samples": 9703,
+        "peak": 0.1375826746225357,
+        "rms": 0.02540777107958227
+      },
+      "empty": {
+        "samples": 1368,
+        "peak": 0.1213606595993042,
+        "rms": 0.03236105436750289
+      },
+      "dodge": {
+        "samples": 8820,
+        "peak": 0.06424405425786972,
+        "rms": 0.01784247398737889
+      },
+      "crash": {
+        "samples": 12437,
+        "peak": 0.4109770655632019,
+        "rms": 0.09327203099895955
+      },
+      "repair": {
+        "samples": 17861,
+        "peak": 0.13786004483699799,
+        "rms": 0.03630530657454358
+      },
+      "fail": {
+        "samples": 30430,
+        "peak": 0.16791358590126038,
+        "rms": 0.04473474730096156
+      },
+      "scan": {
+        "samples": 23373,
+        "peak": 0.0993088036775589,
+        "rms": 0.03221375181265648
+      },
+      "engine": {
+        "samples": 19184,
+        "peak": 0.14156441390514374,
+        "rms": 0.0618440750855748
+      },
+      "siren": {
+        "samples": 21168,
+        "peak": 0.07995126396417618,
+        "rms": 0.05391339236286152
+      }
+    }
+  },
+  "disposed": {
+    "removed": true,
+    "loopsStopped": true
+  },
+  "errors": [],
+  "review": {
+    "date": "2026-10-15",
+    "method": "Rendered and visually inspected all 20 contact sheets after original Ren Vale recolor, in side/front/three-quarter views with skeleton overlays and motion trails. Inspected actor.png runtime frame.",
+    "command": "PLAYWRIGHT_HOST_PLATFORM_OVERRIDE=ubuntu24.04-x64 node tests/actor-audio-review.mjs",
+    "artifacts": "/tmp/signal-debt-actor-review",
+    "observations": [
+      "Idle and IdleLook remain grounded and readable.",
+      "Tiptoe/Walk/Run show coherent opposing arm and leg travel. Run has a fast foot transition at frame 1; no penetration or broken pose observed.",
+      "Skid/SkidTurn deliberately snap into braking/turning anticipation; inherited speed warning accepted after sheet review.",
+      "StepUp/StepDown visibly lift and settle the feet, matching curb traversal.",
+      "Jump/JumpUp/WallSlide/Fall carry clear airborne silhouettes.",
+      "Land/HardLand absorb impact and recover. Slide stays seated.",
+      "Victory and Hurt are readable single actions.",
+      "Roll tucks, rotates and recovers in 14 frames without mesh penetration in the contact-sheet metrics. Runtime dodge uses a short collision-aware launch; it returns to grounded Idle."
+    ],
+    "toolkit": [
+      "The supplied ~/dev/TESTING-TOOLKIT.md path was absent.",
+      "Machine Playwright CLI belongs to Python; the repository playwright-core link uses its driver/package directory.",
+      "Playwright WebKit and Firefox on this machine do not expose WebGPU. Chromium SwiftShader is used for playable review.",
+      "Rendering SheetImage into a browser canvas and returning PNG base64 avoids prohibitively large raw RGBA serialization."
+    ],
+    "workarounds": [
+      {
+        "file": "actors.js",
+        "detail": "CityCharacter overrides animationFor for the original dodge action and limits the platformer clip requests to the reviewed subset."
+      },
+      {
+        "file": "actors.js",
+        "detail": "CityCharacter.findLedge returns null so automatic platformer hangs cannot capture a player with no climb controls."
+      },
+      {
+        "file": "actors.js",
+        "detail": "A small launch keeps planted-foot IK out of the tucked roll. Public body/controller APIs continue to own movement and collision."
+      }
+    ]
+  }
+}
