@@ -1,0 +1,18 @@
+import { type ClipDef, type FeetGoals, type Pose } from '../../../engine/animation';
+export declare const CROUCH_FEET: FeetGoals;
+export declare const CROUCH_BODY: Pose;
+export declare const Crouch: ClipDef;
+export declare const CrouchWalk: ClipDef;
+export declare const CrouchSlide: ClipDef;
+export declare const PRONE_Y: number;
+export declare const Prone: ClipDef;
+export declare const ProneDown: ClipDef;
+export declare const Crawl: ClipDef;
+export declare const GetUpFront: ClipDef;
+export declare const Sit: ClipDef;
+export declare const SitDown: ClipDef;
+export declare const StandUp: ClipDef;
+export declare const LieDown: ClipDef;
+export declare const LieIdle: ClipDef;
+export declare const Sleep: ClipDef;
+export declare const GetUp: ClipDef;

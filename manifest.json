@@ -1,0 +1,875 @@
+{
+  "name": "pixel-engine",
+  "version": "0.40.0",
+  "build": "2026-10-15 3f59c1e",
+  "source": "https://github.com/michaelcrosato/riftlight",
+  "latest": "https://github.com/michaelcrosato/riftlight/releases/latest/download/pixel-engine.zip",
+  "releases": "https://github.com/michaelcrosato/riftlight/releases",
+  "handoff": "https://riftlight.vercel.app/handoff/",
+  "entry": "pixel-engine.js",
+  "readFirst": [
+    "README.md",
+    "GUIDE.md"
+  ],
+  "starter": {
+    "page": "index.html",
+    "script": "game.js"
+  },
+  "examples": [
+    "examples/side-scroller.html",
+    "examples/top-down.html",
+    "examples/looks.html",
+    "examples/market.html"
+  ],
+  "assets": {
+    "guide": "ASSETS.md",
+    "library": "LIBRARY.md",
+    "index": "library.json",
+    "packs": "packs/index.json",
+    "credits": "CREDITS.md"
+  },
+  "builtinModels": [
+    "assets/coin.glb",
+    "assets/hero.glb",
+    "assets/tree.glb"
+  ],
+  "exports": 484,
+  "files": [
+    {
+      "path": "API.md",
+      "bytes": 239808,
+      "tokens": 59865
+    },
+    {
+      "path": "ASSETS.md",
+      "bytes": 15883,
+      "tokens": 3964
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 52507,
+      "tokens": 13110
+    },
+    {
+      "path": "CREDITS.md",
+      "bytes": 41812,
+      "tokens": 10453
+    },
+    {
+      "path": "GUIDE.md",
+      "bytes": 58529,
+      "tokens": 14625
+    },
+    {
+      "path": "LIBRARY.md",
+      "bytes": 179830,
+      "tokens": 44425
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1071
+    },
+    {
+      "path": "README.md",
+      "bytes": 3100,
+      "tokens": 775
+    },
+    {
+      "path": "check.mjs",
+      "bytes": 25196,
+      "tokens": 6299
+    },
+    {
+      "path": "examples/looks.html",
+      "bytes": 509,
+      "tokens": 127
+    },
+    {
+      "path": "examples/looks.js",
+      "bytes": 4371,
+      "tokens": 1093
+    },
+    {
+      "path": "examples/market-models.js",
+      "bytes": 1074,
+      "tokens": 269
+    },
+    {
+      "path": "examples/market.html",
+      "bytes": 511,
+      "tokens": 128
+    },
+    {
+      "path": "examples/market.js",
+      "bytes": 3166,
+      "tokens": 792
+    },
+    {
+      "path": "examples/side-scroller.html",
+      "bytes": 525,
+      "tokens": 131
+    },
+    {
+      "path": "examples/side-scroller.js",
+      "bytes": 7059,
+      "tokens": 1765
+    },
+    {
+      "path": "examples/top-down.html",
+      "bytes": 515,
+      "tokens": 129
+    },
+    {
+      "path": "examples/top-down.js",
+      "bytes": 7469,
+      "tokens": 1867
+    },
+    {
+      "path": "game.js",
+      "bytes": 4337,
+      "tokens": 1084
+    },
+    {
+      "path": "index.html",
+      "bytes": 506,
+      "tokens": 127
+    },
+    {
+      "path": "library.json",
+      "bytes": 437586
+    },
+    {
+      "path": "packs/index.json",
+      "bytes": 2886
+    },
+    {
+      "path": "packs/kenney-castle.json",
+      "bytes": 506467
+    },
+    {
+      "path": "packs/kenney-furniture.json",
+      "bytes": 675400
+    },
+    {
+      "path": "packs/kenney-mini-dungeon.json",
+      "bytes": 133943
+    },
+    {
+      "path": "packs/kenney-nature.json",
+      "bytes": 1151824
+    },
+    {
+      "path": "packs/kenney-tiny-dungeon.json",
+      "bytes": 238973
+    },
+    {
+      "path": "packs/kenney-tiny-town.json",
+      "bytes": 229660
+    },
+    {
+      "path": "pixel-engine.d.ts",
+      "bytes": 226,
+      "tokens": 57
+    },
+    {
+      "path": "pixel-engine.js",
+      "bytes": 4867678,
+      "tokens": 1216897
+    },
+    {
+      "path": "types/bundle.d.ts",
+      "bytes": 336
+    },
+    {
+      "path": "types/engine/DebugUI.d.ts",
+      "bytes": 1146
+    },
+    {
+      "path": "types/engine/Engine.d.ts",
+      "bytes": 27538
+    },
+    {
+      "path": "types/engine/LoadingScreen.d.ts",
+      "bytes": 593
+    },
+    {
+      "path": "types/engine/SettingsPanel.d.ts",
+      "bytes": 1229
+    },
+    {
+      "path": "types/engine/TouchControls.d.ts",
+      "bytes": 4007
+    },
+    {
+      "path": "types/engine/ai/behavior.d.ts",
+      "bytes": 5653
+    },
+    {
+      "path": "types/engine/ai/boids.d.ts",
+      "bytes": 2124
+    },
+    {
+      "path": "types/engine/ai/bullets.d.ts",
+      "bytes": 3177
+    },
+    {
+      "path": "types/engine/ai/navgrid.d.ts",
+      "bytes": 4848
+    },
+    {
+      "path": "types/engine/animation/compile.d.ts",
+      "bytes": 886
+    },
+    {
+      "path": "types/engine/animation/curves.d.ts",
+      "bytes": 1661
+    },
+    {
+      "path": "types/engine/animation/ease.d.ts",
+      "bytes": 100
+    },
+    {
+      "path": "types/engine/animation/font.d.ts",
+      "bytes": 356
+    },
+    {
+      "path": "types/engine/animation/footPlacement.d.ts",
+      "bytes": 9988
+    },
+    {
+      "path": "types/engine/animation/gait.d.ts",
+      "bytes": 4386
+    },
+    {
+      "path": "types/engine/animation/ik.d.ts",
+      "bytes": 3346
+    },
+    {
+      "path": "types/engine/animation/index.d.ts",
+      "bytes": 1384
+    },
+    {
+      "path": "types/engine/animation/joint.d.ts",
+      "bytes": 318
+    },
+    {
+      "path": "types/engine/animation/metrics.d.ts",
+      "bytes": 2643
+    },
+    {
+      "path": "types/engine/animation/popGuard.d.ts",
+      "bytes": 1682
+    },
+    {
+      "path": "types/engine/animation/pose.d.ts",
+      "bytes": 1524
+    },
+    {
+      "path": "types/engine/animation/poseLayers.d.ts",
+      "bytes": 2591
+    },
+    {
+      "path": "types/engine/animation/procedural.d.ts",
+      "bytes": 6624
+    },
+    {
+      "path": "types/engine/animation/raster.d.ts",
+      "bytes": 3465
+    },
+    {
+      "path": "types/engine/animation/rotationBlend.d.ts",
+      "bytes": 1641
+    },
+    {
+      "path": "types/engine/animation/sheet.d.ts",
+      "bytes": 2053
+    },
+    {
+      "path": "types/engine/animation/types.d.ts",
+      "bytes": 5953
+    },
+    {
+      "path": "types/engine/assets.d.ts",
+      "bytes": 2308
+    },
+    {
+      "path": "types/engine/audio/AudioManager.d.ts",
+      "bytes": 6135
+    },
+    {
+      "path": "types/engine/audio/index.d.ts",
+      "bytes": 553
+    },
+    {
+      "path": "types/engine/audio/music.d.ts",
+      "bytes": 1725
+    },
+    {
+      "path": "types/engine/audio/sfx.d.ts",
+      "bytes": 4092
+    },
+    {
+      "path": "types/engine/audio/spatial.d.ts",
+      "bytes": 1636
+    },
+    {
+      "path": "types/engine/audio/synth.d.ts",
+      "bytes": 2343
+    },
+    {
+      "path": "types/engine/camera.d.ts",
+      "bytes": 9404
+    },
+    {
+      "path": "types/engine/catalog.d.ts",
+      "bytes": 4674
+    },
+    {
+      "path": "types/engine/character/PlatformerCharacter.d.ts",
+      "bytes": 12955
+    },
+    {
+      "path": "types/engine/character/animator.d.ts",
+      "bytes": 5603
+    },
+    {
+      "path": "types/engine/character/controls.d.ts",
+      "bytes": 1395
+    },
+    {
+      "path": "types/engine/character/motion.d.ts",
+      "bytes": 430
+    },
+    {
+      "path": "types/engine/character/states.d.ts",
+      "bytes": 13291
+    },
+    {
+      "path": "types/engine/character/tuning.d.ts",
+      "bytes": 22837
+    },
+    {
+      "path": "types/engine/cinematic/timeline.d.ts",
+      "bytes": 4808
+    },
+    {
+      "path": "types/engine/clock.d.ts",
+      "bytes": 1128
+    },
+    {
+      "path": "types/engine/debugKeys.d.ts",
+      "bytes": 2265
+    },
+    {
+      "path": "types/engine/framing.d.ts",
+      "bytes": 3504
+    },
+    {
+      "path": "types/engine/hud/Hud.d.ts",
+      "bytes": 3396
+    },
+    {
+      "path": "types/engine/index.d.ts",
+      "bytes": 9875
+    },
+    {
+      "path": "types/engine/input.d.ts",
+      "bytes": 13588
+    },
+    {
+      "path": "types/engine/inspect/render.d.ts",
+      "bytes": 4359
+    },
+    {
+      "path": "types/engine/inspect/report.d.ts",
+      "bytes": 4055
+    },
+    {
+      "path": "types/engine/lifecycle.d.ts",
+      "bytes": 907
+    },
+    {
+      "path": "types/engine/model/build.d.ts",
+      "bytes": 5241
+    },
+    {
+      "path": "types/engine/model/catalog.d.ts",
+      "bytes": 472
+    },
+    {
+      "path": "types/engine/model/compile.d.ts",
+      "bytes": 2046
+    },
+    {
+      "path": "types/engine/model/expand.d.ts",
+      "bytes": 2978
+    },
+    {
+      "path": "types/engine/model/fidelity.d.ts",
+      "bytes": 4893
+    },
+    {
+      "path": "types/engine/model/helpers.d.ts",
+      "bytes": 1785
+    },
+    {
+      "path": "types/engine/model/import/colours.d.ts",
+      "bytes": 3847
+    },
+    {
+      "path": "types/engine/model/import/common.d.ts",
+      "bytes": 470
+    },
+    {
+      "path": "types/engine/model/import/describe.d.ts",
+      "bytes": 1089
+    },
+    {
+      "path": "types/engine/model/index.d.ts",
+      "bytes": 2114
+    },
+    {
+      "path": "types/engine/model/library/architecture.d.ts",
+      "bytes": 34183
+    },
+    {
+      "path": "types/engine/model/library/containers.d.ts",
+      "bytes": 26484
+    },
+    {
+      "path": "types/engine/model/library/dressing.d.ts",
+      "bytes": 13725
+    },
+    {
+      "path": "types/engine/model/library/dungeon.d.ts",
+      "bytes": 53486
+    },
+    {
+      "path": "types/engine/model/library/furniture.d.ts",
+      "bytes": 50529
+    },
+    {
+      "path": "types/engine/model/library/index.d.ts",
+      "bytes": 571
+    },
+    {
+      "path": "types/engine/model/library/lighting.d.ts",
+      "bytes": 43253
+    },
+    {
+      "path": "types/engine/model/library/nature.d.ts",
+      "bytes": 29492
+    },
+    {
+      "path": "types/engine/model/library/props.d.ts",
+      "bytes": 39159
+    },
+    {
+      "path": "types/engine/model/library/town.d.ts",
+      "bytes": 29402
+    },
+    {
+      "path": "types/engine/model/library/weapons.d.ts",
+      "bytes": 27605
+    },
+    {
+      "path": "types/engine/model/oklab.d.ts",
+      "bytes": 922
+    },
+    {
+      "path": "types/engine/model/packs/licences.d.ts",
+      "bytes": 2343
+    },
+    {
+      "path": "types/engine/model/packs/pack.d.ts",
+      "bytes": 3067
+    },
+    {
+      "path": "types/engine/model/packs/sources.d.ts",
+      "bytes": 3318
+    },
+    {
+      "path": "types/engine/model/physics.d.ts",
+      "bytes": 478
+    },
+    {
+      "path": "types/engine/model/prims.d.ts",
+      "bytes": 1713
+    },
+    {
+      "path": "types/engine/model/readability.d.ts",
+      "bytes": 1122
+    },
+    {
+      "path": "types/engine/model/sheet.d.ts",
+      "bytes": 6327
+    },
+    {
+      "path": "types/engine/model/types.d.ts",
+      "bytes": 6731
+    },
+    {
+      "path": "types/engine/model/uv.d.ts",
+      "bytes": 684
+    },
+    {
+      "path": "types/engine/model/validate.d.ts",
+      "bytes": 1571
+    },
+    {
+      "path": "types/engine/model/view.d.ts",
+      "bytes": 1517
+    },
+    {
+      "path": "types/engine/palette.d.ts",
+      "bytes": 891
+    },
+    {
+      "path": "types/engine/particles/Particles.d.ts",
+      "bytes": 3184
+    },
+    {
+      "path": "types/engine/particles/index.d.ts",
+      "bytes": 203
+    },
+    {
+      "path": "types/engine/particles/pool.d.ts",
+      "bytes": 3355
+    },
+    {
+      "path": "types/engine/particles/presets.d.ts",
+      "bytes": 2117
+    },
+    {
+      "path": "types/engine/physics/CharacterController.d.ts",
+      "bytes": 2297
+    },
+    {
+      "path": "types/engine/physics/InstancedBodies.d.ts",
+      "bytes": 2856
+    },
+    {
+      "path": "types/engine/physics/Physics.d.ts",
+      "bytes": 11797
+    },
+    {
+      "path": "types/engine/physics/Trigger.d.ts",
+      "bytes": 2687
+    },
+    {
+      "path": "types/engine/physics/alive.d.ts",
+      "bytes": 360
+    },
+    {
+      "path": "types/engine/physics/breakable.d.ts",
+      "bytes": 3486
+    },
+    {
+      "path": "types/engine/physics/buoyancy.d.ts",
+      "bytes": 2909
+    },
+    {
+      "path": "types/engine/physics/forces.d.ts",
+      "bytes": 3519
+    },
+    {
+      "path": "types/engine/physics/fracture.d.ts",
+      "bytes": 1147
+    },
+    {
+      "path": "types/engine/physics/joints.d.ts",
+      "bytes": 4546
+    },
+    {
+      "path": "types/engine/physics/movers.d.ts",
+      "bytes": 4973
+    },
+    {
+      "path": "types/engine/physics/ragdoll.d.ts",
+      "bytes": 5943
+    },
+    {
+      "path": "types/engine/physics/rapierWasm.d.ts",
+      "bytes": 140
+    },
+    {
+      "path": "types/engine/physics/rewind.d.ts",
+      "bytes": 2832
+    },
+    {
+      "path": "types/engine/physics/vehicle.d.ts",
+      "bytes": 3663
+    },
+    {
+      "path": "types/engine/physics/verlet.d.ts",
+      "bytes": 6593
+    },
+    {
+      "path": "types/engine/physics/water.d.ts",
+      "bytes": 3042
+    },
+    {
+      "path": "types/engine/png.d.ts",
+      "bytes": 1291
+    },
+    {
+      "path": "types/engine/procgen/lsystem.d.ts",
+      "bytes": 4403
+    },
+    {
+      "path": "types/engine/procgen/noise.d.ts",
+      "bytes": 950
+    },
+    {
+      "path": "types/engine/procgen/terrain.d.ts",
+      "bytes": 5237
+    },
+    {
+      "path": "types/engine/procgen/wfc.d.ts",
+      "bytes": 3089
+    },
+    {
+      "path": "types/engine/quality.d.ts",
+      "bytes": 2048
+    },
+    {
+      "path": "types/engine/random.d.ts",
+      "bytes": 1543
+    },
+    {
+      "path": "types/engine/render/ContactShadow.d.ts",
+      "bytes": 746
+    },
+    {
+      "path": "types/engine/render/PixelRenderer.d.ts",
+      "bytes": 12217
+    },
+    {
+      "path": "types/engine/render/belt.d.ts",
+      "bytes": 908
+    },
+    {
+      "path": "types/engine/render/decals.d.ts",
+      "bytes": 2537
+    },
+    {
+      "path": "types/engine/render/filters.d.ts",
+      "bytes": 6706
+    },
+    {
+      "path": "types/engine/render/gpuSwarm.d.ts",
+      "bytes": 2754
+    },
+    {
+      "path": "types/engine/render/grass.d.ts",
+      "bytes": 2303
+    },
+    {
+      "path": "types/engine/render/lights.d.ts",
+      "bytes": 8308
+    },
+    {
+      "path": "types/engine/render/look.d.ts",
+      "bytes": 6811
+    },
+    {
+      "path": "types/engine/render/lookLayer.d.ts",
+      "bytes": 980
+    },
+    {
+      "path": "types/engine/render/merge.d.ts",
+      "bytes": 1184
+    },
+    {
+      "path": "types/engine/render/mirror.d.ts",
+      "bytes": 2752
+    },
+    {
+      "path": "types/engine/render/precipitation.d.ts",
+      "bytes": 2252
+    },
+    {
+      "path": "types/engine/render/renderView.d.ts",
+      "bytes": 2592
+    },
+    {
+      "path": "types/engine/render/screenFx.d.ts",
+      "bytes": 6758
+    },
+    {
+      "path": "types/engine/render/shaders.d.ts",
+      "bytes": 2052
+    },
+    {
+      "path": "types/engine/render/sky.d.ts",
+      "bytes": 2210
+    },
+    {
+      "path": "types/engine/render/softMesh.d.ts",
+      "bytes": 1437
+    },
+    {
+      "path": "types/engine/render/sprites.d.ts",
+      "bytes": 3150
+    },
+    {
+      "path": "types/engine/render/sway.d.ts",
+      "bytes": 1794
+    },
+    {
+      "path": "types/engine/render/toon.d.ts",
+      "bytes": 3891
+    },
+    {
+      "path": "types/engine/render/trail.d.ts",
+      "bytes": 1886
+    },
+    {
+      "path": "types/engine/render/water.d.ts",
+      "bytes": 3244
+    },
+    {
+      "path": "types/engine/render/webgpuCompat.d.ts",
+      "bytes": 53
+    },
+    {
+      "path": "types/engine/replay.d.ts",
+      "bytes": 2330
+    },
+    {
+      "path": "types/engine/settings.d.ts",
+      "bytes": 5190
+    },
+    {
+      "path": "types/engine/shake.d.ts",
+      "bytes": 1880
+    },
+    {
+      "path": "types/engine/snapshot.d.ts",
+      "bytes": 2742
+    },
+    {
+      "path": "types/engine/texture/bake.d.ts",
+      "bytes": 1796
+    },
+    {
+      "path": "types/engine/texture/catalog.d.ts",
+      "bytes": 301
+    },
+    {
+      "path": "types/engine/texture/convert.d.ts",
+      "bytes": 2263
+    },
+    {
+      "path": "types/engine/texture/helpers.d.ts",
+      "bytes": 292
+    },
+    {
+      "path": "types/engine/texture/import.d.ts",
+      "bytes": 5147
+    },
+    {
+      "path": "types/engine/texture/index.d.ts",
+      "bytes": 1132
+    },
+    {
+      "path": "types/engine/texture/library/index.d.ts",
+      "bytes": 490
+    },
+    {
+      "path": "types/engine/texture/library/sprites.d.ts",
+      "bytes": 143296
+    },
+    {
+      "path": "types/engine/texture/library/surfaces.d.ts",
+      "bytes": 188120
+    },
+    {
+      "path": "types/engine/texture/patterns.d.ts",
+      "bytes": 1703
+    },
+    {
+      "path": "types/engine/texture/sheet.d.ts",
+      "bytes": 3410
+    },
+    {
+      "path": "types/engine/texture/types.d.ts",
+      "bytes": 3563
+    },
+    {
+      "path": "types/engine/texture/validate.d.ts",
+      "bytes": 1361
+    },
+    {
+      "path": "types/engine/tween.d.ts",
+      "bytes": 3309
+    },
+    {
+      "path": "types/engine/version.d.ts",
+      "bytes": 45
+    },
+    {
+      "path": "types/game/hero/animations.d.ts",
+      "bytes": 38
+    },
+    {
+      "path": "types/game/hero/clips/air.d.ts",
+      "bytes": 864
+    },
+    {
+      "path": "types/game/hero/clips/attacks.d.ts",
+      "bytes": 250
+    },
+    {
+      "path": "types/game/hero/clips/block.d.ts",
+      "bytes": 206
+    },
+    {
+      "path": "types/game/hero/clips/combat.d.ts",
+      "bytes": 5251
+    },
+    {
+      "path": "types/game/hero/clips/crouch.d.ts",
+      "bytes": 753
+    },
+    {
+      "path": "types/game/hero/clips/emotes.d.ts",
+      "bytes": 169
+    },
+    {
+      "path": "types/game/hero/clips/helpers.d.ts",
+      "bytes": 2585
+    },
+    {
+      "path": "types/game/hero/clips/index.d.ts",
+      "bytes": 111
+    },
+    {
+      "path": "types/game/hero/clips/ledge.d.ts",
+      "bytes": 295
+    },
+    {
+      "path": "types/game/hero/clips/locomotion.d.ts",
+      "bytes": 429
+    },
+    {
+      "path": "types/game/hero/clips/standing.d.ts",
+      "bytes": 282
+    },
+    {
+      "path": "types/game/hero/index.d.ts",
+      "bytes": 172
+    },
+    {
+      "path": "types/game/hero/ragdoll.d.ts",
+      "bytes": 412
+    },
+    {
+      "path": "types/game/hero/rig.d.ts",
+      "bytes": 1523
+    },
+    {
+      "path": "manifest.json"
+    }
+  ]
+}

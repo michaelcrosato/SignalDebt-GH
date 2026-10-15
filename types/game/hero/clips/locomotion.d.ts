@@ -1,0 +1,10 @@
+import { type ClipDef, type FeetGoals, type Pose } from '../../../engine/animation';
+export declare const Tiptoe: ClipDef;
+export declare const Walk: ClipDef;
+export declare const Run: ClipDef;
+export declare const SKID_FEET: FeetGoals;
+export declare const SKID_BODY: Pose;
+export declare const Skid: ClipDef;
+export declare const SkidTurn: ClipDef;
+export declare const StepUp: ClipDef;
+export declare const StepDown: ClipDef;
