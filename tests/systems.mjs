@@ -24,6 +24,13 @@ try{
  await driver.choose('resume');await driver.tap('KeyF');await driver.pad({buttons:{7:1}});await driver.step(80);await driver.release();checks.shots=(await s.state()).ammo;await driver.tap('KeyR');await driver.step(80);assert.equal((await s.state()).ammo,12);checks.reloadAfterShooting=true;
  await driver.tap('Space');checks.dodging=await page.evaluate(()=>window.__PIXEL_ENGINE__.game.player.dodging);assert(checks.dodging);await driver.step(60);assert.equal(await page.evaluate(()=>window.__PIXEL_ENGINE__.game.player.dodging),false);
  await driver.tap('KeyV');assert((await s.state()).engine.look==='night_ops');await driver.step(260);assert.equal(await page.evaluate(()=>window.__PIXEL_ENGINE__.game.scan),0);checks.scanRestoresLook=true;
+ await driver.release();
+ await page.evaluate(async()=>{const g=window.__PIXEL_ENGINE__.game,p=g.position;g.clearEnemies();await g.spawnEnemies({x:p.x+8,y:0,z:p.z},1);});
+ await page.mouse.move(640,350);await page.mouse.down();await driver.step(75);await page.mouse.up();
+ assert.equal((await s.state()).enemies.length,0,'real left mouse input must fire and disable the visible guard');checks.mouseFire=true;
+ const yawBefore=(await s.state()).engine.cameraRig.yaw;
+ await page.mouse.down();await page.mouse.move(710,350);await driver.step(3);await page.mouse.up();
+ assert(Math.abs((await s.state()).engine.cameraRig.yaw-yawBefore)>.1,'real mouse drag must orbit the camera');checks.mouseCamera=true;
  await page.evaluate(()=>{const g=window.__PIXEL_ENGINE__.game;g.health=1;g.damageCooldown=0;g.damage(10);});assert.equal((await s.state()).screen,'failure');await driver.choose('retry');assert.equal((await s.state()).screen,null);assert((await s.state()).health>=60);checks.retry=true;
  await s.shot('systems');assert.equal(s.errors.length,0,s.errors.join('\n'));await s.save('systems',{checks,note:'Targeted fixtures; only actual opening objective proves story progress.'});
  console.log(JSON.stringify(checks,null,2));

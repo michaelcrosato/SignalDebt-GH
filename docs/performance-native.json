@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "startedAtUtc": "2026-10-15T23:45:46.262Z",
+  "startedAtUtc": "2026-10-16T01:12:34.890Z",
   "url": "http://localhost:8080/",
   "method": "Real render callbacks and engine measured FPS; no manual simulation during samples. No screenshots or GPU readback during measured windows.",
   "scenarioSetup": "Script positions player/car and spawns a representative six-enemy/two-pursuer scene. Health is held at 100 during that stress scene. This is not evidence of story completion.",
@@ -18,32 +18,60 @@
   "warmupSeconds": 3,
   "sampleSeconds": 12,
   "sourceHashes": {
-    "world.js": "164af2738b28549be5ca5bd8af96d3fb533224872cb1a43c20c8c75cf8b0d9c9",
+    "index.html": "d1826caef5da8058720617bb033f83dac17edf753b9f07331a2714d5c612356a",
+    "game.js": "d6570ed90d975a7215fa01be40ec31cc04c793d5be0bce33a2e95788341beb0e",
+    "city-game.js": "ef4991ad6df60f31a535f3b6de520a09e0edb3b5a1efa7ed2e423699cd56ece2",
+    "world.js": "24f353e5c03f7f87ed7ed42edf9527b56234fa98c0e2a08eeadf670ccc2f027b",
     "models.js": "b1bb986c824cb9f342fa5a5f87e5407459c72b1c5af8547a1fa2d69f7d702556",
-    "vehicles.js": "32b24812a1451adec6f097b40427310b27e31af7c0003e0cb5132b75e7a4f0c1",
+    "equipment.js": "5882d09cc7d221ed225b44b8d9597ceb2f56f4023616052b34d7e5cd318185f3",
+    "navigation.js": "cb25b61c3382a7326dc94daebfe8839bde515c961ef0121d167913255339fe30",
+    "missions.js": "8c3b941c6073f0a0055677ac72eae0c059e606bd13f9fedb46698832669f294f",
+    "vehicles.js": "09750dab4685a65a1713269c43810942c8fdaae9fca5a129b09e65b606ce8daa",
     "actors.js": "091175d7e05c977aeecf57fd6b32aa6743deb07263ef75a3dface78abc78e2f1",
-    "city-game.js": "0bd4ed3b614551b7019767c49d83a539b168b2e70c9ccddc0e59636e5aba961b",
-    "game.js": "a044463c41fc699d25ddb4598d7185f558c04301fd9b0c581beffdd9d50cafb9"
+    "audio.js": "4e61bed0990b7d21246a48f2b49f34bc57de37a17ba802b4bced98f7c4adb07a",
+    "persistence.js": "32c81421791656eb173402179b47012cfc909a878933b758112252634bf301a6",
+    "ui.js": "a53608937d7883242cdb7e56c501bbb6b65d70fa38e4a6d86bd130614968f4be",
+    "style.css": "5eda344e18db1c8dc98ca2f6cd0ab7fee1280a1aa1eb6967f0e43714171dcd18",
+    "pixel-engine.js": "2cd3cf6b1365288a01b0a106e2fd742f3248e34ab2f2bee17a8049457b4ebb50",
+    "packs/kenney-nature.json": "7c27749fc2a1e34f38718d5e3489c802f57a386ce3afd8056f961fcb672b1f89"
+  },
+  "servedSourceHashes": {
+    "index.html": "d1826caef5da8058720617bb033f83dac17edf753b9f07331a2714d5c612356a",
+    "style.css": "5eda344e18db1c8dc98ca2f6cd0ab7fee1280a1aa1eb6967f0e43714171dcd18",
+    "game.js": "d6570ed90d975a7215fa01be40ec31cc04c793d5be0bce33a2e95788341beb0e",
+    "city-game.js": "ef4991ad6df60f31a535f3b6de520a09e0edb3b5a1efa7ed2e423699cd56ece2",
+    "world.js": "24f353e5c03f7f87ed7ed42edf9527b56234fa98c0e2a08eeadf670ccc2f027b",
+    "actors.js": "091175d7e05c977aeecf57fd6b32aa6743deb07263ef75a3dface78abc78e2f1",
+    "audio.js": "4e61bed0990b7d21246a48f2b49f34bc57de37a17ba802b4bced98f7c4adb07a",
+    "vehicles.js": "09750dab4685a65a1713269c43810942c8fdaae9fca5a129b09e65b606ce8daa",
+    "missions.js": "8c3b941c6073f0a0055677ac72eae0c059e606bd13f9fedb46698832669f294f",
+    "navigation.js": "cb25b61c3382a7326dc94daebfe8839bde515c961ef0121d167913255339fe30",
+    "ui.js": "a53608937d7883242cdb7e56c501bbb6b65d70fa38e4a6d86bd130614968f4be",
+    "equipment.js": "5882d09cc7d221ed225b44b8d9597ceb2f56f4023616052b34d7e5cd318185f3",
+    "persistence.js": "32c81421791656eb173402179b47012cfc909a878933b758112252634bf301a6",
+    "models.js": "b1bb986c824cb9f342fa5a5f87e5407459c72b1c5af8547a1fa2d69f7d702556",
+    "pixel-engine.js": "2cd3cf6b1365288a01b0a106e2fd742f3248e34ab2f2bee17a8049457b4ebb50",
+    "packs/kenney-nature.json": "7c27749fc2a1e34f38718d5e3489c802f57a386ce3afd8056f961fcb672b1f89"
   },
   "scenarios": [
     {
       "name": "garage-on-foot",
-      "elapsedSeconds": 12.00589999999851,
-      "renderedFrames": 721,
-      "renderedFps": 60.0538068782923,
-      "engineFrameDelta": 721,
+      "elapsedSeconds": 12.001400000002235,
+      "renderedFrames": 680,
+      "renderedFps": 56.660056326751324,
+      "engineFrameDelta": 680,
       "engineFps": {
-        "minimum": 60,
-        "p05": 60,
-        "median": 60,
-        "p95": 60,
-        "maximum": 60
+        "minimum": 56,
+        "p05": 56,
+        "median": 57,
+        "p95": 57,
+        "maximum": 57
       },
       "frameIntervalMs": {
-        "median": 16.699999999254942,
-        "p95": 17.5,
-        "p99": 18,
-        "maximum": 18.899999998509884
+        "median": 17.600000001490116,
+        "p95": 21.699999999254942,
+        "p99": 25,
+        "maximum": 26.800000000745058
       },
       "state": {
         "manual": false,
@@ -63,10 +91,11 @@
         "integrity": null,
         "enemies": 0,
         "police": 0,
-        "sceneObjects": 62
+        "sceneObjects": 63,
+        "audioState": "running"
       },
       "rendererInfo": {
-        "calls": 3628,
+        "calls": 3432,
         "triangles": 246136,
         "geometries": 75,
         "textures": 11
@@ -75,314 +104,314 @@
       "gpuErrors": [],
       "samples": [
         {
-          "elapsedSeconds": 0.25580000000074504,
-          "engineFps": 60,
-          "engineFrame": 202,
-          "physicsStepMs": 0.06339745782007061
+          "elapsedSeconds": 0.25280000000074504,
+          "engineFps": 57,
+          "engineFrame": 192,
+          "physicsStepMs": 0.06181174216731435
         },
         {
-          "elapsedSeconds": 0.5021999999992549,
-          "engineFps": 60,
-          "engineFrame": 216,
-          "physicsStepMs": 0.07018577898678602
+          "elapsedSeconds": 0.5011000000014901,
+          "engineFps": 57,
+          "engineFrame": 206,
+          "physicsStepMs": 0.053055103061743075
         },
         {
-          "elapsedSeconds": 0.7558999999985099,
-          "engineFps": 60,
-          "engineFrame": 232,
-          "physicsStepMs": 0.044261392717521095
+          "elapsedSeconds": 0.7574000000022352,
+          "engineFps": 57,
+          "engineFrame": 221,
+          "physicsStepMs": 0.06282726645319647
         },
         {
-          "elapsedSeconds": 1.006199999999255,
-          "engineFps": 60,
-          "engineFrame": 247,
-          "physicsStepMs": 0.04719005774334491
+          "elapsedSeconds": 1.0021000000014901,
+          "engineFps": 57,
+          "engineFrame": 235,
+          "physicsStepMs": 0.0984428318483261
         },
         {
-          "elapsedSeconds": 1.255800000000745,
-          "engineFps": 60,
-          "engineFrame": 262,
-          "physicsStepMs": 0.05101408663741214
+          "elapsedSeconds": 1.252800000000745,
+          "engineFps": 57,
+          "engineFrame": 249,
+          "physicsStepMs": 0.05361998836376779
         },
         {
-          "elapsedSeconds": 1.5018999999985099,
-          "engineFps": 60,
-          "engineFrame": 276,
-          "physicsStepMs": 0.06257822495729921
+          "elapsedSeconds": 1.511,
+          "engineFps": 57,
+          "engineFrame": 264,
+          "physicsStepMs": 0.04918531802758912
         },
         {
-          "elapsedSeconds": 1.7550999999977648,
-          "engineFps": 60,
+          "elapsedSeconds": 1.75910000000149,
+          "engineFps": 57,
+          "engineFrame": 278,
+          "physicsStepMs": 0.06479239703779759
+        },
+        {
+          "elapsedSeconds": 2.002300000000745,
+          "engineFps": 57,
           "engineFrame": 292,
-          "physicsStepMs": 0.04856744551151499
+          "physicsStepMs": 0.04408616037448122
         },
         {
-          "elapsedSeconds": 2.00589999999851,
-          "engineFps": 60,
-          "engineFrame": 307,
-          "physicsStepMs": 0.05853552096028921
+          "elapsedSeconds": 2.253,
+          "engineFps": 57,
+          "engineFrame": 306,
+          "physicsStepMs": 0.05035280713032409
         },
         {
-          "elapsedSeconds": 2.25039999999851,
-          "engineFps": 60,
-          "engineFrame": 321,
-          "physicsStepMs": 0.06314111248801806
+          "elapsedSeconds": 2.500400000002235,
+          "engineFps": 57,
+          "engineFrame": 320,
+          "physicsStepMs": 0.05857117863839856
         },
         {
-          "elapsedSeconds": 2.501199999999255,
-          "engineFps": 60,
-          "engineFrame": 336,
-          "physicsStepMs": 0.06226512064386053
+          "elapsedSeconds": 2.759800000000745,
+          "engineFps": 57,
+          "engineFrame": 335,
+          "physicsStepMs": 0.049764359207710475
         },
         {
-          "elapsedSeconds": 2.755699999999255,
-          "engineFps": 60,
-          "engineFrame": 352,
-          "physicsStepMs": 0.05530541376156691
+          "elapsedSeconds": 3.00670000000298,
+          "engineFps": 57,
+          "engineFrame": 349,
+          "physicsStepMs": 0.05968338904004175
         },
         {
-          "elapsedSeconds": 3.005699999999255,
-          "engineFps": 60,
-          "engineFrame": 367,
-          "physicsStepMs": 0.0669204517851046
+          "elapsedSeconds": 3.2531000000014902,
+          "engineFps": 57,
+          "engineFrame": 363,
+          "physicsStepMs": 0.04106792034155323
         },
         {
-          "elapsedSeconds": 3.255800000000745,
-          "engineFps": 60,
-          "engineFrame": 382,
-          "physicsStepMs": 0.05745907457204755
+          "elapsedSeconds": 3.5039000000022353,
+          "engineFps": 57,
+          "engineFrame": 377,
+          "physicsStepMs": 0.06317420001647947
         },
         {
-          "elapsedSeconds": 3.501,
-          "engineFps": 60,
-          "engineFrame": 396,
-          "physicsStepMs": 0.09388015087055833
+          "elapsedSeconds": 3.7542000000029803,
+          "engineFps": 57,
+          "engineFrame": 391,
+          "physicsStepMs": 0.05564777091543997
         },
         {
-          "elapsedSeconds": 3.755699999999255,
-          "engineFps": 60,
-          "engineFrame": 412,
-          "physicsStepMs": 0.07397641574950196
+          "elapsedSeconds": 4.00010000000149,
+          "engineFps": 57,
+          "engineFrame": 405,
+          "physicsStepMs": 0.058006503285956086
         },
         {
-          "elapsedSeconds": 4.00139999999851,
-          "engineFps": 60,
-          "engineFrame": 426,
-          "physicsStepMs": 0.06303372827936408
+          "elapsedSeconds": 4.2555,
+          "engineFps": 57,
+          "engineFrame": 420,
+          "physicsStepMs": 0.050354096672569806
         },
         {
-          "elapsedSeconds": 4.2553999999985095,
-          "engineFps": 60,
-          "engineFrame": 442,
-          "physicsStepMs": 0.04044083424191174
+          "elapsedSeconds": 4.50420000000298,
+          "engineFps": 57,
+          "engineFrame": 434,
+          "physicsStepMs": 0.06958117458593517
         },
         {
-          "elapsedSeconds": 4.505199999999255,
-          "engineFps": 60,
-          "engineFrame": 457,
-          "physicsStepMs": 0.06273207283368012
+          "elapsedSeconds": 4.75170000000298,
+          "engineFps": 57,
+          "engineFrame": 448,
+          "physicsStepMs": 0.09108041229718057
         },
         {
-          "elapsedSeconds": 4.755800000000745,
-          "engineFps": 60,
-          "engineFrame": 472,
-          "physicsStepMs": 0.05343548531861447
+          "elapsedSeconds": 5.001800000000745,
+          "engineFps": 57,
+          "engineFrame": 462,
+          "physicsStepMs": 0.03201214926316417
         },
         {
-          "elapsedSeconds": 5.005800000000745,
-          "engineFps": 60,
-          "engineFrame": 487,
-          "physicsStepMs": 0.07148245016704842
+          "elapsedSeconds": 5.265,
+          "engineFps": 57,
+          "engineFrame": 477,
+          "physicsStepMs": 0.06563156260393528
         },
         {
-          "elapsedSeconds": 5.251599999997765,
-          "engineFps": 60,
-          "engineFrame": 501,
-          "physicsStepMs": 0.06295850232815427
+          "elapsedSeconds": 5.50810000000149,
+          "engineFps": 57,
+          "engineFrame": 491,
+          "physicsStepMs": 0.051242386122073706
         },
         {
-          "elapsedSeconds": 5.505599999997765,
-          "engineFps": 60,
-          "engineFrame": 517,
-          "physicsStepMs": 0.07594179703918442
+          "elapsedSeconds": 5.756,
+          "engineFps": 57,
+          "engineFrame": 505,
+          "physicsStepMs": 0.051427344004547786
         },
         {
-          "elapsedSeconds": 5.756199999999255,
-          "engineFps": 60,
-          "engineFrame": 532,
-          "physicsStepMs": 0.0842015386625171
+          "elapsedSeconds": 6.0026000000014905,
+          "engineFps": 57,
+          "engineFrame": 519,
+          "physicsStepMs": 0.11027360227709528
         },
         {
-          "elapsedSeconds": 6.006599999997765,
-          "engineFps": 60,
+          "elapsedSeconds": 6.2505,
+          "engineFps": 57,
+          "engineFrame": 533,
+          "physicsStepMs": 0.05570156858712946
+        },
+        {
+          "elapsedSeconds": 6.5011000000014905,
+          "engineFps": 57,
           "engineFrame": 547,
-          "physicsStepMs": 0.05365325004355566
+          "physicsStepMs": 0.04694488334551065
         },
         {
-          "elapsedSeconds": 6.256,
-          "engineFps": 60,
-          "engineFrame": 562,
-          "physicsStepMs": 0.08088273498801163
+          "elapsedSeconds": 6.750900000002235,
+          "engineFps": 57,
+          "engineFrame": 561,
+          "physicsStepMs": 0.06728995891563441
         },
         {
-          "elapsedSeconds": 6.501599999997765,
-          "engineFps": 60,
-          "engineFrame": 576,
-          "physicsStepMs": 0.06070974683158739
+          "elapsedSeconds": 7.003800000000745,
+          "engineFps": 56,
+          "engineFrame": 575,
+          "physicsStepMs": 0.07935017737637065
         },
         {
-          "elapsedSeconds": 6.755699999999255,
-          "engineFps": 60,
-          "engineFrame": 592,
-          "physicsStepMs": 0.0688737174120387
+          "elapsedSeconds": 7.251300000000745,
+          "engineFps": 56,
+          "engineFrame": 589,
+          "physicsStepMs": 0.07147483544646982
         },
         {
-          "elapsedSeconds": 7.005199999999255,
-          "engineFps": 60,
-          "engineFrame": 607,
-          "physicsStepMs": 0.060769674363100025
+          "elapsedSeconds": 7.501400000002235,
+          "engineFps": 57,
+          "engineFrame": 603,
+          "physicsStepMs": 0.061053753957229784
         },
         {
-          "elapsedSeconds": 7.2525,
-          "engineFps": 60,
-          "engineFrame": 621,
-          "physicsStepMs": 0.04172771322782724
+          "elapsedSeconds": 7.751900000002236,
+          "engineFps": 57,
+          "engineFrame": 617,
+          "physicsStepMs": 0.04873627421134773
         },
         {
-          "elapsedSeconds": 7.505599999997765,
-          "engineFps": 60,
-          "engineFrame": 637,
-          "physicsStepMs": 0.06146780642564764
+          "elapsedSeconds": 8.00270000000298,
+          "engineFps": 57,
+          "engineFrame": 631,
+          "physicsStepMs": 0.07187813075733852
         },
         {
-          "elapsedSeconds": 7.7555,
-          "engineFps": 60,
-          "engineFrame": 652,
-          "physicsStepMs": 0.051103113961157985
+          "elapsedSeconds": 8.255,
+          "engineFps": 57,
+          "engineFrame": 646,
+          "physicsStepMs": 0.08417099455379409
         },
         {
-          "elapsedSeconds": 8.0055,
-          "engineFps": 60,
-          "engineFrame": 667,
-          "physicsStepMs": 0.048881784325253044
+          "elapsedSeconds": 8.5015,
+          "engineFps": 57,
+          "engineFrame": 660,
+          "physicsStepMs": 0.09595404799149673
         },
         {
-          "elapsedSeconds": 8.2565,
-          "engineFps": 60,
-          "engineFrame": 682,
-          "physicsStepMs": 0.051563679498124786
+          "elapsedSeconds": 8.75010000000149,
+          "engineFps": 57,
+          "engineFrame": 674,
+          "physicsStepMs": 0.10073815717963519
         },
         {
-          "elapsedSeconds": 8.505199999999254,
-          "engineFps": 60,
-          "engineFrame": 697,
-          "physicsStepMs": 0.09657489030258101
+          "elapsedSeconds": 9.01070000000298,
+          "engineFps": 57,
+          "engineFrame": 689,
+          "physicsStepMs": 0.06343875733991318
         },
         {
-          "elapsedSeconds": 8.7555,
-          "engineFps": 60,
-          "engineFrame": 712,
-          "physicsStepMs": 0.07354036926568018
+          "elapsedSeconds": 9.255300000000744,
+          "engineFps": 57,
+          "engineFrame": 703,
+          "physicsStepMs": 0.04641157292512582
         },
         {
-          "elapsedSeconds": 9.005800000000745,
-          "engineFps": 60,
-          "engineFrame": 727,
-          "physicsStepMs": 0.04747683185012305
+          "elapsedSeconds": 9.504,
+          "engineFps": 57,
+          "engineFrame": 717,
+          "physicsStepMs": 0.03938030040837538
         },
         {
-          "elapsedSeconds": 9.256199999999255,
-          "engineFps": 60,
-          "engineFrame": 742,
-          "physicsStepMs": 0.05085111398745569
+          "elapsedSeconds": 9.754,
+          "engineFps": 57,
+          "engineFrame": 731,
+          "physicsStepMs": 0.042907812083195884
         },
         {
-          "elapsedSeconds": 9.5015,
-          "engineFps": 60,
-          "engineFrame": 756,
-          "physicsStepMs": 0.06308105507844874
+          "elapsedSeconds": 10.003,
+          "engineFps": 56,
+          "engineFrame": 745,
+          "physicsStepMs": 0.04417084811861308
         },
         {
-          "elapsedSeconds": 9.75539999999851,
-          "engineFps": 60,
+          "elapsedSeconds": 10.252800000000745,
+          "engineFps": 56,
+          "engineFrame": 758,
+          "physicsStepMs": 0.0788460904532652
+        },
+        {
+          "elapsedSeconds": 10.501,
+          "engineFps": 56,
           "engineFrame": 772,
-          "physicsStepMs": 0.06781118362574555
+          "physicsStepMs": 0.061679797943925065
         },
         {
-          "elapsedSeconds": 10.005800000000745,
-          "engineFps": 60,
+          "elapsedSeconds": 10.751400000002235,
+          "engineFps": 56,
           "engineFrame": 787,
-          "physicsStepMs": 0.032505866052089306
+          "physicsStepMs": 0.08028915732470902
         },
         {
-          "elapsedSeconds": 10.255300000000744,
-          "engineFps": 60,
-          "engineFrame": 802,
-          "physicsStepMs": 0.04514090491735332
+          "elapsedSeconds": 11.008400000002235,
+          "engineFps": 57,
+          "engineFrame": 801,
+          "physicsStepMs": 0.07008734356642152
         },
         {
-          "elapsedSeconds": 10.505800000000745,
-          "engineFps": 60,
-          "engineFrame": 817,
-          "physicsStepMs": 0.04765523511904214
+          "elapsedSeconds": 11.25,
+          "engineFps": 57,
+          "engineFrame": 815,
+          "physicsStepMs": 0.09177684495709687
         },
         {
-          "elapsedSeconds": 10.755199999999254,
-          "engineFps": 60,
-          "engineFrame": 832,
-          "physicsStepMs": 0.05502428734877165
+          "elapsedSeconds": 11.503700000002981,
+          "engineFps": 57,
+          "engineFrame": 829,
+          "physicsStepMs": 0.053061986291331714
         },
         {
-          "elapsedSeconds": 11.0055,
-          "engineFps": 60,
-          "engineFrame": 847,
-          "physicsStepMs": 0.036322140601374536
+          "elapsedSeconds": 11.753400000002236,
+          "engineFps": 57,
+          "engineFrame": 843,
+          "physicsStepMs": 0.07292766317364938
         },
         {
-          "elapsedSeconds": 11.2565,
-          "engineFps": 60,
-          "engineFrame": 862,
-          "physicsStepMs": 0.046417878661254075
-        },
-        {
-          "elapsedSeconds": 11.5055,
-          "engineFps": 60,
-          "engineFrame": 877,
-          "physicsStepMs": 0.0332127160993494
-        },
-        {
-          "elapsedSeconds": 11.751599999997765,
-          "engineFps": 60,
-          "engineFrame": 891,
-          "physicsStepMs": 0.039312433943972505
-        },
-        {
-          "elapsedSeconds": 12.00589999999851,
-          "engineFps": 60,
-          "engineFrame": 907,
-          "physicsStepMs": 0.058794417505701295
+          "elapsedSeconds": 12.001400000002235,
+          "engineFps": 57,
+          "engineFrame": 858,
+          "physicsStepMs": 0.04619832819542896
         }
       ],
       "screenshot": "performance-native-garage-on-foot.png"
     },
     {
       "name": "driving-district",
-      "elapsedSeconds": 12.001599999997765,
-      "renderedFrames": 720,
-      "renderedFps": 59.992001066535636,
-      "engineFrameDelta": 720,
+      "elapsedSeconds": 12.003800000000744,
+      "renderedFrames": 676,
+      "renderedFps": 56.315500091634156,
+      "engineFrameDelta": 676,
       "engineFps": {
-        "minimum": 60,
-        "p05": 60,
-        "median": 60,
-        "p95": 60,
-        "maximum": 60
+        "minimum": 54,
+        "p05": 54,
+        "median": 57,
+        "p95": 57,
+        "maximum": 57
       },
       "frameIntervalMs": {
-        "median": 16.600000001490116,
-        "p95": 17.599999997764826,
-        "p99": 18,
-        "maximum": 19.399999998509884
+        "median": 17.600000001490116,
+        "p95": 23.300000000745058,
+        "p99": 25.699999999254942,
+        "maximum": 44.099999997764826
       },
       "state": {
         "manual": false,
@@ -394,19 +423,20 @@
           "height": 360
         },
         "position": {
-          "x": 56.762168884277344,
+          "x": 56.446067810058594,
           "y": 0.6283430457115173,
           "z": -107.99861145019531
         },
-        "speed": 18.91811518975665,
+        "speed": 18.918017912854936,
         "integrity": 100,
         "enemies": 0,
         "police": 0,
-        "sceneObjects": 62
+        "sceneObjects": 63,
+        "audioState": "running"
       },
       "rendererInfo": {
-        "calls": 7252,
-        "triangles": 199928,
+        "calls": 6836,
+        "triangles": 200916,
         "geometries": 111,
         "textures": 15
       },
@@ -414,314 +444,314 @@
       "gpuErrors": [],
       "samples": [
         {
-          "elapsedSeconds": 0.2528999999985099,
-          "engineFps": 60,
-          "engineFrame": 1108,
-          "physicsStepMs": 0.07589274199506457
+          "elapsedSeconds": 0.25260000000149013,
+          "engineFps": 57,
+          "engineFrame": 1048,
+          "physicsStepMs": 0.08420930079161613
         },
         {
-          "elapsedSeconds": 0.5007999999970197,
-          "engineFps": 60,
-          "engineFrame": 1123,
-          "physicsStepMs": 0.059928276191895155
+          "elapsedSeconds": 0.5008000000007451,
+          "engineFps": 57,
+          "engineFrame": 1062,
+          "physicsStepMs": 0.10524243053583067
         },
         {
-          "elapsedSeconds": 0.7518999999985099,
-          "engineFps": 60,
-          "engineFrame": 1138,
-          "physicsStepMs": 0.04894267692157814
+          "elapsedSeconds": 0.7501000000014901,
+          "engineFps": 57,
+          "engineFrame": 1076,
+          "physicsStepMs": 0.13320894155511145
         },
         {
-          "elapsedSeconds": 1.000699999999255,
-          "engineFps": 60,
-          "engineFrame": 1153,
-          "physicsStepMs": 0.047903001075334364
+          "elapsedSeconds": 1.00660000000149,
+          "engineFps": 57,
+          "engineFrame": 1091,
+          "physicsStepMs": 0.09013027707704331
         },
         {
-          "elapsedSeconds": 1.2505,
-          "engineFps": 60,
-          "engineFrame": 1168,
-          "physicsStepMs": 0.07291216697712632
+          "elapsedSeconds": 1.254800000000745,
+          "engineFps": 57,
+          "engineFrame": 1105,
+          "physicsStepMs": 0.055572766878528405
         },
         {
-          "elapsedSeconds": 1.5012999999970198,
-          "engineFps": 60,
-          "engineFrame": 1183,
-          "physicsStepMs": 0.05522077970977957
+          "elapsedSeconds": 1.508,
+          "engineFps": 56,
+          "engineFrame": 1119,
+          "physicsStepMs": 0.04765427349128877
         },
         {
-          "elapsedSeconds": 1.7517999999970197,
-          "engineFps": 60,
-          "engineFrame": 1198,
-          "physicsStepMs": 0.06517686826048476
+          "elapsedSeconds": 1.752,
+          "engineFps": 56,
+          "engineFrame": 1131,
+          "physicsStepMs": 0.07146221525325655
         },
         {
-          "elapsedSeconds": 2.00179999999702,
-          "engineFps": 60,
-          "engineFrame": 1213,
-          "physicsStepMs": 0.08126311424600885
+          "elapsedSeconds": 2.0046000000014903,
+          "engineFps": 54,
+          "engineFrame": 1146,
+          "physicsStepMs": 0.0449564929941374
         },
         {
-          "elapsedSeconds": 2.25239999999851,
-          "engineFps": 60,
-          "engineFrame": 1228,
-          "physicsStepMs": 0.09686609004949838
+          "elapsedSeconds": 2.253400000002235,
+          "engineFps": 54,
+          "engineFrame": 1160,
+          "physicsStepMs": 0.07023587399609534
         },
         {
-          "elapsedSeconds": 2.5015,
-          "engineFps": 60,
-          "engineFrame": 1243,
-          "physicsStepMs": 0.09661166828854115
+          "elapsedSeconds": 2.5014000000022354,
+          "engineFps": 57,
+          "engineFrame": 1174,
+          "physicsStepMs": 0.06682506037724506
         },
         {
-          "elapsedSeconds": 2.7522999999970197,
-          "engineFps": 60,
-          "engineFrame": 1258,
-          "physicsStepMs": 0.07670267786898947
+          "elapsedSeconds": 2.7514000000022354,
+          "engineFps": 57,
+          "engineFrame": 1188,
+          "physicsStepMs": 0.0486172047001386
         },
         {
-          "elapsedSeconds": 3.001699999999255,
-          "engineFps": 60,
+          "elapsedSeconds": 3.00010000000149,
+          "engineFps": 56,
+          "engineFrame": 1202,
+          "physicsStepMs": 0.09320913637816855
+        },
+        {
+          "elapsedSeconds": 3.251,
+          "engineFps": 56,
+          "engineFrame": 1216,
+          "physicsStepMs": 0.09074177909648312
+        },
+        {
+          "elapsedSeconds": 3.502800000000745,
+          "engineFps": 56,
+          "engineFrame": 1230,
+          "physicsStepMs": 0.08965924247267136
+        },
+        {
+          "elapsedSeconds": 3.7525,
+          "engineFps": 57,
+          "engineFrame": 1244,
+          "physicsStepMs": 0.06911764369021009
+        },
+        {
+          "elapsedSeconds": 4.001800000000745,
+          "engineFps": 57,
+          "engineFrame": 1259,
+          "physicsStepMs": 0.11615449610878759
+        },
+        {
+          "elapsedSeconds": 4.251400000002235,
+          "engineFps": 57,
           "engineFrame": 1273,
-          "physicsStepMs": 0.060602249787163845
+          "physicsStepMs": 0.06888596191389021
         },
         {
-          "elapsedSeconds": 3.251699999999255,
-          "engineFps": 60,
-          "engineFrame": 1288,
-          "physicsStepMs": 0.08460420525960867
+          "elapsedSeconds": 4.5,
+          "engineFps": 57,
+          "engineFrame": 1287,
+          "physicsStepMs": 0.12529534997056732
         },
         {
-          "elapsedSeconds": 3.501099999997765,
-          "engineFps": 60,
-          "engineFrame": 1303,
-          "physicsStepMs": 0.06623136907831538
+          "elapsedSeconds": 4.75560000000149,
+          "engineFps": 57,
+          "engineFrame": 1301,
+          "physicsStepMs": 0.07599211331464767
         },
         {
-          "elapsedSeconds": 3.7515999999977647,
-          "engineFps": 60,
-          "engineFrame": 1318,
-          "physicsStepMs": 0.0613424030112788
+          "elapsedSeconds": 5.00660000000149,
+          "engineFps": 57,
+          "engineFrame": 1316,
+          "physicsStepMs": 0.04419101914820131
         },
         {
-          "elapsedSeconds": 4.0010999999977646,
-          "engineFps": 60,
-          "engineFrame": 1333,
-          "physicsStepMs": 0.06320646563957935
+          "elapsedSeconds": 5.253800000000745,
+          "engineFps": 57,
+          "engineFrame": 1330,
+          "physicsStepMs": 0.06794095340382883
         },
         {
-          "elapsedSeconds": 4.251599999997765,
-          "engineFps": 60,
-          "engineFrame": 1348,
-          "physicsStepMs": 0.057186791848213854
+          "elapsedSeconds": 5.5025,
+          "engineFps": 57,
+          "engineFrame": 1344,
+          "physicsStepMs": 0.043530515772535035
         },
         {
-          "elapsedSeconds": 4.50229999999702,
-          "engineFps": 60,
-          "engineFrame": 1363,
-          "physicsStepMs": 0.07816600514977923
+          "elapsedSeconds": 5.75,
+          "engineFps": 57,
+          "engineFrame": 1358,
+          "physicsStepMs": 0.07130417049752787
         },
         {
-          "elapsedSeconds": 4.7510999999977646,
-          "engineFps": 60,
-          "engineFrame": 1378,
-          "physicsStepMs": 0.10212946437985027
+          "elapsedSeconds": 6.003699999999255,
+          "engineFps": 57,
+          "engineFrame": 1372,
+          "physicsStepMs": 0.051323126085418155
         },
         {
-          "elapsedSeconds": 5.0015,
-          "engineFps": 60,
-          "engineFrame": 1393,
-          "physicsStepMs": 0.09387868405527058
+          "elapsedSeconds": 6.253900000002235,
+          "engineFps": 57,
+          "engineFrame": 1387,
+          "physicsStepMs": 0.0932434647880189
         },
         {
-          "elapsedSeconds": 5.251599999997765,
-          "engineFps": 60,
-          "engineFrame": 1408,
-          "physicsStepMs": 0.07588484357189272
+          "elapsedSeconds": 6.50310000000149,
+          "engineFps": 57,
+          "engineFrame": 1401,
+          "physicsStepMs": 0.0750608111491687
         },
         {
-          "elapsedSeconds": 5.500699999999255,
-          "engineFps": 60,
-          "engineFrame": 1423,
-          "physicsStepMs": 0.09239854545986087
+          "elapsedSeconds": 6.754199999999255,
+          "engineFps": 57,
+          "engineFrame": 1414,
+          "physicsStepMs": 0.07512316280888032
         },
         {
-          "elapsedSeconds": 5.7517999999970195,
-          "engineFps": 60,
-          "engineFrame": 1438,
-          "physicsStepMs": 0.06868751211066357
+          "elapsedSeconds": 7.000699999999255,
+          "engineFps": 57,
+          "engineFrame": 1428,
+          "physicsStepMs": 0.034703592272593106
         },
         {
-          "elapsedSeconds": 6.00129999999702,
-          "engineFps": 60,
-          "engineFrame": 1453,
-          "physicsStepMs": 0.1045379495995103
+          "elapsedSeconds": 7.25010000000149,
+          "engineFps": 54,
+          "engineFrame": 1442,
+          "physicsStepMs": 0.07800086968898012
         },
         {
-          "elapsedSeconds": 6.2505,
-          "engineFps": 60,
-          "engineFrame": 1468,
-          "physicsStepMs": 0.06482164549939042
+          "elapsedSeconds": 7.5011000000014905,
+          "engineFps": 54,
+          "engineFrame": 1456,
+          "physicsStepMs": 0.09042884771446955
         },
         {
-          "elapsedSeconds": 6.501,
-          "engineFps": 60,
-          "engineFrame": 1483,
-          "physicsStepMs": 0.07484800702569802
+          "elapsedSeconds": 7.752300000000745,
+          "engineFps": 57,
+          "engineFrame": 1470,
+          "physicsStepMs": 0.07321685302300837
         },
         {
-          "elapsedSeconds": 6.7517999999970195,
-          "engineFps": 60,
-          "engineFrame": 1498,
-          "physicsStepMs": 0.09281264915518199
+          "elapsedSeconds": 8.01,
+          "engineFps": 57,
+          "engineFrame": 1485,
+          "physicsStepMs": 0.07572373345375508
         },
         {
-          "elapsedSeconds": 7.0010999999977646,
-          "engineFps": 60,
-          "engineFrame": 1513,
-          "physicsStepMs": 0.08059921156245362
+          "elapsedSeconds": 8.25260000000149,
+          "engineFps": 57,
+          "engineFrame": 1499,
+          "physicsStepMs": 0.09602429351168533
         },
         {
-          "elapsedSeconds": 7.25229999999702,
-          "engineFps": 60,
-          "engineFrame": 1528,
-          "physicsStepMs": 0.08604864160143479
+          "elapsedSeconds": 8.504699999999255,
+          "engineFps": 57,
+          "engineFrame": 1512,
+          "physicsStepMs": 0.0749586397977549
         },
         {
-          "elapsedSeconds": 7.50089999999851,
-          "engineFps": 60,
-          "engineFrame": 1543,
-          "physicsStepMs": 0.06684634141622085
+          "elapsedSeconds": 8.7515,
+          "engineFps": 54,
+          "engineFrame": 1526,
+          "physicsStepMs": 0.11678637680150487
         },
         {
-          "elapsedSeconds": 7.751599999997765,
-          "engineFps": 60,
-          "engineFrame": 1558,
-          "physicsStepMs": 0.07831185067564932
+          "elapsedSeconds": 9.001,
+          "engineFps": 54,
+          "engineFrame": 1540,
+          "physicsStepMs": 0.1226239521801679
         },
         {
-          "elapsedSeconds": 8.00179999999702,
-          "engineFps": 60,
-          "engineFrame": 1573,
-          "physicsStepMs": 0.07174725635549521
+          "elapsedSeconds": 9.252,
+          "engineFps": 57,
+          "engineFrame": 1554,
+          "physicsStepMs": 0.07319922004533921
         },
         {
-          "elapsedSeconds": 8.2515,
-          "engineFps": 60,
-          "engineFrame": 1588,
-          "physicsStepMs": 0.06020133746444227
+          "elapsedSeconds": 9.51010000000149,
+          "engineFps": 57,
+          "engineFrame": 1569,
+          "physicsStepMs": 0.061525782009523446
         },
         {
-          "elapsedSeconds": 8.501599999997765,
-          "engineFps": 60,
-          "engineFrame": 1603,
-          "physicsStepMs": 0.06366443116211506
+          "elapsedSeconds": 9.757,
+          "engineFps": 57,
+          "engineFrame": 1583,
+          "physicsStepMs": 0.08824692176505103
         },
         {
-          "elapsedSeconds": 8.75129999999702,
-          "engineFps": 60,
-          "engineFrame": 1618,
-          "physicsStepMs": 0.06087160163297404
+          "elapsedSeconds": 10.004199999999255,
+          "engineFps": 57,
+          "engineFrame": 1597,
+          "physicsStepMs": 0.07451995316509578
         },
         {
-          "elapsedSeconds": 9.00139999999851,
-          "engineFps": 60,
-          "engineFrame": 1633,
-          "physicsStepMs": 0.04113469554720281
+          "elapsedSeconds": 10.251300000000745,
+          "engineFps": 57,
+          "engineFrame": 1611,
+          "physicsStepMs": 0.064055486727406
         },
         {
-          "elapsedSeconds": 9.251599999997765,
-          "engineFps": 60,
-          "engineFrame": 1648,
-          "physicsStepMs": 0.09097043387257311
+          "elapsedSeconds": 10.504199999999255,
+          "engineFps": 57,
+          "engineFrame": 1625,
+          "physicsStepMs": 0.13420761758109467
         },
         {
-          "elapsedSeconds": 9.501,
-          "engineFps": 60,
-          "engineFrame": 1663,
-          "physicsStepMs": 0.06877796252563755
+          "elapsedSeconds": 10.75060000000149,
+          "engineFps": 57,
+          "engineFrame": 1639,
+          "physicsStepMs": 0.09375219316141742
         },
         {
-          "elapsedSeconds": 9.75079999999702,
-          "engineFps": 60,
-          "engineFrame": 1678,
-          "physicsStepMs": 0.05842681418024689
+          "elapsedSeconds": 11.002900000002235,
+          "engineFps": 57,
+          "engineFrame": 1653,
+          "physicsStepMs": 0.11020503367684388
         },
         {
-          "elapsedSeconds": 10.001199999999255,
-          "engineFps": 60,
-          "engineFrame": 1693,
-          "physicsStepMs": 0.04534977088770887
+          "elapsedSeconds": 11.253800000000744,
+          "engineFps": 56,
+          "engineFrame": 1667,
+          "physicsStepMs": 0.10025046864749537
         },
         {
-          "elapsedSeconds": 10.2515,
-          "engineFps": 60,
-          "engineFrame": 1708,
-          "physicsStepMs": 0.05048420327964441
+          "elapsedSeconds": 11.501400000002235,
+          "engineFps": 56,
+          "engineFrame": 1681,
+          "physicsStepMs": 0.08908086922524378
         },
         {
-          "elapsedSeconds": 10.50179999999702,
-          "engineFps": 60,
-          "engineFrame": 1723,
-          "physicsStepMs": 0.05201039940069601
+          "elapsedSeconds": 11.764,
+          "engineFps": 56,
+          "engineFrame": 1696,
+          "physicsStepMs": 0.11754817473550667
         },
         {
-          "elapsedSeconds": 10.752,
-          "engineFps": 60,
-          "engineFrame": 1738,
-          "physicsStepMs": 0.06179532674412458
-        },
-        {
-          "elapsedSeconds": 11.0015,
-          "engineFps": 60,
-          "engineFrame": 1753,
-          "physicsStepMs": 0.06925690633733847
-        },
-        {
-          "elapsedSeconds": 11.250699999999254,
-          "engineFps": 60,
-          "engineFrame": 1768,
-          "physicsStepMs": 0.05475793736994843
-        },
-        {
-          "elapsedSeconds": 11.50079999999702,
-          "engineFps": 60,
-          "engineFrame": 1783,
-          "physicsStepMs": 0.07146151087258536
-        },
-        {
-          "elapsedSeconds": 11.75089999999851,
-          "engineFps": 60,
-          "engineFrame": 1798,
-          "physicsStepMs": 0.0548274270994655
-        },
-        {
-          "elapsedSeconds": 12.001599999997765,
-          "engineFps": 60,
-          "engineFrame": 1813,
-          "physicsStepMs": 0.09809157060677373
+          "elapsedSeconds": 12.003800000000744,
+          "engineFps": 56,
+          "engineFrame": 1709,
+          "physicsStepMs": 0.11570073245812561
         }
       ],
       "screenshot": "performance-native-driving-district.png"
     },
     {
       "name": "combat-and-pursuit",
-      "elapsedSeconds": 12.0005,
-      "renderedFrames": 720,
-      "renderedFps": 59.99750010416232,
-      "engineFrameDelta": 720,
+      "elapsedSeconds": 12.000300000000745,
+      "renderedFrames": 677,
+      "renderedFps": 56.41525628525603,
+      "engineFrameDelta": 677,
       "engineFps": {
-        "minimum": 60,
-        "p05": 60,
-        "median": 60,
-        "p95": 60,
-        "maximum": 60
+        "minimum": 53,
+        "p05": 55,
+        "median": 57,
+        "p95": 57,
+        "maximum": 57
       },
       "frameIntervalMs": {
-        "median": 16.699999999254942,
-        "p95": 17.600000001490116,
-        "p99": 18.199999999254942,
-        "maximum": 18.800000000745058
+        "median": 17.600000001490116,
+        "p95": 23.399999998509884,
+        "p99": 28,
+        "maximum": 40.19999999925494
       },
       "state": {
         "manual": false,
@@ -741,11 +771,12 @@
         "integrity": null,
         "enemies": 6,
         "police": 2,
-        "sceneObjects": 83
+        "sceneObjects": 84,
+        "audioState": "running"
       },
       "rendererInfo": {
-        "calls": 10872,
-        "triangles": 140226,
+        "calls": 10244,
+        "triangles": 140354,
         "geometries": 159,
         "textures": 16
       },
@@ -753,292 +784,292 @@
       "gpuErrors": [],
       "samples": [
         {
-          "elapsedSeconds": 0.25760000000149014,
-          "engineFps": 60,
-          "engineFrame": 2013,
-          "physicsStepMs": 0.046381707446369144
+          "elapsedSeconds": 0.25060000000149013,
+          "engineFps": 57,
+          "engineFrame": 1898,
+          "physicsStepMs": 0.062060003072033
         },
         {
-          "elapsedSeconds": 0.5088000000007451,
-          "engineFps": 60,
-          "engineFrame": 2028,
-          "physicsStepMs": 0.04558354110856755
+          "elapsedSeconds": 0.5005,
+          "engineFps": 57,
+          "engineFrame": 1912,
+          "physicsStepMs": 0.06727786778815845
         },
         {
-          "elapsedSeconds": 0.750300000000745,
-          "engineFps": 60,
-          "engineFrame": 2043,
-          "physicsStepMs": 0.05085144214148177
+          "elapsedSeconds": 0.7551000000014901,
+          "engineFps": 57,
+          "engineFrame": 1927,
+          "physicsStepMs": 0.06877831340701203
         },
         {
-          "elapsedSeconds": 1.01310000000149,
-          "engineFps": 60,
-          "engineFrame": 2059,
-          "physicsStepMs": 0.054689610717916656
+          "elapsedSeconds": 1.0005,
+          "engineFps": 57,
+          "engineFrame": 1941,
+          "physicsStepMs": 0.07863482481203157
         },
         {
-          "elapsedSeconds": 1.2501000000014901,
-          "engineFps": 60,
-          "engineFrame": 2073,
-          "physicsStepMs": 0.025182095118565027
+          "elapsedSeconds": 1.2503999999985098,
+          "engineFps": 57,
+          "engineFrame": 1955,
+          "physicsStepMs": 0.07420919513978372
         },
         {
-          "elapsedSeconds": 1.5003999999985098,
-          "engineFps": 60,
-          "engineFrame": 2088,
-          "physicsStepMs": 0.0655663534922127
+          "elapsedSeconds": 1.5123999999985098,
+          "engineFps": 57,
+          "engineFrame": 1970,
+          "physicsStepMs": 0.046412569414250246
         },
         {
-          "elapsedSeconds": 1.7536999999992549,
-          "engineFps": 60,
-          "engineFrame": 2103,
-          "physicsStepMs": 0.06976318612464186
+          "elapsedSeconds": 1.7503000000007451,
+          "engineFps": 57,
+          "engineFrame": 1983,
+          "physicsStepMs": 0.051622427285855546
         },
         {
-          "elapsedSeconds": 2.000699999999255,
-          "engineFps": 60,
-          "engineFrame": 2118,
-          "physicsStepMs": 0.05316278880017536
+          "elapsedSeconds": 2.00439999999851,
+          "engineFps": 57,
+          "engineFrame": 1998,
+          "physicsStepMs": 0.043297877825228044
         },
         {
-          "elapsedSeconds": 2.257199999999255,
-          "engineFps": 60,
-          "engineFrame": 2133,
-          "physicsStepMs": 0.045222627784705816
+          "elapsedSeconds": 2.25110000000149,
+          "engineFps": 57,
+          "engineFrame": 2012,
+          "physicsStepMs": 0.04329248533765316
         },
         {
-          "elapsedSeconds": 2.5133000000007453,
-          "engineFps": 60,
-          "engineFrame": 2149,
-          "physicsStepMs": 0.03308008670720254
+          "elapsedSeconds": 2.5005,
+          "engineFps": 57,
+          "engineFrame": 2026,
+          "physicsStepMs": 0.05410023570864248
         },
         {
-          "elapsedSeconds": 2.750300000000745,
-          "engineFps": 60,
-          "engineFrame": 2163,
-          "physicsStepMs": 0.05498175171386944
+          "elapsedSeconds": 2.76,
+          "engineFps": 57,
+          "engineFrame": 2041,
+          "physicsStepMs": 0.03701865694771045
         },
         {
-          "elapsedSeconds": 3.0005,
-          "engineFps": 60,
-          "engineFrame": 2178,
-          "physicsStepMs": 0.06598862565153721
+          "elapsedSeconds": 3.000300000000745,
+          "engineFps": 57,
+          "engineFrame": 2054,
+          "physicsStepMs": 0.03062726762039127
         },
         {
-          "elapsedSeconds": 3.2555,
-          "engineFps": 60,
-          "engineFrame": 2193,
-          "physicsStepMs": 0.03969154263113855
+          "elapsedSeconds": 3.261199999999255,
+          "engineFps": 57,
+          "engineFrame": 2069,
+          "physicsStepMs": 0.06311445932281771
         },
         {
-          "elapsedSeconds": 3.50189999999851,
-          "engineFps": 60,
-          "engineFrame": 2208,
-          "physicsStepMs": 0.07825459446476135
+          "elapsedSeconds": 3.50360000000149,
+          "engineFps": 57,
+          "engineFrame": 2083,
+          "physicsStepMs": 0.04643993012659979
         },
         {
-          "elapsedSeconds": 3.753300000000745,
-          "engineFps": 60,
-          "engineFrame": 2223,
-          "physicsStepMs": 0.04025457439478944
+          "elapsedSeconds": 3.75039999999851,
+          "engineFps": 57,
+          "engineFrame": 2097,
+          "physicsStepMs": 0.06484063371279832
         },
         {
-          "elapsedSeconds": 4.00939999999851,
-          "engineFps": 60,
-          "engineFrame": 2238,
-          "physicsStepMs": 0.04668648160080669
+          "elapsedSeconds": 4.00410000000149,
+          "engineFps": 57,
+          "engineFrame": 2112,
+          "physicsStepMs": 0.07380220498261775
         },
         {
-          "elapsedSeconds": 4.25089999999851,
-          "engineFps": 60,
+          "elapsedSeconds": 4.251699999999255,
+          "engineFps": 57,
+          "engineFrame": 2126,
+          "physicsStepMs": 0.08644676763062009
+        },
+        {
+          "elapsedSeconds": 4.5033000000007455,
+          "engineFps": 57,
+          "engineFrame": 2140,
+          "physicsStepMs": 0.07522832783020288
+        },
+        {
+          "elapsedSeconds": 4.75010000000149,
+          "engineFps": 57,
+          "engineFrame": 2154,
+          "physicsStepMs": 0.11500531424162946
+        },
+        {
+          "elapsedSeconds": 5.00089999999851,
+          "engineFps": 57,
+          "engineFrame": 2168,
+          "physicsStepMs": 0.06495820904140827
+        },
+        {
+          "elapsedSeconds": 5.25039999999851,
+          "engineFps": 57,
+          "engineFrame": 2182,
+          "physicsStepMs": 0.05261886479701395
+        },
+        {
+          "elapsedSeconds": 5.513199999999255,
+          "engineFps": 56,
+          "engineFrame": 2197,
+          "physicsStepMs": 0.07895519375558163
+        },
+        {
+          "elapsedSeconds": 5.750300000000745,
+          "engineFps": 56,
+          "engineFrame": 2210,
+          "physicsStepMs": 0.06677939888501146
+        },
+        {
+          "elapsedSeconds": 6.002199999999255,
+          "engineFps": 57,
+          "engineFrame": 2225,
+          "physicsStepMs": 0.0718442837161894
+        },
+        {
+          "elapsedSeconds": 6.25410000000149,
+          "engineFps": 57,
+          "engineFrame": 2239,
+          "physicsStepMs": 0.07357474465192279
+        },
+        {
+          "elapsedSeconds": 6.500300000000745,
+          "engineFps": 57,
           "engineFrame": 2253,
-          "physicsStepMs": 0.06651956683876661
+          "physicsStepMs": 0.06914499231678391
         },
         {
-          "elapsedSeconds": 4.5025,
-          "engineFps": 60,
+          "elapsedSeconds": 6.75460000000149,
+          "engineFps": 57,
           "engineFrame": 2268,
-          "physicsStepMs": 0.051892322995242005
+          "physicsStepMs": 0.056703066125374596
         },
         {
-          "elapsedSeconds": 4.751199999999255,
-          "engineFps": 60,
-          "engineFrame": 2283,
-          "physicsStepMs": 0.04612189105051578
+          "elapsedSeconds": 7.002,
+          "engineFps": 57,
+          "engineFrame": 2282,
+          "physicsStepMs": 0.06213437794910833
         },
         {
-          "elapsedSeconds": 5.0068999999985095,
-          "engineFps": 60,
-          "engineFrame": 2298,
-          "physicsStepMs": 0.057906652970239184
+          "elapsedSeconds": 7.252,
+          "engineFps": 57,
+          "engineFrame": 2296,
+          "physicsStepMs": 0.06548492693481245
         },
         {
-          "elapsedSeconds": 5.25810000000149,
-          "engineFps": 60,
-          "engineFrame": 2313,
-          "physicsStepMs": 0.04647892214023991
+          "elapsedSeconds": 7.504300000000745,
+          "engineFps": 57,
+          "engineFrame": 2310,
+          "physicsStepMs": 0.06440036380857264
         },
         {
-          "elapsedSeconds": 5.50060000000149,
-          "engineFps": 60,
-          "engineFrame": 2328,
-          "physicsStepMs": 0.0471603185577955
+          "elapsedSeconds": 7.750300000000745,
+          "engineFps": 57,
+          "engineFrame": 2324,
+          "physicsStepMs": 0.06641829426009453
         },
         {
-          "elapsedSeconds": 5.75889999999851,
-          "engineFps": 60,
-          "engineFrame": 2343,
-          "physicsStepMs": 0.04241974940207745
+          "elapsedSeconds": 8.002800000000745,
+          "engineFps": 56,
+          "engineFrame": 2338,
+          "physicsStepMs": 0.0689970939594609
         },
         {
-          "elapsedSeconds": 6.000199999999255,
-          "engineFps": 60,
-          "engineFrame": 2358,
-          "physicsStepMs": 0.05242881393348344
+          "elapsedSeconds": 8.255100000001491,
+          "engineFps": 56,
+          "engineFrame": 2353,
+          "physicsStepMs": 0.06132159640746932
         },
         {
-          "elapsedSeconds": 6.250300000000745,
-          "engineFps": 60,
-          "engineFrame": 2373,
-          "physicsStepMs": 0.06295382246758793
+          "elapsedSeconds": 8.502300000000744,
+          "engineFps": 57,
+          "engineFrame": 2367,
+          "physicsStepMs": 0.08733721090253807
         },
         {
-          "elapsedSeconds": 6.505199999999255,
-          "engineFps": 60,
-          "engineFrame": 2388,
-          "physicsStepMs": 0.024386459186024955
+          "elapsedSeconds": 8.75039999999851,
+          "engineFps": 57,
+          "engineFrame": 2381,
+          "physicsStepMs": 0.05728716332569517
         },
         {
-          "elapsedSeconds": 6.75010000000149,
-          "engineFps": 60,
-          "engineFrame": 2403,
-          "physicsStepMs": 0.04961424931781477
-        },
-        {
-          "elapsedSeconds": 7.000800000000745,
-          "engineFps": 60,
-          "engineFrame": 2418,
-          "physicsStepMs": 0.06477634762225959
-        },
-        {
-          "elapsedSeconds": 7.255800000000745,
-          "engineFps": 60,
-          "engineFrame": 2433,
-          "physicsStepMs": 0.06361233688205974
-        },
-        {
-          "elapsedSeconds": 7.504199999999255,
-          "engineFps": 60,
-          "engineFrame": 2448,
-          "physicsStepMs": 0.024684000629490017
-        },
-        {
-          "elapsedSeconds": 7.751699999999255,
-          "engineFps": 60,
-          "engineFrame": 2463,
-          "physicsStepMs": 0.05508694965646648
-        },
-        {
-          "elapsedSeconds": 8.01360000000149,
-          "engineFps": 60,
-          "engineFrame": 2479,
-          "physicsStepMs": 0.04156954413190855
-        },
-        {
-          "elapsedSeconds": 8.258,
-          "engineFps": 60,
-          "engineFrame": 2493,
-          "physicsStepMs": 0.07357058523786587
-        },
-        {
-          "elapsedSeconds": 8.50039999999851,
-          "engineFps": 60,
-          "engineFrame": 2508,
-          "physicsStepMs": 0.05570513856508583
-        },
-        {
-          "elapsedSeconds": 8.753300000000745,
-          "engineFps": 60,
-          "engineFrame": 2523,
-          "physicsStepMs": 0.0441408674698792
-        },
-        {
-          "elapsedSeconds": 9.000300000000745,
-          "engineFps": 60,
-          "engineFrame": 2538,
-          "physicsStepMs": 0.04860977444840411
+          "elapsedSeconds": 9.004800000000746,
+          "engineFps": 57,
+          "engineFrame": 2395,
+          "physicsStepMs": 0.04918774277022176
         },
         {
           "elapsedSeconds": 9.250300000000745,
-          "engineFps": 60,
-          "engineFrame": 2553,
-          "physicsStepMs": 0.06182778726010353
+          "engineFps": 57,
+          "engineFrame": 2408,
+          "physicsStepMs": 0.03487655975712531
         },
         {
-          "elapsedSeconds": 9.50110000000149,
-          "engineFps": 60,
-          "engineFrame": 2568,
-          "physicsStepMs": 0.04882236495066926
+          "elapsedSeconds": 9.500300000000745,
+          "engineFps": 55,
+          "engineFrame": 2421,
+          "physicsStepMs": 0.0518503059556696
         },
         {
-          "elapsedSeconds": 9.7515,
-          "engineFps": 60,
-          "engineFrame": 2583,
-          "physicsStepMs": 0.06140574155035325
+          "elapsedSeconds": 9.7505,
+          "engineFps": 55,
+          "engineFrame": 2435,
+          "physicsStepMs": 0.05439903585114134
         },
         {
-          "elapsedSeconds": 10.00039999999851,
-          "engineFps": 60,
-          "engineFrame": 2598,
-          "physicsStepMs": 0.048999751489925546
+          "elapsedSeconds": 10.005300000000744,
+          "engineFps": 53,
+          "engineFrame": 2449,
+          "physicsStepMs": 0.032623669632760866
         },
         {
-          "elapsedSeconds": 10.250300000000745,
-          "engineFps": 60,
-          "engineFrame": 2613,
-          "physicsStepMs": 0.041173596709458034
+          "elapsedSeconds": 10.25360000000149,
+          "engineFps": 53,
+          "engineFrame": 2463,
+          "physicsStepMs": 0.0482470868660608
         },
         {
-          "elapsedSeconds": 10.500800000000744,
-          "engineFps": 60,
-          "engineFrame": 2628,
-          "physicsStepMs": 0.03939236440418275
+          "elapsedSeconds": 10.50039999999851,
+          "engineFps": 57,
+          "engineFrame": 2477,
+          "physicsStepMs": 0.03077337779974579
         },
         {
-          "elapsedSeconds": 10.75089999999851,
-          "engineFps": 60,
-          "engineFrame": 2643,
-          "physicsStepMs": 0.05100024155904146
+          "elapsedSeconds": 10.75110000000149,
+          "engineFps": 57,
+          "engineFrame": 2492,
+          "physicsStepMs": 0.04819963159946397
         },
         {
-          "elapsedSeconds": 11.013199999999255,
-          "engineFps": 60,
-          "engineFrame": 2659,
-          "physicsStepMs": 0.051774781265001416
+          "elapsedSeconds": 11.003300000000745,
+          "engineFps": 57,
+          "engineFrame": 2505,
+          "physicsStepMs": 0.04329477471223042
         },
         {
           "elapsedSeconds": 11.250300000000745,
-          "engineFps": 60,
-          "engineFrame": 2673,
-          "physicsStepMs": 0.051788701948089155
+          "engineFps": 57,
+          "engineFrame": 2519,
+          "physicsStepMs": 0.07169572921655716
         },
         {
-          "elapsedSeconds": 11.501300000000745,
-          "engineFps": 60,
-          "engineFrame": 2688,
-          "physicsStepMs": 0.052481015206210097
+          "elapsedSeconds": 11.504,
+          "engineFps": 55,
+          "engineFrame": 2533,
+          "physicsStepMs": 0.038345677728601216
         },
         {
-          "elapsedSeconds": 11.75110000000149,
-          "engineFps": 60,
-          "engineFrame": 2703,
-          "physicsStepMs": 0.058070960266607435
+          "elapsedSeconds": 11.752699999999255,
+          "engineFps": 55,
+          "engineFrame": 2547,
+          "physicsStepMs": 0.04661667897155932
         },
         {
-          "elapsedSeconds": 12.0005,
-          "engineFps": 60,
-          "engineFrame": 2718,
-          "physicsStepMs": 0.054071638875208
+          "elapsedSeconds": 12.000300000000745,
+          "engineFps": 55,
+          "engineFrame": 2561,
+          "physicsStepMs": 0.06173966591056088
         }
       ],
       "screenshot": "performance-native-combat-and-pursuit.png"
@@ -1147,14 +1178,72 @@
     "look": "pixel"
   },
   "hardwareAdapter": true,
-  "finishedAtUtc": "2026-10-15T23:46:33.240Z",
+  "roofReview": {
+    "position": {
+      "x": 195,
+      "y": 8.219048690795898,
+      "z": -192
+    },
+    "camera": {
+      "preset": "third",
+      "zoom": 1,
+      "zoomable": true,
+      "yaw": 3.142,
+      "pitch": 0.78
+    },
+    "errors": [],
+    "gpuErrors": [],
+    "screenshot": "performance-native-roof.png",
+    "scope": "Default third-person framing with fixture placement on the static roof, captured after sampling; not an additional FPS sample.",
+    "visuallyInspected": true,
+    "observation": "Ren is clearly visible on the static roof. The mast is at the side of the frame and does not cover the avatar; the lift and rooftop relay are visible."
+  },
+  "sourceHashesAtFinish": {
+    "index.html": "d1826caef5da8058720617bb033f83dac17edf753b9f07331a2714d5c612356a",
+    "game.js": "d6570ed90d975a7215fa01be40ec31cc04c793d5be0bce33a2e95788341beb0e",
+    "city-game.js": "ef4991ad6df60f31a535f3b6de520a09e0edb3b5a1efa7ed2e423699cd56ece2",
+    "world.js": "24f353e5c03f7f87ed7ed42edf9527b56234fa98c0e2a08eeadf670ccc2f027b",
+    "models.js": "b1bb986c824cb9f342fa5a5f87e5407459c72b1c5af8547a1fa2d69f7d702556",
+    "equipment.js": "5882d09cc7d221ed225b44b8d9597ceb2f56f4023616052b34d7e5cd318185f3",
+    "navigation.js": "cb25b61c3382a7326dc94daebfe8839bde515c961ef0121d167913255339fe30",
+    "missions.js": "8c3b941c6073f0a0055677ac72eae0c059e606bd13f9fedb46698832669f294f",
+    "vehicles.js": "09750dab4685a65a1713269c43810942c8fdaae9fca5a129b09e65b606ce8daa",
+    "actors.js": "091175d7e05c977aeecf57fd6b32aa6743deb07263ef75a3dface78abc78e2f1",
+    "audio.js": "4e61bed0990b7d21246a48f2b49f34bc57de37a17ba802b4bced98f7c4adb07a",
+    "persistence.js": "32c81421791656eb173402179b47012cfc909a878933b758112252634bf301a6",
+    "ui.js": "a53608937d7883242cdb7e56c501bbb6b65d70fa38e4a6d86bd130614968f4be",
+    "style.css": "5eda344e18db1c8dc98ca2f6cd0ab7fee1280a1aa1eb6967f0e43714171dcd18",
+    "pixel-engine.js": "2cd3cf6b1365288a01b0a106e2fd742f3248e34ab2f2bee17a8049457b4ebb50",
+    "packs/kenney-nature.json": "7c27749fc2a1e34f38718d5e3489c802f57a386ce3afd8056f961fcb672b1f89"
+  },
+  "runtimeHashMismatches": [],
+  "runtimeHashesMatch": true,
+  "finishedAtUtc": "2026-10-16T01:13:22.728Z",
   "summary": {
-    "aggregateRenderedFps": 60.014441235287265,
-    "minimumScenarioRenderedFps": 59.992001066535636,
-    "maximumScenarioP95FrameIntervalMs": 17.600000001490116,
-    "assessment": "Nominal 60fps cap sustained in all three sampled scenes. This does not establish every frame of the full campaign.",
-    "nominal60fpsCriterion": "At least 59.5 average rendered fps per scene (sampling-boundary tolerance), median engine FPS 60, and no engine/GPU errors.",
-    "screenshotsVisuallyInspected": true,
-    "isolation": "Other agents confirmed their browser sessions closed before launch and resumed only after this browser closed."
-  }
+    "aggregateRenderedFps": 56.46359583951868,
+    "minimumScenarioRenderedFps": 56.315500091634156,
+    "maximumScenarioP95FrameIntervalMs": 23.399999998509884,
+    "assessment": "Inspect individual scenarios; the three-scene nominal 60fps condition was not established.",
+    "nominal60fpsCriterion": "At least 59.5 average rendered fps per scene (sampling-boundary tolerance), median engine FPS 60, and no engine/GPU errors."
+  },
+  "screenshotsVisuallyInspected": true,
+  "isolation": "All three final fresh campaign sessions had exited successfully and their browsers closed before this run. All diagnostic browsers were subsequently closed.",
+  "diagnosticContext": {
+    "defaultBlankPageRafFps": 56.68971937758383,
+    "headedBlankPageRafFps": 55.961759464352134,
+    "audioSuspendedGameFps": 56.80398460793845,
+    "displayRateGameFps": 56.13018204834918,
+    "browserFrameLimitDisabledEngineCap60Fps": 48.31159311643694,
+    "browserFrameLimitDisabledEngineDisplayFps": 477.05535375090994,
+    "interpretation": "The default game matches this host browser/display RAF cadence, also seen on an almost-idle blank page. Neither audio suspension nor engine Display mode removes it. Disabling the browser limiter worsens the retained60 cap; fully uncapped throughput demonstrates headroom but is not the shipping configuration. The60fps target was not established on this host; no rounding or runtime downgrade is claimed.",
+    "reports": [
+      "native-timing-diagnostic.json",
+      "performance-diagnostic.json",
+      "performance-diagnostic-headed.json",
+      "performance-diagnostic-unrestricted.json"
+    ],
+    "frameLimiterFlagShipped": false,
+    "switchSource": "https://chromium.googlesource.com/chromium/src/+/HEAD/components/viz/common/switches.cc"
+  },
+  "sourceHashesMatchCurrentFiles": true
 }

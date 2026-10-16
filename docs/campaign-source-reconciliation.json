@@ -1,0 +1,28 @@
+{
+  "method": "Reverse only the specified final presentation changes in memory; recompute SHA256 and compare to exact bytes served to fresh campaign runs. Runtime files remain current and unchanged.",
+  "files": {
+    "city-game.js": {
+      "servedHash": "7a61efa72ca795397060d9ecb744a093f78d14f93bfbe0c017bec3c008d607f6",
+      "currentHash": "ef4991ad6df60f31a535f3b6de520a09e0edb3b5a1efa7ed2e423699cd56ece2",
+      "reconstructedServedHash": "7a61efa72ca795397060d9ecb744a093f78d14f93bfbe0c017bec3c008d607f6",
+      "changes": "Vehicle-entry/recovery toast text now formats against current input mode during HUD rendering. No physics, movement, combat, progression or persistence changes.",
+      "focusedEvidence": "docs/ui-navigation-review.json (24 checks)",
+      "exactReconstructionMatch": true
+    },
+    "ui.js": {
+      "servedHash": "34ba8affb440bd780c961188fe26a9fe6ef2e4accc3c589d48fe8e7af519a750",
+      "currentHash": "a53608937d7883242cdb7e56c501bbb6b65d70fa38e4a6d86bd130614968f4be",
+      "reconstructedServedHash": "34ba8affb440bd780c961188fe26a9fe6ef2e4accc3c589d48fe8e7af519a750",
+      "changes": "Clear stale Map/subscreen return parent when opened directly from gameplay; existing title/pause routes retained.",
+      "focusedEvidence": "docs/ui-navigation-review.json (24 checks)",
+      "exactReconstructionMatch": true
+    },
+    "missions.js": {
+      "servedHash": "efc4943e0227501e6a4b62852c2d0bfd119472285bf03503ab763b80eabf5f19",
+      "currentHash": "8c3b941c6073f0a0055677ac72eae0c059e606bd13f9fedb46698832669f294f",
+      "reconstructedServedHash": "efc4943e0227501e6a4b62852c2d0bfd119472285bf03503ab763b80eabf5f19",
+      "changes": "One radio line corrected to name cargo containers, which are actual line-of-sight occluders. No objective labels, gates, coordinates, durations or rewards changed.",
+      "exactReconstructionMatch": true
+    }
+  }
+}

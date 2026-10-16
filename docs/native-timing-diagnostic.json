@@ -1,0 +1,41 @@
+[
+  {
+    "mode": "audio-not-started-cap60",
+    "fps": 56.60063259530548,
+    "engineFps": 57,
+    "frameCap": 60,
+    "medianMs": 17.700000002980232,
+    "p95Ms": 19.199999999254942,
+    "physicsMs": 0.09200777572773197
+  },
+  {
+    "mode": "audio-running-cap60",
+    "fps": 55.79427733920282,
+    "engineFps": 57,
+    "frameCap": 60,
+    "audio": "running",
+    "medianMs": 17.699999999254942,
+    "p95Ms": 20.300000000745058,
+    "physicsMs": 0.06171560450104856
+  },
+  {
+    "mode": "audio-suspended-cap60",
+    "fps": 56.80398460793845,
+    "engineFps": 57,
+    "frameCap": 60,
+    "audio": "suspended",
+    "medianMs": 17.600000001490116,
+    "p95Ms": 19.799999997019768,
+    "physicsMs": 0.06129527753735381
+  },
+  {
+    "mode": "audio-running-display",
+    "fps": 56.13018204834918,
+    "engineFps": 56,
+    "frameCap": 0,
+    "audio": "running",
+    "medianMs": 17.899999998509884,
+    "p95Ms": 18.800000000745058,
+    "physicsMs": 0.07984951337865205
+  }
+]

@@ -1,0 +1,81 @@
+{
+  "browser": "155.0.8059.80",
+  "headless": true,
+  "rows": [
+    {
+      "name": "blank-page",
+      "elapsedSeconds": 6.015199999999255,
+      "raf": {
+        "count": 341,
+        "fps": 56.68971937758383,
+        "medianMs": 17.600000001490116,
+        "p95Ms": 18.199999999254942
+      },
+      "render": null,
+      "visibility": "visible",
+      "focused": true,
+      "cpu": {
+        "taskMs": 32.517,
+        "scriptMs": 5.577,
+        "layoutMs": 0,
+        "styleMs": 0
+      }
+    },
+    {
+      "name": "game-audio-running-cap60",
+      "elapsedSeconds": 6.009,
+      "raf": {
+        "count": 341,
+        "fps": 56.74821101680812,
+        "medianMs": 17.600000001490116,
+        "p95Ms": 22.700000002980232
+      },
+      "render": {
+        "count": 341,
+        "fps": 56.74821101680812,
+        "medianMs": 17.600000001490116,
+        "p95Ms": 20.600000001490116
+      },
+      "engineFps": 57,
+      "frameCap": 60,
+      "audio": "running",
+      "physicsMs": 0.09103372850437291,
+      "visibility": "visible",
+      "focused": true,
+      "cpu": {
+        "taskMs": 1276.811,
+        "scriptMs": 1203.0829999999999,
+        "layoutMs": 0,
+        "styleMs": 6.517
+      }
+    },
+    {
+      "name": "game-audio-running-display",
+      "elapsedSeconds": 6.00139999999851,
+      "raf": {
+        "count": 338,
+        "fps": 56.32019195522444,
+        "medianMs": 17.600000001490116,
+        "p95Ms": 23.5
+      },
+      "render": {
+        "count": 338,
+        "fps": 56.32019195522444,
+        "medianMs": 17.699999999254942,
+        "p95Ms": 21.399999998509884
+      },
+      "engineFps": 56,
+      "frameCap": 0,
+      "audio": "running",
+      "physicsMs": 0.08706836408602447,
+      "visibility": "visible",
+      "focused": true,
+      "cpu": {
+        "taskMs": 1406.0600000000002,
+        "scriptMs": 1315.9859999999999,
+        "layoutMs": 0.12300000000000158,
+        "styleMs": 9.544
+      }
+    }
+  ]
+}

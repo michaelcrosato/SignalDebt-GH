@@ -12,7 +12,7 @@ try {
       resolution: { width: 640, height: 360 },
       camera: { preset: "third", distance: 23, fov: 55, stiffness: 7 },
       background: PALETTE.sky,
-      settings: { button: false, key: false },
+      settings: { button: false, key: "signal-debt-picture-v1" },
       touch: false,
       debugKeys: false,
       quality: phone ? "low" : "medium",

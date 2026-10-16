@@ -1,0 +1,84 @@
+{
+  "note": "Every model sheet visually inspected; exported original car, van and three equipment models have zero problems/warnings.",
+  "reports": {
+    "vehicles": {
+      "sheets": [
+        {
+          "kind": "model",
+          "id": "signal-courier-coupe",
+          "file": "/tmp/signal-debt-model-check-final/signal-courier-coupe.png",
+          "problems": [],
+          "warnings": [],
+          "tris": 240,
+          "size": [
+            1.96,
+            1.24,
+            4.28
+          ]
+        },
+        {
+          "kind": "model",
+          "id": "signal-service-van",
+          "file": "/tmp/signal-debt-model-check-final/signal-service-van.png",
+          "problems": [],
+          "warnings": [],
+          "tris": 228,
+          "size": [
+            1.96,
+            1.47,
+            4.46
+          ]
+        }
+      ],
+      "ok": true,
+      "errors": [],
+      "version": "0.40.0"
+    },
+    "equipment": {
+      "sheets": [
+        {
+          "kind": "model",
+          "id": "pulse-emitter",
+          "file": "/tmp/signal-equipment-final/pulse-emitter.png",
+          "problems": [],
+          "warnings": [],
+          "tris": 36,
+          "size": [
+            0.19,
+            0.39,
+            0.54
+          ]
+        },
+        {
+          "kind": "model",
+          "id": "district-relay-cabinet",
+          "file": "/tmp/signal-equipment-final/district-relay-cabinet.png",
+          "problems": [],
+          "warnings": [],
+          "tris": 132,
+          "size": [
+            1.5,
+            2.8,
+            1.03
+          ]
+        },
+        {
+          "kind": "model",
+          "id": "signal-evidence-case",
+          "file": "/tmp/signal-equipment-final/signal-evidence-case.png",
+          "problems": [],
+          "warnings": [],
+          "tris": 84,
+          "size": [
+            0.76,
+            0.52,
+            0.5
+          ]
+        }
+      ],
+      "ok": true,
+      "errors": [],
+      "version": "0.40.0"
+    }
+  }
+}

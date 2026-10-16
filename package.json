@@ -6,6 +6,7 @@
   "description": "An original Pixel Engine open-district driving caper",
   "scripts": {
     "dev": "python3 -m http.server 8080 --bind 127.0.0.1",
+    "couch": "node scripts/couch.cjs",
     "check": "node check.mjs --keys 'Enter*1,*2,Enter*1,*2,KeyF*2' --out /tmp/signal-debt-check",
     "test": "node --test tests/*.test.mjs"
   },

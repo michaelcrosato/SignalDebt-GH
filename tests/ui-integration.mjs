@@ -108,6 +108,36 @@ try {
   await pad(page, 12);
   check('Controller can reveal the final ending action at 720p', await page.evaluate(() => { const ui = __PIXEL_ENGINE__.game.ui, selected = ui.controls[ui.selected], r = selected.element.getBoundingClientRect(); return selected.action === 'quit' && r.top >= 0 && r.bottom <= innerHeight && ui.overlay.scrollTop > 0; }));
   await screenshot(page, 'ending-final-action-fixture');
+  const fullscreenMessages = await page.evaluate(async () => {
+    const ui = __PIXEL_ENGINE__.game.ui, element = document.documentElement;
+    const request = element.requestFullscreen, query = navigator.permissions.query;
+    const queried = [];
+    try {
+      element.requestFullscreen = async () => { throw new TypeError('Fullscreen request denied'); };
+      navigator.permissions.query = async descriptor => { queried.push(descriptor); return { state: 'granted' }; };
+      await ui.fullscreen(); const automatic = ui.notice.textContent;
+      navigator.permissions.query = async () => ({ state: 'prompt' });
+      await ui.fullscreen(); return { automatic, gesture: ui.notice.textContent, queried };
+    } finally { element.requestFullscreen = request; navigator.permissions.query = query; }
+  });
+  check('Fullscreen rejection with automatic permission explains Chrome cooldown', fullscreenMessages.automatic === 'Chrome briefly limits repeat fullscreen requests. Try again in five seconds.' && fullscreenMessages.queried[0]?.name === 'fullscreen' && fullscreenMessages.queried[0]?.allowWithoutGesture === true);
+  check('Fullscreen rejection without automatic permission explains gesture requirement', fullscreenMessages.gesture === 'Fullscreen needs a click or key press on this browser.');
+  const persisted = await page.evaluate(async () => {
+    const { loadSettings } = await import('/pixel-engine.js');
+    const e = __PIXEL_ENGINE__, ui = e.game.ui; ui.show('options');
+    const option = label => ui.controls.find(control => control.element.querySelector('.sd-action-label')?.textContent === label);
+    for (const label of ['Scene look', 'Pixel rendering', 'Pixel size', 'Frame rate', 'Performance display']) option(label).adjust(1);
+    for (let i = 0; i < 4 && e.settings.values.quality !== 'low'; i++) option('Lighting quality').adjust(1);
+    for (const label of ['Master', 'Sound effects', 'Music']) option(label).adjust(-1);
+    return { picture: { ...e.settings.values }, sound: { ...e.audio.volume }, key: e.settings.key, stored: loadSettings(e.settings.key) };
+  });
+  check('Picture menu writes the stable per-game storage key', persisted.key === 'signal-debt-picture-v1' && Object.keys(persisted.stored).length > 0);
+  await page.reload({ waitUntil: 'domcontentloaded' }); await page.waitForFunction(() => window.__PIXEL_ENGINE__?.game?.ready, null, { timeout: 120000 });
+  const reloaded = await page.evaluate(() => ({ picture: { ...__PIXEL_ENGINE__.settings.values }, sound: { ...__PIXEL_ENGINE__.audio.volume }, quality: __PIXEL_ENGINE__.quality, fps: __PIXEL_ENGINE__.maxFps, debug: __PIXEL_ENGINE__.debugShown }));
+  report.settingsReload = { before: persisted, after: reloaded };
+  for (const field of ['look', 'pixelArt', 'pixelSize', 'quality', 'fps', 'debugInfo']) check(`Picture ${field} survives a real page reload`, reloaded.picture[field] === persisted.picture[field]);
+  check('Reloaded picture choices are applied to the engine', reloaded.quality === persisted.picture.quality && reloaded.fps === persisted.picture.fps && reloaded.debug === persisted.picture.debugInfo);
+  for (const field of ['master', 'sfx', 'music']) check(`Audio ${field} survives a real page reload`, Math.abs(reloaded.sound[field] - persisted.sound[field]) < 0.000001);
   await page.close();
   const touch = await boot({ viewport: { width: 360, height: 780 }, hasTouch: true, isMobile: true });
   await screenshot(touch, 'touch-title');

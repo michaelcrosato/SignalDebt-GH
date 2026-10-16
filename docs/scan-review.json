@@ -1,0 +1,212 @@
+{
+  "purpose": "Rendered signal scan and normal-look restoration",
+  "fixture": "Player placement only, six metres south of uncollected evidence case 3; not a campaign completion test.",
+  "input": "Real keyboard KeyV",
+  "browser": "153.0.8010.12",
+  "checks": [
+    {
+      "label": "Evidence is untouched before scan",
+      "result": true
+    },
+    {
+      "label": "V activates scan while the image is rendered",
+      "result": true
+    },
+    {
+      "label": "Rendered active frame uses night-ops look",
+      "result": true
+    },
+    {
+      "label": "Evidence case doubles in size and stays uncollected",
+      "result": true
+    },
+    {
+      "label": "Evidence case is inside the captured viewport",
+      "result": true
+    },
+    {
+      "label": "Scan expires and removes its HUD label",
+      "result": true
+    },
+    {
+      "label": "Original look returns after scan",
+      "result": true
+    },
+    {
+      "label": "Evidence returns to its original size",
+      "result": true
+    },
+    {
+      "label": "Rendered effect has no browser or engine errors",
+      "result": true
+    }
+  ],
+  "baseline": {
+    "from": [
+      -18,
+      0.04333336353302003,
+      18
+    ],
+    "placed": [
+      230,
+      0.01995069980621339,
+      -8
+    ],
+    "look": {
+      "scene": [],
+      "actors": {
+        "pixel": {
+          "size": 1,
+          "outline": 0.45,
+          "crease": 0.08
+        },
+        "filters": []
+      },
+      "environment": {
+        "pixel": {
+          "size": 1,
+          "outline": 0.45,
+          "crease": 0.08
+        },
+        "filters": []
+      }
+    },
+    "scale": [
+      1,
+      1,
+      1
+    ],
+    "taken": false
+  },
+  "active": {
+    "scan": 3.8166666666666673,
+    "cooldown": 11.833333333333325,
+    "nightLook": true,
+    "look": {
+      "scene": [
+        {
+          "id": "nightvision",
+          "params": {
+            "gain": 1.6,
+            "noise": 0.15,
+            "amount": 1
+          }
+        },
+        {
+          "id": "grain",
+          "params": {
+            "noise": 0.12,
+            "amount": 1
+          }
+        },
+        {
+          "id": "vignette",
+          "params": {
+            "intensity": 0.85,
+            "softness": 0.35,
+            "amount": 1
+          }
+        }
+      ],
+      "actors": {
+        "pixel": {
+          "size": 1,
+          "outline": 0.45,
+          "crease": 0.08
+        },
+        "filters": []
+      },
+      "environment": {
+        "pixel": {
+          "size": 1,
+          "outline": 0.45,
+          "crease": 0.08
+        },
+        "filters": []
+      }
+    },
+    "scale": [
+      2,
+      2,
+      2
+    ],
+    "taken": false,
+    "visible": true,
+    "casePosition": {
+      "x": 230,
+      "y": 0,
+      "z": -14
+    },
+    "caseOnScreen": {
+      "x": 639.9982024819287,
+      "y": 539.0148011040327
+    },
+    "scanLabelVisible": true,
+    "engineErrors": [],
+    "gpuErrors": []
+  },
+  "restored": {
+    "scan": 0,
+    "cooldown": 6.6999999999998066,
+    "nightLook": false,
+    "look": {
+      "scene": [],
+      "actors": {
+        "pixel": {
+          "size": 1,
+          "outline": 0.45,
+          "crease": 0.08
+        },
+        "filters": []
+      },
+      "environment": {
+        "pixel": {
+          "size": 1,
+          "outline": 0.45,
+          "crease": 0.08
+        },
+        "filters": []
+      }
+    },
+    "scale": [
+      1,
+      1,
+      1
+    ],
+    "taken": false,
+    "visible": true,
+    "casePosition": {
+      "x": 230,
+      "y": 0,
+      "z": -14
+    },
+    "caseOnScreen": {
+      "x": 639.999999999997,
+      "y": 538.9936285639625
+    },
+    "scanLabelVisible": false,
+    "engineErrors": [],
+    "gpuErrors": []
+  },
+  "sourceHashes": {
+    "game.js": "d6570ed90d975a7215fa01be40ec31cc04c793d5be0bce33a2e95788341beb0e",
+    "city-game.js": "7a61efa72ca795397060d9ecb744a093f78d14f93bfbe0c017bec3c008d607f6",
+    "actors.js": "091175d7e05c977aeecf57fd6b32aa6743deb07263ef75a3dface78abc78e2f1",
+    "ui.js": "34ba8affb440bd780c961188fe26a9fe6ef2e4accc3c589d48fe8e7af519a750",
+    "vehicles.js": "09750dab4685a65a1713269c43810942c8fdaae9fca5a129b09e65b606ce8daa",
+    "world.js": "5cba0836e6aa5f42a886cf461cff5d9b89d6583d2ac5be99c5c8b749bb798766",
+    "missions.js": "d10456f510bab7904aa64fe2ea9f9b4ccfda3f917ad20ab5ef8416bd9fb1ad1f",
+    "navigation.js": "cb25b61c3382a7326dc94daebfe8839bde515c961ef0121d167913255339fe30"
+  },
+  "images": [
+    "scan-active.png",
+    "scan-restored.png"
+  ],
+  "rendering": "Each capture waits for three PixelRenderer.onBeforeRender callbacks and a presentation frame with the live render loop, then restores manual mode.",
+  "review": {
+    "visuallyInspected": true,
+    "active": "The live scene is visibly green with night-vision grain; the enlarged evidence case is clearly visible near pixel (640,539), below Ren. The scan HUD indicator is present.",
+    "restored": "The warm pavement, blue roadway and natural coastal palette return. The same uncollected case is smaller and blue; the scan HUD indicator is gone. No missing world geometry was observed."
+  },
+  "backend": "Chromium WebGPU with SwiftShader software rendering; visual verification only"
+}

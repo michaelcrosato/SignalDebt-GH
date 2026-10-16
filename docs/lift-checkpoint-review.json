@@ -1,0 +1,2375 @@
+{
+  "mode": "keyboard",
+  "url": "http://127.0.0.1:8080/",
+  "sourceHashes": {
+    "game.js": "d6570ed90d975a7215fa01be40ec31cc04c793d5be0bce33a2e95788341beb0e",
+    "city-game.js": "7a61efa72ca795397060d9ecb744a093f78d14f93bfbe0c017bec3c008d607f6",
+    "world.js": "5cba0836e6aa5f42a886cf461cff5d9b89d6583d2ac5be99c5c8b749bb798766",
+    "ui.js": "34ba8affb440bd780c961188fe26a9fe6ef2e4accc3c589d48fe8e7af519a750",
+    "vehicles.js": "09750dab4685a65a1713269c43810942c8fdaae9fca5a129b09e65b606ce8daa",
+    "actors.js": "091175d7e05c977aeecf57fd6b32aa6743deb07263ef75a3dface78abc78e2f1",
+    "missions.js": "efc4943e0227501e6a4b62852c2d0bfd119472285bf03503ab763b80eabf5f19",
+    "navigation.js": "cb25b61c3382a7326dc94daebfe8839bde515c961ef0121d167913255339fe30"
+  },
+  "inputDrivenSeconds": 14.633333333320024,
+  "scriptedFrames": 882,
+  "inputEvents": {
+    "keyboard": 24,
+    "gamepad": 0,
+    "touch": 0,
+    "touchMenus": 0
+  },
+  "state": {
+    "engine": {
+      "version": "0.40.0",
+      "game": "Signal Debt",
+      "seed": 17,
+      "ready": true,
+      "paused": false,
+      "time": 2.149899999999998,
+      "timeScale": 1,
+      "hitstop": 0,
+      "screen": {
+        "transition": null,
+        "progress": 0,
+        "moving": false,
+        "flash": 0,
+        "shockwaves": 0
+      },
+      "backend": "WebGPU",
+      "mode": "pixel",
+      "resolution": {
+        "width": 640,
+        "height": 360
+      },
+      "aspect": "fill",
+      "framing": {
+        "artWidth": 640,
+        "artHeight": 360,
+        "scale": 2,
+        "integer": true,
+        "canvasWidth": 1280,
+        "canvasHeight": 720,
+        "cssWidth": 1280,
+        "cssHeight": 720,
+        "offsetX": 0,
+        "offsetY": 0
+      },
+      "frame": 130,
+      "fps": 3,
+      "maxFps": 60,
+      "quality": "medium",
+      "gpuRecoveries": 0,
+      "physicsSteps": 128,
+      "gpuErrors": [],
+      "errors": [],
+      "target": [
+        195.0255889892578,
+        9.419090652465819,
+        -188.1298065185547
+      ],
+      "camera": [
+        195.0255192830402,
+        25.587202218761917,
+        -204.47335860490955
+      ],
+      "cameraRig": {
+        "preset": "third",
+        "zoom": 1,
+        "zoomable": true,
+        "yaw": 3.142,
+        "pitch": 0.78
+      },
+      "view": null,
+      "filters": [],
+      "look": "none",
+      "split": false,
+      "status": "playing | job 4/4 stage 6/11 | Connect the ledger to the transmitter | health 60 | heat 0.0 | on foot | 1510.2s"
+    },
+    "position": {
+      "x": 195.0255889892578,
+      "y": 8.21909065246582,
+      "z": -188.1298065185547
+    },
+    "health": 60,
+    "ammo": 12,
+    "reserve": 120,
+    "heat": 0,
+    "heatState": "clear",
+    "playTime": 1510.1833333322886,
+    "cash": 4825,
+    "signalHealth": 100,
+    "ride": null,
+    "screen": null,
+    "inputMode": "keyboard",
+    "selected": 0,
+    "menus": [],
+    "mission": {
+      "mission": 3,
+      "stage": 5,
+      "active": true,
+      "finished": false,
+      "completed": 3,
+      "progress": 0,
+      "wave": 0,
+      "approach": "jam",
+      "target": {
+        "x": 195,
+        "y": 8.2,
+        "z": -192
+      },
+      "current": {
+        "type": "interact",
+        "label": "Connect the ledger to the transmitter",
+        "at": {
+          "x": 195,
+          "y": 8.2,
+          "z": -192
+        },
+        "line": [
+          "REN",
+          "Port Sable, this is not a scheduled announcement."
+        ],
+        "seconds": 6
+      },
+      "history": [
+        {
+          "mission": 0,
+          "stage": 0,
+          "label": "Meet Bo outside the garage",
+          "elapsed": 0.05
+        },
+        {
+          "mission": 0,
+          "stage": 1,
+          "label": "Drive to the Civic Shield impound",
+          "elapsed": 39.716666666665695
+        },
+        {
+          "mission": 0,
+          "stage": 2,
+          "label": "Clear the impound guards",
+          "elapsed": 42.69999999999886
+        },
+        {
+          "mission": 0,
+          "stage": 3,
+          "label": "Recover the impound release key",
+          "elapsed": 46.916666666665286
+        },
+        {
+          "mission": 0,
+          "stage": 4,
+          "label": "Take back the orange Cormorant",
+          "elapsed": 49.449999999998475
+        },
+        {
+          "mission": 0,
+          "stage": 5,
+          "label": "Collect the market residents’ ledger",
+          "elapsed": 93.94999999999595
+        },
+        {
+          "mission": 0,
+          "stage": 6,
+          "label": "Collect the marina’s mooring records",
+          "elapsed": 134.58333333333258
+        },
+        {
+          "mission": 0,
+          "stage": 7,
+          "label": "Collect the west relay’s power bills",
+          "elapsed": 180.4000000000357
+        },
+        {
+          "mission": 0,
+          "stage": 8,
+          "label": "Collect the exchange’s foreclosure notices",
+          "elapsed": 237.83333333341474
+        },
+        {
+          "mission": 0,
+          "stage": 9,
+          "label": "Collect the freight workers’ contracts",
+          "elapsed": 274.5333333334123
+        },
+        {
+          "mission": 0,
+          "stage": 10,
+          "label": "Bring the Cormorant and records to the garage",
+          "elapsed": 319.4000000000382
+        },
+        {
+          "mission": 0,
+          "stage": 11,
+          "label": "Give Bo the recovered records",
+          "elapsed": 322.1166666667024
+        },
+        {
+          "mission": 1,
+          "stage": 0,
+          "label": "Meet Iona at the market relay",
+          "elapsed": 372.8333333333229
+        },
+        {
+          "mission": 1,
+          "stage": 1,
+          "label": "Secure the western relay cabinet",
+          "elapsed": 410.849999999955
+        },
+        {
+          "mission": 1,
+          "stage": 2,
+          "label": "Copy the western relay key",
+          "elapsed": 423.03333333327726
+        },
+        {
+          "mission": 1,
+          "stage": 3,
+          "label": "Secure the marina cabinet",
+          "elapsed": 489.4166666665502
+        },
+        {
+          "mission": 1,
+          "stage": 4,
+          "label": "Copy the marina network key",
+          "elapsed": 498.9166666665416
+        },
+        {
+          "mission": 1,
+          "stage": 5,
+          "label": "Secure the freight cabinet",
+          "elapsed": 515.3166666665267
+        },
+        {
+          "mission": 1,
+          "stage": 6,
+          "label": "Copy the freight network key",
+          "elapsed": 529.2833333331806
+        },
+        {
+          "mission": 1,
+          "stage": 7,
+          "label": "Reach the contract exchange terminal",
+          "elapsed": 562.1166666664841
+        },
+        {
+          "mission": 1,
+          "stage": 8,
+          "label": "Keep the manifest uplink connected",
+          "elapsed": 641.7833333330783
+        },
+        {
+          "mission": 1,
+          "stage": 9,
+          "label": "Lose Civic Shield. Break sight in a side street.",
+          "elapsed": 766.049999999632
+        },
+        {
+          "mission": 1,
+          "stage": 10,
+          "label": "Deliver the manifest to Bo",
+          "elapsed": 798.5833333329357
+        },
+        {
+          "mission": 2,
+          "stage": 0,
+          "label": "Get the courier route from Bo",
+          "elapsed": 798.6333333329356
+        },
+        {
+          "mission": 2,
+          "stage": 1,
+          "label": "Intercept the moving courier. Ram its rear quarter.",
+          "elapsed": 856.483333332883
+        },
+        {
+          "mission": 2,
+          "stage": 2,
+          "label": "Secure the courier’s access case",
+          "elapsed": 859.4333333328804
+        },
+        {
+          "mission": 2,
+          "stage": 3,
+          "label": "Recover the courier access case",
+          "elapsed": 870.066666666204
+        },
+        {
+          "mission": 2,
+          "stage": 4,
+          "label": "Deliver the access case to the freight station",
+          "elapsed": 920.7666666661579
+        },
+        {
+          "mission": 2,
+          "stage": 5,
+          "label": "Protect Bo while he copies the ledger",
+          "elapsed": 1020.9833333327334
+        },
+        {
+          "mission": 2,
+          "stage": 6,
+          "label": "Take the copied evidence",
+          "elapsed": 1026.2999999993954
+        },
+        {
+          "mission": 2,
+          "stage": 7,
+          "label": "Pick up the transmission coil at the west relay",
+          "elapsed": 1061.0999999993637
+        },
+        {
+          "mission": 2,
+          "stage": 8,
+          "label": "Lose Civic Shield. Break sight in a side street.",
+          "elapsed": 1149.9999999992829
+        },
+        {
+          "mission": 2,
+          "stage": 9,
+          "label": "Bring the evidence and coil to the garage",
+          "elapsed": 1181.1666666659212
+        },
+        {
+          "mission": 2,
+          "stage": 10,
+          "label": "Plan the broadcast with Iona",
+          "elapsed": 1183.9666666659186
+        },
+        {
+          "mission": 3,
+          "stage": 0,
+          "label": "Install the transmission coil at the west relay",
+          "elapsed": 1222.1833333325505
+        },
+        {
+          "mission": 3,
+          "stage": 1,
+          "label": "Synchronize the market relay",
+          "elapsed": 1325.4499999991233
+        },
+        {
+          "mission": 3,
+          "stage": 2,
+          "label": "Synchronize the marina relay",
+          "elapsed": 1424.0166666657003
+        },
+        {
+          "mission": 3,
+          "stage": 3,
+          "label": "Clear the broadcast tower service yard",
+          "elapsed": 1496.1666666656347
+        },
+        {
+          "mission": 3,
+          "stage": 4,
+          "label": "Ride the service lift to the transmitter roof",
+          "elapsed": 1508.0666666656239
+        }
+      ]
+    },
+    "enemies": [],
+    "pendingSpawns": 0,
+    "courier": null,
+    "rides": [
+      {
+        "id": "loaner",
+        "at": {
+          "x": -187.0584716796875,
+          "y": 0.62820965051651,
+          "z": -191.38070678710938
+        },
+        "yaw": 0.07067388945992305,
+        "speed": 4.057669129354017e-8,
+        "integrity": 100,
+        "kind": "car"
+      },
+      {
+        "id": "cormorant",
+        "at": {
+          "x": 215.6852264404297,
+          "y": 0.62820965051651,
+          "z": -180.9113311767578
+        },
+        "yaw": 3.0334322440090045,
+        "speed": -3.7248334707378083e-8,
+        "integrity": 35,
+        "kind": "car"
+      },
+      {
+        "id": "freighter",
+        "at": {
+          "x": 144.9990692138672,
+          "y": 0.6762096285820007,
+          "z": 156.99949645996094
+        },
+        "yaw": 1.5707954496295466,
+        "speed": 0,
+        "integrity": 100,
+        "kind": "van"
+      },
+      {
+        "id": "marina",
+        "at": {
+          "x": 237.97164916992188,
+          "y": 0.62820965051651,
+          "z": 100.82012939453125
+        },
+        "yaw": -1.8038088539103534,
+        "speed": -6.820240106702975e-9,
+        "integrity": 100,
+        "kind": "car"
+      },
+      {
+        "id": "market",
+        "at": {
+          "x": -112.54496002197266,
+          "y": 0.6686522960662842,
+          "z": 103.5606460571289
+        },
+        "yaw": -2.2675897324099017,
+        "speed": -0.031093296635724275,
+        "integrity": 100,
+        "kind": "car"
+      }
+    ],
+    "lift": {
+      "at": {
+        "x": 195,
+        "y": 0.019999999552965164,
+        "z": -185
+      },
+      "velocity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "collider": 5.83e-322,
+      "landing": {
+        "x": 195,
+        "y": 8.2,
+        "z": -194
+      }
+    },
+    "hero": {
+      "state": "idle",
+      "grounded": true,
+      "groundCollider": 5.5e-322,
+      "animation": "Idle"
+    },
+    "input": {
+      "w": false,
+      "s": false,
+      "a": false,
+      "d": false,
+      "analog": {
+        "x": 0,
+        "y": 0
+      },
+      "pad": {
+        "x": 0,
+        "y": 0
+      },
+      "touchHeld": []
+    },
+    "prompt": {
+      "text": "Hold to connect the ledger to the transmitter",
+      "key": "KeyF"
+    },
+    "basis": {
+      "right": [
+        -1,
+        0,
+        0
+      ],
+      "forward": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "errors": [],
+  "warnings": [],
+  "rumble": [],
+  "sourceCheckpoint": "/tmp/signal-debt-fresh-keyboard/checkpoint-browser.json",
+  "evidence": [
+    {
+      "label": "physical boarding",
+      "state": {
+        "engine": {
+          "version": "0.40.0",
+          "game": "Signal Debt",
+          "seed": 17,
+          "ready": true,
+          "paused": false,
+          "time": 2.9833333333333276,
+          "timeScale": 1,
+          "hitstop": 0,
+          "screen": {
+            "transition": null,
+            "progress": 0,
+            "moving": false,
+            "flash": 0,
+            "shockwaves": 0
+          },
+          "backend": "WebGPU",
+          "mode": "pixel",
+          "resolution": {
+            "width": 640,
+            "height": 360
+          },
+          "aspect": "fill",
+          "framing": {
+            "artWidth": 640,
+            "artHeight": 360,
+            "scale": 2,
+            "integer": true,
+            "canvasWidth": 1280,
+            "canvasHeight": 720,
+            "cssWidth": 1280,
+            "cssHeight": 720,
+            "offsetX": 0,
+            "offsetY": 0
+          },
+          "frame": 182,
+          "fps": 0,
+          "maxFps": 60,
+          "quality": "medium",
+          "gpuRecoveries": 0,
+          "physicsSteps": 179,
+          "gpuErrors": [],
+          "errors": [],
+          "target": [
+            194.5653839111328,
+            1.459816837310791,
+            -182.7125701904297
+          ],
+          "camera": [
+            194.46594871363374,
+            7.3890159196141,
+            -188.37145025642954
+          ],
+          "cameraRig": {
+            "preset": "third",
+            "zoom": 1,
+            "zoomable": true,
+            "yaw": 3.142,
+            "pitch": 0.78
+          },
+          "view": null,
+          "filters": [],
+          "look": "none",
+          "split": false,
+          "status": "playing | job 4/4 stage 5/11 | Ride the service lift to the transmitter roof | health 60 | heat 0.0 | on foot | 1499.1s"
+        },
+        "position": {
+          "x": 194.5653839111328,
+          "y": 0.259816837310791,
+          "z": -182.7125701904297
+        },
+        "health": 60,
+        "ammo": 12,
+        "reserve": 120,
+        "heat": 0,
+        "heatState": "clear",
+        "playTime": 1499.1333333322987,
+        "cash": 4825,
+        "signalHealth": 100,
+        "ride": null,
+        "screen": null,
+        "inputMode": "keyboard",
+        "selected": 0,
+        "menus": [],
+        "mission": {
+          "mission": 3,
+          "stage": 4,
+          "active": true,
+          "finished": false,
+          "completed": 3,
+          "progress": 0,
+          "wave": 0,
+          "approach": "jam",
+          "target": {
+            "x": 195,
+            "y": 8.2,
+            "z": -194
+          },
+          "current": {
+            "type": "lift",
+            "label": "Ride the service lift to the transmitter roof",
+            "at": {
+              "x": 195,
+              "y": 8.2,
+              "z": -194
+            },
+            "line": [
+              "IONA",
+              "Take the moving platform. The uplink is on the roof. Look down: that’s the city you’re keeping."
+            ]
+          },
+          "history": [
+            {
+              "mission": 0,
+              "stage": 0,
+              "label": "Meet Bo outside the garage",
+              "elapsed": 0.05
+            },
+            {
+              "mission": 0,
+              "stage": 1,
+              "label": "Drive to the Civic Shield impound",
+              "elapsed": 39.716666666665695
+            },
+            {
+              "mission": 0,
+              "stage": 2,
+              "label": "Clear the impound guards",
+              "elapsed": 42.69999999999886
+            },
+            {
+              "mission": 0,
+              "stage": 3,
+              "label": "Recover the impound release key",
+              "elapsed": 46.916666666665286
+            },
+            {
+              "mission": 0,
+              "stage": 4,
+              "label": "Take back the orange Cormorant",
+              "elapsed": 49.449999999998475
+            },
+            {
+              "mission": 0,
+              "stage": 5,
+              "label": "Collect the market residents’ ledger",
+              "elapsed": 93.94999999999595
+            },
+            {
+              "mission": 0,
+              "stage": 6,
+              "label": "Collect the marina’s mooring records",
+              "elapsed": 134.58333333333258
+            },
+            {
+              "mission": 0,
+              "stage": 7,
+              "label": "Collect the west relay’s power bills",
+              "elapsed": 180.4000000000357
+            },
+            {
+              "mission": 0,
+              "stage": 8,
+              "label": "Collect the exchange’s foreclosure notices",
+              "elapsed": 237.83333333341474
+            },
+            {
+              "mission": 0,
+              "stage": 9,
+              "label": "Collect the freight workers’ contracts",
+              "elapsed": 274.5333333334123
+            },
+            {
+              "mission": 0,
+              "stage": 10,
+              "label": "Bring the Cormorant and records to the garage",
+              "elapsed": 319.4000000000382
+            },
+            {
+              "mission": 0,
+              "stage": 11,
+              "label": "Give Bo the recovered records",
+              "elapsed": 322.1166666667024
+            },
+            {
+              "mission": 1,
+              "stage": 0,
+              "label": "Meet Iona at the market relay",
+              "elapsed": 372.8333333333229
+            },
+            {
+              "mission": 1,
+              "stage": 1,
+              "label": "Secure the western relay cabinet",
+              "elapsed": 410.849999999955
+            },
+            {
+              "mission": 1,
+              "stage": 2,
+              "label": "Copy the western relay key",
+              "elapsed": 423.03333333327726
+            },
+            {
+              "mission": 1,
+              "stage": 3,
+              "label": "Secure the marina cabinet",
+              "elapsed": 489.4166666665502
+            },
+            {
+              "mission": 1,
+              "stage": 4,
+              "label": "Copy the marina network key",
+              "elapsed": 498.9166666665416
+            },
+            {
+              "mission": 1,
+              "stage": 5,
+              "label": "Secure the freight cabinet",
+              "elapsed": 515.3166666665267
+            },
+            {
+              "mission": 1,
+              "stage": 6,
+              "label": "Copy the freight network key",
+              "elapsed": 529.2833333331806
+            },
+            {
+              "mission": 1,
+              "stage": 7,
+              "label": "Reach the contract exchange terminal",
+              "elapsed": 562.1166666664841
+            },
+            {
+              "mission": 1,
+              "stage": 8,
+              "label": "Keep the manifest uplink connected",
+              "elapsed": 641.7833333330783
+            },
+            {
+              "mission": 1,
+              "stage": 9,
+              "label": "Lose Civic Shield. Break sight in a side street.",
+              "elapsed": 766.049999999632
+            },
+            {
+              "mission": 1,
+              "stage": 10,
+              "label": "Deliver the manifest to Bo",
+              "elapsed": 798.5833333329357
+            },
+            {
+              "mission": 2,
+              "stage": 0,
+              "label": "Get the courier route from Bo",
+              "elapsed": 798.6333333329356
+            },
+            {
+              "mission": 2,
+              "stage": 1,
+              "label": "Intercept the moving courier. Ram its rear quarter.",
+              "elapsed": 856.483333332883
+            },
+            {
+              "mission": 2,
+              "stage": 2,
+              "label": "Secure the courier’s access case",
+              "elapsed": 859.4333333328804
+            },
+            {
+              "mission": 2,
+              "stage": 3,
+              "label": "Recover the courier access case",
+              "elapsed": 870.066666666204
+            },
+            {
+              "mission": 2,
+              "stage": 4,
+              "label": "Deliver the access case to the freight station",
+              "elapsed": 920.7666666661579
+            },
+            {
+              "mission": 2,
+              "stage": 5,
+              "label": "Protect Bo while he copies the ledger",
+              "elapsed": 1020.9833333327334
+            },
+            {
+              "mission": 2,
+              "stage": 6,
+              "label": "Take the copied evidence",
+              "elapsed": 1026.2999999993954
+            },
+            {
+              "mission": 2,
+              "stage": 7,
+              "label": "Pick up the transmission coil at the west relay",
+              "elapsed": 1061.0999999993637
+            },
+            {
+              "mission": 2,
+              "stage": 8,
+              "label": "Lose Civic Shield. Break sight in a side street.",
+              "elapsed": 1149.9999999992829
+            },
+            {
+              "mission": 2,
+              "stage": 9,
+              "label": "Bring the evidence and coil to the garage",
+              "elapsed": 1181.1666666659212
+            },
+            {
+              "mission": 2,
+              "stage": 10,
+              "label": "Plan the broadcast with Iona",
+              "elapsed": 1183.9666666659186
+            },
+            {
+              "mission": 3,
+              "stage": 0,
+              "label": "Install the transmission coil at the west relay",
+              "elapsed": 1222.1833333325505
+            },
+            {
+              "mission": 3,
+              "stage": 1,
+              "label": "Synchronize the market relay",
+              "elapsed": 1325.4499999991233
+            },
+            {
+              "mission": 3,
+              "stage": 2,
+              "label": "Synchronize the marina relay",
+              "elapsed": 1424.0166666657003
+            },
+            {
+              "mission": 3,
+              "stage": 3,
+              "label": "Clear the broadcast tower service yard",
+              "elapsed": 1496.1666666656347
+            }
+          ]
+        },
+        "enemies": [],
+        "pendingSpawns": 0,
+        "courier": null,
+        "rides": [
+          {
+            "id": "loaner",
+            "at": {
+              "x": -187.0584716796875,
+              "y": 0.6283532977104187,
+              "z": -191.38070678710938
+            },
+            "yaw": 0.07067388945992305,
+            "speed": 1.145108624589418e-8,
+            "integrity": 100,
+            "kind": "car"
+          },
+          {
+            "id": "cormorant",
+            "at": {
+              "x": 215.6852264404297,
+              "y": 0.628353476524353,
+              "z": -180.9113311767578
+            },
+            "yaw": 3.0334322440090045,
+            "speed": 1.5695376208831652e-8,
+            "integrity": 35,
+            "kind": "car"
+          },
+          {
+            "id": "freighter",
+            "at": {
+              "x": 144.9990692138672,
+              "y": 0.676353394985199,
+              "z": 156.99949645996094
+            },
+            "yaw": 1.5707954496295466,
+            "speed": 0,
+            "integrity": 100,
+            "kind": "van"
+          },
+          {
+            "id": "marina",
+            "at": {
+              "x": 237.97164916992188,
+              "y": 0.628353476524353,
+              "z": 100.82012939453125
+            },
+            "yaw": -1.8038088539103534,
+            "speed": -7.905709699505216e-8,
+            "integrity": 100,
+            "kind": "car"
+          },
+          {
+            "id": "market",
+            "at": {
+              "x": -112.48783111572266,
+              "y": 0.6178588271141052,
+              "z": 103.56346130371094
+            },
+            "yaw": -2.0799586785521114,
+            "speed": 0.0020744832778484524,
+            "integrity": 100,
+            "kind": "car"
+          }
+        ],
+        "lift": {
+          "at": {
+            "x": 195,
+            "y": 0.019999999552965164,
+            "z": -185
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "collider": 5.83e-322,
+          "landing": {
+            "x": 195,
+            "y": 8.2,
+            "z": -194
+          }
+        },
+        "hero": {
+          "state": "run",
+          "grounded": true,
+          "groundCollider": 5.83e-322,
+          "animation": "Run"
+        },
+        "input": {
+          "w": false,
+          "s": false,
+          "a": false,
+          "d": false,
+          "analog": {
+            "x": 0,
+            "y": 0
+          },
+          "pad": {
+            "x": 0,
+            "y": 0
+          },
+          "touchHeld": []
+        },
+        "prompt": null,
+        "basis": {
+          "right": [
+            -1,
+            0,
+            0
+          ],
+          "forward": [
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "label": "raised on deck, objective still active",
+      "state": {
+        "engine": {
+          "version": "0.40.0",
+          "game": "Signal Debt",
+          "seed": 17,
+          "ready": true,
+          "paused": false,
+          "time": 7.98333333333331,
+          "timeScale": 1,
+          "hitstop": 0,
+          "screen": {
+            "transition": null,
+            "progress": 0,
+            "moving": false,
+            "flash": 0,
+            "shockwaves": 0
+          },
+          "backend": "WebGPU",
+          "mode": "pixel",
+          "resolution": {
+            "width": 640,
+            "height": 360
+          },
+          "aspect": "fill",
+          "framing": {
+            "artWidth": 640,
+            "artHeight": 360,
+            "scale": 2,
+            "integer": true,
+            "canvasWidth": 1280,
+            "canvasHeight": 720,
+            "cssWidth": 1280,
+            "cssHeight": 720,
+            "offsetX": 0,
+            "offsetY": 0
+          },
+          "frame": 482,
+          "fps": 0,
+          "maxFps": 60,
+          "quality": "medium",
+          "gpuRecoveries": 0,
+          "physicsSteps": 479,
+          "gpuErrors": [],
+          "errors": [],
+          "target": [
+            195.02427673339844,
+            9.347126388549803,
+            -183.35047912597656
+          ],
+          "camera": [
+            195.02427673339832,
+            25.43623569495208,
+            -199.70130903509903
+          ],
+          "cameraRig": {
+            "preset": "third",
+            "zoom": 1,
+            "zoomable": true,
+            "yaw": 3.142,
+            "pitch": 0.78
+          },
+          "view": null,
+          "filters": [],
+          "look": "none",
+          "split": false,
+          "status": "playing | job 4/4 stage 5/11 | Ride the service lift to the transmitter roof | health 60 | heat 0.0 | on foot | 1504.1s"
+        },
+        "position": {
+          "x": 195.02427673339844,
+          "y": 8.147126388549804,
+          "z": -183.35047912597656
+        },
+        "health": 60,
+        "ammo": 12,
+        "reserve": 120,
+        "heat": 0,
+        "heatState": "clear",
+        "playTime": 1504.1333333322941,
+        "cash": 4825,
+        "signalHealth": 100,
+        "ride": null,
+        "screen": null,
+        "inputMode": "keyboard",
+        "selected": 0,
+        "menus": [],
+        "mission": {
+          "mission": 3,
+          "stage": 4,
+          "active": true,
+          "finished": false,
+          "completed": 3,
+          "progress": 0,
+          "wave": 0,
+          "approach": "jam",
+          "target": {
+            "x": 195,
+            "y": 8.2,
+            "z": -194
+          },
+          "current": {
+            "type": "lift",
+            "label": "Ride the service lift to the transmitter roof",
+            "at": {
+              "x": 195,
+              "y": 8.2,
+              "z": -194
+            },
+            "line": [
+              "IONA",
+              "Take the moving platform. The uplink is on the roof. Look down: that’s the city you’re keeping."
+            ]
+          },
+          "history": [
+            {
+              "mission": 0,
+              "stage": 0,
+              "label": "Meet Bo outside the garage",
+              "elapsed": 0.05
+            },
+            {
+              "mission": 0,
+              "stage": 1,
+              "label": "Drive to the Civic Shield impound",
+              "elapsed": 39.716666666665695
+            },
+            {
+              "mission": 0,
+              "stage": 2,
+              "label": "Clear the impound guards",
+              "elapsed": 42.69999999999886
+            },
+            {
+              "mission": 0,
+              "stage": 3,
+              "label": "Recover the impound release key",
+              "elapsed": 46.916666666665286
+            },
+            {
+              "mission": 0,
+              "stage": 4,
+              "label": "Take back the orange Cormorant",
+              "elapsed": 49.449999999998475
+            },
+            {
+              "mission": 0,
+              "stage": 5,
+              "label": "Collect the market residents’ ledger",
+              "elapsed": 93.94999999999595
+            },
+            {
+              "mission": 0,
+              "stage": 6,
+              "label": "Collect the marina’s mooring records",
+              "elapsed": 134.58333333333258
+            },
+            {
+              "mission": 0,
+              "stage": 7,
+              "label": "Collect the west relay’s power bills",
+              "elapsed": 180.4000000000357
+            },
+            {
+              "mission": 0,
+              "stage": 8,
+              "label": "Collect the exchange’s foreclosure notices",
+              "elapsed": 237.83333333341474
+            },
+            {
+              "mission": 0,
+              "stage": 9,
+              "label": "Collect the freight workers’ contracts",
+              "elapsed": 274.5333333334123
+            },
+            {
+              "mission": 0,
+              "stage": 10,
+              "label": "Bring the Cormorant and records to the garage",
+              "elapsed": 319.4000000000382
+            },
+            {
+              "mission": 0,
+              "stage": 11,
+              "label": "Give Bo the recovered records",
+              "elapsed": 322.1166666667024
+            },
+            {
+              "mission": 1,
+              "stage": 0,
+              "label": "Meet Iona at the market relay",
+              "elapsed": 372.8333333333229
+            },
+            {
+              "mission": 1,
+              "stage": 1,
+              "label": "Secure the western relay cabinet",
+              "elapsed": 410.849999999955
+            },
+            {
+              "mission": 1,
+              "stage": 2,
+              "label": "Copy the western relay key",
+              "elapsed": 423.03333333327726
+            },
+            {
+              "mission": 1,
+              "stage": 3,
+              "label": "Secure the marina cabinet",
+              "elapsed": 489.4166666665502
+            },
+            {
+              "mission": 1,
+              "stage": 4,
+              "label": "Copy the marina network key",
+              "elapsed": 498.9166666665416
+            },
+            {
+              "mission": 1,
+              "stage": 5,
+              "label": "Secure the freight cabinet",
+              "elapsed": 515.3166666665267
+            },
+            {
+              "mission": 1,
+              "stage": 6,
+              "label": "Copy the freight network key",
+              "elapsed": 529.2833333331806
+            },
+            {
+              "mission": 1,
+              "stage": 7,
+              "label": "Reach the contract exchange terminal",
+              "elapsed": 562.1166666664841
+            },
+            {
+              "mission": 1,
+              "stage": 8,
+              "label": "Keep the manifest uplink connected",
+              "elapsed": 641.7833333330783
+            },
+            {
+              "mission": 1,
+              "stage": 9,
+              "label": "Lose Civic Shield. Break sight in a side street.",
+              "elapsed": 766.049999999632
+            },
+            {
+              "mission": 1,
+              "stage": 10,
+              "label": "Deliver the manifest to Bo",
+              "elapsed": 798.5833333329357
+            },
+            {
+              "mission": 2,
+              "stage": 0,
+              "label": "Get the courier route from Bo",
+              "elapsed": 798.6333333329356
+            },
+            {
+              "mission": 2,
+              "stage": 1,
+              "label": "Intercept the moving courier. Ram its rear quarter.",
+              "elapsed": 856.483333332883
+            },
+            {
+              "mission": 2,
+              "stage": 2,
+              "label": "Secure the courier’s access case",
+              "elapsed": 859.4333333328804
+            },
+            {
+              "mission": 2,
+              "stage": 3,
+              "label": "Recover the courier access case",
+              "elapsed": 870.066666666204
+            },
+            {
+              "mission": 2,
+              "stage": 4,
+              "label": "Deliver the access case to the freight station",
+              "elapsed": 920.7666666661579
+            },
+            {
+              "mission": 2,
+              "stage": 5,
+              "label": "Protect Bo while he copies the ledger",
+              "elapsed": 1020.9833333327334
+            },
+            {
+              "mission": 2,
+              "stage": 6,
+              "label": "Take the copied evidence",
+              "elapsed": 1026.2999999993954
+            },
+            {
+              "mission": 2,
+              "stage": 7,
+              "label": "Pick up the transmission coil at the west relay",
+              "elapsed": 1061.0999999993637
+            },
+            {
+              "mission": 2,
+              "stage": 8,
+              "label": "Lose Civic Shield. Break sight in a side street.",
+              "elapsed": 1149.9999999992829
+            },
+            {
+              "mission": 2,
+              "stage": 9,
+              "label": "Bring the evidence and coil to the garage",
+              "elapsed": 1181.1666666659212
+            },
+            {
+              "mission": 2,
+              "stage": 10,
+              "label": "Plan the broadcast with Iona",
+              "elapsed": 1183.9666666659186
+            },
+            {
+              "mission": 3,
+              "stage": 0,
+              "label": "Install the transmission coil at the west relay",
+              "elapsed": 1222.1833333325505
+            },
+            {
+              "mission": 3,
+              "stage": 1,
+              "label": "Synchronize the market relay",
+              "elapsed": 1325.4499999991233
+            },
+            {
+              "mission": 3,
+              "stage": 2,
+              "label": "Synchronize the marina relay",
+              "elapsed": 1424.0166666657003
+            },
+            {
+              "mission": 3,
+              "stage": 3,
+              "label": "Clear the broadcast tower service yard",
+              "elapsed": 1496.1666666656347
+            }
+          ]
+        },
+        "enemies": [],
+        "pendingSpawns": 0,
+        "courier": null,
+        "rides": [
+          {
+            "id": "loaner",
+            "at": {
+              "x": -187.0584716796875,
+              "y": 0.6283500790596008,
+              "z": -191.38070678710938
+            },
+            "yaw": 0.07067388945992305,
+            "speed": 1.2967413857978077e-34,
+            "integrity": 100,
+            "kind": "car"
+          },
+          {
+            "id": "cormorant",
+            "at": {
+              "x": 215.6852264404297,
+              "y": 0.6283500790596008,
+              "z": -180.9113311767578
+            },
+            "yaw": 3.0334322440090045,
+            "speed": -2.0927937136279244e-8,
+            "integrity": 35,
+            "kind": "car"
+          },
+          {
+            "id": "freighter",
+            "at": {
+              "x": 144.9990692138672,
+              "y": 0.6763499975204468,
+              "z": 156.99949645996094
+            },
+            "yaw": 1.5707954496295466,
+            "speed": 0,
+            "integrity": 100,
+            "kind": "van"
+          },
+          {
+            "id": "marina",
+            "at": {
+              "x": 237.97164916992188,
+              "y": 0.6283501982688904,
+              "z": 100.82012939453125
+            },
+            "yaw": -1.8038088539103534,
+            "speed": 1.1847833819345847e-34,
+            "integrity": 100,
+            "kind": "car"
+          },
+          {
+            "id": "market",
+            "at": {
+              "x": -112.48773956298828,
+              "y": 0.6283513903617859,
+              "z": 103.56343078613281
+            },
+            "yaw": -2.079958676166094,
+            "speed": -7.956346434658237e-26,
+            "integrity": 100,
+            "kind": "car"
+          }
+        ],
+        "lift": {
+          "at": {
+            "x": 195,
+            "y": 7.907308578491211,
+            "z": -185
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0.4596805274486542,
+            "z": 0
+          },
+          "collider": 5.83e-322,
+          "landing": {
+            "x": 195,
+            "y": 8.2,
+            "z": -194
+          }
+        },
+        "hero": {
+          "state": "idle",
+          "grounded": true,
+          "groundCollider": 5.83e-322,
+          "animation": "Idle"
+        },
+        "input": {
+          "w": false,
+          "s": false,
+          "a": false,
+          "d": false,
+          "analog": {
+            "x": 0,
+            "y": 0
+          },
+          "pad": {
+            "x": 0,
+            "y": 0
+          },
+          "touchHeld": []
+        },
+        "prompt": null,
+        "basis": {
+          "right": [
+            -1,
+            0,
+            0
+          ],
+          "forward": [
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "label": "static roof completed objective",
+      "state": {
+        "engine": {
+          "version": "0.40.0",
+          "game": "Signal Debt",
+          "seed": 17,
+          "ready": true,
+          "paused": false,
+          "time": 12.616666666666873,
+          "timeScale": 1,
+          "hitstop": 0,
+          "screen": {
+            "transition": null,
+            "progress": 0,
+            "moving": false,
+            "flash": 0,
+            "shockwaves": 0
+          },
+          "backend": "WebGPU",
+          "mode": "pixel",
+          "resolution": {
+            "width": 640,
+            "height": 360
+          },
+          "aspect": "fill",
+          "framing": {
+            "artWidth": 640,
+            "artHeight": 360,
+            "scale": 2,
+            "integer": true,
+            "canvasWidth": 1280,
+            "canvasHeight": 720,
+            "cssWidth": 1280,
+            "cssHeight": 720,
+            "offsetX": 0,
+            "offsetY": 0
+          },
+          "frame": 760,
+          "fps": 0,
+          "maxFps": 60,
+          "quality": "medium",
+          "gpuRecoveries": 0,
+          "physicsSteps": 757,
+          "gpuErrors": [],
+          "errors": [],
+          "target": [
+            195.02561950683594,
+            9.419819259643553,
+            -192.8821563720703
+          ],
+          "camera": [
+            195.02561934144217,
+            25.59502570187785,
+            -208.629045405108
+          ],
+          "cameraRig": {
+            "preset": "third",
+            "zoom": 1,
+            "zoomable": true,
+            "yaw": 3.142,
+            "pitch": 0.78
+          },
+          "view": null,
+          "filters": [],
+          "look": "none",
+          "split": false,
+          "status": "playing | job 4/4 stage 6/11 | Connect the ledger to the transmitter | health 60 | heat 0.0 | on foot | 1508.8s"
+        },
+        "position": {
+          "x": 195.02561950683594,
+          "y": 8.219819259643554,
+          "z": -192.8821563720703
+        },
+        "health": 60,
+        "ammo": 12,
+        "reserve": 120,
+        "heat": 0,
+        "heatState": "clear",
+        "playTime": 1508.7666666656232,
+        "cash": 4825,
+        "signalHealth": 100,
+        "ride": null,
+        "screen": null,
+        "inputMode": "keyboard",
+        "selected": 0,
+        "menus": [],
+        "mission": {
+          "mission": 3,
+          "stage": 5,
+          "active": true,
+          "finished": false,
+          "completed": 3,
+          "progress": 0,
+          "wave": 0,
+          "approach": "jam",
+          "target": {
+            "x": 195,
+            "y": 8.2,
+            "z": -192
+          },
+          "current": {
+            "type": "interact",
+            "label": "Connect the ledger to the transmitter",
+            "at": {
+              "x": 195,
+              "y": 8.2,
+              "z": -192
+            },
+            "line": [
+              "REN",
+              "Port Sable, this is not a scheduled announcement."
+            ],
+            "seconds": 6
+          },
+          "history": [
+            {
+              "mission": 0,
+              "stage": 0,
+              "label": "Meet Bo outside the garage",
+              "elapsed": 0.05
+            },
+            {
+              "mission": 0,
+              "stage": 1,
+              "label": "Drive to the Civic Shield impound",
+              "elapsed": 39.716666666665695
+            },
+            {
+              "mission": 0,
+              "stage": 2,
+              "label": "Clear the impound guards",
+              "elapsed": 42.69999999999886
+            },
+            {
+              "mission": 0,
+              "stage": 3,
+              "label": "Recover the impound release key",
+              "elapsed": 46.916666666665286
+            },
+            {
+              "mission": 0,
+              "stage": 4,
+              "label": "Take back the orange Cormorant",
+              "elapsed": 49.449999999998475
+            },
+            {
+              "mission": 0,
+              "stage": 5,
+              "label": "Collect the market residents’ ledger",
+              "elapsed": 93.94999999999595
+            },
+            {
+              "mission": 0,
+              "stage": 6,
+              "label": "Collect the marina’s mooring records",
+              "elapsed": 134.58333333333258
+            },
+            {
+              "mission": 0,
+              "stage": 7,
+              "label": "Collect the west relay’s power bills",
+              "elapsed": 180.4000000000357
+            },
+            {
+              "mission": 0,
+              "stage": 8,
+              "label": "Collect the exchange’s foreclosure notices",
+              "elapsed": 237.83333333341474
+            },
+            {
+              "mission": 0,
+              "stage": 9,
+              "label": "Collect the freight workers’ contracts",
+              "elapsed": 274.5333333334123
+            },
+            {
+              "mission": 0,
+              "stage": 10,
+              "label": "Bring the Cormorant and records to the garage",
+              "elapsed": 319.4000000000382
+            },
+            {
+              "mission": 0,
+              "stage": 11,
+              "label": "Give Bo the recovered records",
+              "elapsed": 322.1166666667024
+            },
+            {
+              "mission": 1,
+              "stage": 0,
+              "label": "Meet Iona at the market relay",
+              "elapsed": 372.8333333333229
+            },
+            {
+              "mission": 1,
+              "stage": 1,
+              "label": "Secure the western relay cabinet",
+              "elapsed": 410.849999999955
+            },
+            {
+              "mission": 1,
+              "stage": 2,
+              "label": "Copy the western relay key",
+              "elapsed": 423.03333333327726
+            },
+            {
+              "mission": 1,
+              "stage": 3,
+              "label": "Secure the marina cabinet",
+              "elapsed": 489.4166666665502
+            },
+            {
+              "mission": 1,
+              "stage": 4,
+              "label": "Copy the marina network key",
+              "elapsed": 498.9166666665416
+            },
+            {
+              "mission": 1,
+              "stage": 5,
+              "label": "Secure the freight cabinet",
+              "elapsed": 515.3166666665267
+            },
+            {
+              "mission": 1,
+              "stage": 6,
+              "label": "Copy the freight network key",
+              "elapsed": 529.2833333331806
+            },
+            {
+              "mission": 1,
+              "stage": 7,
+              "label": "Reach the contract exchange terminal",
+              "elapsed": 562.1166666664841
+            },
+            {
+              "mission": 1,
+              "stage": 8,
+              "label": "Keep the manifest uplink connected",
+              "elapsed": 641.7833333330783
+            },
+            {
+              "mission": 1,
+              "stage": 9,
+              "label": "Lose Civic Shield. Break sight in a side street.",
+              "elapsed": 766.049999999632
+            },
+            {
+              "mission": 1,
+              "stage": 10,
+              "label": "Deliver the manifest to Bo",
+              "elapsed": 798.5833333329357
+            },
+            {
+              "mission": 2,
+              "stage": 0,
+              "label": "Get the courier route from Bo",
+              "elapsed": 798.6333333329356
+            },
+            {
+              "mission": 2,
+              "stage": 1,
+              "label": "Intercept the moving courier. Ram its rear quarter.",
+              "elapsed": 856.483333332883
+            },
+            {
+              "mission": 2,
+              "stage": 2,
+              "label": "Secure the courier’s access case",
+              "elapsed": 859.4333333328804
+            },
+            {
+              "mission": 2,
+              "stage": 3,
+              "label": "Recover the courier access case",
+              "elapsed": 870.066666666204
+            },
+            {
+              "mission": 2,
+              "stage": 4,
+              "label": "Deliver the access case to the freight station",
+              "elapsed": 920.7666666661579
+            },
+            {
+              "mission": 2,
+              "stage": 5,
+              "label": "Protect Bo while he copies the ledger",
+              "elapsed": 1020.9833333327334
+            },
+            {
+              "mission": 2,
+              "stage": 6,
+              "label": "Take the copied evidence",
+              "elapsed": 1026.2999999993954
+            },
+            {
+              "mission": 2,
+              "stage": 7,
+              "label": "Pick up the transmission coil at the west relay",
+              "elapsed": 1061.0999999993637
+            },
+            {
+              "mission": 2,
+              "stage": 8,
+              "label": "Lose Civic Shield. Break sight in a side street.",
+              "elapsed": 1149.9999999992829
+            },
+            {
+              "mission": 2,
+              "stage": 9,
+              "label": "Bring the evidence and coil to the garage",
+              "elapsed": 1181.1666666659212
+            },
+            {
+              "mission": 2,
+              "stage": 10,
+              "label": "Plan the broadcast with Iona",
+              "elapsed": 1183.9666666659186
+            },
+            {
+              "mission": 3,
+              "stage": 0,
+              "label": "Install the transmission coil at the west relay",
+              "elapsed": 1222.1833333325505
+            },
+            {
+              "mission": 3,
+              "stage": 1,
+              "label": "Synchronize the market relay",
+              "elapsed": 1325.4499999991233
+            },
+            {
+              "mission": 3,
+              "stage": 2,
+              "label": "Synchronize the marina relay",
+              "elapsed": 1424.0166666657003
+            },
+            {
+              "mission": 3,
+              "stage": 3,
+              "label": "Clear the broadcast tower service yard",
+              "elapsed": 1496.1666666656347
+            },
+            {
+              "mission": 3,
+              "stage": 4,
+              "label": "Ride the service lift to the transmitter roof",
+              "elapsed": 1508.0666666656239
+            }
+          ]
+        },
+        "enemies": [],
+        "pendingSpawns": 0,
+        "courier": null,
+        "rides": [
+          {
+            "id": "loaner",
+            "at": {
+              "x": -187.0584716796875,
+              "y": 0.6283500790596008,
+              "z": -191.38070678710938
+            },
+            "yaw": 0.07067388945992305,
+            "speed": -9.89527898568454e-47,
+            "integrity": 100,
+            "kind": "car"
+          },
+          {
+            "id": "cormorant",
+            "at": {
+              "x": 215.6852264404297,
+              "y": 0.6283500790596008,
+              "z": -180.9113311767578
+            },
+            "yaw": 3.0334322440090045,
+            "speed": -4.064808786784984e-8,
+            "integrity": 35,
+            "kind": "car"
+          },
+          {
+            "id": "freighter",
+            "at": {
+              "x": 144.9990692138672,
+              "y": 0.6763499975204468,
+              "z": 156.99949645996094
+            },
+            "yaw": 1.5707954496295466,
+            "speed": 0,
+            "integrity": 100,
+            "kind": "van"
+          },
+          {
+            "id": "marina",
+            "at": {
+              "x": 237.97164916992188,
+              "y": 0.6283501982688904,
+              "z": 100.82012939453125
+            },
+            "yaw": -1.8038088539103534,
+            "speed": -1.363428675721079e-45,
+            "integrity": 100,
+            "kind": "car"
+          },
+          {
+            "id": "market",
+            "at": {
+              "x": -112.48773956298828,
+              "y": 0.6283499002456665,
+              "z": 103.56343078613281
+            },
+            "yaw": -2.079958676166094,
+            "speed": -5.4049088106825985e-46,
+            "integrity": 100,
+            "kind": "car"
+          }
+        ],
+        "lift": {
+          "at": {
+            "x": 195,
+            "y": 6.841915607452393,
+            "z": -185
+          },
+          "velocity": {
+            "x": 0,
+            "y": -1.6412256956100464,
+            "z": 0
+          },
+          "collider": 5.83e-322,
+          "landing": {
+            "x": 195,
+            "y": 8.2,
+            "z": -194
+          }
+        },
+        "hero": {
+          "state": "skid",
+          "grounded": true,
+          "groundCollider": 5.5e-322,
+          "animation": "Skid"
+        },
+        "input": {
+          "w": false,
+          "s": false,
+          "a": false,
+          "d": false,
+          "analog": {
+            "x": 0,
+            "y": 0
+          },
+          "pad": {
+            "x": 0,
+            "y": 0
+          },
+          "touchHeld": []
+        },
+        "prompt": {
+          "text": "Hold to connect the ledger to the transmitter",
+          "key": "KeyF"
+        },
+        "basis": {
+          "right": [
+            -1,
+            0,
+            0
+          ],
+          "forward": [
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "label": "reloaded and settled120frames on static roof",
+      "state": {
+        "engine": {
+          "version": "0.40.0",
+          "game": "Signal Debt",
+          "seed": 17,
+          "ready": true,
+          "paused": false,
+          "time": 2.0499999999999976,
+          "timeScale": 1,
+          "hitstop": 0,
+          "screen": {
+            "transition": null,
+            "progress": 0,
+            "moving": false,
+            "flash": 0,
+            "shockwaves": 0
+          },
+          "backend": "WebGPU",
+          "mode": "pixel",
+          "resolution": {
+            "width": 640,
+            "height": 360
+          },
+          "aspect": "fill",
+          "framing": {
+            "artWidth": 640,
+            "artHeight": 360,
+            "scale": 2,
+            "integer": true,
+            "canvasWidth": 1280,
+            "canvasHeight": 720,
+            "cssWidth": 1280,
+            "cssHeight": 720,
+            "offsetX": 0,
+            "offsetY": 0
+          },
+          "frame": 126,
+          "fps": 0,
+          "maxFps": 60,
+          "quality": "medium",
+          "gpuRecoveries": 0,
+          "physicsSteps": 123,
+          "gpuErrors": [],
+          "errors": [],
+          "target": [
+            195.0255889892578,
+            9.419090652465819,
+            -188.1298065185547
+          ],
+          "camera": [
+            195.02544871639876,
+            25.583607486036136,
+            -204.46965924404478
+          ],
+          "cameraRig": {
+            "preset": "third",
+            "zoom": 1,
+            "zoomable": true,
+            "yaw": 3.142,
+            "pitch": 0.78
+          },
+          "view": null,
+          "filters": [],
+          "look": "none",
+          "split": false,
+          "status": "playing | job 4/4 stage 6/11 | Connect the ledger to the transmitter | health 60 | heat 0.0 | on foot | 1510.1s"
+        },
+        "position": {
+          "x": 195.0255889892578,
+          "y": 8.21909065246582,
+          "z": -188.1298065185547
+        },
+        "health": 60,
+        "ammo": 12,
+        "reserve": 120,
+        "heat": 0,
+        "heatState": "clear",
+        "playTime": 1510.0999999989554,
+        "cash": 4825,
+        "signalHealth": 100,
+        "ride": null,
+        "screen": null,
+        "inputMode": "keyboard",
+        "selected": 0,
+        "menus": [],
+        "mission": {
+          "mission": 3,
+          "stage": 5,
+          "active": true,
+          "finished": false,
+          "completed": 3,
+          "progress": 0,
+          "wave": 0,
+          "approach": "jam",
+          "target": {
+            "x": 195,
+            "y": 8.2,
+            "z": -192
+          },
+          "current": {
+            "type": "interact",
+            "label": "Connect the ledger to the transmitter",
+            "at": {
+              "x": 195,
+              "y": 8.2,
+              "z": -192
+            },
+            "line": [
+              "REN",
+              "Port Sable, this is not a scheduled announcement."
+            ],
+            "seconds": 6
+          },
+          "history": [
+            {
+              "mission": 0,
+              "stage": 0,
+              "label": "Meet Bo outside the garage",
+              "elapsed": 0.05
+            },
+            {
+              "mission": 0,
+              "stage": 1,
+              "label": "Drive to the Civic Shield impound",
+              "elapsed": 39.716666666665695
+            },
+            {
+              "mission": 0,
+              "stage": 2,
+              "label": "Clear the impound guards",
+              "elapsed": 42.69999999999886
+            },
+            {
+              "mission": 0,
+              "stage": 3,
+              "label": "Recover the impound release key",
+              "elapsed": 46.916666666665286
+            },
+            {
+              "mission": 0,
+              "stage": 4,
+              "label": "Take back the orange Cormorant",
+              "elapsed": 49.449999999998475
+            },
+            {
+              "mission": 0,
+              "stage": 5,
+              "label": "Collect the market residents’ ledger",
+              "elapsed": 93.94999999999595
+            },
+            {
+              "mission": 0,
+              "stage": 6,
+              "label": "Collect the marina’s mooring records",
+              "elapsed": 134.58333333333258
+            },
+            {
+              "mission": 0,
+              "stage": 7,
+              "label": "Collect the west relay’s power bills",
+              "elapsed": 180.4000000000357
+            },
+            {
+              "mission": 0,
+              "stage": 8,
+              "label": "Collect the exchange’s foreclosure notices",
+              "elapsed": 237.83333333341474
+            },
+            {
+              "mission": 0,
+              "stage": 9,
+              "label": "Collect the freight workers’ contracts",
+              "elapsed": 274.5333333334123
+            },
+            {
+              "mission": 0,
+              "stage": 10,
+              "label": "Bring the Cormorant and records to the garage",
+              "elapsed": 319.4000000000382
+            },
+            {
+              "mission": 0,
+              "stage": 11,
+              "label": "Give Bo the recovered records",
+              "elapsed": 322.1166666667024
+            },
+            {
+              "mission": 1,
+              "stage": 0,
+              "label": "Meet Iona at the market relay",
+              "elapsed": 372.8333333333229
+            },
+            {
+              "mission": 1,
+              "stage": 1,
+              "label": "Secure the western relay cabinet",
+              "elapsed": 410.849999999955
+            },
+            {
+              "mission": 1,
+              "stage": 2,
+              "label": "Copy the western relay key",
+              "elapsed": 423.03333333327726
+            },
+            {
+              "mission": 1,
+              "stage": 3,
+              "label": "Secure the marina cabinet",
+              "elapsed": 489.4166666665502
+            },
+            {
+              "mission": 1,
+              "stage": 4,
+              "label": "Copy the marina network key",
+              "elapsed": 498.9166666665416
+            },
+            {
+              "mission": 1,
+              "stage": 5,
+              "label": "Secure the freight cabinet",
+              "elapsed": 515.3166666665267
+            },
+            {
+              "mission": 1,
+              "stage": 6,
+              "label": "Copy the freight network key",
+              "elapsed": 529.2833333331806
+            },
+            {
+              "mission": 1,
+              "stage": 7,
+              "label": "Reach the contract exchange terminal",
+              "elapsed": 562.1166666664841
+            },
+            {
+              "mission": 1,
+              "stage": 8,
+              "label": "Keep the manifest uplink connected",
+              "elapsed": 641.7833333330783
+            },
+            {
+              "mission": 1,
+              "stage": 9,
+              "label": "Lose Civic Shield. Break sight in a side street.",
+              "elapsed": 766.049999999632
+            },
+            {
+              "mission": 1,
+              "stage": 10,
+              "label": "Deliver the manifest to Bo",
+              "elapsed": 798.5833333329357
+            },
+            {
+              "mission": 2,
+              "stage": 0,
+              "label": "Get the courier route from Bo",
+              "elapsed": 798.6333333329356
+            },
+            {
+              "mission": 2,
+              "stage": 1,
+              "label": "Intercept the moving courier. Ram its rear quarter.",
+              "elapsed": 856.483333332883
+            },
+            {
+              "mission": 2,
+              "stage": 2,
+              "label": "Secure the courier’s access case",
+              "elapsed": 859.4333333328804
+            },
+            {
+              "mission": 2,
+              "stage": 3,
+              "label": "Recover the courier access case",
+              "elapsed": 870.066666666204
+            },
+            {
+              "mission": 2,
+              "stage": 4,
+              "label": "Deliver the access case to the freight station",
+              "elapsed": 920.7666666661579
+            },
+            {
+              "mission": 2,
+              "stage": 5,
+              "label": "Protect Bo while he copies the ledger",
+              "elapsed": 1020.9833333327334
+            },
+            {
+              "mission": 2,
+              "stage": 6,
+              "label": "Take the copied evidence",
+              "elapsed": 1026.2999999993954
+            },
+            {
+              "mission": 2,
+              "stage": 7,
+              "label": "Pick up the transmission coil at the west relay",
+              "elapsed": 1061.0999999993637
+            },
+            {
+              "mission": 2,
+              "stage": 8,
+              "label": "Lose Civic Shield. Break sight in a side street.",
+              "elapsed": 1149.9999999992829
+            },
+            {
+              "mission": 2,
+              "stage": 9,
+              "label": "Bring the evidence and coil to the garage",
+              "elapsed": 1181.1666666659212
+            },
+            {
+              "mission": 2,
+              "stage": 10,
+              "label": "Plan the broadcast with Iona",
+              "elapsed": 1183.9666666659186
+            },
+            {
+              "mission": 3,
+              "stage": 0,
+              "label": "Install the transmission coil at the west relay",
+              "elapsed": 1222.1833333325505
+            },
+            {
+              "mission": 3,
+              "stage": 1,
+              "label": "Synchronize the market relay",
+              "elapsed": 1325.4499999991233
+            },
+            {
+              "mission": 3,
+              "stage": 2,
+              "label": "Synchronize the marina relay",
+              "elapsed": 1424.0166666657003
+            },
+            {
+              "mission": 3,
+              "stage": 3,
+              "label": "Clear the broadcast tower service yard",
+              "elapsed": 1496.1666666656347
+            },
+            {
+              "mission": 3,
+              "stage": 4,
+              "label": "Ride the service lift to the transmitter roof",
+              "elapsed": 1508.0666666656239
+            }
+          ]
+        },
+        "enemies": [],
+        "pendingSpawns": 0,
+        "courier": null,
+        "rides": [
+          {
+            "id": "loaner",
+            "at": {
+              "x": -187.0584716796875,
+              "y": 0.6285017132759094,
+              "z": -191.38070678710938
+            },
+            "yaw": 0.07067388945992303,
+            "speed": 2.6350423105961536e-11,
+            "integrity": 100,
+            "kind": "car"
+          },
+          {
+            "id": "cormorant",
+            "at": {
+              "x": 215.6852264404297,
+              "y": 0.6285017728805542,
+              "z": -180.9113311767578
+            },
+            "yaw": 3.0334322440090045,
+            "speed": 4.287272488250911e-8,
+            "integrity": 35,
+            "kind": "car"
+          },
+          {
+            "id": "freighter",
+            "at": {
+              "x": 144.9990692138672,
+              "y": 0.6765016913414001,
+              "z": 156.99949645996094
+            },
+            "yaw": 1.5707954496295466,
+            "speed": 0,
+            "integrity": 100,
+            "kind": "van"
+          },
+          {
+            "id": "marina",
+            "at": {
+              "x": 237.97164916992188,
+              "y": 0.6285015940666199,
+              "z": 100.82012939453125
+            },
+            "yaw": -1.8038088539103534,
+            "speed": -3.0725767634520052e-9,
+            "integrity": 100,
+            "kind": "car"
+          },
+          {
+            "id": "market",
+            "at": {
+              "x": -112.54639434814453,
+              "y": 0.6744717359542847,
+              "z": 103.56012725830078
+            },
+            "yaw": -2.267593280894404,
+            "speed": 0.011710333042884827,
+            "integrity": 100,
+            "kind": "car"
+          }
+        ],
+        "lift": {
+          "at": {
+            "x": 195,
+            "y": 0.019999999552965164,
+            "z": -185
+          },
+          "velocity": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "collider": 5.83e-322,
+          "landing": {
+            "x": 195,
+            "y": 8.2,
+            "z": -194
+          }
+        },
+        "hero": {
+          "state": "idle",
+          "grounded": true,
+          "groundCollider": 5.5e-322,
+          "animation": "Idle"
+        },
+        "input": {
+          "w": false,
+          "s": false,
+          "a": false,
+          "d": false,
+          "analog": {
+            "x": 0,
+            "y": 0
+          },
+          "pad": {
+            "x": 0,
+            "y": 0
+          },
+          "touchHeld": []
+        },
+        "prompt": {
+          "text": "Hold to connect the ledger to the transmitter",
+          "key": "KeyF"
+        },
+        "basis": {
+          "right": [
+            -1,
+            0,
+            0
+          ],
+          "forward": [
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    }
+  ]
+}

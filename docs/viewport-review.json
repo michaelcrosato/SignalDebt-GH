@@ -1,0 +1,732 @@
+{
+  "url": "http://127.0.0.1:8080",
+  "backend": "Chromium WebGPU / SwiftShader",
+  "devices": [
+    {
+      "name": "small-phone",
+      "width": 360,
+      "height": 640,
+      "touch": true,
+      "screens": [
+        {
+          "stage": "title",
+          "overflow": false,
+          "overlaps": [],
+          "outside": [],
+          "targets": [],
+          "status": "title | job 1/4 stage 1/12 | Meet Bo outside the garage | health 100 | heat 0.0 | on foot | 0.0s",
+          "mode": "touch"
+        },
+        {
+          "stage": "options",
+          "overflow": false,
+          "overlaps": [],
+          "outside": [],
+          "targets": [],
+          "status": "options | job 1/4 stage 1/12 | Meet Bo outside the garage | health 100 | heat 0.0 | on foot | 0.0s",
+          "mode": "touch"
+        },
+        {
+          "stage": "hud-interact",
+          "overflow": false,
+          "overlaps": [],
+          "outside": [],
+          "targets": [
+            {
+              "name": "Ⅱ",
+              "x": 248,
+              "y": 14,
+              "right": 294,
+              "bottom": 60,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "name": "MAP",
+              "x": 302,
+              "y": 14,
+              "right": 348,
+              "bottom": 60,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "name": "SCAN",
+              "x": 184,
+              "y": 458,
+              "right": 234,
+              "bottom": 508,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "RUN",
+              "x": 241,
+              "y": 458,
+              "right": 291,
+              "bottom": 508,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "DODGE",
+              "x": 298,
+              "y": 458,
+              "right": 348,
+              "bottom": 508,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "RELOAD",
+              "x": 184,
+              "y": 515,
+              "right": 234,
+              "bottom": 565,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "AIM",
+              "x": 241,
+              "y": 515,
+              "right": 291,
+              "bottom": 565,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "FIRE",
+              "x": 298,
+              "y": 515,
+              "right": 348,
+              "bottom": 565,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "INTERACT",
+              "x": 184,
+              "y": 572,
+              "right": 234,
+              "bottom": 622,
+              "width": 50,
+              "height": 50
+            }
+          ],
+          "status": "playing | job 1/4 stage 1/12 | Meet Bo outside the garage | health 100 | heat 0.0 | on foot | 0.4s",
+          "mode": "touch"
+        },
+        {
+          "stage": "hud-checkpoint",
+          "overflow": false,
+          "overlaps": [],
+          "outside": [],
+          "targets": [
+            {
+              "name": "Ⅱ",
+              "x": 248,
+              "y": 14,
+              "right": 294,
+              "bottom": 60,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "name": "MAP",
+              "x": 302,
+              "y": 14,
+              "right": 348,
+              "bottom": 60,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "name": "SCAN",
+              "x": 184,
+              "y": 458,
+              "right": 234,
+              "bottom": 508,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "RUN",
+              "x": 241,
+              "y": 458,
+              "right": 291,
+              "bottom": 508,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "DODGE",
+              "x": 298,
+              "y": 458,
+              "right": 348,
+              "bottom": 508,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "RELOAD",
+              "x": 184,
+              "y": 515,
+              "right": 234,
+              "bottom": 565,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "AIM",
+              "x": 241,
+              "y": 515,
+              "right": 291,
+              "bottom": 565,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "FIRE",
+              "x": 298,
+              "y": 515,
+              "right": 348,
+              "bottom": 565,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "INTERACT",
+              "x": 184,
+              "y": 572,
+              "right": 234,
+              "bottom": 622,
+              "width": 50,
+              "height": 50
+            }
+          ],
+          "status": "playing | job 1/4 stage 2/12 | Drive to the Civic Shield impound | health 100 | heat 0.0 | on foot | 0.7s",
+          "mode": "touch"
+        }
+      ],
+      "errors": [],
+      "issues": []
+    },
+    {
+      "name": "portrait-phone",
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "screens": [
+        {
+          "stage": "title",
+          "overflow": false,
+          "overlaps": [],
+          "outside": [],
+          "targets": [],
+          "status": "title | job 1/4 stage 1/12 | Meet Bo outside the garage | health 100 | heat 0.0 | on foot | 0.0s",
+          "mode": "touch"
+        },
+        {
+          "stage": "options",
+          "overflow": false,
+          "overlaps": [],
+          "outside": [],
+          "targets": [],
+          "status": "options | job 1/4 stage 1/12 | Meet Bo outside the garage | health 100 | heat 0.0 | on foot | 0.0s",
+          "mode": "touch"
+        },
+        {
+          "stage": "hud-interact",
+          "overflow": false,
+          "overlaps": [],
+          "outside": [],
+          "targets": [
+            {
+              "name": "Ⅱ",
+              "x": 278,
+              "y": 14,
+              "right": 324,
+              "bottom": 60,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "name": "MAP",
+              "x": 332,
+              "y": 14,
+              "right": 378,
+              "bottom": 60,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "name": "SCAN",
+              "x": 214,
+              "y": 662,
+              "right": 264,
+              "bottom": 712,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "RUN",
+              "x": 271,
+              "y": 662,
+              "right": 321,
+              "bottom": 712,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "DODGE",
+              "x": 328,
+              "y": 662,
+              "right": 378,
+              "bottom": 712,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "RELOAD",
+              "x": 214,
+              "y": 719,
+              "right": 264,
+              "bottom": 769,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "AIM",
+              "x": 271,
+              "y": 719,
+              "right": 321,
+              "bottom": 769,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "FIRE",
+              "x": 328,
+              "y": 719,
+              "right": 378,
+              "bottom": 769,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "INTERACT",
+              "x": 214,
+              "y": 776,
+              "right": 264,
+              "bottom": 826,
+              "width": 50,
+              "height": 50
+            }
+          ],
+          "status": "playing | job 1/4 stage 1/12 | Meet Bo outside the garage | health 100 | heat 0.0 | on foot | 0.4s",
+          "mode": "touch"
+        },
+        {
+          "stage": "hud-checkpoint",
+          "overflow": false,
+          "overlaps": [],
+          "outside": [],
+          "targets": [
+            {
+              "name": "Ⅱ",
+              "x": 278,
+              "y": 14,
+              "right": 324,
+              "bottom": 60,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "name": "MAP",
+              "x": 332,
+              "y": 14,
+              "right": 378,
+              "bottom": 60,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "name": "SCAN",
+              "x": 214,
+              "y": 662,
+              "right": 264,
+              "bottom": 712,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "RUN",
+              "x": 271,
+              "y": 662,
+              "right": 321,
+              "bottom": 712,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "DODGE",
+              "x": 328,
+              "y": 662,
+              "right": 378,
+              "bottom": 712,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "RELOAD",
+              "x": 214,
+              "y": 719,
+              "right": 264,
+              "bottom": 769,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "AIM",
+              "x": 271,
+              "y": 719,
+              "right": 321,
+              "bottom": 769,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "FIRE",
+              "x": 328,
+              "y": 719,
+              "right": 378,
+              "bottom": 769,
+              "width": 50,
+              "height": 50
+            },
+            {
+              "name": "INTERACT",
+              "x": 214,
+              "y": 776,
+              "right": 264,
+              "bottom": 826,
+              "width": 50,
+              "height": 50
+            }
+          ],
+          "status": "playing | job 1/4 stage 2/12 | Drive to the Civic Shield impound | health 100 | heat 0.0 | on foot | 0.7s",
+          "mode": "touch"
+        }
+      ],
+      "errors": [],
+      "issues": []
+    },
+    {
+      "name": "portrait-tablet",
+      "width": 820,
+      "height": 1180,
+      "touch": true,
+      "screens": [
+        {
+          "stage": "title",
+          "overflow": false,
+          "overlaps": [],
+          "outside": [],
+          "targets": [],
+          "status": "title | job 1/4 stage 1/12 | Meet Bo outside the garage | health 100 | heat 0.0 | on foot | 0.0s",
+          "mode": "touch"
+        },
+        {
+          "stage": "options",
+          "overflow": false,
+          "overlaps": [],
+          "outside": [],
+          "targets": [],
+          "status": "options | job 1/4 stage 1/12 | Meet Bo outside the garage | health 100 | heat 0.0 | on foot | 0.0s",
+          "mode": "touch"
+        },
+        {
+          "stage": "hud-interact",
+          "overflow": false,
+          "overlaps": [],
+          "outside": [],
+          "targets": [
+            {
+              "name": "Ⅱ",
+              "x": 708,
+              "y": 14,
+              "right": 754,
+              "bottom": 60,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "name": "MAP",
+              "x": 762,
+              "y": 14,
+              "right": 808,
+              "bottom": 60,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "name": "SCAN",
+              "x": 628,
+              "y": 984,
+              "right": 682,
+              "bottom": 1038,
+              "width": 54,
+              "height": 54
+            },
+            {
+              "name": "RUN",
+              "x": 690,
+              "y": 984,
+              "right": 744,
+              "bottom": 1038,
+              "width": 54,
+              "height": 54
+            },
+            {
+              "name": "DODGE",
+              "x": 752,
+              "y": 984,
+              "right": 806,
+              "bottom": 1038,
+              "width": 54,
+              "height": 54
+            },
+            {
+              "name": "RELOAD",
+              "x": 628,
+              "y": 1046,
+              "right": 682,
+              "bottom": 1100,
+              "width": 54,
+              "height": 54
+            },
+            {
+              "name": "AIM",
+              "x": 690,
+              "y": 1046,
+              "right": 744,
+              "bottom": 1100,
+              "width": 54,
+              "height": 54
+            },
+            {
+              "name": "FIRE",
+              "x": 752,
+              "y": 1046,
+              "right": 806,
+              "bottom": 1100,
+              "width": 54,
+              "height": 54
+            },
+            {
+              "name": "INTERACT",
+              "x": 628,
+              "y": 1108,
+              "right": 682,
+              "bottom": 1162,
+              "width": 54,
+              "height": 54
+            }
+          ],
+          "status": "playing | job 1/4 stage 1/12 | Meet Bo outside the garage | health 100 | heat 0.0 | on foot | 0.4s",
+          "mode": "touch"
+        },
+        {
+          "stage": "hud-checkpoint",
+          "overflow": false,
+          "overlaps": [],
+          "outside": [],
+          "targets": [
+            {
+              "name": "Ⅱ",
+              "x": 708,
+              "y": 14,
+              "right": 754,
+              "bottom": 60,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "name": "MAP",
+              "x": 762,
+              "y": 14,
+              "right": 808,
+              "bottom": 60,
+              "width": 46,
+              "height": 46
+            },
+            {
+              "name": "SCAN",
+              "x": 628,
+              "y": 984,
+              "right": 682,
+              "bottom": 1038,
+              "width": 54,
+              "height": 54
+            },
+            {
+              "name": "RUN",
+              "x": 690,
+              "y": 984,
+              "right": 744,
+              "bottom": 1038,
+              "width": 54,
+              "height": 54
+            },
+            {
+              "name": "DODGE",
+              "x": 752,
+              "y": 984,
+              "right": 806,
+              "bottom": 1038,
+              "width": 54,
+              "height": 54
+            },
+            {
+              "name": "RELOAD",
+              "x": 628,
+              "y": 1046,
+              "right": 682,
+              "bottom": 1100,
+              "width": 54,
+              "height": 54
+            },
+            {
+              "name": "AIM",
+              "x": 690,
+              "y": 1046,
+              "right": 744,
+              "bottom": 1100,
+              "width": 54,
+              "height": 54
+            },
+            {
+              "name": "FIRE",
+              "x": 752,
+              "y": 1046,
+              "right": 806,
+              "bottom": 1100,
+              "width": 54,
+              "height": 54
+            },
+            {
+              "name": "INTERACT",
+              "x": 628,
+              "y": 1108,
+              "right": 682,
+              "bottom": 1162,
+              "width": 54,
+              "height": 54
+            }
+          ],
+          "status": "playing | job 1/4 stage 2/12 | Drive to the Civic Shield impound | health 100 | heat 0.0 | on foot | 0.7s",
+          "mode": "touch"
+        }
+      ],
+      "errors": [],
+      "issues": []
+    },
+    {
+      "name": "landscape",
+      "width": 1920,
+      "height": 1080,
+      "touch": false,
+      "screens": [
+        {
+          "stage": "title",
+          "overflow": false,
+          "overlaps": [],
+          "outside": [],
+          "targets": [],
+          "status": "title | job 1/4 stage 1/12 | Meet Bo outside the garage | health 100 | heat 0.0 | on foot | 0.0s",
+          "mode": "keyboard"
+        },
+        {
+          "stage": "options",
+          "overflow": false,
+          "overlaps": [],
+          "outside": [],
+          "targets": [],
+          "status": "options | job 1/4 stage 1/12 | Meet Bo outside the garage | health 100 | heat 0.0 | on foot | 0.0s",
+          "mode": "keyboard"
+        },
+        {
+          "stage": "hud-interact",
+          "overflow": false,
+          "overlaps": [],
+          "outside": [],
+          "targets": [],
+          "status": "playing | job 1/4 stage 1/12 | Meet Bo outside the garage | health 100 | heat 0.0 | on foot | 0.3s",
+          "mode": "keyboard"
+        },
+        {
+          "stage": "hud-checkpoint",
+          "overflow": false,
+          "overlaps": [],
+          "outside": [],
+          "targets": [],
+          "status": "playing | job 1/4 stage 2/12 | Drive to the Civic Shield impound | health 100 | heat 0.0 | on foot | 0.5s",
+          "mode": "keyboard"
+        }
+      ],
+      "errors": [],
+      "issues": []
+    },
+    {
+      "name": "ultrawide",
+      "width": 2560,
+      "height": 1080,
+      "touch": false,
+      "screens": [
+        {
+          "stage": "title",
+          "overflow": false,
+          "overlaps": [],
+          "outside": [],
+          "targets": [],
+          "status": "title | job 1/4 stage 1/12 | Meet Bo outside the garage | health 100 | heat 0.0 | on foot | 0.0s",
+          "mode": "keyboard"
+        },
+        {
+          "stage": "options",
+          "overflow": false,
+          "overlaps": [],
+          "outside": [],
+          "targets": [],
+          "status": "options | job 1/4 stage 1/12 | Meet Bo outside the garage | health 100 | heat 0.0 | on foot | 0.0s",
+          "mode": "keyboard"
+        },
+        {
+          "stage": "hud-interact",
+          "overflow": false,
+          "overlaps": [],
+          "outside": [],
+          "targets": [],
+          "status": "playing | job 1/4 stage 1/12 | Meet Bo outside the garage | health 100 | heat 0.0 | on foot | 0.2s",
+          "mode": "keyboard"
+        },
+        {
+          "stage": "hud-checkpoint",
+          "overflow": false,
+          "overlaps": [],
+          "outside": [],
+          "targets": [],
+          "status": "playing | job 1/4 stage 2/12 | Drive to the Civic Shield impound | health 100 | heat 0.0 | on foot | 0.4s",
+          "mode": "keyboard"
+        }
+      ],
+      "errors": [],
+      "issues": []
+    }
+  ],
+  "limitations": [
+    "WebGPU software rendering is functional coverage, not physical-device performance.",
+    "Real iOS Safari is unavailable; separate installed viewport-matrix results describe WebKit support."
+  ]
+}

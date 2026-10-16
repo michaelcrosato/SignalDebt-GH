@@ -70,7 +70,10 @@ export class GameUI {
 
   show(screen, props = {}) {
     if (!copy[screen]) screen = 'pause';
-    if (this.screen && ['options', 'help', 'map', 'replay'].includes(screen) && !['options', 'help', 'map', 'replay'].includes(this.screen)) this.previous[screen] = { screen: this.screen, props: this.props };
+    if (['options', 'help', 'map', 'replay'].includes(screen)) {
+      if (!this.screen) delete this.previous[screen];
+      else if (!['options', 'help', 'map', 'replay'].includes(this.screen)) this.previous[screen] = { screen: this.screen, props: this.props };
+    }
     this.screen = screen; this.menuKeyQueue = []; this.props = props; this.confirmNew = false; this.selected = 0; this.controls = []; this.releaseTouch(); this.overlay.hidden = false; this.root.dataset.screen = screen; this.overlay.replaceChildren(); this.mapCanvas = null;
     const [eyebrow, title, subtitle] = copy[screen];
     const panel = $('div', `sd-panel sd-panel-${screen}`); this.panel = panel;
@@ -310,7 +313,11 @@ export class GameUI {
   releaseTouch() { for (const key of this.touchHeld) this.ctx.input?.setKey?.(key, false); this.touchHeld.clear(); if (this.ctx.input?.analog) Object.assign(this.ctx.input.analog, { x: 0, y: 0 }); if (this.knob) this.knob.style.transform = ''; for (const b of this.touch?.querySelectorAll('.is-held') || []) b.classList.remove('is-held'); }
   async fullscreen() {
     try { if (document.fullscreenElement) await document.exitFullscreen(); else if (document.documentElement.requestFullscreen) await document.documentElement.requestFullscreen(); else throw Error('unavailable'); }
-    catch { this.notify('Fullscreen needs a click or key press on this browser.'); }
+    catch {
+      let automaticAllowed = false;
+      try { automaticAllowed = (await navigator.permissions?.query({ name: 'fullscreen', allowWithoutGesture: true }))?.state === 'granted'; } catch {}
+      this.notify(automaticAllowed ? 'Chrome briefly limits repeat fullscreen requests. Try again in five seconds.' : 'Fullscreen needs a click or key press on this browser.');
+    }
   }
   notify(message) { this.notice.textContent = message; this.noticeUntil = this.clock + 5; }
   rumble(amount = 0.4, duration = 150) { if (!this.preferences.rumble) return; for (const pad of this.pads()) try { pad.vibrationActuator?.playEffect?.('dual-rumble', { duration, strongMagnitude: clamp(amount, 0, 1), weakMagnitude: clamp(amount * 0.65, 0, 1), startDelay: 0 })?.catch?.(() => {}); } catch {} }

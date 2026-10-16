@@ -6,6 +6,7 @@ import {launchGame,readableError} from './browser.mjs';
 import {makeNavigator} from './campaign-driver.mjs';
 import {runOpening} from './opening-route.mjs';
 import {roadRoute,angleDelta,segmentHitsRect} from '../navigation.js';
+import {MISSIONS} from '../missions.js';
 const arg=(key,value)=>process.argv.includes(key)?process.argv[process.argv.indexOf(key)+1]:value;
 const mode=arg('--mode','keyboard');
 const fresh=process.argv.includes('--fresh');
@@ -91,10 +92,31 @@ async function travel(target,{vehicle=false,combat=false}={}){
  }
  if(!vehicle){await exitCar();if(!combat&&dist((await session.state()).position,target)>3.8)await safeWalk(target,3.2);}
 }
-async function firing(dodge=false){
- if(mode==='gamepad')await driver.pad({buttons:{6:1,7:1,...(dodge?{0:1}:{})}});
- else if(mode==='touch'){await driver.touchButton('KeyC',true);await driver.touchButton('KeyJ',true);await driver.touchButton('Space',dodge);}
- else await driver.keyboard(['KeyC','KeyJ',...(dodge?['Space']:[])]);
+async function firing(dodge=false,state=null){
+ let x=0,y=0;
+ if(dodge&&state?.position.y>5){const center=state.lift.landing;let dx=center.x-state.position.x,dz=center.z-state.position.z;if(Math.hypot(dx,dz)<.1){dx=1;dz=0;}const d=Math.hypot(dx,dz);x=(dx*state.basis.right[0]+dz*state.basis.right[2])/d;y=(dx*state.basis.forward[0]+dz*state.basis.forward[2])/d;}
+ if(mode==='gamepad')await driver.pad({axes:[x,-y,0,0],buttons:{6:1,7:1,...(dodge?{0:1}:{})}});
+ else if(mode==='touch'){
+  // Fire already enables aim assistance. Two thumbs suffice: release fire to
+  // dodge with direction, then resume fire, rather than requiring four touches.
+  await driver.touchButton('KeyC',false);
+  if(dodge){await driver.touchButton('KeyJ',false);await driver.stick(x,y);await driver.touchButton('Space',true);}
+  else{await driver.touchButton('Space',false);await driver.stick(0,0);await driver.touchButton('KeyJ',true);}
+ }
+ else await driver.keyboard(['KeyC','KeyJ',...(dodge?['Space']:[]),...(x>.2?['KeyD']:x<-.2?['KeyA']:[]),...(y>.2?['KeyW']:y<-.2?['KeyS']:[])]);
+}
+async function interact(){
+ const start=await session.state(),stage=start.mission.stage,mission=start.mission.mission,target=start.mission.current.at;
+ for(let i=0;i<180;i++){
+  const s=await session.state();if(s.screen==='failure')throw Error('Defeated during interaction');
+  if(s.mission.stage!==stage||s.mission.mission!==mission){await driver.release();return;}
+  if(dist(s.position,target)>4.5){await driver.release();await safeWalk(target,3.2);continue;}
+  if(mode==='gamepad')await driver.pad({buttons:{3:1}});
+  else if(mode==='touch')await driver.touchButton('KeyF',true);
+  else await driver.keyboard(['KeyF']);
+  await driver.step(12);
+ }
+ throw Error('Interaction did not complete: '+start.mission.current.label);
 }
 async function battle(){
  const initial=await session.state(),stage=initial.mission.stage,mission=initial.mission.mission,center=initial.mission.current.at;
@@ -105,7 +127,7 @@ async function battle(){
   if(s.mission.current.type==='defend'&&s.mission.wave!==lastWave){lastWave=s.mission.wave;await nav.record(`defense wave ${lastWave} ${s.mission.approach} uplink ${s.signalHealth} at ${s.mission.progress.toFixed(2)}s`);}
   const guardRange=initial.mission.current.type==='combat'?40:17;
   if(dist(s.position,center)>guardRange&&(!s.enemies.length||Math.min(...s.enemies.map(e=>dist(e.at,s.position)))>40)){await driver.release();await safeWalk(center,guardRange-4);continue;}
-  if(s.enemies.length){const dodge=s.enemies.some(e=>e.attack>0&&e.attack<.28);await firing(dodge);await driver.step(12);}
+  if(s.enemies.length){const dodge=s.enemies.some(e=>e.attack>0&&e.attack<.28);await firing(dodge,s);await driver.step(12);}
   else{await driver.release();await driver.step(30);}
  }
  throw Error('Combat/defense did not finish: '+initial.mission.current.label);
@@ -129,6 +151,7 @@ async function intercept(){
  let next=1,previous=null,stuck=0;
  for(let tick=0;tick<4000;tick++){
   const s=await session.state();if(s.mission.current.type!=='intercept'){await nav.stop();return;}
+  if(s.ride.integrity<=0){await driver.release();await driver.tap('KeyR',110);await nav.record('courier chase disabled-car recovery');stuck=0;continue;}
   const c=s.courier;assert(c,'Live courier missing');
   if(dist(s.position,ring[next])<14)next=(next+1)%ring.length;
   const start=ring[(next+3)%ring.length],corner=ring[next];
@@ -150,15 +173,31 @@ async function intercept(){
 }
 async function lift(){
  await exitCar();await safeWalk({x:195,z:-181},.7);
- for(let i=0;i<120;i++){const s=await session.state();if(s.lift.at.y<.28&&s.lift.velocity.y<=.05){await safeWalk({x:195,z:-185},.5);break;}await driver.step(10);}
- const stage=(await session.state()).mission.stage;await driver.release();
- for(let i=0;i<180;i++){if((await session.state()).mission.stage!==stage)return;await driver.step(10);}
- throw Error('Service lift did not carry the player to the roof');
+ for(let i=0;i<120;i++){const s=await session.state();if(s.lift.at.y<.08&&s.lift.velocity.y<=.05)break;await driver.step(10);}
+ const stage=(await session.state()).mission.stage;let aboard=false;
+ for(let i=0;i<240;i++){
+  const s=await session.state();
+  if(s.hero.grounded&&s.hero.groundCollider===s.lift.collider&&Math.abs(s.position.x-195)<2.32&&Math.abs(s.position.z+185)<2.32){aboard=true;await nav.record('boarded lift: physical ground contact');break;}
+  const dx=195-s.position.x,dz=-185-s.position.z,d=Math.hypot(dx,dz)||1,x=(dx*s.basis.right[0]+dz*s.basis.right[2])/d,y=(dx*s.basis.forward[0]+dz*s.basis.forward[2])/d;
+  if(mode==='gamepad')await driver.pad({axes:[x,-y,0,0],buttons:{5:1}});
+  else if(mode==='touch'){await driver.stick(x,y);await driver.touchButton('ShiftLeft',true);}
+  else await driver.keyboard(['ShiftLeft',...(x>.2?['KeyD']:x<-.2?['KeyA']:[]),...(y>.2?['KeyW']:y<-.2?['KeyS']:[])]);
+  await driver.step(2);
+ }
+ assert(aboard,'Player must physically stand on the lift collider');await driver.release();
+ let top=false;
+ for(let i=0;i<180;i++){const s=await session.state();if(s.position.y>8.1){top=true;break;}await driver.step(10);}
+ assert(top,'Service lift must physically carry the player to roof height');
+ const landing=(await session.state()).lift.landing;await safeWalk(landing,2.5);await driver.step(6);
+ const landed=await session.state();
+ assert(landed.mission.stage!==stage&&landed.position.y>7.9&&landed.hero.grounded&&landed.hero.groundCollider!==landed.lift.collider,'Lift objective must finish with the actor standing on the static roof');
+ await nav.record('lift complete: static roof landing');
 }
 
 async function retryThroughMenu(reason){
  assert(retries<4,'Four public checkpoint retries exhausted: '+reason);
  assert.equal(session.errors.length,0,'Runtime errors must be fixed, not retried away');
+ const before=await session.state();assert.equal(before.engine.errors.length,0);assert.equal(before.engine.gpuErrors.length,0);
  await driver.release();await nav.record('attempt failed: '+reason);await session.shot(`attempt-${retries+1}-failed`);
  const s=await session.state();
  if(!s.screen){
@@ -181,7 +220,7 @@ try{
   try{
   if(current.type==='reach'){await travel(current.at,{vehicle:current.vehicle});if(current.below!==undefined)await driver.step(60);}
   else if(current.type==='combat'){await travel(current.at,{combat:true});await battle();}
-  else if(current.type==='interact'){await travel(current.at);await driver.tap('KeyF',Math.ceil(current.seconds*60)+8);}
+  else if(current.type==='interact'){await travel(current.at);await interact();}
   else if(current.type==='defend'){await travel(current.at,{combat:true});await battle();}
   else if(current.type==='escape')await escape();
   else if(current.type==='intercept')await intercept();
@@ -192,11 +231,13 @@ try{
   const after=await session.state();assert(after.mission.stage!==s.mission.stage||after.mission.mission!==s.mission.mission||after.screen==='failure','Objective did not advance: '+current.label);
   }catch(error){
    const failed=await session.state();
-   if(failed.screen==='failure'||/Driving|Foot navigation|No walkable|Could not enter|Service lift/.test(error.message)){await retryThroughMenu(readableError(error.message));continue;}
+   if(failed.screen==='failure'||/Driving|Foot navigation|No walkable|Could not enter|Service lift|Vehicle would|Interaction/.test(error.message)){await retryThroughMenu(readableError(error.message));continue;}
    throw error;
   }
  }
  const final=await session.state();assert(final.mission.finished&&final.mission.completed===4,'All four chapters must reach the final ending');assert.equal(session.errors.length,0,session.errors.join('\n'));
+ assert.equal(final.engine.errors.length,0);assert.equal(final.engine.gpuErrors.length,0);
+ assert.deepEqual(final.mission.history.map(({mission,stage,label})=>({mission,stage,label})),MISSIONS.flatMap((m,mission)=>m.stages.map((s,stage)=>({mission,stage,label:s.label}))),'Every authored objective must be completed in order');
  assert.equal(final.inputMode,mode,'prompts must follow the selected input');if(mode!=='keyboard')assert.equal(driver.keyboardEvents,0,'controller/touch campaign must not use keyboard fallback');
  await session.shot('campaign-complete');await session.save('campaign',{sourceCheckpoint:sourceArchive,log:nav.log,wallElapsedSeconds:(Date.now()-started)/1000,clock:'engine.step manual simulation; game playTime is simulated gameplay duration',retries});
 }catch(error){await nav.record('FAILED '+readableError(error.message)).catch(()=>{});await session.shot('failure').catch(()=>{});await session.save('failure',{sourceCheckpoint:sourceArchive,log:nav.log,failure:readableError(error.message),wallElapsedSeconds:(Date.now()-started)/1000}).catch(()=>{});throw Error(readableError(error.message));}

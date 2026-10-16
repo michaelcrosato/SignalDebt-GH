@@ -193,7 +193,7 @@ export const MISSIONS = [
       ),
       fight("Secure the freight cabinet", 145, 145, 4, [
         "BO",
-        "The freight lane is narrow. A parked van makes useful cover.",
+        "The freight lane is narrow. Those cargo containers make useful cover.",
       ]),
       interact(
         "Copy the freight network key",
@@ -353,7 +353,7 @@ export const MISSIONS = [
       {
         type: "lift",
         label: "Ride the service lift to the transmitter roof",
-        at: at(195, -185, 8),
+        at: at(195, -194, 8.2),
         line: [
           "IONA",
           "Take the moving platform. The uplink is on the roof. Look down: that’s the city you’re keeping.",
@@ -364,7 +364,7 @@ export const MISSIONS = [
         195,
         -192,
         ["REN", "Port Sable, this is not a scheduled announcement."],
-        { seconds: 6, at: at(195, -192, 8) },
+        { seconds: 6, at: at(195, -192, 8.2) },
       ),
       defend(
         "Keep the public broadcast alive",
@@ -375,7 +375,7 @@ export const MISSIONS = [
           "IONA",
           "They can cut one transmitter. They can’t cut every recording. Hold this roof.",
         ],
-        { at: at(195, -192, 8) },
+        { at: at(195, -192, 8.2) },
       ),
       reach(
         "Return to street level",
@@ -558,7 +558,14 @@ export class Story {
       this.advance();
     else if (s.type === "escape" && g.heat === 0) this.advance();
     else if (s.type === "intercept" && g.courierStopped) this.advance();
-    else if (s.type === "lift" && near && p.y > 6.8) this.advance();
+    else if (
+      s.type === "lift" &&
+      near &&
+      p.y > 7.9 &&
+      g.player.hero.grounded &&
+      g.player.hero.groundCollider !== g.world.lift.body.collider(0).handle
+    )
+      this.advance();
     else if (s.type === "interact") {
       const height = s.y ?? s.at.y ?? 0;
       if (near && !g.ride && Math.abs(p.y - height) < 3) {

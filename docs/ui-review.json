@@ -1,0 +1,363 @@
+{
+  "url": "http://127.0.0.1:8080",
+  "checks": [
+    {
+      "label": "Initial title",
+      "result": true
+    },
+    {
+      "label": "Keyboard new story opens briefing",
+      "result": true
+    },
+    {
+      "label": "Keyboard briefing starts play",
+      "result": true
+    },
+    {
+      "label": "F completes the real Meet Bo objective",
+      "result": true
+    },
+    {
+      "label": "Escape opens pause",
+      "result": true
+    },
+    {
+      "label": "Escape closes pause without reopening",
+      "result": true
+    },
+    {
+      "label": "M opens map",
+      "result": true
+    },
+    {
+      "label": "Escape closes map without opening pause",
+      "result": true
+    },
+    {
+      "label": "Keyboard navigates pause to options",
+      "result": true
+    },
+    {
+      "label": "Picture option changes real engine settings",
+      "result": true
+    },
+    {
+      "label": "Options returns to pause",
+      "result": true
+    },
+    {
+      "label": "Pause resumes after options",
+      "result": true
+    },
+    {
+      "label": "Gamepad Options opens pause",
+      "result": true
+    },
+    {
+      "label": "Gamepad confirms district map",
+      "result": true
+    },
+    {
+      "label": "Gamepad back returns map to pause",
+      "result": true
+    },
+    {
+      "label": "Gamepad navigates options",
+      "result": true
+    },
+    {
+      "label": "Gamepad adjusts real look",
+      "result": true
+    },
+    {
+      "label": "Gamepad back resumes gameplay",
+      "result": true
+    },
+    {
+      "label": "Gamepad prompts follow last input",
+      "result": true
+    },
+    {
+      "label": "Gamepad returns to title",
+      "result": true
+    },
+    {
+      "label": "Gamepad Continue resumes checkpoint",
+      "result": true
+    },
+    {
+      "label": "Continue recording embeds the actual checkpoint",
+      "result": true
+    },
+    {
+      "label": "Gamepad can return to title after Continue",
+      "result": true
+    },
+    {
+      "label": "Replacing a save requires confirmation",
+      "result": true
+    },
+    {
+      "label": "Gamepad new story opens briefing",
+      "result": true
+    },
+    {
+      "label": "Gamepad begins story",
+      "result": true
+    },
+    {
+      "label": "Gamepad triangle completes Meet Bo",
+      "result": true
+    },
+    {
+      "label": "Open Help shows controller scan binding",
+      "result": true
+    },
+    {
+      "label": "Open Help refreshes keyboard binding without rebuilding focus",
+      "result": true
+    },
+    {
+      "label": "Open Help switches back to controller binding with focus preserved",
+      "result": true
+    },
+    {
+      "label": "Ending formats elapsed time and money",
+      "result": true
+    },
+    {
+      "label": "Controller can reveal the final ending action at 720p",
+      "result": true
+    },
+    {
+      "label": "Fullscreen rejection with automatic permission explains Chrome cooldown",
+      "result": true
+    },
+    {
+      "label": "Fullscreen rejection without automatic permission explains gesture requirement",
+      "result": true
+    },
+    {
+      "label": "Picture menu writes the stable per-game storage key",
+      "result": true
+    },
+    {
+      "label": "Picture look survives a real page reload",
+      "result": true
+    },
+    {
+      "label": "Picture pixelArt survives a real page reload",
+      "result": true
+    },
+    {
+      "label": "Picture pixelSize survives a real page reload",
+      "result": true
+    },
+    {
+      "label": "Picture quality survives a real page reload",
+      "result": true
+    },
+    {
+      "label": "Picture fps survives a real page reload",
+      "result": true
+    },
+    {
+      "label": "Picture debugInfo survives a real page reload",
+      "result": true
+    },
+    {
+      "label": "Reloaded picture choices are applied to the engine",
+      "result": true
+    },
+    {
+      "label": "Audio master survives a real page reload",
+      "result": true
+    },
+    {
+      "label": "Audio sfx survives a real page reload",
+      "result": true
+    },
+    {
+      "label": "Audio music survives a real page reload",
+      "result": true
+    },
+    {
+      "label": "Touch interaction completes Meet Bo",
+      "result": true
+    },
+    {
+      "label": "Touch stick supplies analog movement",
+      "result": true
+    },
+    {
+      "label": "Touch stick releases to zero",
+      "result": true
+    },
+    {
+      "label": "Touch pause button",
+      "result": true
+    },
+    {
+      "label": "Touch options",
+      "result": true
+    },
+    {
+      "label": "Touch options back",
+      "result": true
+    },
+    {
+      "label": "Touch resume",
+      "result": true
+    },
+    {
+      "label": "Portrait has no horizontal overflow",
+      "result": true
+    },
+    {
+      "label": "Touch new is recorded as input",
+      "result": true
+    },
+    {
+      "label": "Touch begin is recorded as input",
+      "result": true
+    },
+    {
+      "label": "Touch pause is recorded as input",
+      "result": true
+    },
+    {
+      "label": "Touch options is recorded as input",
+      "result": true
+    },
+    {
+      "label": "Touch back is recorded as input",
+      "result": true
+    },
+    {
+      "label": "Touch resume is recorded as input",
+      "result": true
+    },
+    {
+      "label": "Engine replay reproduces touch Meet Bo without DOM clicks",
+      "result": true
+    },
+    {
+      "label": "A delivered UI command runs once even if UI update repeats in the frame",
+      "result": true
+    },
+    {
+      "label": "Replay briefing explains campaign checkpoint preservation",
+      "result": true
+    },
+    {
+      "label": "Replay debrief offers Return to story",
+      "result": true
+    },
+    {
+      "label": "Portrait recovery fixture enters the loaner through interaction",
+      "result": true
+    },
+    {
+      "label": "Drive RECOVER has a safe touch target",
+      "result": true
+    },
+    {
+      "label": "Portrait drive buttons do not overlap",
+      "result": true
+    },
+    {
+      "label": "Holding RECOVER invokes vehicle recovery",
+      "result": true
+    },
+    {
+      "label": "Releasing RECOVER releases R",
+      "result": true
+    },
+    {
+      "label": "No browser page errors",
+      "result": true
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "desktop-title.png",
+    "desktop-brief.png",
+    "desktop-hud.png",
+    "desktop-map.png",
+    "desktop-options.png",
+    "gamepad-hud.png",
+    "ending-format-fixture.png",
+    "ending-final-action-fixture.png",
+    "touch-title.png",
+    "touch-hud.png",
+    "touch-options.png",
+    "touch-drive-recovery.png"
+  ],
+  "limitations": [
+    "Software WebGPU is not the RTX 3060 Ti or Galaxy S25 performance target.",
+    "Chromium touch emulation does not verify real iOS Safari."
+  ],
+  "objective": {
+    "stage": 1,
+    "label": "Drive to the Civic Shield impound"
+  },
+  "settingsReload": {
+    "before": {
+      "picture": {
+        "pixelArt": false,
+        "look": "no_filters",
+        "pixelSize": "chunky",
+        "fps": 30,
+        "debugInfo": true,
+        "quality": "low"
+      },
+      "sound": {
+        "master": 0.7,
+        "sfx": 0.9,
+        "music": 0.5,
+        "muted": false
+      },
+      "key": "signal-debt-picture-v1",
+      "stored": {
+        "look": "no_filters",
+        "pixelArt": false,
+        "pixelSize": "chunky",
+        "quality": "low",
+        "fps": 30,
+        "debugInfo": true
+      }
+    },
+    "after": {
+      "picture": {
+        "look": "no_filters",
+        "pixelArt": false,
+        "pixelSize": "chunky",
+        "quality": "low",
+        "fps": 30,
+        "debugInfo": true
+      },
+      "sound": {
+        "master": 0.7,
+        "sfx": 0.9,
+        "music": 0.5,
+        "muted": false
+      },
+      "quality": "low",
+      "fps": 30,
+      "debug": true
+    }
+  },
+  "recordedTouchActions": [
+    "new",
+    "begin",
+    "pause",
+    "options",
+    "back",
+    "resume"
+  ],
+  "inputReplay": {
+    "stage": 1,
+    "screen": null,
+    "engineErrors": []
+  }
+}

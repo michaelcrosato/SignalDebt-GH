@@ -1,0 +1,176 @@
+{
+  "checks": [
+    {
+      "label": "keyboard: title → options → back returns to title",
+      "value": true
+    },
+    {
+      "label": "keyboard: pause → map → back returns to pause",
+      "value": true
+    },
+    {
+      "label": "keyboard: Resume returns to gameplay",
+      "value": true
+    },
+    {
+      "label": "keyboard: direct map opens from gameplay",
+      "value": true
+    },
+    {
+      "label": "keyboard: direct map Back returns to gameplay, without stale Pause parent",
+      "value": true
+    },
+    {
+      "label": "keyboard: pause → options → back still returns to pause",
+      "value": true
+    },
+    {
+      "label": "keyboard: subsequent Resume still returns to gameplay",
+      "value": true
+    },
+    {
+      "label": "touch: title → options → back returns to title",
+      "value": true
+    },
+    {
+      "label": "touch: pause → map → back returns to pause",
+      "value": true
+    },
+    {
+      "label": "touch: Resume returns to gameplay",
+      "value": true
+    },
+    {
+      "label": "touch: direct map opens from gameplay",
+      "value": true
+    },
+    {
+      "label": "touch: direct map Back returns to gameplay, without stale Pause parent",
+      "value": true
+    },
+    {
+      "label": "touch: pause → options → back still returns to pause",
+      "value": true
+    },
+    {
+      "label": "touch: subsequent Resume still returns to gameplay",
+      "value": true
+    },
+    {
+      "label": "Prompt fixture enters loaner through an actual keyboard interaction",
+      "value": true
+    },
+    {
+      "label": "Vehicle toast uses W/S after keyboard entry",
+      "value": true
+    },
+    {
+      "label": "Existing vehicle toast switches to R2/L2",
+      "value": true
+    },
+    {
+      "label": "Existing vehicle toast switches back to W/S",
+      "value": true
+    },
+    {
+      "label": "Existing vehicle toast switches to GAS/BRAKE after actual touch",
+      "value": true
+    },
+    {
+      "label": "Recovery toast uses R in keyboard mode",
+      "value": true
+    },
+    {
+      "label": "Recovery toast switches to the controller square glyph",
+      "value": true
+    },
+    {
+      "label": "Recovery toast switches back to R",
+      "value": true
+    },
+    {
+      "label": "Recovery toast switches to RECOVER after actual touch",
+      "value": true
+    },
+    {
+      "label": "No browser errors",
+      "value": true
+    }
+  ],
+  "errors": [],
+  "sourceHashes": {
+    "keyboard": {
+      "game.js": "d6570ed90d975a7215fa01be40ec31cc04c793d5be0bce33a2e95788341beb0e",
+      "city-game.js": "ef4991ad6df60f31a535f3b6de520a09e0edb3b5a1efa7ed2e423699cd56ece2",
+      "actors.js": "091175d7e05c977aeecf57fd6b32aa6743deb07263ef75a3dface78abc78e2f1",
+      "vehicles.js": "09750dab4685a65a1713269c43810942c8fdaae9fca5a129b09e65b606ce8daa",
+      "world.js": "24f353e5c03f7f87ed7ed42edf9527b56234fa98c0e2a08eeadf670ccc2f027b",
+      "ui.js": "a53608937d7883242cdb7e56c501bbb6b65d70fa38e4a6d86bd130614968f4be",
+      "missions.js": "8c3b941c6073f0a0055677ac72eae0c059e606bd13f9fedb46698832669f294f",
+      "navigation.js": "cb25b61c3382a7326dc94daebfe8839bde515c961ef0121d167913255339fe30"
+    },
+    "touch": {
+      "game.js": "d6570ed90d975a7215fa01be40ec31cc04c793d5be0bce33a2e95788341beb0e",
+      "city-game.js": "ef4991ad6df60f31a535f3b6de520a09e0edb3b5a1efa7ed2e423699cd56ece2",
+      "ui.js": "a53608937d7883242cdb7e56c501bbb6b65d70fa38e4a6d86bd130614968f4be",
+      "world.js": "24f353e5c03f7f87ed7ed42edf9527b56234fa98c0e2a08eeadf670ccc2f027b",
+      "vehicles.js": "09750dab4685a65a1713269c43810942c8fdaae9fca5a129b09e65b606ce8daa",
+      "actors.js": "091175d7e05c977aeecf57fd6b32aa6743deb07263ef75a3dface78abc78e2f1",
+      "navigation.js": "cb25b61c3382a7326dc94daebfe8839bde515c961ef0121d167913255339fe30",
+      "missions.js": "8c3b941c6073f0a0055677ac72eae0c059e606bd13f9fedb46698832669f294f"
+    }
+  },
+  "promptFixture": {
+    "scope": "Display-only proof: player placed beside loaner; vehicle integrity later set to zero. No full campaign claim.",
+    "samples": [
+      {
+        "label": "Vehicle toast uses W/S after keyboard entry",
+        "mode": "keyboard",
+        "text": "Bo’s loaner · W accelerate · S brake / reverse",
+        "remaining": 4.933333333333334
+      },
+      {
+        "label": "Existing vehicle toast switches to R2/L2",
+        "mode": "gamepad",
+        "text": "Bo’s loaner · R2 accelerate · L2 brake / reverse",
+        "remaining": 4.866666666666667
+      },
+      {
+        "label": "Existing vehicle toast switches back to W/S",
+        "mode": "keyboard",
+        "text": "Bo’s loaner · W accelerate · S brake / reverse",
+        "remaining": 4.800000000000001
+      },
+      {
+        "label": "Existing vehicle toast switches to GAS/BRAKE after actual touch",
+        "mode": "touch",
+        "text": "Bo’s loaner · GAS accelerate · BRAKE / reverse",
+        "remaining": 4.7666666666666675
+      },
+      {
+        "label": "Recovery toast uses R in keyboard mode",
+        "mode": "keyboard",
+        "text": "Engine disabled · hold R to recover",
+        "remaining": 3.9833333333333334
+      },
+      {
+        "label": "Recovery toast switches to the controller square glyph",
+        "mode": "gamepad",
+        "text": "Engine disabled · hold □ to recover",
+        "remaining": 3.916666666666667
+      },
+      {
+        "label": "Recovery toast switches back to R",
+        "mode": "keyboard",
+        "text": "Engine disabled · hold R to recover",
+        "remaining": 3.8500000000000005
+      },
+      {
+        "label": "Recovery toast switches to RECOVER after actual touch",
+        "mode": "touch",
+        "text": "Engine disabled · hold RECOVER to recover",
+        "remaining": 3.8166666666666673
+      }
+    ]
+  }
+}

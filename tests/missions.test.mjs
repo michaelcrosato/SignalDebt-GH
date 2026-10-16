@@ -31,9 +31,9 @@ test('both courier recovery stages follow the actual interception site',()=>{
 test('roof objectives share the lift destination altitude and return demands street height',()=>{
   const stages=MISSIONS[3].stages;
   const lift=stages.findIndex(stage=>stage.type==='lift');
-  assert.equal(stages[lift].at.y,8);
-  assert.equal(stages[lift+1].at.y,8);
-  assert.equal(stages[lift+2].at.y,8);
+  assert.deepEqual(stages[lift].at,{x:195,y:8.2,z:-194});
+  assert.equal(stages[lift+1].at.y,8.2);
+  assert.equal(stages[lift+2].at.y,8.2);
   assert.equal(stages[lift+3].below,3);
 });
 
@@ -54,4 +54,12 @@ test('roof defense needs the player on the roof, not the street below',()=>{
   assert.equal(checkpoints,0);
   game.position.y=8.2;story.tick(1);assert.equal(story.progress,1);assert.equal(checkpoints,1);
   story.tick(1);assert.equal(checkpoints,1,'arrival checkpoint is written once, before the defense');
+});
+
+test('lift checkpoint requires the static roof rather than a moving deck or airborne crossing',()=>{
+ const game={ui:{screen:null},position:{x:195,y:8.22,z:-189},player:{hero:{grounded:true,groundCollider:17}},world:{lift:{body:{collider:()=>({handle:17})}}}};
+ const story=new Story(game);story.mission=3;story.stage=4;story.active=true;let completed=0;story.advance=()=>completed++;
+ story.tick(1);assert.equal(completed,0,'moving lift is not a safe saved landing');
+ game.player.hero.groundCollider=18;game.player.hero.grounded=false;story.tick(1);assert.equal(completed,0,'passing above the roof is not arriving');
+ game.player.hero.grounded=true;story.tick(1);assert.equal(completed,1,'standing on the static roof completes the ride');
 });

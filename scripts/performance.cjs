@@ -17,13 +17,15 @@ const allowSoftware = args.includes('--allow-software');
 const headed = args.includes('--headed');
 const width = Number(value('--width', 1920)), height = Number(value('--height', 1080));
 const root = path.resolve(__dirname, '..');
+const runtimeFiles = ['index.html','game.js','city-game.js','world.js','models.js','equipment.js','navigation.js','missions.js','vehicles.js','actors.js','audio.js','persistence.js','ui.js','style.css','pixel-engine.js','packs/kenney-nature.json'];
+const runtimeHashes = () => Object.fromEntries(runtimeFiles.map(file => [file, crypto.createHash('sha256').update(fs.readFileSync(path.join(root,file))).digest('hex')]));
 const report = {
   schemaVersion: 1, startedAtUtc: new Date().toISOString(), url,
   method: 'Real render callbacks and engine measured FPS; no manual simulation during samples. No screenshots or GPU readback during measured windows.',
   scenarioSetup: 'Script positions player/car and spawns a representative six-enemy/two-pursuer scene. Health is held at 100 during that stress scene. This is not evidence of story completion.',
   runtime: { platform: process.platform, node: process.version, browserExecutable: browserPath ?? 'Playwright Chromium', headless: !headed },
   viewport: { width, height }, warmupSeconds: warmup, sampleSeconds: seconds,
-  sourceHashes: Object.fromEntries(['world.js','models.js','vehicles.js','actors.js','city-game.js','game.js'].map(file => [file, crypto.createHash('sha256').update(fs.readFileSync(path.join(root,file))).digest('hex')])),
+  sourceHashes: runtimeHashes(), servedSourceHashes: {},
   scenarios: [], errors: [], limitations: ['Representative scenes, not every frame of the full campaign.','Headless Chrome presentation is not a physical TV display measurement.','Galaxy S25 is not verified by this desktop run.'],
 };
 const save = () => { fs.mkdirSync(path.dirname(output), { recursive: true }); fs.writeFileSync(output, JSON.stringify(report, null, 2) + '\n'); };
@@ -33,6 +35,11 @@ const save = () => { fs.mkdirSync(path.dirname(output), { recursive: true }); fs
     browser = await chromium.launch({ executablePath: browserPath, headless: !headed, args: process.platform === 'win32' ? [] : ['--enable-unsafe-webgpu'] });
     report.runtime.browserVersion = await browser.version();
     const page = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: 1 });
+    const sourceReads = [];
+    page.on('response', response => {
+      const file = decodeURIComponent(new URL(response.url()).pathname).replace(/^\//, '') || 'index.html';
+      if (runtimeFiles.includes(file)) sourceReads.push(response.body().then(body => { report.servedSourceHashes[file] = crypto.createHash('sha256').update(body).digest('hex'); }));
+    });
     await page.addInitScript(() => {
       window.__performanceAdapterRequests = [];
       if (!navigator.gpu) return;
@@ -50,6 +57,7 @@ const save = () => { fs.mkdirSync(path.dirname(output), { recursive: true }); fs
     report.systemGpu = { devices: system.gpu.devices, features: system.gpu.featureStatus, renderer: system.gpu.auxAttributes.glRenderer, processCrashCount: system.gpu.auxAttributes.processCrashCount };
     await page.goto(url);
     await page.waitForFunction(() => window.__PIXEL_ENGINE__?.game?.ready, { timeout: 120000 });
+    await Promise.all(sourceReads);
     report.engine = await page.evaluate(async () => {
       const e = window.__PIXEL_ENGINE__;
       const gameRequests = [...window.__performanceAdapterRequests];
@@ -63,8 +71,9 @@ const save = () => { fs.mkdirSync(path.dirname(output), { recursive: true }); fs
     save();
     if (!report.hardwareAdapter && !allowSoftware) throw new Error('Hardware WebGPU adapter not verified; pass --allow-software only for an explicitly software-only diagnostic.');
     if (probeOnly) return;
-    await page.evaluate(() => {
+    await page.evaluate(async () => {
       const e = window.__PIXEL_ENGINE__, g = e.game;
+      await e.audio.unlock();
       g.action('new'); g.action('begin'); g.ui.hide(); g.story.active = false;
       e.timeScale = 1; e.manual = false;
     });
@@ -104,7 +113,7 @@ const save = () => { fs.mkdirSync(path.dirname(output), { recursive: true }); fs
           renderedFps: frames.length / ((end-start)/1000), engineFrameDelta: e.frame-startFrame,
           engineFps: { minimum: fps[0], p05: q(fps,.05), median: q(fps,.5), p95: q(fps,.95), maximum: fps.at(-1) },
           frameIntervalMs: { median: q(intervals,.5), p95: q(intervals,.95), p99: q(intervals,.99), maximum: intervals.at(-1) },
-          state: { manual: e.manual, paused: e.paused, timeScale: e.timeScale, quality: e.quality, resolution: e.renderer.resolution, position: {...g.position}, speed: g.ride?.speed ?? 0, integrity: g.ride?.integrity ?? null, enemies: g.enemies.filter(x=>x.health>0).length, police: g.police.length, sceneObjects: e.scene.children.length },
+          state: { manual: e.manual, paused: e.paused, timeScale: e.timeScale, quality: e.quality, resolution: e.renderer.resolution, position: {...g.position}, speed: g.ride?.speed ?? 0, integrity: g.ride?.integrity ?? null, enemies: g.enemies.filter(x=>x.health>0).length, police: g.police.length, sceneObjects: e.scene.children.length, audioState: e.audio.context?.state },
           rendererInfo: { calls: rendering.render.calls, triangles: rendering.render.triangles, geometries: rendering.memory.geometries, textures: rendering.memory.textures },
           errors: [...e.errors], gpuErrors: [...e.renderer.gpuErrors], samples,
         };
@@ -116,10 +125,33 @@ const save = () => { fs.mkdirSync(path.dirname(output), { recursive: true }); fs
       report.scenarios.push({ name: scenario, ...measurement, screenshot: path.basename(screenshot) }); save();
       console.log(JSON.stringify({ scenario, renderedFps: measurement.renderedFps, engineFps: measurement.engineFps, frameIntervalMs: measurement.frameIntervalMs, errors: measurement.errors }));
     }
+    // Visual-only roof inspection after every timed window. Keep this separate
+    // so camera placement and screenshots cannot affect reported performance.
+    await page.evaluate(() => {
+      const e = window.__PIXEL_ENGINE__, g = e.game;
+      for (const key of ['KeyW','KeyS','KeyA','KeyD','KeyJ']) e.input.setKey(key, false);
+      g.clearHeat(); g.clearEnemies(); g.exitCar(true); g.health = 100;
+      g.player.teleport([195, 8.3, -192]);
+      e.camera.yaw = Math.PI; e.camera.pitch = 0.78;
+      e.camera.teleport(g.cameraTarget());
+    });
+    await page.waitForTimeout(600);
+    const roofScreenshot = path.join(path.dirname(output), `${path.basename(output, '.json')}-roof.png`);
+    await page.screenshot({ path: roofScreenshot });
+    report.roofReview = await page.evaluate(() => {
+      const e = window.__PIXEL_ENGINE__;
+      return { position: { ...e.game.position }, camera: e.camera.describe(), errors: [...e.errors], gpuErrors: [...e.renderer.gpuErrors] };
+    });
+    report.roofReview.screenshot = path.basename(roofScreenshot);
+    report.roofReview.scope = 'Default third-person framing with fixture placement on the static roof, captured after sampling; not an additional FPS sample.';
   } catch (error) {
     report.errors.push(error.message); process.exitCode = 1;
     console.error(error.message);
   } finally {
+    report.sourceHashesAtFinish = runtimeHashes();
+    report.runtimeHashMismatches = runtimeFiles.filter(file => report.sourceHashes[file] !== report.sourceHashesAtFinish[file] || report.servedSourceHashes[file] !== report.sourceHashes[file]);
+    report.runtimeHashesMatch = report.runtimeHashMismatches.length === 0;
+    if (!report.runtimeHashesMatch) { report.errors.push('Runtime source hashes changed or served content did not match: ' + report.runtimeHashMismatches.join(', ')); process.exitCode = 1; }
     report.finishedAtUtc = new Date().toISOString(); save();
     if (report.scenarios.length) {
       const frames = report.scenarios.reduce((n,s) => n + s.renderedFrames, 0);
@@ -128,7 +160,7 @@ const save = () => { fs.mkdirSync(path.dirname(output), { recursive: true }); fs
         aggregateRenderedFps: frames / elapsed,
         minimumScenarioRenderedFps: Math.min(...report.scenarios.map(s => s.renderedFps)),
         maximumScenarioP95FrameIntervalMs: Math.max(...report.scenarios.map(s => s.frameIntervalMs.p95)),
-        assessment: report.scenarios.length === 3 && report.scenarios.every(s => s.renderedFps >= 59.5 && s.engineFps.median >= 60 && !s.errors.length && !s.gpuErrors.length)
+        assessment: report.runtimeHashesMatch && !report.errors.length && report.scenarios.length === 3 && report.scenarios.every(s => s.renderedFps >= 59.5 && s.engineFps.median >= 60 && !s.errors.length && !s.gpuErrors.length)
           ? 'Nominal 60fps cap sustained in all three sampled scenes. This does not establish every frame of the full campaign.'
           : 'Inspect individual scenarios; the three-scene nominal 60fps condition was not established.',
         nominal60fpsCriterion: 'At least 59.5 average rendered fps per scene (sampling-boundary tolerance), median engine FPS 60, and no engine/GPU errors.',

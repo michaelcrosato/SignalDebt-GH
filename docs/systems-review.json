@@ -1,0 +1,721 @@
+{
+  "mode": "gamepad",
+  "url": "http://127.0.0.1:8080/",
+  "sourceHashes": {
+    "game.js": "cdd9cbce8ffd0fcf59d3a386a28432e4038d3a090ef42968fdbf8e9b1dc68711",
+    "city-game.js": "7a61efa72ca795397060d9ecb744a093f78d14f93bfbe0c017bec3c008d607f6",
+    "world.js": "5cba0836e6aa5f42a886cf461cff5d9b89d6583d2ac5be99c5c8b749bb798766",
+    "actors.js": "091175d7e05c977aeecf57fd6b32aa6743deb07263ef75a3dface78abc78e2f1",
+    "vehicles.js": "09750dab4685a65a1713269c43810942c8fdaae9fca5a129b09e65b606ce8daa",
+    "ui.js": "47547368f01c5b7af3f75d59a416abcc77aed4f021c630e30cce0e8a33a2047d",
+    "navigation.js": "cb25b61c3382a7326dc94daebfe8839bde515c961ef0121d167913255339fe30",
+    "missions.js": "d10456f510bab7904aa64fe2ea9f9b4ccfda3f917ad20ab5ef8416bd9fb1ad1f"
+  },
+  "inputDrivenSeconds": 19.466666666666853,
+  "scriptedFrames": 1228,
+  "inputEvents": {
+    "keyboard": 0,
+    "gamepad": 70,
+    "touch": 0,
+    "touchMenus": 0
+  },
+  "state": {
+    "engine": {
+      "version": "0.40.0",
+      "game": "Signal Debt",
+      "seed": 17,
+      "ready": true,
+      "paused": false,
+      "time": 19.466600000000184,
+      "timeScale": 1,
+      "hitstop": 0,
+      "screen": {
+        "transition": null,
+        "progress": 0,
+        "moving": false,
+        "flash": 0,
+        "shockwaves": 0
+      },
+      "backend": "WebGPU",
+      "mode": "pixel",
+      "resolution": {
+        "width": 640,
+        "height": 360
+      },
+      "aspect": "fill",
+      "framing": {
+        "artWidth": 640,
+        "artHeight": 360,
+        "scale": 2,
+        "integer": true,
+        "canvasWidth": 1280,
+        "canvasHeight": 720,
+        "cssWidth": 1280,
+        "cssHeight": 720,
+        "offsetX": 0,
+        "offsetY": 0
+      },
+      "frame": 1221,
+      "fps": 1,
+      "maxFps": 60,
+      "quality": "medium",
+      "gpuRecoveries": 0,
+      "physicsSteps": 1167,
+      "gpuErrors": [],
+      "errors": [],
+      "target": [
+        -9,
+        1.8813912868499756,
+        0
+      ],
+      "camera": [
+        -16.306605053205658,
+        16.175678357988026,
+        -14.17224733686987
+      ],
+      "cameraRig": {
+        "preset": "third",
+        "zoom": 1,
+        "zoomable": true,
+        "yaw": 3.617,
+        "pitch": 0.68
+      },
+      "view": null,
+      "filters": [],
+      "look": "none",
+      "split": false,
+      "status": "playing | job 1/4 stage 2/12 | Drive to the Civic Shield impound | health 100 | heat 0.0 | loaner | 9.9s"
+    },
+    "position": {
+      "x": -9,
+      "y": 0.8813912868499756,
+      "z": 0
+    },
+    "health": 100,
+    "ammo": 12,
+    "reserve": 192,
+    "heat": 0,
+    "heatState": "clear",
+    "playTime": 9.866666666666736,
+    "cash": 250,
+    "signalHealth": 100,
+    "ride": {
+      "id": "loaner",
+      "position": {
+        "x": -9,
+        "y": 0.8813912868499756,
+        "z": 0
+      },
+      "speed": 0,
+      "yaw": 0,
+      "integrity": 100
+    },
+    "screen": null,
+    "inputMode": "gamepad",
+    "selected": 0,
+    "menus": [],
+    "mission": {
+      "mission": 0,
+      "stage": 1,
+      "active": false,
+      "finished": false,
+      "completed": 0,
+      "progress": 0,
+      "wave": 0,
+      "approach": "jam",
+      "target": null,
+      "current": {
+        "type": "reach",
+        "label": "Drive to the Civic Shield impound",
+        "at": {
+          "x": -187,
+          "y": 0,
+          "z": -187
+        },
+        "line": [
+          "REN",
+          "Repossession is a fancy word for theft with a clipboard."
+        ],
+        "radius": 9
+      },
+      "history": [
+        {
+          "mission": 0,
+          "stage": 0,
+          "label": "Meet Bo outside the garage",
+          "elapsed": 0.05
+        }
+      ]
+    },
+    "enemies": [],
+    "pendingSpawns": 0,
+    "courier": null,
+    "rides": [
+      {
+        "id": "loaner",
+        "at": {
+          "x": -9,
+          "y": 0.8813912868499756,
+          "z": 0
+        },
+        "yaw": 0,
+        "speed": 0,
+        "integrity": 100,
+        "kind": "car"
+      },
+      {
+        "id": "cormorant",
+        "at": {
+          "x": -182.99595642089844,
+          "y": 0.6786351203918457,
+          "z": -192.0000762939453
+        },
+        "yaw": 0.000002767533487716614,
+        "speed": 0,
+        "integrity": 100,
+        "kind": "car"
+      },
+      {
+        "id": "freighter",
+        "at": {
+          "x": 144.99996948242188,
+          "y": 0.6870978474617004,
+          "z": 157.00015258789062
+        },
+        "yaw": 1.570796629741176,
+        "speed": 0,
+        "integrity": 100,
+        "kind": "van"
+      },
+      {
+        "id": "marina",
+        "at": {
+          "x": 229.00404357910156,
+          "y": 0.6390978097915649,
+          "z": 107.99967193603516
+        },
+        "yaw": -3.1415899027196126,
+        "speed": 5.681163539600846e-9,
+        "integrity": 100,
+        "kind": "car"
+      },
+      {
+        "id": "market",
+        "at": {
+          "x": -106.76264953613281,
+          "y": 0.6390979290008545,
+          "z": 73.94689178466797
+        },
+        "yaw": -0.1320761551277136,
+        "speed": -9.348639983101244e-9,
+        "integrity": 100,
+        "kind": "car"
+      }
+    ],
+    "lift": {
+      "at": {
+        "x": 195,
+        "y": 0.019999999552965164,
+        "z": -185
+      },
+      "velocity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "landing": {
+        "x": 195,
+        "y": 8.2,
+        "z": -194
+      }
+    },
+    "input": {
+      "w": false,
+      "s": false,
+      "a": false,
+      "d": false,
+      "analog": {
+        "x": 0,
+        "y": 0
+      },
+      "pad": {
+        "x": 0,
+        "y": 0
+      },
+      "touchHeld": []
+    },
+    "prompt": null,
+    "basis": {
+      "right": [
+        -0.8891602690976015,
+        0,
+        0.45759590891777097
+      ],
+      "forward": [
+        0.45759590891777097,
+        0,
+        0.8891602690976016
+      ]
+    }
+  },
+  "errors": [],
+  "warnings": [],
+  "rumble": [
+    {
+      "type": "dual-rumble",
+      "duration": 60,
+      "strongMagnitude": 0.13,
+      "weakMagnitude": 0.0845,
+      "startDelay": 0
+    },
+    {
+      "type": "dual-rumble",
+      "duration": 60,
+      "strongMagnitude": 0.13,
+      "weakMagnitude": 0.0845,
+      "startDelay": 0
+    },
+    {
+      "type": "dual-rumble",
+      "duration": 60,
+      "strongMagnitude": 0.13,
+      "weakMagnitude": 0.0845,
+      "startDelay": 0
+    },
+    {
+      "type": "dual-rumble",
+      "duration": 60,
+      "strongMagnitude": 0.13,
+      "weakMagnitude": 0.0845,
+      "startDelay": 0
+    },
+    {
+      "type": "dual-rumble",
+      "duration": 60,
+      "strongMagnitude": 0.13,
+      "weakMagnitude": 0.0845,
+      "startDelay": 0
+    },
+    {
+      "type": "dual-rumble",
+      "duration": 60,
+      "strongMagnitude": 0.13,
+      "weakMagnitude": 0.0845,
+      "startDelay": 0
+    },
+    {
+      "type": "dual-rumble",
+      "duration": 110,
+      "strongMagnitude": 0.25,
+      "weakMagnitude": 0.1625,
+      "startDelay": 0
+    },
+    {
+      "type": "dual-rumble",
+      "duration": 110,
+      "strongMagnitude": 0.25,
+      "weakMagnitude": 0.1625,
+      "startDelay": 0
+    },
+    {
+      "type": "dual-rumble",
+      "duration": 110,
+      "strongMagnitude": 0.25,
+      "weakMagnitude": 0.1625,
+      "startDelay": 0
+    },
+    {
+      "type": "dual-rumble",
+      "duration": 110,
+      "strongMagnitude": 0.25,
+      "weakMagnitude": 0.1625,
+      "startDelay": 0
+    },
+    {
+      "type": "dual-rumble",
+      "duration": 110,
+      "strongMagnitude": 0.25,
+      "weakMagnitude": 0.1625,
+      "startDelay": 0
+    },
+    {
+      "type": "dual-rumble",
+      "duration": 60,
+      "strongMagnitude": 0.13,
+      "weakMagnitude": 0.0845,
+      "startDelay": 0
+    },
+    {
+      "type": "dual-rumble",
+      "duration": 110,
+      "strongMagnitude": 0.25,
+      "weakMagnitude": 0.1625,
+      "startDelay": 0
+    },
+    {
+      "type": "dual-rumble",
+      "duration": 60,
+      "strongMagnitude": 0.13,
+      "weakMagnitude": 0.0845,
+      "startDelay": 0
+    },
+    {
+      "type": "dual-rumble",
+      "duration": 60,
+      "strongMagnitude": 0.13,
+      "weakMagnitude": 0.0845,
+      "startDelay": 0
+    },
+    {
+      "type": "dual-rumble",
+      "duration": 110,
+      "strongMagnitude": 0.25,
+      "weakMagnitude": 0.1625,
+      "startDelay": 0
+    },
+    {
+      "type": "dual-rumble",
+      "duration": 60,
+      "strongMagnitude": 0.13,
+      "weakMagnitude": 0.0845,
+      "startDelay": 0
+    },
+    {
+      "type": "dual-rumble",
+      "duration": 110,
+      "strongMagnitude": 0.25,
+      "weakMagnitude": 0.1625,
+      "startDelay": 0
+    },
+    {
+      "type": "dual-rumble",
+      "duration": 60,
+      "strongMagnitude": 0.13,
+      "weakMagnitude": 0.0845,
+      "startDelay": 0
+    },
+    {
+      "type": "dual-rumble",
+      "duration": 110,
+      "strongMagnitude": 0.25,
+      "weakMagnitude": 0.1625,
+      "startDelay": 0
+    },
+    {
+      "type": "dual-rumble",
+      "duration": 60,
+      "strongMagnitude": 0.13,
+      "weakMagnitude": 0.0845,
+      "startDelay": 0
+    },
+    {
+      "type": "dual-rumble",
+      "duration": 110,
+      "strongMagnitude": 0.25,
+      "weakMagnitude": 0.1625,
+      "startDelay": 0
+    }
+  ],
+  "checks": {
+    "realObjectiveCheckpoint": true,
+    "continueAfterReload": true,
+    "partialThrottle": 4.427830776962834,
+    "fullThrottle": 11.900501619735747,
+    "partialBrake": 9.512404487449869,
+    "fullBrake": 4.701908148028382,
+    "turnedYaw": 0.6132393421232062,
+    "repair": {
+      "engine": {
+        "version": "0.40.0",
+        "game": "Signal Debt",
+        "seed": 17,
+        "ready": true,
+        "paused": false,
+        "time": 9.700000000000061,
+        "timeScale": 0,
+        "hitstop": 0,
+        "screen": {
+          "transition": null,
+          "progress": 0,
+          "moving": false,
+          "flash": 0,
+          "shockwaves": 0
+        },
+        "backend": "WebGPU",
+        "mode": "pixel",
+        "resolution": {
+          "width": 640,
+          "height": 360
+        },
+        "aspect": "fill",
+        "framing": {
+          "artWidth": 640,
+          "artHeight": 360,
+          "scale": 2,
+          "integer": true,
+          "canvasWidth": 1280,
+          "canvasHeight": 720,
+          "cssWidth": 1280,
+          "cssHeight": 720,
+          "offsetX": 0,
+          "offsetY": 0
+        },
+        "frame": 607,
+        "fps": 0,
+        "maxFps": 60,
+        "quality": "medium",
+        "gpuRecoveries": 0,
+        "physicsSteps": 582,
+        "gpuErrors": [],
+        "errors": [],
+        "target": [
+          -9,
+          2.100000023841858,
+          0
+        ],
+        "camera": [
+          -69.63345413325962,
+          16.143877102934876,
+          -4.166638655160767
+        ],
+        "cameraRig": {
+          "preset": "third",
+          "zoom": 1,
+          "zoomable": true,
+          "yaw": 4.139,
+          "pitch": 0.68
+        },
+        "view": null,
+        "filters": [],
+        "look": "none",
+        "split": false,
+        "status": "pause | job 1/4 stage 2/12 | Drive to the Civic Shield impound | health 100 | heat 0.0 | loaner | 9.7s"
+      },
+      "position": {
+        "x": -9,
+        "y": 1.100000023841858,
+        "z": 0
+      },
+      "health": 100,
+      "ammo": 12,
+      "reserve": 192,
+      "heat": 0,
+      "heatState": "clear",
+      "playTime": 9.733333333333396,
+      "cash": 850,
+      "signalHealth": 100,
+      "ride": {
+        "id": "loaner",
+        "position": {
+          "x": -9,
+          "y": 1.100000023841858,
+          "z": 0
+        },
+        "speed": 0,
+        "yaw": 0,
+        "integrity": 100
+      },
+      "screen": "pause",
+      "inputMode": "gamepad",
+      "selected": 4,
+      "menus": [
+        {
+          "action": "resume",
+          "label": "01\nBack to the streets\n↗"
+        },
+        {
+          "action": "map",
+          "label": "02\nDistrict map\n↗"
+        },
+        {
+          "action": "help",
+          "label": "03\nHow to play\n↗"
+        },
+        {
+          "action": "options",
+          "label": "04\nOptions\n↗"
+        },
+        {
+          "action": "repair",
+          "label": "05\nRepair vehicle · $150\n↗"
+        },
+        {
+          "action": "upgrade",
+          "label": "06\nUpgrade Cormorant · $600\n↗"
+        },
+        {
+          "action": "courier",
+          "label": "07\nCourier run\n↗"
+        },
+        {
+          "action": "replay",
+          "label": "08\nReplay a job\n↗"
+        },
+        {
+          "action": "retry",
+          "label": "09\nRestart checkpoint\n↗"
+        },
+        {
+          "action": "quit",
+          "label": "10\nReturn to title\n↗"
+        }
+      ],
+      "mission": {
+        "mission": 0,
+        "stage": 1,
+        "active": false,
+        "finished": false,
+        "completed": 0,
+        "progress": 0,
+        "wave": 0,
+        "approach": "jam",
+        "target": null,
+        "current": {
+          "type": "reach",
+          "label": "Drive to the Civic Shield impound",
+          "at": {
+            "x": -187,
+            "y": 0,
+            "z": -187
+          },
+          "line": [
+            "REN",
+            "Repossession is a fancy word for theft with a clipboard."
+          ],
+          "radius": 9
+        },
+        "history": [
+          {
+            "mission": 0,
+            "stage": 0,
+            "label": "Meet Bo outside the garage",
+            "elapsed": 0.05
+          }
+        ]
+      },
+      "enemies": [],
+      "pendingSpawns": 0,
+      "courier": null,
+      "rides": [
+        {
+          "id": "loaner",
+          "at": {
+            "x": -9,
+            "y": 1.100000023841858,
+            "z": 0
+          },
+          "yaw": 0,
+          "speed": 0,
+          "integrity": 100,
+          "kind": "car"
+        },
+        {
+          "id": "cormorant",
+          "at": {
+            "x": -182.99595642089844,
+            "y": 0.628350019454956,
+            "z": -192.0000762939453
+          },
+          "yaw": 0.0000027675334877157625,
+          "speed": 1.4012984643194507e-45,
+          "integrity": 100,
+          "kind": "car"
+        },
+        {
+          "id": "freighter",
+          "at": {
+            "x": 144.99996948242188,
+            "y": 0.6763502359390259,
+            "z": 157.00015258789062
+          },
+          "yaw": 1.5707966297411504,
+          "speed": -1.4012985344810203e-45,
+          "integrity": 100,
+          "kind": "van"
+        },
+        {
+          "id": "marina",
+          "at": {
+            "x": 229.00404357910156,
+            "y": 0.6283499002456665,
+            "z": 107.99967193603516
+          },
+          "yaw": -3.1415899027196126,
+          "speed": -4.6612873561002925e-9,
+          "integrity": 100,
+          "kind": "car"
+        },
+        {
+          "id": "market",
+          "at": {
+            "x": -106.76264953613281,
+            "y": 0.628350019454956,
+            "z": 73.94689178466797
+          },
+          "yaw": -0.1320761551277136,
+          "speed": 4.779503269783984e-8,
+          "integrity": 100,
+          "kind": "car"
+        }
+      ],
+      "lift": {
+        "at": {
+          "x": 195,
+          "y": 7.980000019073486,
+          "z": -185
+        },
+        "velocity": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "landing": {
+          "x": 195,
+          "y": 8.2,
+          "z": -194
+        }
+      },
+      "input": {
+        "w": false,
+        "s": false,
+        "a": false,
+        "d": false,
+        "analog": {
+          "x": 0,
+          "y": 0
+        },
+        "pad": {
+          "x": 0,
+          "y": 0
+        },
+        "touchHeld": []
+      },
+      "prompt": null,
+      "basis": {
+        "right": [
+          -0.5422243784186861,
+          0,
+          0.8402337314393356
+        ],
+        "forward": [
+          0.8402337314393356,
+          0,
+          0.5422243784186861
+        ]
+      }
+    },
+    "upgrade": {
+      "cash": 250,
+      "upgraded": true,
+      "power": 49
+    },
+    "shots": 6,
+    "reloadAfterShooting": true,
+    "dodging": true,
+    "scanRestoresLook": true,
+    "mouseFire": true,
+    "mouseCamera": true,
+    "retry": true
+  },
+  "note": "Targeted fixtures; only actual opening objective proves story progress."
+}

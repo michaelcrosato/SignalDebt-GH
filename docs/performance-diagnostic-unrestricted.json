@@ -1,0 +1,82 @@
+{
+  "browser": "155.0.8059.80",
+  "headless": true,
+  "unrestrictedRaf": true,
+  "rows": [
+    {
+      "name": "blank-page",
+      "elapsedSeconds": 6.000800000000745,
+      "raf": {
+        "count": 254,
+        "fps": 42.32768964137589,
+        "medianMs": 20.100000001490116,
+        "p95Ms": 32
+      },
+      "render": null,
+      "visibility": "visible",
+      "focused": true,
+      "cpu": {
+        "taskMs": 33.169000000000004,
+        "scriptMs": 6.194,
+        "layoutMs": 0,
+        "styleMs": 0
+      }
+    },
+    {
+      "name": "game-audio-running-cap60",
+      "elapsedSeconds": 6.002699999999255,
+      "raf": {
+        "count": 470,
+        "fps": 78.29809918870814,
+        "medianMs": 2.699999999254942,
+        "p95Ms": 39.80000000074506
+      },
+      "render": {
+        "count": 290,
+        "fps": 48.31159311643694,
+        "medianMs": 26.199999999254942,
+        "p95Ms": 40.5
+      },
+      "engineFps": 47,
+      "frameCap": 60,
+      "audio": "running",
+      "physicsMs": 0.13208618543052472,
+      "visibility": "visible",
+      "focused": true,
+      "cpu": {
+        "taskMs": 1700.55,
+        "scriptMs": 1628.388,
+        "layoutMs": 0,
+        "styleMs": 5.604999999999999
+      }
+    },
+    {
+      "name": "game-audio-running-display",
+      "elapsedSeconds": 6.00139999999851,
+      "raf": {
+        "count": 2863,
+        "fps": 477.05535375090994,
+        "medianMs": 1.800000000745058,
+        "p95Ms": 3.399999998509884
+      },
+      "render": {
+        "count": 2863,
+        "fps": 477.05535375090994,
+        "medianMs": 1.800000000745058,
+        "p95Ms": 3.400000002235174
+      },
+      "engineFps": 499,
+      "frameCap": 0,
+      "audio": "running",
+      "physicsMs": 0.05218707151077267,
+      "visibility": "visible",
+      "focused": true,
+      "cpu": {
+        "taskMs": 5784.412,
+        "scriptMs": 5418.794,
+        "layoutMs": 0.03399999999999931,
+        "styleMs": 35.083000000000006
+      }
+    }
+  ]
+}

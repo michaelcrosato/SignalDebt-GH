@@ -1,0 +1,211 @@
+{
+  "startedAt": "2026-10-16T00:30:17.458Z",
+  "origin": "http://127.0.0.1:8127",
+  "normalProfile": "C:\\Users\\micha\\AppData\\Local\\SignalDebt\\CouchProfile",
+  "verificationProfile": "Fresh temporary dedicated profile; removed after verification.",
+  "headless": true,
+  "method": "Only raw CDP Runtime.evaluate(userGesture:false) injects a standard fake pad. No keyboard/pointer events or page.evaluate. The profile is reopened to prove checkpoint persistence.",
+  "permission": {
+    "name": "fullscreen",
+    "allowWithoutGesture": true,
+    "origin": "http://127.0.0.1:8127"
+  },
+  "autoplayFlag": "--autoplay-policy=no-user-gesture-required",
+  "sources": [
+    "https://chromedevtools.github.io/devtools-protocol/tot/Browser/#type-PermissionDescriptor",
+    "https://raw.githubusercontent.com/ChromeDevTools/devtools-protocol/master/json/browser_protocol.json",
+    "https://developer.chrome.com/blog/autoplay",
+    "https://chromium.googlesource.com/chromium/src/third_party/+/e9e0080396f572d512c650c4841a1fb232810b81/blink/renderer/core/fullscreen/fullscreen.cc"
+  ],
+  "checks": [
+    {
+      "label": "fresh title",
+      "screen": "title",
+      "stage": 0,
+      "fullscreen": false,
+      "activation": {
+        "active": false,
+        "ever": false
+      },
+      "audio": {
+        "unlocked": false
+      },
+      "errors": [],
+      "gpuErrors": []
+    },
+    {
+      "label": "title fullscreen entered",
+      "screen": "title",
+      "stage": 0,
+      "fullscreen": true,
+      "activation": {
+        "active": false,
+        "ever": false
+      },
+      "audio": {
+        "unlocked": false
+      },
+      "errors": [],
+      "gpuErrors": []
+    },
+    {
+      "label": "title fullscreen exited",
+      "screen": "title",
+      "stage": 0,
+      "fullscreen": false,
+      "activation": {
+        "active": false,
+        "ever": false
+      },
+      "audio": {
+        "unlocked": false
+      },
+      "errors": [],
+      "gpuErrors": []
+    },
+    {
+      "label": "options fullscreen entered",
+      "screen": "options",
+      "stage": 0,
+      "fullscreen": true,
+      "activation": {
+        "active": false,
+        "ever": false
+      },
+      "audio": {
+        "unlocked": true,
+        "state": "running",
+        "time": 0.112
+      },
+      "errors": [],
+      "gpuErrors": []
+    },
+    {
+      "label": "options fullscreen exited",
+      "screen": "options",
+      "stage": 0,
+      "fullscreen": false,
+      "activation": {
+        "active": false,
+        "ever": false
+      },
+      "audio": {
+        "unlocked": true,
+        "state": "running",
+        "time": 0.12
+      },
+      "errors": [],
+      "gpuErrors": []
+    },
+    {
+      "label": "first objective completed with sound",
+      "screen": null,
+      "stage": 1,
+      "fullscreen": false,
+      "activation": {
+        "active": false,
+        "ever": false
+      },
+      "audio": {
+        "unlocked": true,
+        "state": "running",
+        "time": 0.512
+      },
+      "errors": [],
+      "gpuErrors": []
+    },
+    {
+      "label": "persisted profile continues objective",
+      "screen": null,
+      "stage": 1,
+      "fullscreen": false,
+      "activation": {
+        "active": false,
+        "ever": false
+      },
+      "audio": {
+        "unlocked": true,
+        "state": "running",
+        "time": 0.010666666666666666
+      },
+      "errors": [],
+      "gpuErrors": []
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Scripted standard gamepad; physical DualSense vibration was not tested.",
+    "Headless verification does not measure physical display/audio output quality."
+  ],
+  "browser": "155.0.8059.80",
+  "executable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+  "gpuDevices": [
+    {
+      "vendorId": 4318,
+      "deviceId": 9353,
+      "subSysId": 1079645272,
+      "revision": 161,
+      "vendorString": "",
+      "deviceString": "NVIDIA GeForce RTX 3060 Ti",
+      "driverVendor": "NVIDIA",
+      "driverVersion": "32.0.16.1692"
+    },
+    {
+      "vendorId": 5140,
+      "deviceId": 140,
+      "subSysId": 0,
+      "revision": 0,
+      "vendorString": "",
+      "deviceString": "Microsoft Basic Render Driver",
+      "driverVendor": "",
+      "driverVersion": "10.0.26100.9711"
+    }
+  ],
+  "adapters": [
+    {
+      "vendor": "nvidia",
+      "architecture": "ampere",
+      "isFallbackAdapter": false
+    },
+    {
+      "vendor": "nvidia",
+      "architecture": "ampere",
+      "isFallbackAdapter": false
+    }
+  ],
+  "screenshot": "couch-controller.png",
+  "otherOrigin": {
+    "origin": "http://localhost:8127",
+    "fullscreen": false,
+    "error": "TypeError",
+    "activation": false
+  },
+  "firstWindowCloseStoppedServer": true,
+  "profileCheckpointPersisted": true,
+  "portReleasedAfterWindowClose": true,
+  "ok": true,
+  "finishedAt": "2026-10-16T00:30:27.944Z",
+  "automaticFullscreenCooldownWaitMs": 5500,
+  "cooldownExplanation": "Chrome imposes a five-second automatic fullscreen cooldown after exit. Verification waits 5.5 seconds before entering from Options; normal users can reselect after that delay.",
+  "serverTests": {
+    "command": "node --test tests/couch.test.mjs",
+    "passed": 3,
+    "failed": 0,
+    "coverage": [
+      "Dedicated fixed profile paths",
+      "Protected local static serving and symlink traversal",
+      "Host validation",
+      "Occupied-port failure",
+      "Port release after shutdown"
+    ]
+  },
+  "screenshotVisuallyInspected": true,
+  "launchInstructions": [
+    "npm ci",
+    "node scripts/couch.cjs",
+    "Close the dedicated game window to stop its local server; checkpoints remain in the dedicated profile.",
+    "WSL automatically delegates to installed Windows Node and Chrome when available.",
+    "Verify: node scripts/couch.cjs --verify --headless",
+    "The regular static browser game is unchanged. The couch profile has its own saved progress at http://127.0.0.1:8127."
+  ]
+}

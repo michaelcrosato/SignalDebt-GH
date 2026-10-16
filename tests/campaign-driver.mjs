@@ -34,8 +34,8 @@ export function makeNavigator(session) {
     if (mode === 'gamepad') await driver.pad({ axes: [steer, 0, 0, 0], buttons: { 7: Math.max(0, throttle), 6: brake || throttle < 0 ? Math.max(.8, -throttle) : 0 } });
     else if (mode === 'touch') {
       await driver.stick(steer, 0);
-      await driver.touchButton('KeyW', throttle > .1);
-      await driver.touchButton('KeyS', brake || throttle < 0);
+      if(brake||throttle<0){await driver.touchButton('KeyW',false);await driver.touchButton('KeyS',true);}
+      else{await driver.touchButton('KeyS',false);await driver.touchButton('KeyW',throttle>.1);}
     } else await driver.keyboard([...(throttle > .1 ? ['KeyW'] : []), ...(brake || throttle < 0 ? ['KeyS'] : []), ...(steer > .16 ? ['KeyD'] : steer < -.16 ? ['KeyA'] : [])]);
   }
   
@@ -43,16 +43,18 @@ export function makeNavigator(session) {
     for (let i = 0; i < 100; i++) {
       const s = await session.state();
       if (!s.ride || Math.abs(s.ride.speed) < .6) { await driver.release(); return; }
+      if(s.ride.integrity<=0){await driver.release();await driver.tap('KeyR',110);await record('recover disabled car before stopping');return;}
       await vehicleInput(s.ride.speed<0?1:0, 0, s.ride.speed>=0); await driver.step(3);
     }
     throw Error('Vehicle would not stop');
   }
   
   async function driveTo(target, tolerance = 5, stopAtEnd = true) {
-    let previous = null, stagnant = 0, turnSign = 0, passing = null, passes = 0,backing=false;
+    let previous = null, stagnant = 0, turnSign = 0, passing = null, passes = 0,slowTime=0;
     for (let tick = 0; tick < 1800; tick++) {
       const s = await session.state();
       assert(!s.screen, `driving blocked by ${s.screen}`);assert(s.ride, 'driver unexpectedly left car');
+      if(s.ride.integrity<=0){await driver.release();await driver.tap('KeyR',110);await record('recover disabled car while navigating');passing=null;turnSign=0;stagnant=0;slowTime=0;continue;}
       const d = distance(s.position, target);
       if (d < tolerance) { if (stopAtEnd) await stop(); return; }
       if(passing&&distance(s.position,passing)<4)passing=null;
@@ -63,24 +65,23 @@ export function makeNavigator(session) {
       }
       const desired = Math.atan2(aim.x - s.position.x, aim.z - s.position.z);
       const delta = angle(desired, s.ride.yaw);
-    if(!passing&&d<28&&Math.abs(delta)>2.1&&Math.abs(s.ride.speed)<8)backing=true;
-    if(backing&&d>35)backing=false;
       if(Math.abs(delta)>2.2&&!turnSign)turnSign=Math.sign(delta);
       if(Math.abs(delta)<1.7)turnSign=0;
       // Vehicle +steer turns clockwise, toward negative world yaw.
-    const steer = backing?clamp(angle(desired+Math.PI,s.ride.yaw)*1.6,-1,1):-(turnSign || clamp(delta * 1.6, -1, 1));
+    const steer = -(turnSign || clamp(delta * 1.6, -1, 1));
       const targetSpeed = passing?5:Math.abs(delta) > 1 ? 4.5 : Math.abs(delta) > .35 ? 8 : Math.min(18, Math.max(4, d * .75));
       const brake = s.ride.speed > targetSpeed + 1;
-    if(backing)await vehicleInput(s.ride.speed<-5?1:-1,steer,false);
-    else await vehicleInput(brake ? 0 : 1, steer, brake);
-    await driver.step(brake||backing ? 2 : d < 15 ? 4 : 9);
+    await vehicleInput(brake ? 0 : 1, steer, brake);
+    const frames=brake?2:d<15?4:9;await driver.step(frames);
+    slowTime=!brake&&Math.abs(s.ride.speed)<1?slowTime+frames/60:0;
+    if(slowTime>4){await driver.release();await driver.tap('KeyR',110);await record('recover car after sustained blocked throttle');passing=null;turnSign=0;stagnant=0;slowTime=0;continue;}
       if (previous && distance(s.position, previous) < .02) stagnant++; else stagnant = 0;
       if (stagnant > 20) {
         if(++passes>4)throw Error(`Driving stuck at ${JSON.stringify(s.position)} targeting ${JSON.stringify(target)}`);
         const streetDistance=Math.min(Math.abs(s.position.x-Math.round(s.position.x/108)*108),Math.abs(s.position.z-Math.round(s.position.z/108)*108));
         if(streetDistance>12||passes>=2){
           await driver.release();await driver.tap('KeyR',110);
-          passing=null;turnSign=0;stagnant=0;backing=false;await record('recover trapped car through held control');continue;
+          passing=null;turnSign=0;stagnant=0;await record('recover trapped car through held control');continue;
         }
         await vehicleInput(-1,0);await driver.step(45);await stop();
         const vertical=Math.abs(target.z-s.position.z)>Math.abs(target.x-s.position.x);

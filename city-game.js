@@ -424,6 +424,21 @@ export class SignalDebt {
     this.toastMessage = text;
     this.toastTime = seconds;
   }
+  currentToast() {
+    if (typeof this.toastMessage === "string") return this.toastMessage;
+    if (this.toastMessage?.type === "vehicle") {
+      const controls =
+        this.ui.mode === "gamepad"
+          ? "R2 accelerate · L2 brake / reverse"
+          : this.ui.mode === "touch"
+            ? "GAS accelerate · BRAKE / reverse"
+            : "W accelerate · S brake / reverse";
+      return `${this.toastMessage.label} · ${controls}`;
+    }
+    if (this.toastMessage?.type === "recovery")
+      return `Engine disabled · hold ${this.ui.mode === "touch" ? "RECOVER" : this.ui.key("KeyR")} to recover`;
+    return "";
+  }
   crash(r, n) {
     this.audio.event("crash");
     if (r === this.ride) {
@@ -446,13 +461,7 @@ export class SignalDebt {
     this.player.model.visible = false;
     this.player.shadow.visible = false;
     this.audio.event("enter");
-    const controls =
-      this.ui.mode === "gamepad"
-        ? "R2 accelerate · L2 brake / reverse"
-        : this.ui.mode === "touch"
-          ? "GAS accelerate · BRAKE / reverse"
-          : "W accelerate · S brake / reverse";
-    this.toast(`${r.label} · ${controls}`, 5);
+    this.toast({ type: "vehicle", label: r.label }, 5);
   }
   exitCar(force = false) {
     if (!this.ride) return;
@@ -1052,8 +1061,7 @@ export class SignalDebt {
       }
     }
     if (this.ride?.integrity <= 0) {
-      const key = this.ui.mode === "touch" ? "RECOVER" : this.ui.key("KeyR");
-      this.toast(`Engine disabled · hold ${key} to recover`);
+      this.toast({ type: "recovery" });
       this.contextPrompt = { key: "KeyR", text: "Hold to recover vehicle" };
     }
   }
@@ -1194,7 +1202,7 @@ export class SignalDebt {
         ...this.police.map((c) => c.position),
       ],
       scan: this.scan,
-      toast: this.toastTime > 0 ? this.toastMessage : null,
+      toast: this.toastTime > 0 ? this.currentToast() : null,
     });
     ctx.hud.clear();
   }

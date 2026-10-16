@@ -3,9 +3,7 @@
 Research date: 2026-10-15. Seven distinct substantive pages opened and read. Summaries below are original paraphrases. Reviews describe their authors' opinions, not universal player consensus. Two additional Rockstar Newswire pages were attempted but returned no readable body, so they are excluded from this count.
 
 1. **Grand Theft Auto V – Game Help** — Rockstar's game manual on Xbox's official asset host. https://dlassets-ssl.xboxlive.com/public/content/4f0a3089-ba2c-4f3d-9e38-102a41cbd885/GameManual/bffef18e-3f19-4190-a9b1-75402359b13b/en-IL/index.html
-   - Read Controls, Heads Up Display, Character Switching, Special Abilities, First Person Camera, and Heists.
-   - The HUD separates local navigation, health, armor, special ability, contextual instructional text, money, ammunition and wanted level. Controls change with foot/vehicle context; character switching supports coordinated missions and distinct lives outside them. Specialists offer different capabilities and take different cuts. Comfort options include field of view and disabling head bobbing or switching perspective during certain motions.
-   - Adaptation: a compact, legible HUD, contextual button strip, complementary crew roles, and a planning decision with an explicit cost and visible effect. Avoid replicating the full control density.
+   - Shared with the systems research. Canonical control, HUD and heist notes are in `systems-research.md` (source 1); this page is counted once in the combined eleven-source list.
 
 2. **GTAV Title Update 1.19 (PS3/Xbox 360), 1.05 (PS4/Xbox One)** — Rockstar Games Customer Support. https://support.rockstargames.com/articles/VwB3r6tbVAvoZQfSWGG0I/gtav-title-update-1-19-ps3-xbox-360-1-05-ps4-xbox-one
    - Read the control-settings additions: adjustable right-stick deadzone, look acceleration, and automatic camera leveling.
@@ -24,8 +22,7 @@ Research date: 2026-10-15. Seven distinct substantive pages opened and read. Sum
    - Adaptation: let the player perform setup, operate the mechanism at the heart of the job, and drive the getaway. Give one or two visible alternative preparations instead of a large cosmetic checklist. Use radio dialogue and objective transitions to connect those phases.
 
 6. **Grand Theft Auto V Review** — TechSpot (Stephen Totilo review). https://www.techspot.com/review/714-grand-theft-auto-5/
-   - Read the Heists and What It Feels Like sections. The review praises frequent checkpoints, refined movement/driving, contextual conversations and small interactive world events. It argues some crew choices have consequences too faint to notice, while unscripted stories in the world's margins are especially memorable.
-   - Adaptation: checkpoint every meaningful phase; retry directly into the failed action. Show exactly what a preparation unlocked. Let traffic, patrols and alley routes create variation between missions; give the dense district optional events with a concrete reward.
+   - Shared with the systems research. Canonical world, pursuit and mission notes are in `systems-research.md` (source 2); counted once in the combined list.
 
 7. **Grand Theft Auto 5 PS4/Xbox One/PC Review** — Mark Walton and Peter Brown, GameSpot. https://www.gamespot.com/reviews/grand-theft-auto-5-ps4-xbox-one-pc-review/1900-6415959/
    - The review values cinematic missions, dialogue, atmosphere and the freedom to invent one's own play. It criticizes failures caused by losing a chase target after a bad turn or killing a target earlier than the script expects, and describes an overwhelming initial map of Online activities. It finds first-person driving too sensitive during frantic sequences.

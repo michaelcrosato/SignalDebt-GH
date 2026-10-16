@@ -1,0 +1,441 @@
+{
+  "startedAt": "2026-10-16T01:28:19.427Z",
+  "purpose": "Compare native RAF timestamps with real wall time, then test callback timestamp bridge. This is an experiment, not a shipping launcher setting.",
+  "browserFlags": [
+    "--disable-frame-rate-limit",
+    "--autoplay-policy=no-user-gesture-required"
+  ],
+  "sourceHashes": {
+    "index.html": "d1826caef5da8058720617bb033f83dac17edf753b9f07331a2714d5c612356a",
+    "game.js": "d6570ed90d975a7215fa01be40ec31cc04c793d5be0bce33a2e95788341beb0e",
+    "city-game.js": "ef4991ad6df60f31a535f3b6de520a09e0edb3b5a1efa7ed2e423699cd56ece2",
+    "world.js": "24f353e5c03f7f87ed7ed42edf9527b56234fa98c0e2a08eeadf670ccc2f027b",
+    "models.js": "b1bb986c824cb9f342fa5a5f87e5407459c72b1c5af8547a1fa2d69f7d702556",
+    "equipment.js": "5882d09cc7d221ed225b44b8d9597ceb2f56f4023616052b34d7e5cd318185f3",
+    "navigation.js": "cb25b61c3382a7326dc94daebfe8839bde515c961ef0121d167913255339fe30",
+    "missions.js": "8c3b941c6073f0a0055677ac72eae0c059e606bd13f9fedb46698832669f294f",
+    "vehicles.js": "09750dab4685a65a1713269c43810942c8fdaae9fca5a129b09e65b606ce8daa",
+    "actors.js": "091175d7e05c977aeecf57fd6b32aa6743deb07263ef75a3dface78abc78e2f1",
+    "audio.js": "4e61bed0990b7d21246a48f2b49f34bc57de37a17ba802b4bced98f7c4adb07a",
+    "persistence.js": "32c81421791656eb173402179b47012cfc909a878933b758112252634bf301a6",
+    "ui.js": "a53608937d7883242cdb7e56c501bbb6b65d70fa38e4a6d86bd130614968f4be",
+    "style.css": "5eda344e18db1c8dc98ca2f6cd0ab7fee1280a1aa1eb6967f0e43714171dcd18",
+    "pixel-engine.js": "2cd3cf6b1365288a01b0a106e2fd742f3248e34ab2f2bee17a8049457b4ebb50",
+    "packs/kenney-nature.json": "7c27749fc2a1e34f38718d5e3489c802f57a386ce3afd8056f961fcb672b1f89"
+  },
+  "rows": [
+    {
+      "mode": "native-timestamps",
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "isFallbackAdapter": false
+      },
+      "frameCap": 60,
+      "resolution": {
+        "width": 640,
+        "height": 360
+      },
+      "elapsedSeconds": 10.002900000002235,
+      "renderedFrames": 476,
+      "renderedFps": 47.586200001988786,
+      "renderGapMs": {
+        "count": 475,
+        "min": 1.8999999985098839,
+        "median": 25.399999998509884,
+        "p95": 40.69999999925494,
+        "max": 49.5
+      },
+      "engineFps": {
+        "count": 40,
+        "min": 38,
+        "median": 48,
+        "p95": 53,
+        "max": 55
+      },
+      "rafCallbacks": 776,
+      "rafStampDeltasMs": {
+        "count": 775,
+        "min": 0,
+        "median": 10.299999999999272,
+        "p95": 30,
+        "max": 41.79999999999927
+      },
+      "rafWallDeltasMs": {
+        "count": 775,
+        "min": 0,
+        "median": 10.100000001490116,
+        "p95": 30.100000001490116,
+        "max": 41.900000002235174
+      },
+      "stampLagMs": {
+        "count": 776,
+        "min": -0.10000000223590177,
+        "median": 0.09999999925457814,
+        "p95": 0.3999999985098839,
+        "max": 9.299999997765553
+      },
+      "repeatedStamps": 3,
+      "backwardStamps": 0,
+      "physicsSteps": 599,
+      "physicsStepsPerSecond": 59.882634036116144,
+      "gameplayTimeRate": 0.9980439006019536,
+      "engineTimeRate": 0.9987003768904786,
+      "physicsStepMs": 0.12990304857795182,
+      "audio": "running",
+      "manual": false,
+      "errors": [],
+      "gpuErrors": [],
+      "firstRafSamples": [
+        [
+          3253.5,
+          3253.89999999851
+        ],
+        [
+          3253.6,
+          3256.89999999851
+        ],
+        [
+          3257,
+          3257.39999999851
+        ],
+        [
+          3283,
+          3283.199999999255
+        ],
+        [
+          3289.7,
+          3289.800000000745
+        ],
+        [
+          3314.9,
+          3315.5
+        ],
+        [
+          3326.4,
+          3326.599999997765
+        ],
+        [
+          3329.4,
+          3329.5
+        ],
+        [
+          3360.7,
+          3363.599999997765
+        ],
+        [
+          3379.9,
+          3380.099999997765
+        ],
+        [
+          3380,
+          3384.5
+        ],
+        [
+          3384.6,
+          3384.800000000745
+        ],
+        [
+          3407.1,
+          3407.5
+        ],
+        [
+          3414.4,
+          3414.5
+        ],
+        [
+          3419,
+          3419.099999997765
+        ],
+        [
+          3438.8,
+          3439.300000000745
+        ],
+        [
+          3445.3,
+          3445.39999999851
+        ],
+        [
+          3449.4,
+          3449.39999999851
+        ],
+        [
+          3469.9,
+          3470.300000000745
+        ],
+        [
+          3489.2,
+          3489.39999999851
+        ],
+        [
+          3489.4,
+          3496.199999999255
+        ],
+        [
+          3496.3,
+          3496.300000000745
+        ],
+        [
+          3499.6,
+          3499.699999999255
+        ],
+        [
+          3517.5,
+          3517.599999997765
+        ],
+        [
+          3524.1,
+          3524.099999997765
+        ],
+        [
+          3548,
+          3548.199999999255
+        ],
+        [
+          3559.8,
+          3559.800000000745
+        ],
+        [
+          3579.6,
+          3579.89999999851
+        ],
+        [
+          3591,
+          3591
+        ],
+        [
+          3594.7,
+          3594.89999999851
+        ]
+      ],
+      "cpu": {
+        "taskMs": 2961.793,
+        "scriptMs": 2803.588
+      }
+    },
+    {
+      "mode": "performance-now-bridge",
+      "adapter": {
+        "vendor": "nvidia",
+        "architecture": "ampere",
+        "isFallbackAdapter": false
+      },
+      "frameCap": 60,
+      "resolution": {
+        "width": 640,
+        "height": 360
+      },
+      "elapsedSeconds": 10.00110000000149,
+      "renderedFrames": 479,
+      "renderedFps": 47.89473157951912,
+      "renderGapMs": {
+        "count": 478,
+        "min": 1.8999999985098839,
+        "median": 25.799999997019768,
+        "p95": 41,
+        "max": 49.600000001490116
+      },
+      "engineFps": {
+        "count": 40,
+        "min": 37,
+        "median": 49,
+        "p95": 53,
+        "max": 53
+      },
+      "rafCallbacks": 772,
+      "rafStampDeltasMs": {
+        "count": 771,
+        "min": 0,
+        "median": 10.5,
+        "p95": 29.399999999999636,
+        "max": 39.80000000000018
+      },
+      "rafWallDeltasMs": {
+        "count": 771,
+        "min": 0,
+        "median": 10.399999998509884,
+        "p95": 29.899999998509884,
+        "max": 39.80000000074506
+      },
+      "stampLagMs": {
+        "count": 772,
+        "min": -0.1000000000003638,
+        "median": 2.980414137709886e-09,
+        "p95": 0.3000000022348104,
+        "max": 5.700000002235356
+      },
+      "repeatedStamps": 3,
+      "backwardStamps": 0,
+      "physicsSteps": 600,
+      "physicsStepsPerSecond": 59.993400725911215,
+      "gameplayTimeRate": 0.999890012098538,
+      "engineTimeRate": 0.9995200527941184,
+      "physicsStepMs": 0.12082230362853959,
+      "audio": "running",
+      "manual": false,
+      "errors": [],
+      "gpuErrors": [],
+      "firstRafSamples": [
+        [
+          3406.8,
+          3407.10000000149
+        ],
+        [
+          3424.9,
+          3424.900000002235
+        ],
+        [
+          3424.9,
+          3428.400000002235
+        ],
+        [
+          3428.6,
+          3428.60000000149
+        ],
+        [
+          3454.2,
+          3454.400000002235
+        ],
+        [
+          3468.4,
+          3468.400000002235
+        ],
+        [
+          3476.5,
+          3476.60000000149
+        ],
+        [
+          3481,
+          3481.10000000149
+        ],
+        [
+          3500.6,
+          3502.900000002235
+        ],
+        [
+          3512.3,
+          3512.300000000745
+        ],
+        [
+          3514.9,
+          3515
+        ],
+        [
+          3531.8,
+          3534.5
+        ],
+        [
+          3550.4,
+          3550.400000002235
+        ],
+        [
+          3550.4,
+          3552.900000002235
+        ],
+        [
+          3553,
+          3553
+        ],
+        [
+          3578.2,
+          3578.300000000745
+        ],
+        [
+          3589.2,
+          3589.300000000745
+        ],
+        [
+          3609.6,
+          3609.7000000029802
+        ],
+        [
+          3621.6,
+          3621.60000000149
+        ],
+        [
+          3627.6,
+          3627.7000000029802
+        ],
+        [
+          3630.6,
+          3630.7000000029802
+        ],
+        [
+          3656.1,
+          3656.300000000745
+        ],
+        [
+          3667.9,
+          3667.900000002235
+        ],
+        [
+          3670.1,
+          3670
+        ],
+        [
+          3687.4,
+          3687.60000000149
+        ],
+        [
+          3696.8,
+          3696.900000002235
+        ],
+        [
+          3701,
+          3701
+        ],
+        [
+          3719.5,
+          3719.7000000029802
+        ],
+        [
+          3726.8,
+          3726.900000002235
+        ],
+        [
+          3730.1,
+          3730.10000000149
+        ]
+      ],
+      "cpu": {
+        "taskMs": 2956.708,
+        "scriptMs": 2822.117
+      }
+    }
+  ],
+  "browser": "155.0.8059.80",
+  "finishedAt": "2026-10-16T01:28:46.457Z",
+  "currentHashes": {
+    "index.html": "d1826caef5da8058720617bb033f83dac17edf753b9f07331a2714d5c612356a",
+    "game.js": "d6570ed90d975a7215fa01be40ec31cc04c793d5be0bce33a2e95788341beb0e",
+    "city-game.js": "ef4991ad6df60f31a535f3b6de520a09e0edb3b5a1efa7ed2e423699cd56ece2",
+    "world.js": "24f353e5c03f7f87ed7ed42edf9527b56234fa98c0e2a08eeadf670ccc2f027b",
+    "models.js": "b1bb986c824cb9f342fa5a5f87e5407459c72b1c5af8547a1fa2d69f7d702556",
+    "equipment.js": "5882d09cc7d221ed225b44b8d9597ceb2f56f4023616052b34d7e5cd318185f3",
+    "navigation.js": "cb25b61c3382a7326dc94daebfe8839bde515c961ef0121d167913255339fe30",
+    "missions.js": "8c3b941c6073f0a0055677ac72eae0c059e606bd13f9fedb46698832669f294f",
+    "vehicles.js": "09750dab4685a65a1713269c43810942c8fdaae9fca5a129b09e65b606ce8daa",
+    "actors.js": "091175d7e05c977aeecf57fd6b32aa6743deb07263ef75a3dface78abc78e2f1",
+    "audio.js": "4e61bed0990b7d21246a48f2b49f34bc57de37a17ba802b4bced98f7c4adb07a",
+    "persistence.js": "32c81421791656eb173402179b47012cfc909a878933b758112252634bf301a6",
+    "ui.js": "a53608937d7883242cdb7e56c501bbb6b65d70fa38e4a6d86bd130614968f4be",
+    "style.css": "5eda344e18db1c8dc98ca2f6cd0ab7fee1280a1aa1eb6967f0e43714171dcd18",
+    "pixel-engine.js": "2cd3cf6b1365288a01b0a106e2fd742f3248e34ab2f2bee17a8049457b4ebb50",
+    "packs/kenney-nature.json": "7c27749fc2a1e34f38718d5e3489c802f57a386ce3afd8056f961fcb672b1f89"
+  },
+  "runtimeHashesMatch": true,
+  "assessment": {
+    "bridgeShipped": false,
+    "conclusion": "No material render-rate improvement. The proposed callback timestamp bridge is not justified by these measurements.",
+    "nativeRenderedFps": 47.586200001988786,
+    "bridgeRenderedFps": 47.89473157951912,
+    "nativeStampMedianLagMs": 0.09999999925457814,
+    "nativeRepeatedStamps": 3,
+    "nativeCallbackCount": 776,
+    "physicsRateRange": [
+      59.882634036116144,
+      59.993400725911215
+    ],
+    "defaultBrowserReportPreserved": "performance-native.json"
+  }
+}

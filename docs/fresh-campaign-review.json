@@ -1,0 +1,1429 @@
+{
+  "date": "2026-10-15",
+  "engine": "0.40.0",
+  "method": "Three independent fresh browser contexts, New Story through the authored ending. Only keyboard events, a standard-mapping fake gamepad, or CDP touch events / DOM taps drive gameplay and menus. engine.step advances the clock; no gameplay state, position, health, objective completion, or money is assigned by these campaign tests.",
+  "clock_note": "Durations are active fixed-step simulation time under scripted input, not a first-time human timing study or real-time FPS benchmark. Paused menus do not advance gameplay time. inputDrivenSeconds includes elapsed gameplay before public checkpoint retries; savedGameClockSeconds follows the game checkpoint timeline.",
+  "assertions": [
+    "All 45 authored objective (mission, stage, label) tuples completed in order",
+    "Four chapters complete and final ending reached",
+    "No page, game-hook, or WebGPU errors",
+    "Gamepad and touch campaigns emitted zero keyboard events",
+    "New Story provenance; no imported checkpoint prefix",
+    "All final screenshots inspected"
+  ],
+  "public_actions": "The runs use the game\u2019s ordinary held-R / square / RECOVER vehicle recovery action when a car is disabled or physically blocked. One gamepad run uses Pause \u2192 Retry checkpoint after a navigation obstruction. These are public game controls, not test teleports or completion hooks.",
+  "runs": [
+    {
+      "mode": "keyboard",
+      "approach": "jam",
+      "source": "new story",
+      "command": "PLAYWRIGHT_HOST_PLATFORM_OVERRIDE=ubuntu24.04-x64 node tests/campaign.mjs --fresh --mode keyboard --approach jam",
+      "savedGameClockSeconds": 1825.6333333320017,
+      "inputDrivenSeconds": 1825.6333333320017,
+      "wallElapsedSeconds": 185.728,
+      "publicCheckpointRetries": 0,
+      "retryEvents": [],
+      "inputEvents": {
+        "keyboard": 8822,
+        "gamepad": 0,
+        "touch": 0,
+        "touchMenus": 0
+      },
+      "finalCash": 7375,
+      "finalHealth": 100,
+      "chaptersCompleted": 4,
+      "objectiveCount": 45,
+      "endingReached": true,
+      "errors": [],
+      "gpuErrors": [],
+      "engineErrors": [],
+      "objectives": [
+        {
+          "mission": 0,
+          "stage": 0,
+          "label": "Meet Bo outside the garage",
+          "elapsed": 0.05
+        },
+        {
+          "mission": 0,
+          "stage": 1,
+          "label": "Drive to the Civic Shield impound",
+          "elapsed": 39.716666666665695
+        },
+        {
+          "mission": 0,
+          "stage": 2,
+          "label": "Clear the impound guards",
+          "elapsed": 42.69999999999886
+        },
+        {
+          "mission": 0,
+          "stage": 3,
+          "label": "Recover the impound release key",
+          "elapsed": 46.916666666665286
+        },
+        {
+          "mission": 0,
+          "stage": 4,
+          "label": "Take back the orange Cormorant",
+          "elapsed": 49.449999999998475
+        },
+        {
+          "mission": 0,
+          "stage": 5,
+          "label": "Collect the market residents\u2019 ledger",
+          "elapsed": 93.94999999999595
+        },
+        {
+          "mission": 0,
+          "stage": 6,
+          "label": "Collect the marina\u2019s mooring records",
+          "elapsed": 134.58333333333258
+        },
+        {
+          "mission": 0,
+          "stage": 7,
+          "label": "Collect the west relay\u2019s power bills",
+          "elapsed": 180.4000000000357
+        },
+        {
+          "mission": 0,
+          "stage": 8,
+          "label": "Collect the exchange\u2019s foreclosure notices",
+          "elapsed": 237.83333333341474
+        },
+        {
+          "mission": 0,
+          "stage": 9,
+          "label": "Collect the freight workers\u2019 contracts",
+          "elapsed": 274.5333333334123
+        },
+        {
+          "mission": 0,
+          "stage": 10,
+          "label": "Bring the Cormorant and records to the garage",
+          "elapsed": 319.4000000000382
+        },
+        {
+          "mission": 0,
+          "stage": 11,
+          "label": "Give Bo the recovered records",
+          "elapsed": 322.1166666667024
+        },
+        {
+          "mission": 1,
+          "stage": 0,
+          "label": "Meet Iona at the market relay",
+          "elapsed": 372.8333333333229
+        },
+        {
+          "mission": 1,
+          "stage": 1,
+          "label": "Secure the western relay cabinet",
+          "elapsed": 410.849999999955
+        },
+        {
+          "mission": 1,
+          "stage": 2,
+          "label": "Copy the western relay key",
+          "elapsed": 423.03333333327726
+        },
+        {
+          "mission": 1,
+          "stage": 3,
+          "label": "Secure the marina cabinet",
+          "elapsed": 489.4166666665502
+        },
+        {
+          "mission": 1,
+          "stage": 4,
+          "label": "Copy the marina network key",
+          "elapsed": 498.9166666665416
+        },
+        {
+          "mission": 1,
+          "stage": 5,
+          "label": "Secure the freight cabinet",
+          "elapsed": 515.3166666665267
+        },
+        {
+          "mission": 1,
+          "stage": 6,
+          "label": "Copy the freight network key",
+          "elapsed": 529.2833333331806
+        },
+        {
+          "mission": 1,
+          "stage": 7,
+          "label": "Reach the contract exchange terminal",
+          "elapsed": 562.1166666664841
+        },
+        {
+          "mission": 1,
+          "stage": 8,
+          "label": "Keep the manifest uplink connected",
+          "elapsed": 641.7833333330783
+        },
+        {
+          "mission": 1,
+          "stage": 9,
+          "label": "Lose Civic Shield. Break sight in a side street.",
+          "elapsed": 766.049999999632
+        },
+        {
+          "mission": 1,
+          "stage": 10,
+          "label": "Deliver the manifest to Bo",
+          "elapsed": 798.5833333329357
+        },
+        {
+          "mission": 2,
+          "stage": 0,
+          "label": "Get the courier route from Bo",
+          "elapsed": 798.6333333329356
+        },
+        {
+          "mission": 2,
+          "stage": 1,
+          "label": "Intercept the moving courier. Ram its rear quarter.",
+          "elapsed": 856.483333332883
+        },
+        {
+          "mission": 2,
+          "stage": 2,
+          "label": "Secure the courier\u2019s access case",
+          "elapsed": 859.4333333328804
+        },
+        {
+          "mission": 2,
+          "stage": 3,
+          "label": "Recover the courier access case",
+          "elapsed": 870.066666666204
+        },
+        {
+          "mission": 2,
+          "stage": 4,
+          "label": "Deliver the access case to the freight station",
+          "elapsed": 920.7666666661579
+        },
+        {
+          "mission": 2,
+          "stage": 5,
+          "label": "Protect Bo while he copies the ledger",
+          "elapsed": 1020.9833333327334
+        },
+        {
+          "mission": 2,
+          "stage": 6,
+          "label": "Take the copied evidence",
+          "elapsed": 1026.2999999993954
+        },
+        {
+          "mission": 2,
+          "stage": 7,
+          "label": "Pick up the transmission coil at the west relay",
+          "elapsed": 1061.0999999993637
+        },
+        {
+          "mission": 2,
+          "stage": 8,
+          "label": "Lose Civic Shield. Break sight in a side street.",
+          "elapsed": 1149.9999999992829
+        },
+        {
+          "mission": 2,
+          "stage": 9,
+          "label": "Bring the evidence and coil to the garage",
+          "elapsed": 1181.1666666659212
+        },
+        {
+          "mission": 2,
+          "stage": 10,
+          "label": "Plan the broadcast with Iona",
+          "elapsed": 1183.9666666659186
+        },
+        {
+          "mission": 3,
+          "stage": 0,
+          "label": "Install the transmission coil at the west relay",
+          "elapsed": 1222.1833333325505
+        },
+        {
+          "mission": 3,
+          "stage": 1,
+          "label": "Synchronize the market relay",
+          "elapsed": 1325.4499999991233
+        },
+        {
+          "mission": 3,
+          "stage": 2,
+          "label": "Synchronize the marina relay",
+          "elapsed": 1424.0166666657003
+        },
+        {
+          "mission": 3,
+          "stage": 3,
+          "label": "Clear the broadcast tower service yard",
+          "elapsed": 1496.1666666656347
+        },
+        {
+          "mission": 3,
+          "stage": 4,
+          "label": "Ride the service lift to the transmitter roof",
+          "elapsed": 1523.7333333322763
+        },
+        {
+          "mission": 3,
+          "stage": 5,
+          "label": "Connect the ledger to the transmitter",
+          "elapsed": 1530.4999999989368
+        },
+        {
+          "mission": 3,
+          "stage": 6,
+          "label": "Keep the public broadcast alive",
+          "elapsed": 1630.5166666655125
+        },
+        {
+          "mission": 3,
+          "stage": 7,
+          "label": "Return to street level",
+          "elapsed": 1634.849999998842
+        },
+        {
+          "mission": 3,
+          "stage": 8,
+          "label": "Reach Bo\u2019s ferry at the southern waterfront",
+          "elapsed": 1698.783333332117
+        },
+        {
+          "mission": 3,
+          "stage": 9,
+          "label": "Lose Civic Shield. Break sight in a side street.",
+          "elapsed": 1792.2999999986987
+        },
+        {
+          "mission": 3,
+          "stage": 10,
+          "label": "Leave the ledger with the people of Port Sable",
+          "elapsed": 1825.6333333320017
+        }
+      ],
+      "defenseEvidence": [
+        {
+          "job": 2,
+          "objective": 9,
+          "name": "Keep the manifest uplink connected",
+          "approach": "jam",
+          "firstObservedUplinkHealth": 100,
+          "waves": [
+            {
+              "wave": 0,
+              "progressSeconds": 0,
+              "uplinkHealth": 100
+            },
+            {
+              "wave": 1,
+              "progressSeconds": 25.033,
+              "uplinkHealth": 100
+            },
+            {
+              "wave": 2,
+              "progressSeconds": 50.233,
+              "uplinkHealth": 92
+            }
+          ]
+        },
+        {
+          "job": 3,
+          "objective": 6,
+          "name": "Protect Bo while he copies the ledger",
+          "approach": "jam",
+          "firstObservedUplinkHealth": 100,
+          "waves": [
+            {
+              "wave": 0,
+              "progressSeconds": 0.067,
+              "uplinkHealth": 100
+            },
+            {
+              "wave": 1,
+              "progressSeconds": 25.267,
+              "uplinkHealth": 100
+            },
+            {
+              "wave": 2,
+              "progressSeconds": 50.467,
+              "uplinkHealth": 96
+            },
+            {
+              "wave": 3,
+              "progressSeconds": 75.467,
+              "uplinkHealth": 96
+            }
+          ]
+        },
+        {
+          "job": 4,
+          "objective": 2,
+          "name": "Synchronize the market relay",
+          "approach": "jam",
+          "firstObservedUplinkHealth": 100,
+          "waves": [
+            {
+              "wave": 0,
+              "progressSeconds": 0.067,
+              "uplinkHealth": 100
+            },
+            {
+              "wave": 1,
+              "progressSeconds": 25.4,
+              "uplinkHealth": 100
+            },
+            {
+              "wave": 2,
+              "progressSeconds": 50.433,
+              "uplinkHealth": 96
+            }
+          ]
+        },
+        {
+          "job": 4,
+          "objective": 3,
+          "name": "Synchronize the marina relay",
+          "approach": "jam",
+          "firstObservedUplinkHealth": 100,
+          "waves": [
+            {
+              "wave": 0,
+              "progressSeconds": 0.067,
+              "uplinkHealth": 96
+            },
+            {
+              "wave": 1,
+              "progressSeconds": 25.267,
+              "uplinkHealth": 96
+            },
+            {
+              "wave": 2,
+              "progressSeconds": 50.3,
+              "uplinkHealth": 92
+            }
+          ]
+        },
+        {
+          "job": 4,
+          "objective": 7,
+          "name": "Keep the public broadcast alive",
+          "approach": "jam",
+          "firstObservedUplinkHealth": 100,
+          "waves": [
+            {
+              "wave": 0,
+              "progressSeconds": 0.233,
+              "uplinkHealth": 100
+            },
+            {
+              "wave": 1,
+              "progressSeconds": 25.433,
+              "uplinkHealth": 96
+            },
+            {
+              "wave": 2,
+              "progressSeconds": 50.133,
+              "uplinkHealth": 88
+            },
+            {
+              "wave": 3,
+              "progressSeconds": 75.133,
+              "uplinkHealth": 88
+            }
+          ]
+        }
+      ],
+      "sourceHashes": {
+        "game.js": "d6570ed90d975a7215fa01be40ec31cc04c793d5be0bce33a2e95788341beb0e",
+        "city-game.js": "7a61efa72ca795397060d9ecb744a093f78d14f93bfbe0c017bec3c008d607f6",
+        "world.js": "24f353e5c03f7f87ed7ed42edf9527b56234fa98c0e2a08eeadf670ccc2f027b",
+        "actors.js": "091175d7e05c977aeecf57fd6b32aa6743deb07263ef75a3dface78abc78e2f1",
+        "ui.js": "34ba8affb440bd780c961188fe26a9fe6ef2e4accc3c589d48fe8e7af519a750",
+        "vehicles.js": "09750dab4685a65a1713269c43810942c8fdaae9fca5a129b09e65b606ce8daa",
+        "missions.js": "efc4943e0227501e6a4b62852c2d0bfd119472285bf03503ab763b80eabf5f19",
+        "navigation.js": "cb25b61c3382a7326dc94daebfe8839bde515c961ef0121d167913255339fe30"
+      },
+      "laterChangedFiles": [
+        "city-game.js",
+        "ui.js",
+        "missions.js"
+      ],
+      "report": "/tmp/signal-debt-fresh-keyboard/campaign.json",
+      "reportSha256": "3cd0b7f74d81b9168ccedfa792cacaf8712f7260dc4860f466b40054ad2aa056",
+      "endingScreenshot": "/tmp/signal-debt-fresh-keyboard/campaign-complete.png"
+    },
+    {
+      "mode": "gamepad",
+      "approach": "diversion",
+      "source": "new story",
+      "command": "PLAYWRIGHT_HOST_PLATFORM_OVERRIDE=ubuntu24.04-x64 node tests/campaign.mjs --fresh --mode gamepad --approach diversion",
+      "savedGameClockSeconds": 1910.9166666652575,
+      "inputDrivenSeconds": 1919.9666666652492,
+      "wallElapsedSeconds": 202.849,
+      "publicCheckpointRetries": 1,
+      "retryEvents": [
+        "attempt failed: Foot navigation stuck at {\"x\":-209.6949462890625,\"y\":0.01999933719635011,\"z\":144.6317901611328} targeting {\"x\":-217.47219848632812,\"z\":144.55242919921875}",
+        "public checkpoint retry 1"
+      ],
+      "inputEvents": {
+        "keyboard": 0,
+        "gamepad": 14900,
+        "touch": 0,
+        "touchMenus": 0
+      },
+      "finalCash": 8075,
+      "finalHealth": 100,
+      "chaptersCompleted": 4,
+      "objectiveCount": 45,
+      "endingReached": true,
+      "errors": [],
+      "gpuErrors": [],
+      "engineErrors": [],
+      "objectives": [
+        {
+          "mission": 0,
+          "stage": 0,
+          "label": "Meet Bo outside the garage",
+          "elapsed": 0.05
+        },
+        {
+          "mission": 0,
+          "stage": 1,
+          "label": "Drive to the Civic Shield impound",
+          "elapsed": 47.08333333333194
+        },
+        {
+          "mission": 0,
+          "stage": 2,
+          "label": "Clear the impound guards",
+          "elapsed": 50.1666666666651
+        },
+        {
+          "mission": 0,
+          "stage": 3,
+          "label": "Recover the impound release key",
+          "elapsed": 54.2499999999982
+        },
+        {
+          "mission": 0,
+          "stage": 4,
+          "label": "Take back the orange Cormorant",
+          "elapsed": 56.78333333333139
+        },
+        {
+          "mission": 0,
+          "stage": 5,
+          "label": "Collect the market residents\u2019 ledger",
+          "elapsed": 112.33333333332824
+        },
+        {
+          "mission": 0,
+          "stage": 6,
+          "label": "Collect the marina\u2019s mooring records",
+          "elapsed": 143.05000000000598
+        },
+        {
+          "mission": 0,
+          "stage": 7,
+          "label": "Collect the west relay\u2019s power bills",
+          "elapsed": 193.90000000004645
+        },
+        {
+          "mission": 0,
+          "stage": 8,
+          "label": "Collect the exchange\u2019s foreclosure notices",
+          "elapsed": 264.58333333342136
+        },
+        {
+          "mission": 0,
+          "stage": 9,
+          "label": "Collect the freight workers\u2019 contracts",
+          "elapsed": 311.16666666671233
+        },
+        {
+          "mission": 0,
+          "stage": 10,
+          "label": "Bring the Cormorant and records to the garage",
+          "elapsed": 355.95000000000493
+        },
+        {
+          "mission": 0,
+          "stage": 11,
+          "label": "Give Bo the recovered records",
+          "elapsed": 360.8833333333338
+        },
+        {
+          "mission": 1,
+          "stage": 0,
+          "label": "Meet Iona at the market relay",
+          "elapsed": 414.1166666666187
+        },
+        {
+          "mission": 1,
+          "stage": 1,
+          "label": "Secure the western relay cabinet",
+          "elapsed": 464.44999999990625
+        },
+        {
+          "mission": 1,
+          "stage": 2,
+          "label": "Copy the western relay key",
+          "elapsed": 477.6999999998942
+        },
+        {
+          "mission": 1,
+          "stage": 3,
+          "label": "Secure the marina cabinet",
+          "elapsed": 530.3999999998463
+        },
+        {
+          "mission": 1,
+          "stage": 4,
+          "label": "Copy the marina network key",
+          "elapsed": 541.8333333331692
+        },
+        {
+          "mission": 1,
+          "stage": 5,
+          "label": "Secure the freight cabinet",
+          "elapsed": 581.3999999997999
+        },
+        {
+          "mission": 1,
+          "stage": 6,
+          "label": "Copy the freight network key",
+          "elapsed": 593.9666666664551
+        },
+        {
+          "mission": 1,
+          "stage": 7,
+          "label": "Reach the contract exchange terminal",
+          "elapsed": 639.3999999997471
+        },
+        {
+          "mission": 1,
+          "stage": 8,
+          "label": "Keep the manifest uplink connected",
+          "elapsed": 719.3333333330078
+        },
+        {
+          "mission": 1,
+          "stage": 9,
+          "label": "Lose Civic Shield. Break sight in a side street.",
+          "elapsed": 793.6833333329402
+        },
+        {
+          "mission": 1,
+          "stage": 10,
+          "label": "Deliver the manifest to Bo",
+          "elapsed": 835.8499999995685
+        },
+        {
+          "mission": 2,
+          "stage": 0,
+          "label": "Get the courier route from Bo",
+          "elapsed": 835.8999999995684
+        },
+        {
+          "mission": 2,
+          "stage": 1,
+          "label": "Intercept the moving courier. Ram its rear quarter.",
+          "elapsed": 893.2499999995163
+        },
+        {
+          "mission": 2,
+          "stage": 2,
+          "label": "Secure the courier\u2019s access case",
+          "elapsed": 896.1666666661803
+        },
+        {
+          "mission": 2,
+          "stage": 3,
+          "label": "Recover the courier access case",
+          "elapsed": 905.5333333328384
+        },
+        {
+          "mission": 2,
+          "stage": 4,
+          "label": "Deliver the access case to the freight station",
+          "elapsed": 969.8999999994465
+        },
+        {
+          "mission": 2,
+          "stage": 5,
+          "label": "Protect Bo while he copies the ledger",
+          "elapsed": 1070.1333333326888
+        },
+        {
+          "mission": 2,
+          "stage": 6,
+          "label": "Take the copied evidence",
+          "elapsed": 1074.5166666660182
+        },
+        {
+          "mission": 2,
+          "stage": 7,
+          "label": "Pick up the transmission coil at the west relay",
+          "elapsed": 1134.0499999992974
+        },
+        {
+          "mission": 2,
+          "stage": 8,
+          "label": "Lose Civic Shield. Break sight in a side street.",
+          "elapsed": 1245.1999999991963
+        },
+        {
+          "mission": 2,
+          "stage": 9,
+          "label": "Bring the evidence and coil to the garage",
+          "elapsed": 1282.5833333324956
+        },
+        {
+          "mission": 2,
+          "stage": 10,
+          "label": "Plan the broadcast with Iona",
+          "elapsed": 1286.4166666658255
+        },
+        {
+          "mission": 3,
+          "stage": 0,
+          "label": "Install the transmission coil at the west relay",
+          "elapsed": 1332.4666666657836
+        },
+        {
+          "mission": 3,
+          "stage": 1,
+          "label": "Synchronize the market relay",
+          "elapsed": 1448.616666665678
+        },
+        {
+          "mission": 3,
+          "stage": 2,
+          "label": "Synchronize the marina relay",
+          "elapsed": 1546.2333333322558
+        },
+        {
+          "mission": 3,
+          "stage": 3,
+          "label": "Clear the broadcast tower service yard",
+          "elapsed": 1609.9833333321978
+        },
+        {
+          "mission": 3,
+          "stage": 4,
+          "label": "Ride the service lift to the transmitter roof",
+          "elapsed": 1630.783333332179
+        },
+        {
+          "mission": 3,
+          "stage": 5,
+          "label": "Connect the ledger to the transmitter",
+          "elapsed": 1637.5166666655061
+        },
+        {
+          "mission": 3,
+          "stage": 6,
+          "label": "Keep the public broadcast alive",
+          "elapsed": 1737.5333333320818
+        },
+        {
+          "mission": 3,
+          "stage": 7,
+          "label": "Return to street level",
+          "elapsed": 1740.7833333320789
+        },
+        {
+          "mission": 3,
+          "stage": 8,
+          "label": "Reach Bo\u2019s ferry at the southern waterfront",
+          "elapsed": 1781.4499999987086
+        },
+        {
+          "mission": 3,
+          "stage": 9,
+          "label": "Lose Civic Shield. Break sight in a side street.",
+          "elapsed": 1879.7666666652858
+        },
+        {
+          "mission": 3,
+          "stage": 10,
+          "label": "Leave the ledger with the people of Port Sable",
+          "elapsed": 1910.9166666652575
+        }
+      ],
+      "defenseEvidence": [
+        {
+          "job": 2,
+          "objective": 9,
+          "name": "Keep the manifest uplink connected",
+          "approach": "diversion",
+          "firstObservedUplinkHealth": 150,
+          "waves": [
+            {
+              "wave": 0,
+              "progressSeconds": 0,
+              "uplinkHealth": 150
+            },
+            {
+              "wave": 1,
+              "progressSeconds": 18.467,
+              "uplinkHealth": 150
+            },
+            {
+              "wave": 2,
+              "progressSeconds": 36.167,
+              "uplinkHealth": 150
+            },
+            {
+              "wave": 3,
+              "progressSeconds": 54.167,
+              "uplinkHealth": 146
+            }
+          ]
+        },
+        {
+          "job": 3,
+          "objective": 6,
+          "name": "Protect Bo while he copies the ledger",
+          "approach": "diversion",
+          "firstObservedUplinkHealth": 150,
+          "waves": [
+            {
+              "wave": 0,
+              "progressSeconds": 0.067,
+              "uplinkHealth": 150
+            },
+            {
+              "wave": 1,
+              "progressSeconds": 18.267,
+              "uplinkHealth": 150
+            },
+            {
+              "wave": 2,
+              "progressSeconds": 36.467,
+              "uplinkHealth": 142
+            },
+            {
+              "wave": 3,
+              "progressSeconds": 54.467,
+              "uplinkHealth": 138
+            },
+            {
+              "wave": 4,
+              "progressSeconds": 72.467,
+              "uplinkHealth": 138
+            },
+            {
+              "wave": 5,
+              "progressSeconds": 90.467,
+              "uplinkHealth": 138
+            }
+          ]
+        },
+        {
+          "job": 4,
+          "objective": 2,
+          "name": "Synchronize the market relay",
+          "approach": "diversion",
+          "firstObservedUplinkHealth": 150,
+          "waves": [
+            {
+              "wave": 0,
+              "progressSeconds": 0.067,
+              "uplinkHealth": 146
+            },
+            {
+              "wave": 1,
+              "progressSeconds": 18.267,
+              "uplinkHealth": 142
+            },
+            {
+              "wave": 2,
+              "progressSeconds": 36.467,
+              "uplinkHealth": 138
+            },
+            {
+              "wave": 3,
+              "progressSeconds": 54.467,
+              "uplinkHealth": 138
+            }
+          ]
+        },
+        {
+          "job": 4,
+          "objective": 3,
+          "name": "Synchronize the marina relay",
+          "approach": "diversion",
+          "firstObservedUplinkHealth": 150,
+          "waves": [
+            {
+              "wave": 0,
+              "progressSeconds": 0.067,
+              "uplinkHealth": 146
+            },
+            {
+              "wave": 1,
+              "progressSeconds": 18.267,
+              "uplinkHealth": 142
+            },
+            {
+              "wave": 2,
+              "progressSeconds": 36.3,
+              "uplinkHealth": 138
+            },
+            {
+              "wave": 3,
+              "progressSeconds": 54.3,
+              "uplinkHealth": 134
+            }
+          ]
+        },
+        {
+          "job": 4,
+          "objective": 7,
+          "name": "Keep the public broadcast alive",
+          "approach": "diversion",
+          "firstObservedUplinkHealth": 150,
+          "waves": [
+            {
+              "wave": 0,
+              "progressSeconds": 0.233,
+              "uplinkHealth": 150
+            },
+            {
+              "wave": 1,
+              "progressSeconds": 18.433,
+              "uplinkHealth": 146
+            },
+            {
+              "wave": 2,
+              "progressSeconds": 36.133,
+              "uplinkHealth": 142
+            },
+            {
+              "wave": 3,
+              "progressSeconds": 54.133,
+              "uplinkHealth": 142
+            },
+            {
+              "wave": 4,
+              "progressSeconds": 72.133,
+              "uplinkHealth": 138
+            },
+            {
+              "wave": 5,
+              "progressSeconds": 90.133,
+              "uplinkHealth": 134
+            }
+          ]
+        }
+      ],
+      "sourceHashes": {
+        "game.js": "d6570ed90d975a7215fa01be40ec31cc04c793d5be0bce33a2e95788341beb0e",
+        "city-game.js": "7a61efa72ca795397060d9ecb744a093f78d14f93bfbe0c017bec3c008d607f6",
+        "world.js": "24f353e5c03f7f87ed7ed42edf9527b56234fa98c0e2a08eeadf670ccc2f027b",
+        "actors.js": "091175d7e05c977aeecf57fd6b32aa6743deb07263ef75a3dface78abc78e2f1",
+        "vehicles.js": "09750dab4685a65a1713269c43810942c8fdaae9fca5a129b09e65b606ce8daa",
+        "ui.js": "34ba8affb440bd780c961188fe26a9fe6ef2e4accc3c589d48fe8e7af519a750",
+        "missions.js": "efc4943e0227501e6a4b62852c2d0bfd119472285bf03503ab763b80eabf5f19",
+        "navigation.js": "cb25b61c3382a7326dc94daebfe8839bde515c961ef0121d167913255339fe30"
+      },
+      "laterChangedFiles": [
+        "city-game.js",
+        "ui.js",
+        "missions.js"
+      ],
+      "report": "/tmp/signal-debt-fresh-gamepad/campaign.json",
+      "reportSha256": "a2b330d5dbc1b318b4f1f8fa32c5395dc748ad5588b0af5fe6e8a69951b207d2",
+      "endingScreenshot": "/tmp/signal-debt-fresh-gamepad/campaign-complete.png"
+    },
+    {
+      "mode": "touch",
+      "approach": "jam",
+      "source": "new story",
+      "command": "PLAYWRIGHT_HOST_PLATFORM_OVERRIDE=ubuntu24.04-x64 node tests/campaign.mjs --fresh --mode touch --approach jam",
+      "savedGameClockSeconds": 1800.6166666653578,
+      "inputDrivenSeconds": 1800.6166666653578,
+      "wallElapsedSeconds": 440.405,
+      "publicCheckpointRetries": 0,
+      "retryEvents": [],
+      "inputEvents": {
+        "keyboard": 0,
+        "gamepad": 0,
+        "touch": 27211,
+        "touchMenus": 9
+      },
+      "finalCash": 7375,
+      "finalHealth": 100,
+      "chaptersCompleted": 4,
+      "objectiveCount": 45,
+      "endingReached": true,
+      "errors": [],
+      "gpuErrors": [],
+      "engineErrors": [],
+      "objectives": [
+        {
+          "mission": 0,
+          "stage": 0,
+          "label": "Meet Bo outside the garage",
+          "elapsed": 0.05
+        },
+        {
+          "mission": 0,
+          "stage": 1,
+          "label": "Drive to the Civic Shield impound",
+          "elapsed": 46.766666666665294
+        },
+        {
+          "mission": 0,
+          "stage": 2,
+          "label": "Clear the impound guards",
+          "elapsed": 49.73333333333179
+        },
+        {
+          "mission": 0,
+          "stage": 3,
+          "label": "Recover the impound release key",
+          "elapsed": 53.94999999999822
+        },
+        {
+          "mission": 0,
+          "stage": 4,
+          "label": "Take back the orange Cormorant",
+          "elapsed": 56.48333333333141
+        },
+        {
+          "mission": 0,
+          "stage": 5,
+          "label": "Collect the market residents\u2019 ledger",
+          "elapsed": 103.03333333332877
+        },
+        {
+          "mission": 0,
+          "stage": 6,
+          "label": "Collect the marina\u2019s mooring records",
+          "elapsed": 139.33333333333636
+        },
+        {
+          "mission": 0,
+          "stage": 7,
+          "label": "Collect the west relay\u2019s power bills",
+          "elapsed": 182.13333333337042
+        },
+        {
+          "mission": 0,
+          "stage": 8,
+          "label": "Collect the exchange\u2019s foreclosure notices",
+          "elapsed": 238.01666666674822
+        },
+        {
+          "mission": 0,
+          "stage": 9,
+          "label": "Collect the freight workers\u2019 contracts",
+          "elapsed": 274.55000000007897
+        },
+        {
+          "mission": 0,
+          "stage": 10,
+          "label": "Bring the Cormorant and records to the garage",
+          "elapsed": 311.40000000004545
+        },
+        {
+          "mission": 0,
+          "stage": 11,
+          "label": "Give Bo the recovered records",
+          "elapsed": 314.05000000004304
+        },
+        {
+          "mission": 1,
+          "stage": 0,
+          "label": "Meet Iona at the market relay",
+          "elapsed": 364.1666666666641
+        },
+        {
+          "mission": 1,
+          "stage": 1,
+          "label": "Secure the western relay cabinet",
+          "elapsed": 384.26666666664585
+        },
+        {
+          "mission": 1,
+          "stage": 2,
+          "label": "Copy the western relay key",
+          "elapsed": 396.46666666663475
+        },
+        {
+          "mission": 1,
+          "stage": 3,
+          "label": "Secure the marina cabinet",
+          "elapsed": 456.16666666658045
+        },
+        {
+          "mission": 1,
+          "stage": 4,
+          "label": "Copy the marina network key",
+          "elapsed": 466.09999999990475
+        },
+        {
+          "mission": 1,
+          "stage": 5,
+          "label": "Secure the freight cabinet",
+          "elapsed": 526.0666666665169
+        },
+        {
+          "mission": 1,
+          "stage": 6,
+          "label": "Copy the freight network key",
+          "elapsed": 539.6666666665045
+        },
+        {
+          "mission": 1,
+          "stage": 7,
+          "label": "Reach the contract exchange terminal",
+          "elapsed": 585.7999999997959
+        },
+        {
+          "mission": 1,
+          "stage": 8,
+          "label": "Keep the manifest uplink connected",
+          "elapsed": 660.8166666663943
+        },
+        {
+          "mission": 1,
+          "stage": 9,
+          "label": "Lose Civic Shield. Break sight in a side street.",
+          "elapsed": 760.4666666663037
+        },
+        {
+          "mission": 1,
+          "stage": 10,
+          "label": "Deliver the manifest to Bo",
+          "elapsed": 808.9333333329263
+        },
+        {
+          "mission": 2,
+          "stage": 0,
+          "label": "Get the courier route from Bo",
+          "elapsed": 808.9833333329262
+        },
+        {
+          "mission": 2,
+          "stage": 1,
+          "label": "Intercept the moving courier. Ram its rear quarter.",
+          "elapsed": 866.5666666662072
+        },
+        {
+          "mission": 2,
+          "stage": 2,
+          "label": "Secure the courier\u2019s access case",
+          "elapsed": 869.9499999995375
+        },
+        {
+          "mission": 2,
+          "stage": 3,
+          "label": "Recover the courier access case",
+          "elapsed": 876.2666666661984
+        },
+        {
+          "mission": 2,
+          "stage": 4,
+          "label": "Deliver the access case to the freight station",
+          "elapsed": 929.3499999994834
+        },
+        {
+          "mission": 2,
+          "stage": 5,
+          "label": "Protect Bo while he copies the ledger",
+          "elapsed": 1029.5833333327257
+        },
+        {
+          "mission": 2,
+          "stage": 6,
+          "label": "Take the copied evidence",
+          "elapsed": 1036.1999999993864
+        },
+        {
+          "mission": 2,
+          "stage": 7,
+          "label": "Pick up the transmission coil at the west relay",
+          "elapsed": 1105.3666666659901
+        },
+        {
+          "mission": 2,
+          "stage": 8,
+          "label": "Lose Civic Shield. Break sight in a side street.",
+          "elapsed": 1196.0833333325743
+        },
+        {
+          "mission": 2,
+          "stage": 9,
+          "label": "Bring the evidence and coil to the garage",
+          "elapsed": 1229.0333333325443
+        },
+        {
+          "mission": 2,
+          "stage": 10,
+          "label": "Plan the broadcast with Iona",
+          "elapsed": 1231.7166666658752
+        },
+        {
+          "mission": 3,
+          "stage": 0,
+          "label": "Install the transmission coil at the west relay",
+          "elapsed": 1269.1166666658412
+        },
+        {
+          "mission": 3,
+          "stage": 1,
+          "label": "Synchronize the market relay",
+          "elapsed": 1371.9333333324143
+        },
+        {
+          "mission": 3,
+          "stage": 2,
+          "label": "Synchronize the marina relay",
+          "elapsed": 1492.0333333323051
+        },
+        {
+          "mission": 3,
+          "stage": 3,
+          "label": "Clear the broadcast tower service yard",
+          "elapsed": 1533.2833333322676
+        },
+        {
+          "mission": 3,
+          "stage": 4,
+          "label": "Ride the service lift to the transmitter roof",
+          "elapsed": 1556.9666666655794
+        },
+        {
+          "mission": 3,
+          "stage": 5,
+          "label": "Connect the ledger to the transmitter",
+          "elapsed": 1563.73333333224
+        },
+        {
+          "mission": 3,
+          "stage": 6,
+          "label": "Keep the public broadcast alive",
+          "elapsed": 1663.7499999988156
+        },
+        {
+          "mission": 3,
+          "stage": 7,
+          "label": "Return to street level",
+          "elapsed": 1668.6333333321445
+        },
+        {
+          "mission": 3,
+          "stage": 8,
+          "label": "Reach Bo\u2019s ferry at the southern waterfront",
+          "elapsed": 1729.5499999987558
+        },
+        {
+          "mission": 3,
+          "stage": 9,
+          "label": "Lose Civic Shield. Break sight in a side street.",
+          "elapsed": 1757.7499999987301
+        },
+        {
+          "mission": 3,
+          "stage": 10,
+          "label": "Leave the ledger with the people of Port Sable",
+          "elapsed": 1800.6166666653578
+        }
+      ],
+      "defenseEvidence": [
+        {
+          "job": 2,
+          "objective": 9,
+          "name": "Keep the manifest uplink connected",
+          "approach": "jam",
+          "firstObservedUplinkHealth": 100,
+          "waves": [
+            {
+              "wave": 0,
+              "progressSeconds": 1.35,
+              "uplinkHealth": 100
+            },
+            {
+              "wave": 1,
+              "progressSeconds": 25.083,
+              "uplinkHealth": 100
+            },
+            {
+              "wave": 2,
+              "progressSeconds": 50.483,
+              "uplinkHealth": 96
+            }
+          ]
+        },
+        {
+          "job": 3,
+          "objective": 6,
+          "name": "Protect Bo while he copies the ledger",
+          "approach": "jam",
+          "firstObservedUplinkHealth": 100,
+          "waves": [
+            {
+              "wave": 0,
+              "progressSeconds": 0.067,
+              "uplinkHealth": 100
+            },
+            {
+              "wave": 1,
+              "progressSeconds": 25.067,
+              "uplinkHealth": 100
+            },
+            {
+              "wave": 2,
+              "progressSeconds": 50.167,
+              "uplinkHealth": 100
+            },
+            {
+              "wave": 3,
+              "progressSeconds": 75.167,
+              "uplinkHealth": 100
+            }
+          ]
+        },
+        {
+          "job": 4,
+          "objective": 2,
+          "name": "Synchronize the market relay",
+          "approach": "jam",
+          "firstObservedUplinkHealth": 100,
+          "waves": [
+            {
+              "wave": 0,
+              "progressSeconds": 0.067,
+              "uplinkHealth": 96
+            },
+            {
+              "wave": 1,
+              "progressSeconds": 25.4,
+              "uplinkHealth": 96
+            },
+            {
+              "wave": 2,
+              "progressSeconds": 50.5,
+              "uplinkHealth": 96
+            }
+          ]
+        },
+        {
+          "job": 4,
+          "objective": 3,
+          "name": "Synchronize the marina relay",
+          "approach": "jam",
+          "firstObservedUplinkHealth": 100,
+          "waves": [
+            {
+              "wave": 0,
+              "progressSeconds": 0.067,
+              "uplinkHealth": 100
+            },
+            {
+              "wave": 1,
+              "progressSeconds": 25.267,
+              "uplinkHealth": 100
+            },
+            {
+              "wave": 2,
+              "progressSeconds": 50.367,
+              "uplinkHealth": 96
+            }
+          ]
+        },
+        {
+          "job": 4,
+          "objective": 7,
+          "name": "Keep the public broadcast alive",
+          "approach": "jam",
+          "firstObservedUplinkHealth": 100,
+          "waves": [
+            {
+              "wave": 0,
+              "progressSeconds": 0.233,
+              "uplinkHealth": 100
+            },
+            {
+              "wave": 1,
+              "progressSeconds": 25.033,
+              "uplinkHealth": 96
+            },
+            {
+              "wave": 2,
+              "progressSeconds": 50.433,
+              "uplinkHealth": 96
+            },
+            {
+              "wave": 3,
+              "progressSeconds": 75.133,
+              "uplinkHealth": 96
+            }
+          ]
+        }
+      ],
+      "sourceHashes": {
+        "game.js": "d6570ed90d975a7215fa01be40ec31cc04c793d5be0bce33a2e95788341beb0e",
+        "city-game.js": "7a61efa72ca795397060d9ecb744a093f78d14f93bfbe0c017bec3c008d607f6",
+        "world.js": "24f353e5c03f7f87ed7ed42edf9527b56234fa98c0e2a08eeadf670ccc2f027b",
+        "actors.js": "091175d7e05c977aeecf57fd6b32aa6743deb07263ef75a3dface78abc78e2f1",
+        "ui.js": "34ba8affb440bd780c961188fe26a9fe6ef2e4accc3c589d48fe8e7af519a750",
+        "missions.js": "efc4943e0227501e6a4b62852c2d0bfd119472285bf03503ab763b80eabf5f19",
+        "vehicles.js": "09750dab4685a65a1713269c43810942c8fdaae9fca5a129b09e65b606ce8daa",
+        "navigation.js": "cb25b61c3382a7326dc94daebfe8839bde515c961ef0121d167913255339fe30"
+      },
+      "laterChangedFiles": [
+        "city-game.js",
+        "ui.js",
+        "missions.js"
+      ],
+      "report": "/tmp/signal-debt-fresh-touch/campaign.json",
+      "reportSha256": "8dc960535d3e1ae00ca2b134df19fb51eec74f1c18189e19624a35bcf7a6f41b",
+      "endingScreenshot": "/tmp/signal-debt-fresh-touch/campaign-complete.png"
+    }
+  ],
+  "source_audit": {
+    "retained": "Each run records SHA-256 of the JavaScript served to its browser.",
+    "later_differences": [
+      {
+        "file": "city-game.js",
+        "scope": "Only vehicle/recovery toast rendering was made responsive to the current input mode on every HUD update. Loaded file exactly matches Git HEAD before the uncommitted presentation patch; no physics, controls, or progression changes in that diff."
+      },
+      {
+        "file": "ui.js",
+        "scope": "Only stale parent history is cleared when Map/Help/Options/Replay opens directly from gameplay. Reversing that exact block produces the recorded loaded hash. Focused UI verification covers the changed behavior."
+      },
+      {
+        "file": "missions.js",
+        "scope": "Only dialogue changed from A parked van makes useful cover. to Those cargo containers make useful cover. Reversing that exact substitution produces the loaded hash; objectives, mission gates, and progression are identical."
+      }
+    ],
+    "baselineCommit": "0f038fae42ef617f2749f73289b38499e1f33ff8",
+    "currentHashesAtAudit": {
+      "game.js": "d6570ed90d975a7215fa01be40ec31cc04c793d5be0bce33a2e95788341beb0e",
+      "city-game.js": "ef4991ad6df60f31a535f3b6de520a09e0edb3b5a1efa7ed2e423699cd56ece2",
+      "world.js": "24f353e5c03f7f87ed7ed42edf9527b56234fa98c0e2a08eeadf670ccc2f027b",
+      "actors.js": "091175d7e05c977aeecf57fd6b32aa6743deb07263ef75a3dface78abc78e2f1",
+      "ui.js": "a53608937d7883242cdb7e56c501bbb6b65d70fa38e4a6d86bd130614968f4be",
+      "vehicles.js": "09750dab4685a65a1713269c43810942c8fdaae9fca5a129b09e65b606ce8daa",
+      "missions.js": "8c3b941c6073f0a0055677ac72eae0c059e606bd13f9fedb46698832669f294f",
+      "navigation.js": "cb25b61c3382a7326dc94daebfe8839bde515c961ef0121d167913255339fe30"
+    },
+    "exactReverseChecks": {
+      "missionsDialogueOnly": true,
+      "uiMapParentBlockOnly": true,
+      "cityLoadedMatchesBaselineCommit": true
+    }
+  }
+}

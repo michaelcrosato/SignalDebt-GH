@@ -299,10 +299,10 @@ export async function buildWorld(ctx) {
   const mover = physics.addMover(liftBody, { path: [[195, 0.02, -185], [195, 7.98, -185]], speed: 1.5, hold: 3, ease: 'inOutSine' });
   physics.bind(liftBody, liftMesh);
   const lift = { body: liftBody, mesh: liftMesh, mover, x: 195, z: -185, bottom: 0.24, top: 8.2, landing: { x: 195, y: 8.2, z: -194 } };
-  cylinder(195, 14.8, -196, 0.45, 13.2, 'night');
-  for (const y of [13, 17, 20]) box(195, y, -196, 6 - (y - 13) * 0.35, 0.22, 0.22, 'sand');
+  cylinder(202, 14.8, -199, 0.45, 13.2, 'night');
+  for (const y of [13, 17, 20]) box(202, y, -199, 6 - (y - 13) * 0.35, 0.22, 0.22, 'sand');
   const beacon = new THREE.Mesh(new THREE.SphereGeometry(0.45, 8, 5), glowMaterial(PALETTE.red));
-  beacon.position.set(195, 21.7, -196); root.add(beacon);
+  beacon.position.set(202, 21.7, -199); root.add(beacon);
   sign('PUBLIC FREQUENCY 88.4', 195, 10.2, -200.7, 22, 3.2, Math.PI, 'orange');
   lightHandles.push(ctx.lights.request({ position: [195, 9.8, -185], color: PALETTE.orange, intensity: 6, radius: 12, name: 'broadcast lift' }));
 
