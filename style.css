@@ -23,3 +23,6 @@
 @media(max-height:450px){.sd-boot{padding:18px 24px;font-size:14px;line-height:1.35}.sd-boot h1{font-size:46px;margin:12px 0}.sd-boot-kicker{font-size:10px}.sd-boot p{margin-top:10px}.sd-boot>p:not(#boot-status){font-size:10px!important;line-height:1.4!important;max-width:65em!important}}
 
 @media(min-width:601px){.sd-ui:not([data-touch=true]) .sd-prompt{bottom:max(144px,calc(var(--sd-subtitle-height,0px) + 60px))}}
+
+.sd-replay-note{font-size:13px;line-height:1.4;color:#ffb184;margin:0 0 16px!important;letter-spacing:.02em}
+.sd-menu-button{scroll-margin-block:16px}

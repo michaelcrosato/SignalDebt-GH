@@ -36,7 +36,7 @@ Progress saves locally at mission checkpoints. Continue resumes the last checkpo
 | Accelerate | R2, analog | W | GAS |
 | Brake / reverse | L2, analog | S | BRAKE |
 | Reload / recover car | □; hold to recover | R; hold to recover | RELOAD / RECOVER |
-| Signal scan | L1 | Q | SCAN |
+| Signal scan | L1 | V | SCAN |
 | District map | Share / view button | M | Pause → Map |
 | Pause / back | Options / ○ | Escape | Pause |
 | Menu navigation / select | D-pad or stick / ✕ | Arrows or WASD / Enter | Tap |

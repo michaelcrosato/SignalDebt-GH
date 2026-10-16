@@ -1,0 +1,986 @@
+{
+  "sourceCheckpoint": "/tmp/signal-debt-first-job-touch/checkpoint-browser.json",
+  "startedAt": "2026-10-15T23:58:03.874Z",
+  "fixtureScope": "Cache actors are placed four metres from each cache; walking collects them. NPC collision is an isolated fixture. Courier has no game state writes.",
+  "checks": {
+    "caches": {
+      "probes": [
+        {
+          "id": 0,
+          "at": {
+            "x": -92,
+            "y": 0,
+            "z": -124
+          },
+          "fixedHits": []
+        },
+        {
+          "id": 1,
+          "at": {
+            "x": -125,
+            "y": 0,
+            "z": 95
+          },
+          "fixedHits": []
+        },
+        {
+          "id": 2,
+          "at": {
+            "x": 125,
+            "y": 0,
+            "z": 125
+          },
+          "fixedHits": []
+        },
+        {
+          "id": 3,
+          "at": {
+            "x": 230,
+            "y": 0,
+            "z": -14
+          },
+          "fixedHits": []
+        },
+        {
+          "id": 4,
+          "at": {
+            "x": -230,
+            "y": 0,
+            "z": 12
+          },
+          "fixedHits": []
+        },
+        {
+          "id": 5,
+          "at": {
+            "x": 14,
+            "y": 0,
+            "z": -230
+          },
+          "fixedHits": []
+        }
+      ],
+      "pickups": [
+        {
+          "id": 0,
+          "at": {
+            "x": -92,
+            "y": 0,
+            "z": -124
+          },
+          "fixedHits": [],
+          "rewardCash": 120,
+          "rewardAmmo": 12,
+          "cache": {
+            "taken": true,
+            "visible": false,
+            "persisted": true
+          },
+          "finalPosition": {
+            "x": -91.99946594238281,
+            "y": 0.019667994976043712,
+            "z": -123.8453369140625
+          }
+        },
+        {
+          "id": 1,
+          "at": {
+            "x": -125,
+            "y": 0,
+            "z": 95
+          },
+          "fixedHits": [],
+          "rewardCash": 120,
+          "rewardAmmo": 12,
+          "cache": {
+            "taken": true,
+            "visible": false,
+            "persisted": true
+          },
+          "finalPosition": {
+            "x": -125.0017318725586,
+            "y": 0.019999873638153087,
+            "z": 95.1547622680664
+          }
+        },
+        {
+          "id": 2,
+          "at": {
+            "x": 125,
+            "y": 0,
+            "z": 125
+          },
+          "fixedHits": [],
+          "rewardCash": 120,
+          "rewardAmmo": 12,
+          "cache": {
+            "taken": true,
+            "visible": false,
+            "persisted": true
+          },
+          "finalPosition": {
+            "x": 125.0000228881836,
+            "y": 0.019923877716064464,
+            "z": 125.15632629394531
+          }
+        },
+        {
+          "id": 3,
+          "at": {
+            "x": 230,
+            "y": 0,
+            "z": -14
+          },
+          "fixedHits": [],
+          "rewardCash": 120,
+          "rewardAmmo": 12,
+          "cache": {
+            "taken": true,
+            "visible": false,
+            "persisted": true
+          },
+          "finalPosition": {
+            "x": 230,
+            "y": 0.019998741149902355,
+            "z": -13.843389511108398
+          }
+        },
+        {
+          "id": 4,
+          "at": {
+            "x": -230,
+            "y": 0,
+            "z": 12
+          },
+          "fixedHits": [],
+          "rewardCash": 120,
+          "rewardAmmo": 12,
+          "cache": {
+            "taken": true,
+            "visible": false,
+            "persisted": true
+          },
+          "finalPosition": {
+            "x": -230,
+            "y": 0.013409268856048595,
+            "z": 12.156607627868652
+          }
+        },
+        {
+          "id": 5,
+          "at": {
+            "x": 14,
+            "y": 0,
+            "z": -230
+          },
+          "fixedHits": [],
+          "rewardCash": 120,
+          "rewardAmmo": 12,
+          "cache": {
+            "taken": true,
+            "visible": false,
+            "persisted": true
+          },
+          "finalPosition": {
+            "x": 14,
+            "y": 0.019709479808807384,
+            "z": -229.8434295654297
+          }
+        }
+      ]
+    },
+    "kinematicCollision": {
+      "obstacle": {
+        "x": -137,
+        "z": -187,
+        "w": 23,
+        "d": 23,
+        "h": 7.6,
+        "style": "residential",
+        "district": "residential"
+      },
+      "building": {
+        "at": {
+          "x": -157.5,
+          "z": -187
+        },
+        "target": {
+          "x": -116.5,
+          "z": -187
+        },
+        "end": {
+          "x": -151.10009765625,
+          "y": 0.8500000238418579,
+          "z": -187
+        },
+        "blocked": 568,
+        "penetrated": false,
+        "minGap": 2.60009765625
+      },
+      "road": {
+        "at": {
+          "x": -60,
+          "z": 0
+        },
+        "target": {
+          "x": -20,
+          "z": 0
+        },
+        "end": {
+          "x": -20,
+          "y": 0.8500000238418579,
+          "z": 0
+        },
+        "blocked": 0,
+        "penetrated": false,
+        "minGap": -128.5
+      },
+      "boundary": {
+        "at": {
+          "x": 244,
+          "z": 0
+        },
+        "target": {
+          "x": 260,
+          "z": 0
+        },
+        "end": {
+          "x": 247.3999481201172,
+          "y": 0.8500000238418579,
+          "z": 2.0818995170458873e-16
+        },
+        "blocked": 0,
+        "penetrated": false,
+        "minGap": -395.8999481201172
+      },
+      "lineOfSight": false,
+      "playerVehicleTouched": false
+    },
+    "courier": {
+      "sourceCheckpoint": "/tmp/signal-debt-first-job-touch/checkpoint-browser.json",
+      "before": {
+        "engine": {
+          "version": "0.40.0",
+          "game": "Signal Debt",
+          "seed": 17,
+          "ready": true,
+          "paused": false,
+          "time": 2.6999999999999953,
+          "timeScale": 1,
+          "hitstop": 0,
+          "screen": {
+            "transition": null,
+            "progress": 0,
+            "moving": false,
+            "flash": 0,
+            "shockwaves": 0
+          },
+          "backend": "WebGPU",
+          "mode": "pixel",
+          "resolution": {
+            "width": 640,
+            "height": 360
+          },
+          "aspect": "fill",
+          "framing": {
+            "artWidth": 640,
+            "artHeight": 360,
+            "scale": 2,
+            "integer": true,
+            "canvasWidth": 1280,
+            "canvasHeight": 720,
+            "cssWidth": 1280,
+            "cssHeight": 720,
+            "offsetX": 0,
+            "offsetY": 0
+          },
+          "frame": 198,
+          "fps": 0,
+          "maxFps": 60,
+          "quality": "medium",
+          "gpuRecoveries": 0,
+          "physicsSteps": 162,
+          "gpuErrors": [],
+          "errors": [],
+          "target": [
+            -6.078617095947266,
+            2.08501660823822,
+            -2.2603743076324463
+          ],
+          "camera": [
+            -1.4919719427503404,
+            15.997658190455478,
+            -17.96277229996625
+          ],
+          "cameraRig": {
+            "preset": "third",
+            "zoom": 1,
+            "zoomable": true,
+            "yaw": 2.849,
+            "pitch": 0.68
+          },
+          "view": null,
+          "filters": [],
+          "look": "none",
+          "split": false,
+          "status": "playing | job 1/4 stage 13/12 | free roam | health 100 | heat 0.0 | cormorant | 375.3s"
+        },
+        "position": {
+          "x": -6.078617095947266,
+          "y": 1.0850166082382202,
+          "z": -2.2603743076324463
+        },
+        "health": 100,
+        "ammo": 12,
+        "reserve": 192,
+        "heat": 0,
+        "heatState": "clear",
+        "playTime": 375.316666666654,
+        "cash": 575,
+        "ride": {
+          "id": "cormorant",
+          "position": {
+            "x": -6.078617095947266,
+            "y": 1.0850166082382202,
+            "z": -2.2603743076324463
+          },
+          "speed": 0,
+          "yaw": -2.0775583843071925,
+          "integrity": 100
+        },
+        "screen": null,
+        "inputMode": "keyboard",
+        "selected": 6,
+        "menus": [],
+        "mission": {
+          "mission": 0,
+          "stage": 12,
+          "active": false,
+          "finished": false,
+          "completed": 1,
+          "progress": 0.016666666666666666,
+          "target": {
+            "x": -18,
+            "y": 0,
+            "z": 15
+          },
+          "history": [
+            {
+              "mission": 0,
+              "stage": 0,
+              "label": "Meet Bo outside the garage",
+              "elapsed": 0.06666666666666667
+            },
+            {
+              "mission": 0,
+              "stage": 1,
+              "label": "Drive to the Civic Shield impound",
+              "elapsed": 40.849999999998964
+            },
+            {
+              "mission": 0,
+              "stage": 2,
+              "label": "Clear the impound guards",
+              "elapsed": 43.93333333333212
+            },
+            {
+              "mission": 0,
+              "stage": 3,
+              "label": "Recover the impound release key",
+              "elapsed": 48.083333333331886
+            },
+            {
+              "mission": 0,
+              "stage": 4,
+              "label": "Take back the orange Cormorant",
+              "elapsed": 50.616666666665076
+            },
+            {
+              "mission": 0,
+              "stage": 5,
+              "label": "Collect the market residents\u2019 ledger",
+              "elapsed": 96.19999999999582
+            },
+            {
+              "mission": 0,
+              "stage": 6,
+              "label": "Collect the marina\u2019s mooring records",
+              "elapsed": 141.3000000000046
+            },
+            {
+              "mission": 0,
+              "stage": 7,
+              "label": "Collect the west relay\u2019s power bills",
+              "elapsed": 207.566666666724
+            },
+            {
+              "mission": 0,
+              "stage": 8,
+              "label": "Collect the exchange\u2019s foreclosure notices",
+              "elapsed": 283.0666666667379
+            },
+            {
+              "mission": 0,
+              "stage": 9,
+              "label": "Collect the freight workers\u2019 contracts",
+              "elapsed": 321.9000000000359
+            },
+            {
+              "mission": 0,
+              "stage": 10,
+              "label": "Bring the Cormorant and records to the garage",
+              "elapsed": 369.9166666666589
+            },
+            {
+              "mission": 0,
+              "stage": 11,
+              "label": "Give Bo the recovered records",
+              "elapsed": 372.6333333333231
+            }
+          ]
+        },
+        "enemies": [],
+        "pendingSpawns": 0,
+        "courier": null,
+        "rides": [
+          {
+            "id": "loaner",
+            "at": {
+              "x": -187.7648468017578,
+              "y": 0.6283287405967712,
+              "z": -190.84661865234375
+            },
+            "yaw": 0.15593619852662657,
+            "speed": 7.811733708135904e-09,
+            "integrity": 100,
+            "kind": "car"
+          },
+          {
+            "id": "cormorant",
+            "at": {
+              "x": -6.078617095947266,
+              "y": 1.0850166082382202,
+              "z": -2.2603743076324463
+            },
+            "yaw": -2.0775583843071925,
+            "speed": 0,
+            "integrity": 100,
+            "kind": "car"
+          },
+          {
+            "id": "freighter",
+            "at": {
+              "x": 144.9990692138672,
+              "y": 0.676328718662262,
+              "z": 156.99949645996094
+            },
+            "yaw": 1.5707954496295466,
+            "speed": 0,
+            "integrity": 100,
+            "kind": "van"
+          },
+          {
+            "id": "marina",
+            "at": {
+              "x": 231.389892578125,
+              "y": 0.6283287405967712,
+              "z": 109.11023712158203
+            },
+            "yaw": -2.1458695109075125,
+            "speed": -3.876128330547908e-45,
+            "integrity": 100,
+            "kind": "car"
+          },
+          {
+            "id": "market",
+            "at": {
+              "x": -103.78495025634766,
+              "y": 0.6282357573509216,
+              "z": 100.5502700805664
+            },
+            "yaw": -1.1635667392106193,
+            "speed": -0.0078075837799476905,
+            "integrity": 100,
+            "kind": "car"
+          }
+        ],
+        "lift": {
+          "at": {
+            "x": 195,
+            "y": 0.2199999988079071,
+            "z": -185
+          },
+          "landing": {
+            "x": 195,
+            "y": 8.2,
+            "z": -194
+          }
+        },
+        "input": {
+          "w": false,
+          "s": false,
+          "a": false,
+          "d": false,
+          "analog": {
+            "x": 0,
+            "y": 0
+          },
+          "pad": {
+            "x": 0,
+            "y": 0
+          },
+          "touchHeld": []
+        },
+        "prompt": null,
+        "basis": {
+          "right": [
+            -0.9574412340560108,
+            0,
+            -0.2886282788108316
+          ],
+          "forward": [
+            -0.28862827881083164,
+            0,
+            0.9574412340560108
+          ]
+        }
+      },
+      "after": {
+        "engine": {
+          "version": "0.40.0",
+          "game": "Signal Debt",
+          "seed": 17,
+          "ready": true,
+          "paused": false,
+          "time": 133.36666666666494,
+          "timeScale": 1,
+          "hitstop": 0,
+          "screen": {
+            "transition": null,
+            "progress": 0,
+            "moving": false,
+            "flash": 0,
+            "shockwaves": 0
+          },
+          "backend": "WebGPU",
+          "mode": "pixel",
+          "resolution": {
+            "width": 640,
+            "height": 360
+          },
+          "aspect": "fill",
+          "framing": {
+            "artWidth": 640,
+            "artHeight": 360,
+            "scale": 2,
+            "integer": true,
+            "canvasWidth": 1280,
+            "canvasHeight": 720,
+            "cssWidth": 1280,
+            "cssHeight": 720,
+            "offsetX": 0,
+            "offsetY": 0
+          },
+          "frame": 8038,
+          "fps": 0,
+          "maxFps": 60,
+          "quality": "medium",
+          "gpuRecoveries": 0,
+          "physicsSteps": 8002,
+          "gpuErrors": [],
+          "errors": [],
+          "target": [
+            -3.9276278018951416,
+            1.6283037066459656,
+            -2.7168054580688477
+          ],
+          "camera": [
+            5.615702182874899,
+            16.090574783173846,
+            12.617582909807217
+          ],
+          "cameraRig": {
+            "preset": "third",
+            "zoom": 1,
+            "zoomable": true,
+            "yaw": 0.554,
+            "pitch": 0.68
+          },
+          "view": null,
+          "filters": [],
+          "look": "none",
+          "split": false,
+          "status": "playing | job 1/4 stage 13/12 | free roam | health 100 | heat 0.0 | cormorant | 506.0s"
+        },
+        "position": {
+          "x": -3.9276278018951416,
+          "y": 0.6283037066459656,
+          "z": -2.7168054580688477
+        },
+        "health": 100,
+        "ammo": 12,
+        "reserve": 192,
+        "heat": 0,
+        "heatState": "clear",
+        "playTime": 505.9833333332018,
+        "cash": 1025,
+        "ride": {
+          "id": "cormorant",
+          "position": {
+            "x": -3.9276278018951416,
+            "y": 0.6283037066459656,
+            "z": -2.7168054580688477
+          },
+          "speed": 0.15050300722149196,
+          "yaw": -2.4110846312213057,
+          "integrity": 89.89031184577448
+        },
+        "screen": null,
+        "inputMode": "keyboard",
+        "selected": 6,
+        "menus": [],
+        "mission": {
+          "mission": 0,
+          "stage": 12,
+          "active": false,
+          "finished": false,
+          "completed": 1,
+          "progress": 0.016666666666666666,
+          "target": {
+            "x": -18,
+            "y": 0,
+            "z": 15
+          },
+          "history": [
+            {
+              "mission": 0,
+              "stage": 0,
+              "label": "Meet Bo outside the garage",
+              "elapsed": 0.06666666666666667
+            },
+            {
+              "mission": 0,
+              "stage": 1,
+              "label": "Drive to the Civic Shield impound",
+              "elapsed": 40.849999999998964
+            },
+            {
+              "mission": 0,
+              "stage": 2,
+              "label": "Clear the impound guards",
+              "elapsed": 43.93333333333212
+            },
+            {
+              "mission": 0,
+              "stage": 3,
+              "label": "Recover the impound release key",
+              "elapsed": 48.083333333331886
+            },
+            {
+              "mission": 0,
+              "stage": 4,
+              "label": "Take back the orange Cormorant",
+              "elapsed": 50.616666666665076
+            },
+            {
+              "mission": 0,
+              "stage": 5,
+              "label": "Collect the market residents\u2019 ledger",
+              "elapsed": 96.19999999999582
+            },
+            {
+              "mission": 0,
+              "stage": 6,
+              "label": "Collect the marina\u2019s mooring records",
+              "elapsed": 141.3000000000046
+            },
+            {
+              "mission": 0,
+              "stage": 7,
+              "label": "Collect the west relay\u2019s power bills",
+              "elapsed": 207.566666666724
+            },
+            {
+              "mission": 0,
+              "stage": 8,
+              "label": "Collect the exchange\u2019s foreclosure notices",
+              "elapsed": 283.0666666667379
+            },
+            {
+              "mission": 0,
+              "stage": 9,
+              "label": "Collect the freight workers\u2019 contracts",
+              "elapsed": 321.9000000000359
+            },
+            {
+              "mission": 0,
+              "stage": 10,
+              "label": "Bring the Cormorant and records to the garage",
+              "elapsed": 369.9166666666589
+            },
+            {
+              "mission": 0,
+              "stage": 11,
+              "label": "Give Bo the recovered records",
+              "elapsed": 372.6333333333231
+            }
+          ]
+        },
+        "enemies": [],
+        "pendingSpawns": 0,
+        "courier": null,
+        "rides": [
+          {
+            "id": "loaner",
+            "at": {
+              "x": -187.7648468017578,
+              "y": 0.628350019454956,
+              "z": -190.84661865234375
+            },
+            "yaw": 0.15593619852662657,
+            "speed": 4.352573338838996e-46,
+            "integrity": 100,
+            "kind": "car"
+          },
+          {
+            "id": "cormorant",
+            "at": {
+              "x": -3.9276278018951416,
+              "y": 0.6283037066459656,
+              "z": -2.7168054580688477
+            },
+            "yaw": -2.4110846312213057,
+            "speed": 0.15050300722149196,
+            "integrity": 89.89031184577448,
+            "kind": "car"
+          },
+          {
+            "id": "freighter",
+            "at": {
+              "x": 144.9990692138672,
+              "y": 0.6763499975204468,
+              "z": 156.99949645996094
+            },
+            "yaw": 1.5707954496295466,
+            "speed": 0,
+            "integrity": 100,
+            "kind": "van"
+          },
+          {
+            "id": "marina",
+            "at": {
+              "x": 231.389892578125,
+              "y": 0.6283501982688904,
+              "z": 109.11023712158203
+            },
+            "yaw": -2.1458695109075125,
+            "speed": -3.876128330547908e-45,
+            "integrity": 100,
+            "kind": "car"
+          },
+          {
+            "id": "market",
+            "at": {
+              "x": -103.52448272705078,
+              "y": 0.6283499598503113,
+              "z": -105.375
+            },
+            "yaw": -1.3631756341651702,
+            "speed": -7.207893533337235e-08,
+            "integrity": 100,
+            "kind": "car"
+          }
+        ],
+        "lift": {
+          "at": {
+            "x": 195,
+            "y": 0.2199999988079071,
+            "z": -185
+          },
+          "landing": {
+            "x": 195,
+            "y": 8.2,
+            "z": -194
+          }
+        },
+        "input": {
+          "w": false,
+          "s": false,
+          "a": false,
+          "d": false,
+          "analog": {
+            "x": 0,
+            "y": 0
+          },
+          "pad": {
+            "x": 0,
+            "y": 0
+          },
+          "touchHeld": []
+        },
+        "prompt": null,
+        "basis": {
+          "right": [
+            0.8502181421787499,
+            0,
+            -0.5264305374027185
+          ],
+          "forward": [
+            -0.5264305374027184,
+            0,
+            -0.8502181421787499
+          ]
+        }
+      },
+      "deliveries": [
+        {
+          "delivery": 1,
+          "active": {
+            "index": 1,
+            "time": 153.21666666664535,
+            "route": [
+              {
+                "x": -80,
+                "y": 0,
+                "z": 90
+              },
+              {
+                "x": 235,
+                "y": 0,
+                "z": 120
+              },
+              {
+                "x": -185,
+                "y": 0,
+                "z": 145
+              },
+              {
+                "x": -9,
+                "y": 0,
+                "z": 0
+              }
+            ]
+          },
+          "position": {
+            "x": -76.73548126220703,
+            "y": 0.6283136606216431,
+            "z": 96.15716552734375
+          },
+          "elapsed": 26.74999999997567
+        },
+        {
+          "delivery": 2,
+          "active": {
+            "index": 2,
+            "time": 126.29999999995873,
+            "route": [
+              {
+                "x": -80,
+                "y": 0,
+                "z": 90
+              },
+              {
+                "x": 235,
+                "y": 0,
+                "z": 120
+              },
+              {
+                "x": -185,
+                "y": 0,
+                "z": 145
+              },
+              {
+                "x": -9,
+                "y": 0,
+                "z": 0
+              }
+            ]
+          },
+          "position": {
+            "x": 232.35301208496094,
+            "y": 0.628292977809906,
+            "z": 112.70852661132812
+          },
+          "elapsed": 53.66666666661786
+        },
+        {
+          "delivery": 3,
+          "active": {
+            "index": 3,
+            "time": 84.94999999996108,
+            "route": [
+              {
+                "x": -80,
+                "y": 0,
+                "z": 90
+              },
+              {
+                "x": 235,
+                "y": 0,
+                "z": 120
+              },
+              {
+                "x": -185,
+                "y": 0,
+                "z": 145
+              },
+              {
+                "x": -9,
+                "y": 0,
+                "z": 0
+              }
+            ]
+          },
+          "position": {
+            "x": -192.6085968017578,
+            "y": 0.6283697485923767,
+            "z": 144.65513610839844
+          },
+          "elapsed": 95.01666666658025
+        },
+        {
+          "delivery": 4,
+          "active": null,
+          "position": {
+            "x": -3.9276278018951416,
+            "y": 0.6283037066459656,
+            "z": -2.7168054580688477
+          },
+          "elapsed": 130.66666666654783
+        }
+      ],
+      "reward": 450,
+      "simulatedSeconds": 130.66666666654783,
+      "wallSeconds": 13.561,
+      "publicInputsOnly": true
+    }
+  },
+  "finishedAt": "2026-10-15T23:58:45.850344+00:00",
+  "sourceHashes": {
+    "vehicles.js": "466f98b5e77dabfd048bb55a65bcfb7f2b46b8535aaf3e64c884ce7e9b50b462",
+    "city-game.js": "f4f65eca9ff98848cfc66f8a12f67191805738d823bb9a10262033313c34a493",
+    "world.js": "164af2738b28549be5ca5bd8af96d3fb533224872cb1a43c20c8c75cf8b0d9c9",
+    "tests/side-activities.mjs": "85f8d62fc5c8d07363c4e0ee1e0227353e59e52c2dc9f03f93f37a4ce6de51f4"
+  },
+  "workaround": {
+    "file": "vehicles.js",
+    "class": "TrafficCar",
+    "reason": "Rapier position-based kinematic bodies follow submitted positions even through fixed geometry.",
+    "implementation": "Before setNextKinematicTranslation, test swept conservative 2.45m vehicle radius against real building footprints with a cheap bounding-box precheck and segmentHitsRect; stop inside visible perimeter.",
+    "scope": "Only NPC traffic/security movement. Player Ride and tuned Vehicle physics are unchanged."
+  },
+  "automationNotes": [
+    "Initial courier pilot routes attempted U-turns in tight market/marina spaces and failed.",
+    "Final test uses actual reverse input to return to the road; no game timer, reward, health, mission or actor-position edits were used in the successful courier run.",
+    "130.67 seconds is simulated gameplay duration under engine.step; wall-clock test duration was13.56 seconds and is not a performance measurement."
+  ],
+  "commands": [
+    "node tests/side-activities.mjs --only caches",
+    "node tests/side-activities.mjs --only collision",
+    "node tests/side-activities.mjs --only courier"
+  ],
+  "screenshotsInspected": [
+    "side-activities-caches.png",
+    "side-activities-courier.png"
+  ]
+}

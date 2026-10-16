@@ -1,0 +1,274 @@
+{
+  "scope": "Focused fixtures and genuine menu inputs, not campaign completion.",
+  "checks": {
+    "van": {
+      "before": {
+        "at": {
+          "x": -65.00017547607422,
+          "y": 0.7270044684410095,
+          "z": -0.0004353944677859545
+        },
+        "speed": -0.00046569600477071505
+      },
+      "after": {
+        "at": {
+          "x": -46.15487289428711,
+          "y": 0.6764347553253174,
+          "z": 0.00012887964840047061
+        },
+        "speed": 10.182234671267443,
+        "integrity": 100
+      },
+      "publicInputEntry": true
+    },
+    "handbrake": {
+      "yawBefore": 1.5707931236970227,
+      "bursts": [
+        {
+          "count": 3,
+          "at": [
+            -46.57948837279453,
+            0.15,
+            0.00012752311397745648
+          ]
+        },
+        {
+          "count": 3,
+          "at": [
+            -45.018559477882576,
+            0.15,
+            -0.050564231248757155
+          ]
+        },
+        {
+          "count": 3,
+          "at": [
+            -43.52351978466117,
+            0.15,
+            -0.1235909054713693
+          ]
+        }
+      ],
+      "alive": 6,
+      "yaw": 1.1732552720513714,
+      "speed": 9.877923059718816,
+      "frame": 256
+    },
+    "keyboardFullscreen": [
+      {
+        "menu": "title",
+        "action": "enter",
+        "fullscreen": true,
+        "fullscreenEnabled": true,
+        "activation": {
+          "active": true,
+          "ever": true
+        },
+        "audio": {
+          "unlocked": true,
+          "state": "running",
+          "time": 1.172607709750567
+        },
+        "notice": ""
+      },
+      {
+        "menu": "title",
+        "action": "exit",
+        "fullscreen": false,
+        "fullscreenEnabled": true,
+        "activation": {
+          "active": true,
+          "ever": true
+        },
+        "audio": {
+          "unlocked": true,
+          "state": "running",
+          "time": 1.195827664399093
+        },
+        "notice": ""
+      },
+      {
+        "menu": "options",
+        "action": "enter",
+        "fullscreen": true,
+        "fullscreenEnabled": true,
+        "activation": {
+          "active": true,
+          "ever": true
+        },
+        "audio": {
+          "unlocked": true,
+          "state": "running",
+          "time": 3.889342403628118
+        },
+        "notice": ""
+      },
+      {
+        "menu": "options",
+        "action": "exit",
+        "fullscreen": false,
+        "fullscreenEnabled": true,
+        "activation": {
+          "active": true,
+          "ever": true
+        },
+        "audio": {
+          "unlocked": true,
+          "state": "running",
+          "time": 3.93578231292517
+        },
+        "notice": ""
+      }
+    ],
+    "touchFullscreen": [
+      {
+        "menu": "title",
+        "action": "enter",
+        "fullscreen": true,
+        "fullscreenEnabled": true,
+        "activation": {
+          "active": true,
+          "ever": true
+        },
+        "audio": {
+          "unlocked": true,
+          "state": "running",
+          "time": 0.034829931972789115
+        },
+        "notice": ""
+      },
+      {
+        "menu": "title",
+        "action": "exit",
+        "fullscreen": false,
+        "fullscreenEnabled": true,
+        "activation": {
+          "active": true,
+          "ever": true
+        },
+        "audio": {
+          "unlocked": true,
+          "state": "running",
+          "time": 0.12770975056689343
+        },
+        "notice": ""
+      },
+      {
+        "menu": "options",
+        "action": "enter",
+        "fullscreen": true,
+        "fullscreenEnabled": true,
+        "activation": {
+          "active": true,
+          "ever": true
+        },
+        "audio": {
+          "unlocked": true,
+          "state": "running",
+          "time": 0.29024943310657597
+        },
+        "notice": ""
+      },
+      {
+        "menu": "options",
+        "action": "exit",
+        "fullscreen": false,
+        "fullscreenEnabled": true,
+        "activation": {
+          "active": true,
+          "ever": true
+        },
+        "audio": {
+          "unlocked": true,
+          "state": "running",
+          "time": 0.3831292517006803
+        },
+        "notice": ""
+      }
+    ],
+    "freshControllerOnly": {
+      "method": "Fresh context; raw CDP Runtime.evaluate userGesture:false for all observations and pad injection; no page.evaluate or keyboard/pointer before final observation.",
+      "initial": {
+        "screen": "title",
+        "fullscreen": false,
+        "activation": {
+          "active": false,
+          "ever": false
+        },
+        "audio": {
+          "unlocked": false
+        },
+        "notice": "",
+        "errors": []
+      },
+      "fullscreen": {
+        "screen": "title",
+        "fullscreen": false,
+        "activation": {
+          "active": false,
+          "ever": false
+        },
+        "audio": {
+          "unlocked": false
+        },
+        "notice": "Fullscreen needs a click or key press on this browser.",
+        "errors": []
+      },
+      "after": {
+        "screen": null,
+        "fullscreen": false,
+        "activation": {
+          "active": false,
+          "ever": false
+        },
+        "audio": {
+          "unlocked": false,
+          "state": "suspended",
+          "time": 0
+        },
+        "notice": "Fullscreen needs a click or key press on this browser.",
+        "errors": []
+      },
+      "fullscreenAllowed": false,
+      "audioRunning": false,
+      "physicalControllerVerified": false,
+      "afterKeyboardPositiveControl": {
+        "screen": null,
+        "fullscreen": false,
+        "activation": {
+          "active": true,
+          "ever": true
+        },
+        "audio": {
+          "unlocked": true,
+          "state": "running",
+          "time": 0.615328798185941
+        },
+        "notice": "Fullscreen needs a click or key press on this browser.",
+        "errors": []
+      }
+    }
+  },
+  "errors": [],
+  "screenshots": [
+    "van-driving.png",
+    "handbrake-dust.png",
+    "controller-permissions.png"
+  ],
+  "vehicleSourceHashes": {
+    "game.js": "cdd9cbce8ffd0fcf59d3a386a28432e4038d3a090ef42968fdbf8e9b1dc68711",
+    "city-game.js": "1efe9312ba81357c52f623adf109e288aff012fb091137867cf9abd64cf783ef",
+    "actors.js": "091175d7e05c977aeecf57fd6b32aa6743deb07263ef75a3dface78abc78e2f1",
+    "world.js": "164af2738b28549be5ca5bd8af96d3fb533224872cb1a43c20c8c75cf8b0d9c9",
+    "vehicles.js": "09750dab4685a65a1713269c43810942c8fdaae9fca5a129b09e65b606ce8daa",
+    "ui.js": "47547368f01c5b7af3f75d59a416abcc77aed4f021c630e30cce0e8a33a2047d",
+    "navigation.js": "cb25b61c3382a7326dc94daebfe8839bde515c961ef0121d167913255339fe30",
+    "missions.js": "d10456f510bab7904aa64fe2ea9f9b4ccfda3f917ad20ab5ef8416bd9fb1ad1f"
+  },
+  "finishedAt": "2026-10-16T00:20:31.850Z",
+  "screenshotsVisuallyInspected": true,
+  "permissionLimitation": "In a fresh Chromium context, scripted gamepad input with no trusted browser activation can play and navigate but cannot enter fullscreen or start AudioContext. One genuine letter-key event starts audio. A physical DualSense was not tested.",
+  "testHarnessCaution": "Normal Playwright page.evaluate uses CDP userGesture:true, so it must not be used to establish permission behavior for a fresh controller-only session.",
+  "permissionBrowser": "153.0.8010.12",
+  "permissionEnvironment": "Playwright bundled Chromium on Ubuntu/WSL with software WebGPU. Browser permission result is not a physical-controller hardware test."
+}

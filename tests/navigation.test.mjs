@@ -1,7 +1,19 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {segmentHitsRect,visible,roadRoute,distance,angleDelta} from '../navigation.js';
+import {segmentHitsRect,visible,roadRoute,distance,angleDelta,recoverySpot} from '../navigation.js';
 const building={x:0,z:0,w:10,d:8,h:8};
+
+test('recovery avoids occupied nearest lanes and aligns the replacement car with its road',()=>{
+ const roads={xs:[-216,-108,0,108,216],zs:[-216,-108,0,108,216]};
+ const occupied=[{x:-20,z:-212},{x:-20,z:-220}];
+ const p=recoverySpot({x:-20,z:-212},Math.PI/2,roads,[],occupied);
+ assert(p);assert(occupied.every(o=>distance(p,o)>8));assert.equal(p.yaw,Math.PI/2);assert([-212,-220].includes(p.z));
+});
+test('recovery rejects blocked footprint candidates and keeps cars inside the perimeter',()=>{
+ const roads={xs:[-216,0,216],zs:[-216,0,216]};
+ const p=recoverySpot({x:260,z:260},0,roads,[{x:220,z:236,w:12,d:12}],[]);
+ assert(p);assert(Math.abs(p.x)<=236&&Math.abs(p.z)<=236);assert(!segmentHitsRect(p,p,{x:220,z:236,w:12,d:12},3));
+});
 
 test('a building blocks crossing rays, including a diagonal across its corner',()=>{
   assert.equal(segmentHitsRect({x:-12,z:0},{x:12,z:0},building),true);

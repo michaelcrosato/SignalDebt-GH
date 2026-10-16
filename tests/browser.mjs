@@ -4,6 +4,7 @@ import { createRequire } from 'node:module';
 import { execSync } from 'node:child_process';
 import { join } from 'node:path';
 import { mkdirSync, writeFileSync } from 'node:fs';
+import {createHash} from 'node:crypto';
 
 export const WEBGPU_ARGS = ['--enable-unsafe-webgpu', '--enable-features=Vulkan', '--use-vulkan=swiftshader', '--use-angle=swiftshader', '--use-webgpu-adapter=swiftshader'];
 export const readableError = value => String(value).replace(/data:application\/wasm;base64,[A-Za-z0-9+/=]+/g, '<bundled Rapier WASM>');
@@ -25,7 +26,8 @@ export async function launchGame(url = 'http://127.0.0.1:8080/', { mode = 'keybo
   const browser = await chromium.launch({ headless: true, args: WEBGPU_ARGS });
   const context = await browser.newContext({ viewport, hasTouch: mode === 'touch', isMobile: mode === 'touch', storageState });
   const page = await context.newPage();
-  const errors = [], warnings = [], rumble = [];
+  const errors = [], warnings = [], rumble = [], sourceHashes={};
+  page.on('response',async response=>{const name=new URL(response.url()).pathname.split('/').at(-1);if(['city-game.js','missions.js','ui.js','navigation.js','world.js','actors.js','vehicles.js','game.js'].includes(name))try{sourceHashes[name]=createHash('sha256').update(await response.body()).digest('hex');}catch{}});
   page.on('pageerror', error => errors.push(readableError(error.message)));
   page.on('console', message => {
     if (message.type() === 'error') errors.push(readableError(message.text()));
@@ -51,21 +53,26 @@ export async function launchGame(url = 'http://127.0.0.1:8080/', { mode = 'keybo
   const cdp = await context.newCDPSession(page);
   const driver = new GameDriver(page, cdp, mode);
   return {
-    browser, context, page, driver, mode, out, errors, warnings, rumble,
+    browser, context, page, driver, mode, out, errors, warnings, rumble, sourceHashes,
     async state() { return inspectGame(page); },
     async shot(name) {
       await page.evaluate(async () => {
         const engine = window.__PIXEL_ENGINE__;
-        engine.manual = false;
-        await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-        engine.manual = true;
+        const previous=engine.manual;
+        await new Promise((resolve,reject)=>{
+          let rendered=0;
+          const timeout=setTimeout(()=>{off();engine.manual=previous;reject(Error('Three rendered frames were not produced for screenshot'));},8000);
+          const off=engine.renderer.onBeforeRender(()=>{if(++rendered===3){off();clearTimeout(timeout);requestAnimationFrame(resolve);}});
+          engine.manual=false;
+        });
+        engine.manual = previous;
       });
       const path = join(out, `${name}.png`);
       await page.screenshot({ path });
       return path;
     },
     async save(name, data = {}) {
-      const report = { mode, url: destination.href, state: await inspectGame(page), errors, warnings, rumble, ...data };
+      const report = { mode, url: destination.href,sourceHashes,inputDrivenSeconds:driver.playedSeconds,scriptedFrames:driver.frames,inputEvents:{keyboard:driver.keyboardEvents,gamepad:driver.padCommands,touch:driver.touchEvents,touchMenus:driver.touchMenus},state: await inspectGame(page), errors, warnings, rumble, ...data };
       writeFileSync(join(out, `${name}.json`), JSON.stringify(report, null, 2));
       return report;
     },
@@ -81,16 +88,16 @@ export async function inspectGame(page) {
     const vec = v => v ? { x: v.x, y: v.y, z: v.z } : null;
     return {
       engine: e.state(), position: vec(p), health: g.health, ammo: g.ammo, reserve: g.reserve,
-      heat: g.heat, heatState: g.heatState, playTime: g.playTime, cash: g.cash,
+      heat: g.heat, heatState: g.heatState, playTime: g.playTime, cash: g.cash, signalHealth:g.signalHealth,
       ride: g.ride ? { id: g.ride.id, position: vec(g.ride.position), speed: g.ride.speed, yaw: g.ride.yaw, integrity: g.ride.integrity } : null,
       screen: g.ui?.screen, inputMode: g.ui?.mode, selected: g.ui?.selected,
       menus: g.ui?.controls?.map(control => ({ action: control.action, value: control.value, label: control.element?.innerText })),
-      mission: story ? { mission: story.mission, stage: story.stage, active: story.active, finished: story.finished, completed: story.completed, progress: story.progress, target: vec(story.target()), current: story.current, history: story.history } : null,
+      mission: story ? { mission: story.mission, stage: story.stage, active: story.active, finished: story.finished, completed: story.completed, progress: story.progress,wave:story.wave,approach:story.approach,target: vec(story.target()), current: story.current, history: story.history } : null,
       enemies: g.enemies?.filter(enemy => enemy.health > 0).map(enemy => ({ health: enemy.health, attack:enemy.attack,telegraph:enemy.telegraph,at: vec(enemy.actor?.position?.() ?? enemy.position ?? enemy.mesh?.position) })),
       pendingSpawns:g.pendingSpawns,
-      courier: g.courier ? { at: vec(g.courier.position),velocity:vec(g.courier.body.linvel()),stopped: g.courierStopped } : null,
+      courier: g.courier ? { at: vec(g.courier.position),velocity:vec(g.courier.body.linvel()),damage:g.courierDamage,stopped: g.courierStopped } : null,
       rides:g.rides?.map(ride=>({id:ride.id,at:vec(ride.position),yaw:ride.yaw,speed:ride.speed,integrity:ride.integrity,kind:ride.kind})),
-      lift:g.world?.lift?{at:vec(g.world.lift.body.translation()),landing:g.world.lift.landing}:null,
+      lift:g.world?.lift?{at:vec(g.world.lift.body.translation()),velocity:vec(g.world.lift.body.linvel()),landing:g.world.lift.landing}:null,
       input: { w:e.input.isDown('KeyW'),s:e.input.isDown('KeyS'),a:e.input.isDown('KeyA'),d:e.input.isDown('KeyD'),analog:{...e.input.analog},pad:{...e.input.padAxis},touchHeld:[...(g.ui?.touchHeld??[])] },
       prompt: g.contextPrompt,
       basis: { right: e.camera.groundBasis().right.toArray(), forward: e.camera.groundBasis().forward.toArray() },
@@ -99,15 +106,16 @@ export async function inspectGame(page) {
 }
 
 export class GameDriver {
-  constructor(page, cdp, mode) { Object.assign(this, { page, cdp, mode }); this.keys = new Set(); this.touches = new Map(); this.buttons = {}; }
-  async step(frames = 1) { await this.page.evaluate(n => window.__PIXEL_ENGINE__.step(n), frames); }
+  constructor(page, cdp, mode) { Object.assign(this, { page, cdp, mode }); this.keys = new Set(); this.touches = new Map(); this.buttons = {};this.playedSeconds=0;this.frames=0;this.keyboardEvents=0;this.padCommands=0;this.touchEvents=0;this.touchMenus=0; }
+  async step(frames = 1) { const played=await this.page.evaluate(n=>{const e=window.__PIXEL_ENGINE__,before=e.game.playTime??0;e.step(n);const elapsed=(e.game.playTime??0)-before;return elapsed>=0&&elapsed<=n/60+.1?elapsed:0;},frames);this.playedSeconds+=played;this.frames+=frames; }
   async keyboard(held = []) {
     const next = new Set(held);
-    for (const key of this.keys) if (!next.has(key)) await this.page.keyboard.up(key);
-    for (const key of next) if (!this.keys.has(key)) await this.page.keyboard.down(key);
+    for (const key of this.keys) if (!next.has(key)) {await this.page.keyboard.up(key);this.keyboardEvents++;}
+    for (const key of next) if (!this.keys.has(key)) {await this.page.keyboard.down(key);this.keyboardEvents++;}
     this.keys = next;
   }
   async pad({ axes = [0, 0, 0, 0], buttons = {} } = {}) {
+    this.padCommands++;
     await this.page.evaluate(({ axes, buttons }) => {
       const pad = window.__reviewPad;
       pad.connected = true; pad.timestamp += 1; pad.axes = axes;
@@ -115,6 +123,7 @@ export class GameDriver {
     }, { axes, buttons });
   }
   async touch(id, at) {
+    this.touchEvents++;
     const existed = this.touches.has(id);
     const previous = this.touches.get(id);
     if (at) this.touches.set(id, { id, x: at.x, y: at.y }); else this.touches.delete(id);
@@ -129,7 +138,7 @@ export class GameDriver {
     await this.touch(1, { x: r.x + r.width / 2 + x * r.width * 0.34, y: r.y + r.height / 2 - y * r.width * 0.34 });
   }
   async touchButton(code, held = true) {
-    const codes = ['KeyQ', 'ShiftLeft', 'Space', 'KeyR', 'KeyC', 'KeyJ', 'KeyS', 'KeyW', 'KeyF'];
+    const codes = ['KeyV', 'ShiftLeft', 'Space', 'KeyR', 'KeyC', 'KeyJ', 'KeyS', 'KeyW', 'KeyF'];
     const id = 10 + codes.indexOf(code);
     if (!held) { if (this.touches.has(id)) await this.touch(id, null); return; }
     const button = this.page.locator(`.sd-touch-action[data-code="${code}"]:visible`).first();
@@ -144,7 +153,7 @@ export class GameDriver {
   }
   async tap(key, frames = 2) {
     if (this.mode === 'gamepad') {
-      const map = { Enter: 0, Escape: 1, ArrowUp: 12, ArrowDown: 13, ArrowLeft: 14, ArrowRight: 15, KeyF: 3, KeyR: 2, Space: 0, KeyQ: 4, ShiftLeft: 5, KeyC: 6, KeyJ: 7 };
+      const map = { Enter: 0, Escape: 1, ArrowUp: 12, ArrowDown: 13, ArrowLeft: 14, ArrowRight: 15, KeyF: 3, KeyR: 2, Space: 0, KeyV: 4, ShiftLeft: 5, KeyC: 6, KeyJ: 7 };
       if (map[key] === undefined) throw Error(`No controller mapping for ${key}`);
       await this.pad({ buttons: { [map[key]]: 1 } }); await this.step(frames); await this.pad(); await this.step(2);
     } else if (this.mode === 'touch' && key !== 'Enter' && key !== 'Escape' && !key.startsWith('Arrow')) {
@@ -157,6 +166,7 @@ export class GameDriver {
       const index = state.menus?.findIndex(item => item.action === action && (value === undefined || item.value === value));
       if (index < 0 || index === undefined) throw Error(`Menu ${state.screen} has no ${action}:${value}`);
       if (this.mode === 'touch') {
+        this.touchMenus++;
         await this.page.locator(`.sd-menu-button[data-action="${action}"]`).nth(state.menus.slice(0, index).filter(item => item.action === action).length).tap();
         await this.step(3); return;
       }

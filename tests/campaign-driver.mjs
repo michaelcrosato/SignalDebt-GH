@@ -49,7 +49,7 @@ export function makeNavigator(session) {
   }
   
   async function driveTo(target, tolerance = 5, stopAtEnd = true) {
-    let previous = null, stagnant = 0, turnSign = 0, passing = null, passes = 0;
+    let previous = null, stagnant = 0, turnSign = 0, passing = null, passes = 0,backing=false;
     for (let tick = 0; tick < 1800; tick++) {
       const s = await session.state();
       assert(!s.screen, `driving blocked by ${s.screen}`);assert(s.ride, 'driver unexpectedly left car');
@@ -63,17 +63,25 @@ export function makeNavigator(session) {
       }
       const desired = Math.atan2(aim.x - s.position.x, aim.z - s.position.z);
       const delta = angle(desired, s.ride.yaw);
+    if(!passing&&d<28&&Math.abs(delta)>2.1&&Math.abs(s.ride.speed)<8)backing=true;
+    if(backing&&d>35)backing=false;
       if(Math.abs(delta)>2.2&&!turnSign)turnSign=Math.sign(delta);
       if(Math.abs(delta)<1.7)turnSign=0;
       // Vehicle +steer turns clockwise, toward negative world yaw.
-      const steer = -(turnSign || clamp(delta * 1.6, -1, 1));
+    const steer = backing?clamp(angle(desired+Math.PI,s.ride.yaw)*1.6,-1,1):-(turnSign || clamp(delta * 1.6, -1, 1));
       const targetSpeed = passing?5:Math.abs(delta) > 1 ? 4.5 : Math.abs(delta) > .35 ? 8 : Math.min(18, Math.max(4, d * .75));
       const brake = s.ride.speed > targetSpeed + 1;
-      await vehicleInput(brake ? 0 : 1, steer, brake);
-      await driver.step(d < 15 ? 4 : 9);
+    if(backing)await vehicleInput(s.ride.speed<-5?1:-1,steer,false);
+    else await vehicleInput(brake ? 0 : 1, steer, brake);
+    await driver.step(brake||backing ? 2 : d < 15 ? 4 : 9);
       if (previous && distance(s.position, previous) < .02) stagnant++; else stagnant = 0;
       if (stagnant > 20) {
         if(++passes>4)throw Error(`Driving stuck at ${JSON.stringify(s.position)} targeting ${JSON.stringify(target)}`);
+        const streetDistance=Math.min(Math.abs(s.position.x-Math.round(s.position.x/108)*108),Math.abs(s.position.z-Math.round(s.position.z/108)*108));
+        if(streetDistance>12||passes>=2){
+          await driver.release();await driver.tap('KeyR',110);
+          passing=null;turnSign=0;stagnant=0;backing=false;await record('recover trapped car through held control');continue;
+        }
         await vehicleInput(-1,0);await driver.step(45);await stop();
         const vertical=Math.abs(target.z-s.position.z)>Math.abs(target.x-s.position.x);
         const lane=vertical?Math.round(s.position.x/108)*108:Math.round(s.position.z/108)*108;

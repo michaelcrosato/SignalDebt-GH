@@ -3,8 +3,8 @@ import { LOOK_PRESETS } from './pixel-engine.js';
 const $ = (tag, className, text) => { const node = document.createElement(tag); if (className) node.className = className; if (text !== undefined) node.textContent = text; return node; };
 const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, Number(n) || 0));
 const money = n => '$' + Math.round(Number(n) || 0).toLocaleString('en-US');
-const GLYPHS = { Enter: '✕', Space: '✕', Escape: '○', KeyR: '□', KeyF: '△', KeyQ: 'L1', ShiftLeft: 'R1', KeyC: 'L2', KeyJ: 'R2', KeyM: 'VIEW', KeyW: 'R2', KeyS: 'L2' };
-const KEYS = { Enter: 'ENTER', Space: 'SPACE', Escape: 'ESC', KeyR: 'R', KeyF: 'F', KeyQ: 'Q', ShiftLeft: 'SHIFT', KeyC: 'C', KeyJ: 'J', KeyM: 'M', KeyW: 'W', KeyS: 'S' };
+const GLYPHS = { Enter: '✕', Space: '✕', Escape: '○', KeyR: '□', KeyF: '△', KeyV: 'L1', ShiftLeft: 'R1', KeyC: 'L2', KeyJ: 'R2', KeyM: 'VIEW', KeyW: 'R2', KeyS: 'L2' };
+const KEYS = { Enter: 'ENTER', Space: 'SPACE', Escape: 'ESC', KeyR: 'R', KeyF: 'F', KeyV: 'V', ShiftLeft: 'SHIFT', KeyC: 'C', KeyJ: 'J', KeyM: 'M', KeyW: 'W', KeyS: 'S' };
 const CHAPTERS = ['Borrowed Ignition', 'Terms of Service', 'Moving Assets', 'Public Record'];
 const copy = {
   title: ['PORT SABLE / A CRIME STORY', 'SIGNAL\nDEBT', 'The city sold your future. Take back the receipt.'],
@@ -20,12 +20,12 @@ const copy = {
 };
 
 export class GameUI {
-  constructor(ctx, { onAction = () => {} } = {}) {
-    this.ctx = ctx; this.onAction = onAction; this.screen = null; this.forceTouch = new URLSearchParams(location.search).has('touch'); this.mode = this.forceTouch || navigator.maxTouchPoints > 0 ? 'touch' : 'keyboard';
+  constructor(ctx, { onAction = () => {}, prepareAction = (action, value) => value } = {}) {
+    this.ctx = ctx; this.onAction = onAction; this.prepareAction = prepareAction; this.screen = null; this.forceTouch = new URLSearchParams(location.search).has('touch'); this.mode = this.forceTouch || navigator.maxTouchPoints > 0 ? 'touch' : 'keyboard';
     this.preferences = { rumble: true, motion: true, steering: 1 };
     try { const saved = JSON.parse(localStorage.getItem('signal-debt-preferences')); if (saved) { this.preferences.rumble = saved.rumble !== false; this.preferences.motion = saved.motion !== false; this.preferences.steering = clamp(saved.steering ?? 1, 0.5, 1.5); } } catch {}
     this.root = $('div', 'sd-ui'); this.root.dataset.mode = this.mode; this.root.dataset.touch = String(this.forceTouch || this.mode === 'touch'); this.root.dataset.motion = String(this.preferences.motion); document.body.append(this.root);
-    this.listeners = []; this.controls = []; this.selected = 0; this.previous = {}; this.held = {}; this.padSignature = ''; this.clock = 0; this.state = {}; this.menuKeyQueue = []; this.touchHeld = new Set();
+    this.listeners = []; this.controls = []; this.selected = 0; this.previous = {}; this.held = {}; this.padSignature = ''; this.clock = 0; this.state = {}; this.menuKeyQueue = []; this.commandFrame = null; this.touchHeld = new Set();
     this.hud = $('section', 'sd-hud'); this.hud.setAttribute('aria-label', 'Game status');
     this.hud.innerHTML = `<div class="sd-objective"><div class="sd-eyebrow sd-chapter"></div><h2></h2><p class="sd-objective-text"></p><p class="sd-objective-detail"></p><div class="sd-progress-track"><i></i></div></div><div class="sd-status"><div class="sd-heat" aria-label="Security attention"></div><div class="sd-heat-state"></div><div class="sd-wallet"></div></div><div class="sd-radar"><div class="sd-map-caption"><span class="sd-location"></span><span>N ↑</span></div><canvas width="260" height="180" aria-label="Street map, player and destination"></canvas><div class="sd-health"><span>REN</span><i><b></b></i><strong></strong></div></div><div class="sd-equipment"><div class="sd-speed"></div><div class="sd-ammo"></div><div class="sd-vehicle-health"></div></div><div class="sd-subtitle" role="status"><strong></strong><span></span></div><div class="sd-prompt"></div><div class="sd-toast" role="status"></div><div class="sd-scan">SIGNAL SCAN / ACTIVE</div>`;
     this.root.append(this.hud); this.minimap = this.hud.querySelector('canvas');
@@ -49,11 +49,24 @@ export class GameUI {
   }
 
   listen(target, type, fn, options) { target.addEventListener(type, fn, options); this.listeners.push(() => target.removeEventListener(type, fn, options)); }
+  bindActivation(button, activate) {
+    let lastTouch = -Infinity;
+    button.addEventListener('pointerup', event => {
+      if (event.pointerType !== 'touch') return;
+      const rect = button.getBoundingClientRect();
+      if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) return;
+      lastTouch = event.timeStamp; activate();
+    });
+    button.addEventListener('click', event => {
+      if (event.pointerType === 'touch' || (event.detail !== 0 && event.timeStamp - lastTouch < 800)) return;
+      activate();
+    });
+  }
   setMode(mode) { if (mode === this.mode) return; this.mode = mode; this.root.dataset.mode = mode; this.root.dataset.touch = String(this.forceTouch || mode === 'touch'); this.refreshGlyphs(); }
   key(code) { return this.mode === 'gamepad' ? GLYPHS[code] || code.replace('Key', '') : KEYS[code] || code.replace('Key', ''); }
   glyph(code) { const k = $('kbd', 'sd-key', this.key(code)); k.dataset.key = code; return k; }
-  refreshGlyphs() { for (const k of this.root.querySelectorAll('[data-key]')) k.textContent = this.key(k.dataset.key); }
-  emit(action, value) { this.ctx.audio?.unlock?.(); this.ctx.input?.clearQueued?.('Enter', 'Space', 'Escape', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'); this.onAction(action, value); }
+  refreshGlyphs() { for (const k of this.root.querySelectorAll('[data-key]')) k.textContent = this.key(k.dataset.key); for (const label of this.root.querySelectorAll('.sd-help-table [data-keyboard]')) label.textContent = this.mode === 'gamepad' ? label.dataset.controller : label.dataset.keyboard; }
+  emit(action, value) { this.ctx.audio?.unlock?.(); this.ctx.input?.clearQueued?.('Enter', 'Space', 'Escape', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'); if (this.ctx.input.playing) return; this.ctx.input.send({ type: 'ui-action', action, value: this.prepareAction(action, value) }); }
 
   show(screen, props = {}) {
     if (!copy[screen]) screen = 'pause';
@@ -66,6 +79,7 @@ export class GameUI {
     const h = $('h1', '', props.title || title); h.id = 'sd-menu-title'; header.append(h); this.overlay.setAttribute('aria-labelledby', h.id);
     header.append($('p', 'sd-menu-subtitle', props.subtitle ?? subtitle)); panel.append(header);
     const content = $('div', 'sd-menu-content'); panel.append(content); this.content = content;
+    if (props.replay && ['brief', 'debrief', 'ending'].includes(screen)) content.append($('p', 'sd-replay-note', 'Replay · campaign checkpoint is preserved'));
     if (props.body) { const body = $('div', 'sd-body'); const lines = Array.isArray(props.body) ? props.body : String(props.body).split('\n'); for (const line of lines) body.append($('p', '', line)); content.append(body); }
     const buttons = $('nav', 'sd-menu-actions'); buttons.setAttribute('aria-label', screen + ' menu'); this.buttons = buttons;
     if (screen === 'title') {
@@ -92,12 +106,12 @@ export class GameUI {
       this.button(props.choices?.length ? 'Begin with this approach' : 'Let’s do it', 'begin');
     } else if (screen === 'debrief') {
       if (props.reward !== undefined) { const reward = $('div', 'sd-reward'); reward.append($('span', 'sd-eyebrow', 'YOUR CUT'), $('strong', '', money(props.reward))); content.append(reward); }
-      this.buildStats(props.stats); this.button('The next move', 'next'); this.button('Explore the district', 'resume');
+      this.buildStats(props.stats); this.button(props.replay ? 'Return to story' : 'The next move', 'next'); if (!props.replay) this.button('Explore the district', 'resume');
     } else if (screen === 'replay') {
       CHAPTERS.forEach((name, i) => this.button(`${i + 1} · ${name}`, 'replay', i)); this.button('Back', 'back');
     } else if (screen === 'failure') { this.button('Retry checkpoint', 'retry'); this.button('Return to title', 'quit'); }
     else if (screen === 'ending') {
-      this.buildStats(props.stats); this.button('Keep driving', 'resume');
+      this.buildStats(props.stats); this.button(props.replay ? 'Return to story' : 'Keep driving', 'resume');
       CHAPTERS.forEach((name, i) => this.button(`Replay ${i + 1} · ${name}`, 'replay', i)); this.button('Return to title', 'quit');
     }
     content.append(buttons);
@@ -113,19 +127,27 @@ export class GameUI {
     if (description) labelWrap.append($('small', '', description)); button.append($('span', 'sd-action-arrow', '↗'));
     const control = { element: button, action, value }; const index = this.controls.length; this.controls.push(control); parent.append(button);
     button.addEventListener('pointerenter', () => this.select(index, false)); button.addEventListener('focus', () => { if (this.selected !== index) this.select(index, false); });
-    button.addEventListener('click', () => { this.select(index, false); this.activate(control); }); return control;
+    this.bindActivation(button, () => { this.select(index, false); this.activate(control); }); return control;
   }
 
   buildStats(stats) {
     if (!stats) return; const block = $('dl', 'sd-stats');
-    for (const [label, value] of Object.entries(stats)) { const item = $('div'); item.append($('dt', '', label.replace(/([A-Z])/g, ' $1')), $('dd', '', String(value))); block.append(item); } this.content.append(block);
+    for (const [label, value] of Object.entries(stats)) {
+      let display = String(value);
+      if (typeof value === 'number' && Number.isFinite(value)) {
+        if (/time|duration|elapsed/i.test(label)) { const seconds = Math.floor(Math.max(0, value)); display = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`; }
+        else if (/cash|money|reward|earnings/i.test(label)) display = money(value);
+        else display = value.toLocaleString('en-US', { maximumFractionDigits: 1 });
+      }
+      const item = $('div'); item.append($('dt', '', label.replace(/([A-Z])/g, ' $1')), $('dd', '', display)); block.append(item);
+    } this.content.append(block);
   }
 
   buildHelp() {
     const rows = [
-      ['Move / steer', 'WASD / arrows', 'Left stick'], ['Sprint', 'SHIFT', 'R1'], ['Interact / enter or exit vehicle', 'F', '△'], ['Fire / accelerate', 'J / left mouse', 'R2'], ['Aim / brake / reverse', 'C / right mouse', 'L2'], ['Reload', 'R', '□'], ['Dodge / handbrake', 'SPACE', '✕'], ['Signal scan', 'Q', 'L1'], ['District map', 'M', 'VIEW'], ['Pause / back', 'ESC', '○ / OPTIONS'],
+      ['Move / steer', 'WASD / arrows', 'Left stick'], ['Sprint', 'SHIFT', 'R1'], ['Interact / enter or exit vehicle', 'F', '△'], ['Fire weapon', 'J / left mouse', 'R2'], ['Aim weapon', 'C', 'L2'], ['Accelerate / brake / reverse', 'W / S', 'R2 / L2'], ['Reload', 'R', '□'], ['Recover vehicle (hold)', 'R · 1.6 SEC', '□ · 1.6 SEC'], ['Dodge / handbrake', 'SPACE', '✕'], ['Signal scan', 'V', 'L1'], ['District map', 'M', 'VIEW'], ['Pause / back', 'ESC', '○ / OPTIONS'],
     ];
-    const table = $('div', 'sd-help-table'); for (const [action, keyboard, controller] of rows) { const row = $('div'); row.append($('span', '', action), $('b', '', this.mode === 'gamepad' ? controller : keyboard)); table.append(row); } this.content.append(table);
+    const table = $('div', 'sd-help-table'); for (const [action, keyboard, controller] of rows) { const row = $('div'), label = $('b', '', this.mode === 'gamepad' ? controller : keyboard); label.dataset.keyboard = keyboard; label.dataset.controller = controller; row.append($('span', '', action), label); table.append(row); } this.content.append(table);
     const tips = $('div', 'sd-help-notes'); tips.append($('p', '', 'Follow the orange marker. Hold aim to steady your shot; nearby threats are assisted. Solid buildings break security sightlines. Hide off the road until the search clears.'), $('p', '', 'Touch: drag the left stick to move or steer, then hold an action on the right. In a vehicle, use the separate throttle and brake pedals. Your last checkpoint preserves each completed stage.')); this.content.append(tips);
   }
 
@@ -167,19 +189,20 @@ export class GameUI {
     if (!control) return;
     if (control.action === 'setting') { control.adjust(1); return; }
     if (control.action === 'fullscreen') { this.fullscreen(); return; }
-    if (control.action === 'replay' && control.value === undefined) { this.show('replay'); return; }
+    if (control.action === 'replay' && control.value === undefined) { this.emit('replay-menu'); return; }
     if (control.action === 'back') { this.back(); return; }
     if (control.action === 'approach') { this.controls.filter(c => c.action === 'approach').forEach(c => c.element.classList.toggle('is-chosen', c === control)); this.emit('approach', control.value); return; }
     if (control.action === 'new' && (this.props.canContinue || this.props.continue) && !this.confirmNew) {
       this.confirmNew = true; control.element.querySelector('.sd-action-label').textContent = 'Replace saved story? Select again'; return;
     }
-    this.confirmNew = false; if (['repair', 'upgrade', 'courier'].includes(control.action)) this.expectMenuFeedback = true; this.emit(control.action, control.value);
+    this.confirmNew = false; this.emit(control.action, control.value);
   }
-  back() {
-    if (['options', 'help', 'map', 'replay'].includes(this.screen)) { const previous = this.previous[this.screen]; if (previous) this.show(previous.screen, previous.props); else this.emit('resume'); return; }
+  back() { this.emit('back'); }
+  navigateBack() {
+    if (['options', 'help', 'map', 'replay'].includes(this.screen)) { const previous = this.previous[this.screen]; if (previous) this.show(previous.screen, previous.props); else this.onAction('resume'); return; }
     if (this.screen === 'title') { this.confirmNew = false; const control = this.controls.find(c => c.action === 'new'); if (control) control.element.querySelector('.sd-action-label').textContent = (this.props.canContinue || this.props.continue) ? 'Start a new story' : 'Take the wheel'; return; }
     if (this.screen === 'brief' || this.screen === 'failure') return;
-    this.emit('resume');
+    this.onAction('resume');
   }
   hide() { this.screen = null; this.menuKeyQueue = []; this.overlay.hidden = true; this.root.dataset.screen = ''; this.controls = []; this.mapCanvas = null; this.confirmNew = false; this.ctx.input?.clearQueued?.('Enter', 'Space', 'Escape'); if (document.activeElement instanceof HTMLElement) document.activeElement.blur(); }
 
@@ -201,6 +224,18 @@ export class GameUI {
     const activePad = pads.find(p => p.buttons.some(b => b.pressed || b.value > 0.2) || p.axes.some(a => Math.abs(a) > 0.25));
     if (activePad) this.setMode('gamepad');
     if (this.noticeUntil && this.clock > this.noticeUntil) { this.notice.textContent = ''; this.noticeUntil = 0; }
+    // Input commands are the sole boundary for game actions from DOM, touch and menus.
+    // The engine may call tooling updates more than once; consume each render frame once.
+    const frame = this.ctx.engine?.frame ?? this.ctx.input?.now ?? this.clock;
+    if (this.commandFrame !== frame) {
+      this.commandFrame = frame;
+      for (const command of this.ctx.input.commands || []) {
+        if (command?.type !== 'ui-action' || typeof command.action !== 'string') continue;
+        if (command.action === 'back') this.navigateBack();
+        else if (command.action === 'replay-menu') this.show('replay');
+        else { if (['repair', 'upgrade', 'courier'].includes(command.action)) this.expectMenuFeedback = true; this.onAction(command.action, command.value); }
+      }
+    }
     if (!this.screen) return;
     const state = this.menuState(pads); const edges = [];
     const codes = { ArrowUp: 'up', KeyW: 'up', ArrowDown: 'down', KeyS: 'down', ArrowLeft: 'left', KeyA: 'left', ArrowRight: 'right', KeyD: 'right', Enter: 'confirm', Space: 'confirm', Escape: 'back' };
@@ -259,14 +294,14 @@ export class GameUI {
 
   createTouch() {
     const top = $('div', 'sd-touch-top');
-    for (const [label, action] of [['Ⅱ', 'pause'], ['MAP', 'map']]) { const b = $('button', '', label); b.type = 'button'; b.setAttribute('aria-label', action === 'pause' ? 'Pause game' : 'Open district map'); b.addEventListener('click', () => { this.setMode('touch'); this.emit(action === 'pause' ? 'pause' : 'map'); }); top.append(b); } this.touch.append(top);
+    for (const [label, action] of [['Ⅱ', 'pause'], ['MAP', 'map']]) { const b = $('button', '', label); b.type = 'button'; b.setAttribute('aria-label', action === 'pause' ? 'Pause game' : 'Open district map'); this.bindActivation(b, () => { this.setMode('touch'); this.emit(action === 'pause' ? 'pause' : 'map'); }); top.append(b); } this.touch.append(top);
     const stick = $('div', 'sd-touch-stick'); stick.setAttribute('role', 'group'); stick.setAttribute('aria-label', 'Movement joystick'); const knob = $('i'); stick.append(knob, $('span', '', 'MOVE')); this.touch.append(stick); this.stick = stick; this.knob = knob;
     let pointer = null;
     const move = e => { if (e.pointerId !== pointer || this.screen) return; const r = stick.getBoundingClientRect(); const radius = r.width * 0.34; let x = (e.clientX - r.left - r.width / 2) / radius, y = (r.top + r.height / 2 - e.clientY) / radius; const length = Math.hypot(x, y); if (length > 1) { x /= length; y /= length; } Object.assign(this.ctx.input.analog, { x, y }); knob.style.transform = `translate(${x * radius}px, ${-y * radius}px)`; };
     stick.addEventListener('pointerdown', e => { if (this.screen) return; pointer = e.pointerId; stick.setPointerCapture(pointer); this.setMode('touch'); e.preventDefault(); move(e); });
     stick.addEventListener('pointermove', move); const end = e => { if (e.pointerId !== pointer) return; pointer = null; Object.assign(this.ctx.input.analog, { x: 0, y: 0 }); knob.style.transform = ''; }; stick.addEventListener('pointerup', end); stick.addEventListener('pointercancel', end); stick.addEventListener('lostpointercapture', end);
     const pad = $('div', 'sd-touch-actions'); this.touch.append(pad);
-    for (const [label, code, type] of [['SCAN', 'KeyQ', 'both'], ['RUN', 'ShiftLeft', 'foot'], ['DODGE', 'Space', 'foot'], ['RELOAD', 'KeyR', 'foot'], ['AIM', 'KeyC', 'foot'], ['FIRE', 'KeyJ', 'foot'], ['BRAKE', 'KeyS', 'drive'], ['GAS', 'KeyW', 'drive'], ['DRIFT', 'Space', 'drive'], ['INTERACT', 'KeyF', 'both']]) {
+    for (const [label, code, type] of [['SCAN', 'KeyV', 'both'], ['RUN', 'ShiftLeft', 'foot'], ['DODGE', 'Space', 'foot'], ['RELOAD', 'KeyR', 'foot'], ['AIM', 'KeyC', 'foot'], ['FIRE', 'KeyJ', 'foot'], ['BRAKE', 'KeyS', 'drive'], ['GAS', 'KeyW', 'drive'], ['DRIFT', 'Space', 'drive'], ['RECOVER', 'KeyR', 'drive'], ['INTERACT', 'KeyF', 'both']]) {
       const button = $('button', `sd-touch-action sd-touch-${type}`, label); button.type = 'button'; button.dataset.code = code; button.setAttribute('aria-label', label.toLowerCase()); let id = null;
       button.addEventListener('pointerdown', e => { if (this.screen) return; e.preventDefault(); id = e.pointerId; button.setPointerCapture(id); this.setMode('touch'); this.touchHeld.add(code); this.ctx.input.setKey(code, true); button.classList.add('is-held'); });
       const release = e => { if (e.pointerId !== id) return; id = null; this.touchHeld.delete(code); this.ctx.input.setKey(code, false); button.classList.remove('is-held'); }; button.addEventListener('pointerup', release); button.addEventListener('pointercancel', release); button.addEventListener('lostpointercapture', release); pad.append(button);

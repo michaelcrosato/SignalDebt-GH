@@ -20,7 +20,16 @@ const report = { url: base, backend: 'Chromium WebGPU / SwiftShader', devices: [
 const browser = await chromium.launch({ headless: true, args: ['--enable-unsafe-webgpu', '--enable-features=Vulkan', '--use-vulkan=swiftshader', '--use-angle=swiftshader', '--use-webgpu-adapter=swiftshader'] });
 async function press(page, key) { await page.keyboard.down(key); await page.evaluate(() => __PIXEL_ENGINE__.step(2)); await page.keyboard.up(key); await page.evaluate(() => __PIXEL_ENGINE__.step(2)); }
 async function inspect(page, stage, result) {
-  await page.waitForTimeout(180);
+  const wasManual = await page.evaluate(() => __PIXEL_ENGINE__.manual);
+  try {
+    await page.evaluate(() => new Promise((resolve, reject) => {
+      const e = __PIXEL_ENGINE__; let frames = 0;
+      const off = e.renderer.onBeforeRender(() => { if (++frames >= 3) { off(); clearTimeout(timer); resolve(); } });
+      const timer = setTimeout(() => { off(); reject(Error('Three actual renders did not arrive')); }, 20000);
+      e.manual = false;
+    }));
+    await page.waitForTimeout(150);
+  } finally { await page.evaluate(manual => { __PIXEL_ENGINE__.manual = manual; }, wasManual); }
   const evidence = await page.evaluate(stage => {
     const visible = e => { const r = e.getBoundingClientRect(), s = getComputedStyle(e); return r.width > 0 && r.height > 0 && s.display !== 'none' && s.visibility !== 'hidden' && !e.closest('[hidden]'); };
     const rect = e => { const r = e.getBoundingClientRect(); return { x: r.x, y: r.y, right: r.right, bottom: r.bottom, width: r.width, height: r.height }; };

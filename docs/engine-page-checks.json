@@ -1,0 +1,430 @@
+{
+  "note": "Every screenshot inspected. Main game advances Meet Bo; side-scroller records a fall; top-down lights a pad; Looks changes to noir; Market is the unchanged static kit showcase. Engine captures exclude game-owned DOM; UI screenshots cover that separately.",
+  "reports": {
+    "game": {
+      "page": "index.html",
+      "url": "http://127.0.0.1:39215/index.html",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "shots": [
+        {
+          "name": "index",
+          "file": "/tmp/signal-debt-final-smoke/index.png",
+          "colors": 342,
+          "topColorShare": 0.373
+        }
+      ],
+      "state": {
+        "version": "0.40.0",
+        "game": "Signal Debt",
+        "seed": 17,
+        "ready": true,
+        "paused": false,
+        "time": 0.11666666666666665,
+        "timeScale": 1,
+        "hitstop": 0,
+        "screen": {
+          "transition": null,
+          "progress": 0,
+          "moving": false,
+          "flash": 0,
+          "shockwaves": 0
+        },
+        "backend": "WebGPU",
+        "mode": "pixel",
+        "resolution": {
+          "width": 480,
+          "height": 270
+        },
+        "aspect": "fill",
+        "framing": {
+          "artWidth": 480,
+          "artHeight": 270,
+          "scale": 2,
+          "integer": true,
+          "canvasWidth": 960,
+          "canvasHeight": 540,
+          "cssWidth": 960,
+          "cssHeight": 540,
+          "offsetX": 0,
+          "offsetY": 0
+        },
+        "frame": 18,
+        "fps": 6,
+        "maxFps": 60,
+        "quality": "medium",
+        "gpuRecoveries": 0,
+        "physicsSteps": 7,
+        "gpuErrors": [],
+        "errors": [],
+        "target": [
+          -18,
+          1.24333336353302,
+          18
+        ],
+        "camera": [
+          -17.999999999999996,
+          17.557528095243615,
+          1.648988625717621
+        ],
+        "cameraRig": {
+          "preset": "third",
+          "zoom": 1,
+          "zoomable": true,
+          "yaw": 3.142,
+          "pitch": 0.78
+        },
+        "view": null,
+        "filters": [],
+        "look": "none",
+        "split": false,
+        "status": "playing | job 1/4 stage 2/12 | Drive to the Civic Shield impound | health 100 | heat 0.0 | on foot | 0.1s"
+      }
+    },
+    "side-scroller": {
+      "page": "examples/side-scroller.html",
+      "url": "http://127.0.0.1:38647/examples/side-scroller.html",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "shots": [
+        {
+          "name": "side-scroller",
+          "file": "/tmp/signal-engine-side-played/side-scroller.png",
+          "colors": 52,
+          "topColorShare": 0.638
+        }
+      ],
+      "state": {
+        "version": "0.40.0",
+        "game": "Cliff Run",
+        "seed": 1,
+        "ready": true,
+        "paused": false,
+        "time": 10.350033333333428,
+        "timeScale": 1,
+        "hitstop": 0,
+        "screen": {
+          "transition": null,
+          "progress": 0,
+          "moving": false,
+          "flash": 0,
+          "shockwaves": 0
+        },
+        "backend": "WebGPU",
+        "mode": "pixel",
+        "resolution": {
+          "width": 480,
+          "height": 270
+        },
+        "aspect": "adaptive",
+        "framing": {
+          "artWidth": 480,
+          "artHeight": 270,
+          "scale": 2,
+          "integer": true,
+          "canvasWidth": 960,
+          "canvasHeight": 540,
+          "cssWidth": 960,
+          "cssHeight": 540,
+          "offsetX": 0,
+          "offsetY": 0
+        },
+        "frame": 609,
+        "fps": 0,
+        "maxFps": 60,
+        "quality": "medium",
+        "gpuRecoveries": 0,
+        "physicsSteps": 618,
+        "gpuErrors": [],
+        "errors": [],
+        "target": [
+          11.395235061645508,
+          0.4829255357384681,
+          1.9729906253142432e-14
+        ],
+        "camera": [
+          10.35493827160494,
+          0.9166666666666669,
+          40.000000054843035
+        ],
+        "cameraRig": {
+          "preset": "side",
+          "zoom": 1.2,
+          "zoomable": true
+        },
+        "view": {
+          "left": -8.148148148148149,
+          "right": 8.148148148148149,
+          "top": 4.583333333333334,
+          "bottom": -4.583333333333334
+        },
+        "filters": [],
+        "look": "none",
+        "split": false,
+        "status": "level 1, stomps 0, falls 1"
+      }
+    },
+    "top-down": {
+      "page": "examples/top-down.html",
+      "url": "http://127.0.0.1:45997/examples/top-down.html",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "shots": [
+        {
+          "name": "top-down",
+          "file": "/tmp/signal-engine-top-played/top-down.png",
+          "colors": 9775,
+          "topColorShare": 0.012
+        }
+      ],
+      "state": {
+        "version": "0.40.0",
+        "game": "Lantern Night",
+        "seed": 1,
+        "ready": true,
+        "paused": false,
+        "time": 10.883266666666787,
+        "timeScale": 1,
+        "hitstop": 0,
+        "screen": {
+          "transition": null,
+          "progress": 0,
+          "moving": false,
+          "flash": 0,
+          "shockwaves": 0
+        },
+        "backend": "WebGPU",
+        "mode": "pixel",
+        "resolution": {
+          "width": 480,
+          "height": 270
+        },
+        "aspect": "adaptive",
+        "framing": {
+          "artWidth": 480,
+          "artHeight": 270,
+          "scale": 2,
+          "integer": true,
+          "canvasWidth": 960,
+          "canvasHeight": 540,
+          "cssWidth": 960,
+          "cssHeight": 540,
+          "offsetX": 0,
+          "offsetY": 0
+        },
+        "frame": 638,
+        "fps": 6,
+        "maxFps": 60,
+        "quality": "medium",
+        "gpuRecoveries": 0,
+        "physicsSteps": 649,
+        "gpuErrors": [],
+        "errors": [],
+        "target": [
+          -2.8289966583251953,
+          0.9197745084762574,
+          -6.286829471588135
+        ],
+        "camera": [
+          -2.855218855218855,
+          40.91977450853967,
+          -6.303030303030303
+        ],
+        "cameraRig": {
+          "preset": "topdown",
+          "zoom": 1.1,
+          "zoomable": true
+        },
+        "view": {
+          "left": -12.929292929292927,
+          "right": 12.929292929292927,
+          "top": 7.2727272727272725,
+          "bottom": -7.2727272727272725
+        },
+        "filters": [
+          "bloom",
+          "sunset",
+          "vignette"
+        ],
+        "look": "dream",
+        "split": false,
+        "status": "pads 1/2"
+      }
+    },
+    "looks": {
+      "page": "examples/looks.html",
+      "url": "http://127.0.0.1:34057/examples/looks.html",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "shots": [
+        {
+          "name": "looks",
+          "file": "/tmp/signal-engine-looks/looks.png",
+          "colors": 238,
+          "topColorShare": 0.023
+        }
+      ],
+      "state": {
+        "version": "0.40.0",
+        "game": "Look Lab",
+        "seed": 1,
+        "ready": true,
+        "paused": false,
+        "time": 0.933366666666668,
+        "timeScale": 1,
+        "hitstop": 0,
+        "screen": {
+          "transition": null,
+          "progress": 0,
+          "moving": false,
+          "flash": 0,
+          "shockwaves": 0
+        },
+        "backend": "WebGPU",
+        "mode": "pixel",
+        "resolution": {
+          "width": 480,
+          "height": 270
+        },
+        "aspect": "adaptive",
+        "framing": {
+          "artWidth": 480,
+          "artHeight": 270,
+          "scale": 2,
+          "integer": true,
+          "canvasWidth": 960,
+          "canvasHeight": 540,
+          "cssWidth": 960,
+          "cssHeight": 540,
+          "offsetX": 0,
+          "offsetY": 0
+        },
+        "frame": 51,
+        "fps": 0,
+        "maxFps": 60,
+        "quality": "medium",
+        "gpuRecoveries": 0,
+        "physicsSteps": 55,
+        "gpuErrors": [],
+        "errors": [],
+        "target": [
+          2.291685104370117,
+          0.9180441856384278,
+          0.8174882531166077
+        ],
+        "camera": [
+          25.617319315372658,
+          22.11236162356103,
+          25.45414082740654
+        ],
+        "cameraRig": {
+          "preset": "iso",
+          "zoom": 1.3,
+          "zoomable": true
+        },
+        "view": {
+          "left": -9.23076923076923,
+          "right": 9.23076923076923,
+          "top": 5.1923076923076925,
+          "bottom": -5.1923076923076925
+        },
+        "filters": [
+          "grayscale",
+          "grain",
+          "vignette"
+        ],
+        "look": "noir",
+        "split": false,
+        "status": "look noir"
+      }
+    },
+    "market": {
+      "page": "examples/market.html",
+      "url": "http://127.0.0.1:39049/examples/market.html",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "shots": [
+        {
+          "name": "market",
+          "file": "/tmp/signal-engine-market/market.png",
+          "colors": 3536,
+          "topColorShare": 0.193
+        }
+      ],
+      "state": {
+        "version": "0.40.0",
+        "game": "Market Corner",
+        "seed": 1,
+        "ready": true,
+        "paused": false,
+        "time": 1.6499333333333326,
+        "timeScale": 1,
+        "hitstop": 0,
+        "screen": {
+          "transition": null,
+          "progress": 0,
+          "moving": false,
+          "flash": 0,
+          "shockwaves": 0
+        },
+        "backend": "WebGPU",
+        "mode": "pixel",
+        "resolution": {
+          "width": 480,
+          "height": 270
+        },
+        "aspect": "adaptive",
+        "framing": {
+          "artWidth": 480,
+          "artHeight": 270,
+          "scale": 2,
+          "integer": true,
+          "canvasWidth": 960,
+          "canvasHeight": 540,
+          "cssWidth": 960,
+          "cssHeight": 540,
+          "offsetX": 0,
+          "offsetY": 0
+        },
+        "frame": 94,
+        "fps": 0,
+        "maxFps": 60,
+        "quality": "medium",
+        "gpuRecoveries": 0,
+        "physicsSteps": 97,
+        "gpuErrors": [],
+        "errors": [],
+        "target": [
+          -0.3,
+          1,
+          -0.9
+        ],
+        "camera": [
+          23.69023571222636,
+          22.209322103122023,
+          23.071517278688138
+        ],
+        "cameraRig": {
+          "preset": "iso",
+          "zoom": 1.6,
+          "zoomable": true
+        },
+        "view": {
+          "left": -7.5,
+          "right": 7.5,
+          "top": 4.21875,
+          "bottom": -4.21875
+        },
+        "filters": [],
+        "look": "none",
+        "split": false,
+        "status": "market: 9 models, 1 light"
+      }
+    }
+  }
+}
